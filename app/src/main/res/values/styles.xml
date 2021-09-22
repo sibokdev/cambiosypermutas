@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="android:textColorPrimary">@color/text_black</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="colorButtonNormal">@drawable/button_color_state</item>
+    </style>
+
+    <!-- Tabs -->
+    <style name="ServicesTabs" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">#000</item>
+        <item name="tabIndicatorHeight">3dp</item>
+    </style>
+
+
+    <!-- Button Style -->
+    <style name="ButtonNormal">
+        <item name="android:background">@color/button_bg_dark_green</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ButtonCancel">
+        <item name="android:background">@color/button_bg_red</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ButtonGrey">
+        <item name="android:background">@color/button_bg_gray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ButtonGoBack">
+        <item name="android:drawableLeft">@drawable/chevron_left</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="ButtonGoNext">
+        <item name="android:drawableRight">@drawable/chevron_right</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextViewGrey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/greyDark</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextViewBlack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="DoxToolbarAppearance" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/text_green</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/text_white</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+
+    </style>
+
+        <!-- Button Style -->
+
+        <style name="DoxTextAppearance.Medium" parent="TextAppearance.AppCompat">
+            <!-- Custom Attr-->
+            <!--<item name="fontPath">fonts/Roboto-Medium.ttf</item>-->
+        </style>
+
+        <style name="DoxTextAppearance.MediumIt" parent="TextAppearance.AppCompat">
+            <!-- Custom Attr-->
+            <!--<item name="fontPath">fonts/Roboto-MediumItalic.ttf</item>-->
+        </style>
+
+        <style name="DoxTextAppearance.Regular" parent="TextAppearance.AppCompat">
+            <!-- Custom Attr-->
+            <!--<item name="fontPath">fonts/Roboto-Regular.ttf</item>-->
+        </style>
+
+        <style name="DoxTextAppearance.Title" parent="DoxTextAppearance.Medium">
+            <item name="android:textColor">@color/text_white</item>
+            <item name="android:textSize">@dimen/text_big_font</item>
+        </style>
+
+        <style name="DoxTextAppearance.Label" parent="DoxTextAppearance.Regular">
+            <item name="android:textColor">@color/text_normal_gray</item>
+            <item name="android:textSize">@dimen/text_normal_font</item>
+        </style>
+
+        <style name="DoxTextAppearance.Paragraph" parent="DoxTextAppearance.Regular">
+            <item name="android:textColor">@color/text_dark_gray</item>
+            <item name="android:textSize">@dimen/text_small_font</item>
+        </style>
+
+
+        <style name="DoxTextAppearance.Menu" parent="DoxTextAppearance.Regular">
+            <item name="android:textColor">@color/text_white</item>
+            <item name="android:textSize">@dimen/text_small_font</item>
+        </style>
+
+        <style name="DoxTextAppearance.List" parent="DoxTextAppearance.Regular">
+            <item name="android:textColor">@color/text_green</item>
+            <item name="android:textSize">@dimen/text_normal_font</item>
+        </style>
+
+        <style name="DoxTextAppearance.Action" parent="DoxTextAppearance.Regular">
+            <item name="android:textColor">@color/text_black</item>
+            <item name="android:textSize">@dimen/text_normal_font</item>
+        </style>
+
+
+        <style name="DoxDialogFragmentAppearance" parent="AppTheme">
+            <item name="android:windowFrame">@null</item>
+            <item name="android:windowBackground">@android:color/transparent</item>
+            <item name="android:windowIsFloating">false</item>
+            <item name="android:windowContentOverlay">@null</item>
+            <item name="android:windowTitleStyle">@null</item>
+            <item name="android:colorBackgroundCacheHint">@null</item>
+            <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+            <item name="android:gravity">center</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="windowActionBar">false</item>
+        </style>
+
+
+
+    </resources>
+
+
+

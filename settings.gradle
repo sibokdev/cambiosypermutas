@@ -1,0 +1,2 @@
+rootProject.name = "OficioDigital"
+include ':app'

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.EnvioSolicitud">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            app:cardElevation="10dp"
+
+            app:cardCornerRadius="5dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:text="@string/envioSolicitud"/>
+
+            <TextView
+                android:id="@+id/nombre"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+
+                android:text="Nombre Completo"/>
+
+            <LinearLayout
+                android:layout_marginTop="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ap1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="Apellido Paterno"/>
+                <TextView
+                    android:id="@+id/ap2"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="Apellido Materno"/>
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/oficio"
+                android:layout_marginTop="120dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="OFICIO"/>
+
+            <TextView
+                android:layout_marginTop="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Tiene 24 hrs. para aceptar o declinar tu solicitud"/>
+
+            <TextView
+                android:layout_marginTop="210dp"
+                android:text="Si el trabajador acepta tu solicitud se cobrarán automaticamente $100 cargo por diagnóstico"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="290dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Te enviaremos una toficacion cuando tengamos una respuesta"
+                android:gravity="center"
+                android:padding="10dp"/>
+            <LinearLayout
+                android:layout_marginTop="380dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/aceptar"
+                    android:onClick="aceptar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="ACEPTAR"
+                    android:background="@drawable/boton_redondo"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/text_white"
+                    android:textSize="20dp"
+                    />
+                <Button
+                    android:id="@+id/cancelar"
+                    android:onClick="cancelar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text=" Cancelar  "
+                    android:textColor="@color/cardview_light_background"
+                    android:background="@drawable/boton_rojo"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="OnClick" />
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_marginTop="410dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/token"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/hora"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/fecha"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/phone"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/phone2"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/email"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "786285557375",
+    "project_id": "oficiodigitalcliente",
+    "storage_bucket": "oficiodigitalcliente.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786285557375:android:34d39a1e809b90f9e7b14a",
+        "android_client_info": {
+          "package_name": "app.oficiodigital.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786285557375-hpalo0b6300uqgsb5regkpae3i9vck46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb4hRplf2HjRTwHwG_-pbKZzoBBYbhdiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786285557375-hpalo0b6300uqgsb5regkpae3i9vck46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

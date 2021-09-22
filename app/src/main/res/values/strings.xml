@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Values -->
+    <string name="app_name">Bóveda Dox</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyBvDFwTwCUTPOh37bhyGcImcRnsd47coGY
+    </string>
+
+    <!-- Home Screen -->
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string-array name="menu_lateral_options">
+        <item>DOX</item>
+        <item>Documentos</item>
+        <item>Servicios</item>
+        <item>Estado de Cuenta</item>
+        <item>Otros Servicios</item>
+        <item>Configuración</item>
+    </string-array>
+
+    <!-- General Strings -->
+    <string name="action_settings">Cerrar sesión</string>
+    <string name="update_document">Editar</string>
+    <string name="delete_document">Borrar</string>
+    <string name="record_documents">Historial de documentos</string>
+    <string name="documents_list">Documentos</string>
+    <string name="ok">Aceptar</string>
+    <string name="no_internet_connection">El telefono no está conectado a internet</string>
+    <string name="loading_msg">cargando…</string>
+    <string name="loading_contract_msg">creando…</string>
+
+    <!-- Login Screen -->
+    <string name="login_welcome_msg">¡Bienvenido a tu Bóveda de Documentos!</string>
+    <string name="login_email_label">Número de telefono</string>
+    <string name="login_password_label">Contraseña</string>
+    <string name="login_password_recovery_label">¿Olvidaste tu contraseña?</string>
+    <string name="login_login_label">ENTRAR</string>
+    <string name="login_info_label">¿EN QUÉ CONSISTE?</string>
+    <string name="login_sign_on_label">CONTRATAR</string>
+    <string name="info_done_label">LISTO</string>
+    <string name="info_msg">Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus tortor. Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus tortor.\nCras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus tortor. Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus tortor.</string>
+    <string name="logging_msg">Iniciando sesión…</string>
+    <string name="logging_fail">No se pudo iniciar sesión</string>
+    <string name="email_invalid">El correo no es valido</string>
+    <string name="fields_empty">Ingresa todos los campos</string>
+
+    <!-- Recover Screen -->
+    <string name="recover_welcome_msg">Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</string>
+    <string name="recover_email_label">Ingresa numero de telefono</string>
+    <string name="recover_recover_label">Enviar código</string>
+    <string name="recover_back_label">Regresar</string>
+    <string name="recover_resume_send_msg">Hemos enviado la contraseña a tu correo electrónico.\n\n Si requieres mayor soporte estamos a tus órdenes en el teléfono 5544332211</string>
+    <string name="recover_done_label">LISTO</string>
+
+    <!-- Services Screen -->
+    <string name="service_status_pending">Pendiente</string>
+    <string name="service_status_on_process">En Proceso</string>
+    <string name="service_status_canceled">Cancelado</string>
+    <string name="service_status_finished">Finalizado</string>
+    <string name="services_ongoing">Servicios en curso</string>
+    <string name="services_completed">Servicios completados</string>
+    <string name="no_services_requested_msg">Aún no has solicitado ningún servicio a Bovéda de documentos. Solicitalo fácil ahora.</string>
+    <string name="no_services_completed_msg">Aún no se ha completado ninguna solicitud de servicio.</string>
+    <string name="request_service">Solicitar servicio</string>
+
+    <!-- Service Details Screen -->
+    <string name="folio_numero">Número de folio del servicio:</string>
+    <string name="cancel_service">CANCELAR SERVICIO</string>
+    <string name="service_details">Detalles de servicio</string>
+
+    <!-- Service Request Form Screen -->
+    <string name="service_request">Solicitud de servicio</string>
+    <string name="confirmation">Confirmación de servicio</string>
+    <string name="continue_button">CONTINUAR</string>
+    <string name="confirm">CONFIRMAR SERVICIO</string>
+    <string name="address">Dirección</string>
+    <string name="date">Fecha</string>
+    <string name="time">Hora</string>
+    <string name="documents">Documentos</string>
+    <string name="notes">Notas</string>
+    <string name="done">LISTO</string>
+    <string name="confirmation_done_success">El servicio de recolección de documentos a sido confirmado con éxito</string>
+    <string name="add_address_msg">Ingresa una dirección a buscar</string>
+    <string name="searching_address">Buscando dirección</string>
+    <string name="geocoding_problems">Ocurrieron problemas al buscar la dirección</string>
+    <string name="cannot_find_address">No se encontró ninguna dirección similar a la ingresada</string>
+    <string name="type_another_address">Ingresar otra dirección</string>
+
+    <!-- Hire Dox Service Screens -->
+    <string name="user_account">Cuenta de Usuario</string>
+    <string name="complete_register">Completa tu registro</string>
+    <string name="payment_method">Método de Pago</string>
+    <string name="back">ATRÁS</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="email">Email*</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="recovery_question">Pregunta de Recuperación</string>
+    <string name="answer">Respuesta</string>
+    <string name="name">Nombre*</string>
+    <string name="last_name">Apellido Paterno*</string>
+    <string name="last_name_2">Apellido Materno</string>
+    <string name="genre">Género</string>
+    <string name="man">Hombre</string>
+    <string name="woman">Mujer</string>
+    <string name="birthday">Fecha de Nacimiento</string>
+    <string name="phone">Teléfono</string>
+    <string name="choose_payment_method_title">Elige tu método de pago</string>
+    <string name="choose_payment_method_button">ELEGIR MÉTODO DE PAGO</string>
+    <string name="open_pay">Openpay</string>
+    <string name="paypal">Paypal</string>
+    <string-array name="recover_question_array">
+        <item>¿Primer nombre de tu abuelita materna?</item>
+        <item>¿Cuál es tu color favorito?</item>
+        <item>¿Cuál fue el nombre de tu primera mascota?</item>
+        <item>¿En qué ciudad naciste?</item>
+    </string-array>
+    <string name="card_data">Datos de la Tarjeta</string>
+    <string name="card_name">Nombre del titular*</string>
+    <string name="card_number">Número de la tarjeta*</string>
+    <string name="date_end">MM / AA</string>
+    <string name="cvv">CVV</string>
+    <string name="zip">Código Postal</string>
+    <string name="add_payment_method">AGREGAR MÉTODO DE PAGO</string>
+    <string name="finish_signup">Para finalizar el registro, se realizará un cobro por</string>
+    <string name="finish_signup2">por concepto de suscripción anual al servicio de Bovéda de documentos</string>
+    <string name="signup_confirmation">Tu registro al servicio de Bóveda de documentos ha sido realizado con éxito.</string>
+    <string name="pay_and_continue">PAGAR Y CONTINUAR</string>
+    <string name="make_payment">Realizar pago</string>
+    <string name="hire_dox_confirmation">Bienvenido a tu Boveda donde podrás resguardar de manera segura todos tus
+        documentos, así como servicios de entrega y recolección de los mismos.</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="not_same_password">El campo de Contraseña y Confirmar Contraseña tienen que ser iguales</string>
+
+    <string name="create_account">CREAR CUENTA</string>
+    <string name="create_account_confirmation">Para activar tu cuenta, ingresa al correo que proporcionaste y sigue las instrucciones</string>
+
+    <!-- Documents list Screen -->
+    <string name="add_document">Agregar documento</string>
+    <string name="no_documents_yet_msg">Aún no has agregado Documentos a esta lista, agrega tu primer documento y solicita un servicio de recolección</string>
+    <string name="no_documents_movements_yet_msg">Aún no hay movimientos para este documento</string>
+    <string name="document_in_boveda">En Boveda</string>
+    <string name="document_with_me">En mi Poder</string>
+
+    <!-- Add Document Screen-->
+    <string name="label_document_type">Tipo de Documento</string>
+    <string name="label_optional_fields">Los siguientes campos son opcionales</string>
+    <string name="keyword">Palabra clave</string>
+    <string name="numero">Número</string>
+    <string name="expedition">Expedición</string>
+    <string name="expiration">Vencimiento</string>
+    <string name="add_picture">Agregar una foto</string>
+    <string name="save">GUARDAR</string>
+    <string-array name="document_type">
+        <item>Factura</item>
+        <item>Llave</item>
+        <item>Póliza</item>
+        <item>Pagos</item>
+        <item>Otros</item>
+    </string-array>
+    <string-array name="document_subtype">
+        <item>Factura</item>
+        <item>Llave</item>
+        <item>Póliza</item>
+        <item>Pagos</item>
+        <item>Otros</item>
+    </string-array>
+    <string name="document_details">Detalles de documento</string>
+    <string name="need_permissions">Para poder usar la camara y guardar imagenes se necesita que la
+    app tenga permisos de acceso</string>
+    <string name="grand_permissions">Otorgar permisos</string>
+    <string name="cancel">Cancelar</string>
+
+
+    <!-- Other Services Screen -->
+    <string name="auditory_service">Servicio de auditoría</string>
+    <string name="referred">Referido</string>
+    <string name="auditory_service_status_pending">Pendiente</string>
+    <string name="auditory_service_status_completed">Completo</string>
+    <string name="no_auditory_services_msg">Aún no has solicitado ningún servicio de auditoria este mes.
+        Recuerda que tienes derecho a uno gratis por mes.</string>
+    <string name="request_auditory">Solicitar auditoría</string>
+    <string name="documents_sheltered">Documentos resguardados</string>
+    <string name="location">Ubicación</string>
+    <string name="auditory_service_success">El servicio de auditoría a sido confirmado con éxito</string>
+    <string name="see_you_soon">Te esperamos pronto en nuestras instalaciones</string>
+    <string name="auditory_request_warning_msg">Has solicitado el servicio de auditoría de este mes.
+    Recuerda que tienes derecho a uno por mes.</string>
+    <string name="auditory_scheduled">Programado</string>
+    <string name="auditory_done">Realizado</string>
+    <string name="cancel_auditory">CANCELAR AUDITORIA</string>
+    <string name="referred_people">Personas referidas</string>
+    <string name="no_referred_people_msg">Aún no has invitado a alguien.</string>
+    <string name="btn_continue">CONTINUAR</string>
+    <string name="fail_get_audits_msg">Error al obtener la lista de auditorias</string>
+
+    <!-- Audit Request Screen -->
+    <string name="audit_request">Solicitud de auditoría</string>
+    <string name="audit_confirmation">Confirmación de auditoría</string>
+
+    <!-- Clarification fragment -->
+    <string name="no_clarifications_yet_msg">Aún no has agregado aclaraciones a esta lista</string>
+    <string name="error_getting_clarifications">Ocurrió un error al obtener aclaraciones</string>
+    <string name="add_clrarification">Agregar aclaración</string>
+    <string name="add_new_clarification">Agregar aclaración</string>
+    <string name="overcharge_label">Cobro excesivo</string>
+    <string name="unrecognized_service">Servicios no reconocidos</string>
+    <string name="user_accounts">Cuentas de usuario</string>
+    <string name="error_adding_clarification">Ocurrió un error al agregar la aclaración</string>
+    <string name="clarification_added_succesfuly">Aclaración agregada con éxito</string>
+    <string name="clarifications">Aclaraciones</string>
+    <string name="clarification">Aclaración</string>
+    <string name="cancel_clarification">Cancelar aclaración</string>
+    <string name="canceling_clarification">Cancelando aclaración</string>
+
+    <!-- Invite Friends -->
+    <string name="invite_friend">Invita a un amigo</string>
+    <string name="invite_friend_btn">Referir amigos</string>
+    <string name="no_friends_invited_yet">Aún no has invitado amigos. Recuerda que puedes obtener beneficios cuando tus
+    amigos se conviertan en usuarios de Bóveda de documentos.</string>
+    <string name="friend_status_invited">Invitado</string>
+    <string name="friend_status_user">Usuario</string>
+    <string name="friends_invited_msg">Tus amigos han sido invitados</string>
+    <string name="problem_inviting_friends_msg">Ocurrio un problema al invitar a tus amigos</string>
+    <string name="invite_button">INVITAR</string>
+    <string name="invite_friends_instructions">Introduce el email de tus amigos.
+    Les enviaremos un email con una invitación para utilizar Bóveda de documentos.</string>
+    <string name="type_email">Ingresa el correo</string>
+    <string name="add">AGREGAR</string>
+    <string name="email_already_in_list">Este correo ya está en la lista</string>
+    <string name="friend_invitation_sent_msg">Tu invitación fue enviada.</string>
+    <string name="friend_invitation_sent_msg2">Cada amigo que se convierta en miembro de bóveda generará un beneficio a tu favor.</string>
+    <string name="service_pending">Instalaciones de bóveda</string>
+    <string name="service_completed">Servicio completado</string>
+    <string name="audit_schedule">Auditoría programada</string>
+    <string name="warning_cancel_audit_service">¿Estás seguro de cancelar el servicio de auditoría?</string>
+    <string name="warning_cancel_service">¿Estás seguro de cancelar el servicio?</string>
+    <string name="cancel_service_text">Servicio cancelado</string>
+    <string name="change_password_label">Seguridad (Cambiar contraseña)</string>
+    <string name="financial_data_label">Datos financieros</string>
+    <string name="personal_data_label">Datos personales</string>
+    <string name="settings">Configuración</string>
+    <string name="current_password_label">Contraseña actual</string>
+    <string name="new_password_label">Nueva contraseña</string>
+    <string name="confirm_new_pass_label">Confirma tu nueva contraseña</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="unmatched_password">Las contraseñas no coinciden</string>
+    <string name="change_pass_error">Ocurrió un error al actualizar tu contraseña. Intenta de nuevo</string>
+    <string name="changing_pass">Cambiando contraseña</string>
+    <string name="change_pass_success_label">Contraseña actualizada correctamente</string>
+    <string name="edit_personal_data_label">Editar datos personales</string>
+    <string name="personal_data_error">Error al cargar los datos personales</string>
+    <string name="phone_label">Teléfono</string>
+    <string name="birthday_label">Fecha de nacimiento</string>
+    <string name="last_name2_label">Apellido materno</string>
+    <string name="last_name_label">Appellido paterno</string>
+    <string name="name_label">Nombre</string>
+    <string name="save_data">Guardar cambios</string>
+    <string name="update_data_success_label">Datos actualizados con éxito</string>
+    <string name="openpay_payment">Pagar con OpenPay</string>
+    <string name="paypal_payment">Pagar con PayPal</string>
+    <string name="logout_message_label">¿Estás seguro de cerrar sesión?</string>
+    <string name="service_saved_correctly">Servicio guardado correctamente</string>
+    <string name="saving_service_loader_label">Guardando servicio</string>
+    <string name="save_service_error">Ocurrió un error al guardar el servicio</string>
+    <string name="error_update_data">Ocurrió un error al actualizar tus datos</string>
+    <string name="login_error">Error al hacer login</string>
+    <string name="error_complete_data">Error al completar datos</string>
+    <string name="error_contract">Ocurrió un error al contratar el servicio</string>
+    <string name="recovery_pass_error">Ocurrió un error al enviar un correo con la nueva contraseña</string>
+    <string name="logout_error">Ocurrió un error al cerrar sesión</string>
+    <string name="check_internet_connection">Revisa tu conexión a internet</string>
+    <string name="sending">Enviando...</string>
+    <string name="error_add_document">Ocurrió un error al agregar documento</string>
+    <string name="error_getting_document">Ocurrió un error obtener los documentos</string>
+    <string name="client_label">Cliente</string>
+    <string name="none_label">Ninguna</string>
+    <string name="error_update">Ocurrió un error al actualizar documento</string>
+    <string name="edit_document_label">Editar documento</string>
+    <string name="edit_photo_label">Editar foto</string>
+    <string name="data_updated_successfuly">Datos actualizados correctamente</string>
+    <string name="editing_data">Editando datos...</string>
+    <string name="document_photo_error_label">Ocurrió un error al actualizar la imagen del documento</string>
+    <string name="error_deleting_document">Ocurrió un error al borrar documento</string>
+    <string name="warning_delete_document">¿Estás seguro de borrar este documento?</string>
+    <string name="warning_delete_address">¿Estás seguro de borrar este domicilio?</string>
+    <string name="delete_document_success">Documento borrado con éxito</string>
+    <string name="error_record_document">Ocurrió un error al obtener el historial de movimientos</string>
+    <string name="delivery">Entrega</string>
+    <string name="pickup">Recolección</string>
+    <string name="boveda_label">Boveda</string>
+    <string name="creation_label">Creación</string>
+    <string name="documents_movment">Movimientos de documento</string>
+    <string name="record_document_error">Ocurrió un error al obtener el historial de movimientos</string>
+    <string name="in_boveda">en Bóveda</string>
+    <string name="in_my_power">en mi poder</string>
+    <string name="error_adding_service">Ocurrió un error al agregar el servicio</string>
+    <string name="choose_at_least_one_document">Debes delegir al menos un documento</string>
+    <string name="error_getting_services_list">Ocurrió un error al obtener los servicios</string>
+    <string name="delivery_service_label">Servicio de entrega</string>
+    <string name="pickup_Service">Servicio de recolección</string>
+    <string name="delivery_pickup_service_label">Servicio de entrega y recolección</string>
+    <string name="pending_label">Pendiente de asignar</string>
+    <string name="programmed_label">Programado</string>
+    <string name="canceled_service_label">Cancelado</string>
+    <string name="deleted_service_label">Borrado</string>
+    <string name="error_cancelling_service_label">Ocurrió un error al cancelar el servicio</string>
+    <string name="search_document_label">Buscar documento</string>
+    <string name="account_status_label">Estado de cuenta</string>
+    <string name="no_account_status">No tienes ningún estado de cuenta</string>
+    <string name="error_referred_friends_label">Ocurrió un error al obtener la lista de amigos referidos</string>
+    <string name="boveda_build">Instalaciones de bóveda</string>
+    <string name="no_docs_in_boveda">No tienes documentos en bóveda</string>
+    <string name="no_request_audit_no_docs">No puedes solicitar una auditoria sino tienes documentos en bóveda</string>
+    <string name="error_adding_audit">Ocurrió un error al agregar auditoria</string>
+    <string name="error_getting_audits">Ocurrió un error al obtener la lista de auditorias</string>
+    <string name="error_canceling_audit">Ocurrió un error al intentar cancelar la auditoria</string>
+    <string name="cancel_audit_success">Auditoria cancelada éxitosamente</string>
+    <string name="cannot_delete_document_in_boveda">No puedes eliminar un documento que esta Bóveda</string>
+    <string name="photo_notification">Esta fotografía se almacena únicamente en la aplicación, DOX no tiene acceso a esa información.</string>
+    <string name="schedule_urgent_service">Solicitar servicio urgente</string>
+    <string name="cost_urgent_service">Costo de </string>
+    <string name="see_more">LEER MÁS</string>
+    <string name="request_urgent_service">Solicitud de servicio urgente</string>
+    <string name="notification_urget_service">Un servicio urgente tiene un costo extra de $50.00 MXN y será ejecutado el mismo día, el monto será cobrado con tu forma de cobro activa al finalizar la solicitud del servicio</string>
+    <string name="never_share_financial_information">Nunca compartiremos tu información financiera</string>
+    <string name="no_payment_method">No tienes ningún método de pago</string>
+    <string name="credit_card_added_successfuly">Tarjeta agregada con éxito</string>
+    <string name="error_adding_credit_card">Ocurrió un error al agregar tu tarjeta </string>
+    <string name="error_getting_cards_list">Ocurrió un error al obtener el listado de tarjetas dadas de alta</string>
+    <string name="openpay_account">Cuenta de Openpay</string>
+    <string name="add_service_requere_internet">Agregar un servicio requiere conexión a internet</string>
+    <string name="service_time_notification">La hora de servicios de bóveda es de 9:00am a 6:00pm</string>
+    <string name="error_doing_payment">Ocurrió un error al hacer el pago</string>
+    <string name="error_getting_annual_cost">Ocurrió un error al obtener el costo anual</string>
+    <string name="credit_card">Tarjeta de crédito</string>
+    <string name="titular_name">Nombre del titular</string>
+    <string name="credit_card_name">Número de tarjeta de crédito</string>
+    <string name="expiration_date">Fecha de vencimiento</string>
+    <string name="error_getting_types">Error al obtener tipos y subtipos</string>
+    <string name="audit_in_our_instalations">Servicio de auditoria en nuestras instalaciones</string>
+    <string name="my_address">Mis direcciones</string>
+    <string name="my_addresses_label">Mis domicilios</string>
+    <string name="alias">Alias</string>
+    <string name="add_your_location">Inserta tu ubicación</string>
+    <string name="save_address">Guardar domicilio</string>
+    <string name="new_address">Nuevo domicilio</string>
+    <string name="error_getting_addresses">Ocurrió un error al obtener el listado de domicilios</string>
+    <string name="error_adding_address">Ocurrió un error al agregar domicilio</string>
+    <string name="adding_address_successfuly">Domicilio agregado con éxito</string>
+    <string name="no_address_yet_msg">Aún no haz agregado ningún domicilio</string>
+    <string name="error_updating_address">Ocurrió un error al actualizar domicilio</string>
+    <string name="update_successfuly">Actualización éxitosa</string>
+    <string name="edit_address">Editar domicilio</string>
+    <string name="error_deleting_address">Ocurrió un error al eliminar el domiclio</string>
+    <string name="select_an_address">Elige una ubicación</string>
+    <string name="you_must_choose_an_address">Selecciona una dirección</string>
+    <string name="no_login_inactive_account">Para poder iniciar sesión debes de activar tu cuenta.</string>
+    <string name="error_updating_password">Ocurrió un error al cambiar tu contraseña</string>
+    <string name="without_alias">Sin alias</string>
+    <string name="comments">Comentarios</string>
+    <string name="clear_label">Aclarado</string>
+    <string name="payment_description">Membresía anual Bóveda de documentos</string>
+    <string name="error_add_paypal_payment">Ocurrió un error al ejecutar el pago</string>
+    <string name="getting_transactions">Obteniendo transacciones</string>
+    <string name="credit_card_deleted">Tarjeta de crédito eliminada correctamente</string>
+    <string name="removing_credit_card">Eliminando tarjeta</string>
+    <string name="main_credit_card">Tarjeta de crédito establecida como principal</string>
+    <string name="do_main_card">Usar tarjeta como principal</string>
+    <string name="passChange">Contraseña cambiada</string>
+    <string name="home_drawer_logout">Cerrar sesión</string>
+    <string name="title_activity_principal_menu">principalMenu</string>
+    <string name="title_activity_privacy_policies">privacy_policies</string>
+    <string name="logout_message">¿Estas seguro de cerrar sesión?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="EditCorreo_msj">Cambiando Correo...</string>
+    <string name="InsertarPhone_msj">Guardando Número...</string>
+    <string name="EditAddress_msj">Cambiando dirección...</string>
+    <string name="AgregandoMetodo_msj">Agregando Metodo...</string>
+    <string name="envioSolicitud">Se enviará tu solicitud a:</string>
+    <string name="recover_resume_contact_msg">Si requieres mayor soporte estamos a tus órdenes en el teléfono 5544332211</string>
+    <string name="agregarTarjeta">Agregando Tarjeta...</string>
+    <string name="creando">Creando cuenta...</string>
+    <string name="agregando">Agregando tarjeta...</string>
+    <string name="msg_subscribed">Sucess topico</string>
+    <string name="msg_subscribe_failed">Faile topico</string>
+
+
+</resources>

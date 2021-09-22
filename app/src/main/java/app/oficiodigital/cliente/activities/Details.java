@@ -1,0 +1,57 @@
+package app.oficiodigital.cliente.activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import app.oficiodigital.cliente.R;
+import app.oficiodigital.cliente.models.Busqueda;
+
+
+public class Details extends BaseActivity {
+
+    private TextView nombre, oficio,municipio,token1, apM, apP,phone,phone1, des;
+    private Busqueda busqueda;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details);
+
+        nombre = (TextView) findViewById(R.id.nombre);
+        oficio = (TextView) findViewById(R.id.oficio);
+        municipio = (TextView) findViewById(R.id.municipio);
+        token1 = (TextView) findViewById(R.id.token);
+        apM = (TextView) findViewById(R.id.apellido1);
+        apP = (TextView) findViewById(R.id.apellido2);
+        phone = (TextView) findViewById(R.id.phone);
+        phone1 = (TextView) findViewById(R.id.phone2);
+        des = (TextView) findViewById(R.id.des);
+
+        busqueda = (Busqueda) getIntent().getExtras().getSerializable("datos");
+
+        nombre.setText(busqueda.getName().toUpperCase());
+        apM.setText(busqueda.getSurname1().toUpperCase());
+        apP.setText(busqueda.getSurname2().toUpperCase());
+        oficio.setText(busqueda.getOffice().toUpperCase());
+        municipio.setText(busqueda.getMunicipio().toUpperCase());
+        token1.setText(busqueda.getTokenPhone());
+        phone.setText(busqueda.getPhone());
+
+        des.setText(busqueda.getDescription());
+
+
+    }
+
+    public void cotizacion(View view){
+        Intent intent = new Intent(getApplication(), DatosServicio.class);
+        intent.putExtra("oficio", oficio.getText().toString());
+        intent.putExtra("nombre", nombre.getText().toString());
+        intent.putExtra("ap1", apP.getText().toString());
+        intent.putExtra("ap2", apM.getText().toString());
+        intent.putExtra("tokenPhone", token1.getText().toString());
+        intent.putExtra("phone",phone.getText().toString());
+        startActivity(intent);
+    }
+}
