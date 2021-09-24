@@ -31,7 +31,7 @@
     <string name="loading_contract_msg">creando…</string>
 
     <!-- Login Screen -->
-    <string name="login_welcome_msg">¡Bienvenido a tu Bóveda de Documentos!</string>
+    <string name="login_welcome_msg">¡Bienvenido a tu proceso de cambio de trabajo!</string>
     <string name="login_email_label">Número de telefono</string>
     <string name="login_password_label">Contraseña</string>
     <string name="login_password_recovery_label">¿Olvidaste tu contraseña?</string>

@@ -52,7 +52,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class LoginActivity extends BaseActivity implements LoginContract.View {
+public class
+LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.login_email_til)
     TextInputLayout emailTil;

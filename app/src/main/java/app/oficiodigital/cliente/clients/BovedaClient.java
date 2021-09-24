@@ -45,6 +45,10 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> validate(@FieldMap HashMap<String, String> params);
 
+        @POST("courier/generateInvitationCode")
+        @FormUrlEncoded
+        Call<Responses> generate (@FieldMap HashMap<String, String> params);
+
         @POST("courier/updatePassword")
         @FormUrlEncoded
         Call<Responses> updatePass(@FieldMap HashMap<String, String> params);
@@ -53,9 +57,9 @@ public class BovedaClient {
         Call<List<Solicitudes>> getSolicitudes(@Path("phoneCliente") String phone);
 
         @POST("courier/validateEmail")
-        @FormUrlEncoded
-        Call<Responses> validateEmail(@FieldMap HashMap<String, String> params);
 
+
+        Call<Responses> validateEmail(@FieldMap HashMap<String, String> params);
         @GET("query/info_cp/{codigo}?token=a6425d19-2a37-455f-9914-640c316a37b0")
         Call<List<Ejemplo>> getcode(@Path("codigo") String getCode);
 

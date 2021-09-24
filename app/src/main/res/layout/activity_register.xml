@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Register">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="700dp">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registro"
+                android:textColor="@color/button_bg_light_green"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:padding="15dp"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="80dp"
+                android:id="@+id/ti_nombre">
+
+                <EditText
+                    android:id="@+id/et_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:hint="Ingresa Nombre*"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="140dp"
+                android:id="@+id/ti_ap">
+
+                <EditText
+                    android:id="@+id/et_ap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:hint="Ingresa Apellido paterno*"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="200dp"
+                android:id="@+id/ti_am">
+
+                <EditText
+                    android:id="@+id/et_am"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:hint="Ingresa Apellido Materno*"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_numtel1"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="260dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_numtel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:hint="Numero de telefono*"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_numtel2"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="320dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_numtel2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Segundo nùmero de telefono"
+                    android:lines="1"
+                    android:inputType="text"
+                    android:layout_marginEnd="50dp"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="380dp"
+                android:layout_marginStart="20dp"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:text="Sexo"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="420dp">
+                <RadioButton
+                    android:id="@+id/fem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="#747373"
+                    android:layout_marginStart="20dp"
+                    android:text="Femenino"/>
+
+                <RadioButton
+                    android:id="@+id/masc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#747373"
+                    android:layout_marginStart="20dp"
+                    android:textSize="18dp"
+                    android:text="Masculino"/>
+            </RadioGroup>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="480dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="date"
+                    android:hint="Fecha de Nacimiento *" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/boton_fecha"
+                    android:background="@drawable/botones_peques_redondos"
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:drawableTint="@color/text_white"
+                    android:padding="12dp"
+                    android:drawableBottom="@drawable/ic_date_range"/>
+
+                <TextView
+                    android:id="@+id/FechaNacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et4"
+                android:layout_marginTop="540dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvEdad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:hint="Edad:"
+                    android:textSize="18dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvApareceEdad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"/>
+
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_cedula"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="600dp"
+
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_cedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa Cedula Profesional*"
+                    android:lines="1"
+                    android:inputType="textCapCharacters"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                    android:layout_marginEnd="50dp"
+                    android:maxLength="18"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="530dp">
+
+            <TextView
+                android:id="@+id/datos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Datos Inicio de sesión"
+                android:textColor="@color/button_bg_light_green"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:padding="15dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_mail"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="45dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa correo electrónico*"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="20dp">
+
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa contraseña*"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="textPassword"
+                    android:minLines="8"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_password2"
+                android:layout_width="match_parent"
+                android:layout_marginTop="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp">
+
+                <EditText
+                    android:id="@+id/password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirmación contraseña*"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="textPassword"
+                    android:minLines="8"
+                    android:maxLength="100"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/preguntas"
+                android:layout_marginTop="220dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:spinnerMode="dialog"
+                android:padding="15dp">
+            </Spinner>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_res1"
+                android:layout_marginTop="290dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp">
+
+                <EditText
+                    android:id="@+id/res1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Ingresa respuesta"
+                    android:layout_marginEnd="50dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+                android:id="@+id/preguntas2"
+                android:layout_marginTop="350dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:spinnerMode="dialog"
+                android:padding="15dp">
+            </Spinner>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_res2"
+                android:layout_width="match_parent"
+                android:layout_marginTop="420dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp">
+
+                <EditText
+                    android:id="@+id/res2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa respuesta"
+                    android:inputType="text"
+                    android:layout_marginEnd="50dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Siguiente"
+            android:textColor="@color/text_white"
+            android:background="@drawable/boton_redondo"
+            android:onClick="siguiente"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

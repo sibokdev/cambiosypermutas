@@ -11,6 +11,7 @@
         <color name="colorPrimary">#f4cf3e</color>
         <color name="colorPrimaryDark">#313131</color>
         <color name="colorAccent">#f4cf3e</color>
+       <color name="bg_black">#000000</color>
 
         <color name="opac">#8fa4a4a4</color>
 

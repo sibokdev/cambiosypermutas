@@ -19,16 +19,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_height="500dp">
+                android:layout_height="1030dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:text="Datos de Dirección"
+                    android:text="Datos de la Escuela"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:gravity="center"
                     android:textColor="@color/button_bg_dark_green"
@@ -36,45 +36,118 @@
                     android:padding="15dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ti_calle"
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/calle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Ingresa Calle*"
-                        android:layout_marginEnd="50dp"
-                        android:inputType="text"
-                        android:maxLength="150"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ti_numero"
+                    android:id="@+id/ti_nombre_escuela"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="110dp"
+                    android:layout_marginTop="50dp"
                     android:layout_below="@+id/ti1">
 
                     <EditText
-                        android:id="@+id/numero"
+                        android:id="@+id/nombre_escuela"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingresa Número*"
+                        android:hint="Ingrese el nombre de la escuela*"
+                        android:layout_marginEnd="50dp"
+                        android:maxLength="20"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_clave"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="110dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/clave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingresa Clave de la escuela*"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:maxLength="150"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_marginTop="170dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seleciona Nivel escolar:*"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="18dp"
+                        android:padding="10dp"
+                        android:inputType="text" />
+                    <Spinner
+                        android:id="@+id/nivel_esc"
+                        android:layout_marginTop="200dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="50dp"/>
+
+                    <TextView
+                        android:layout_marginTop="260dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seleciona Turno:*"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="18dp"
+                        android:padding="10dp"
+                        android:inputType="text" />
+                    <Spinner
+                        android:id="@+id/turno"
+                        android:layout_marginTop="290dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="50dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_zona"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="350dp"
+                    android:layout_below="@+id/ti1">
+
+                    <EditText
+                        android:id="@+id/zona"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingresa Zona*"
+                        android:layout_marginEnd="50dp"
+                        android:maxLength="20"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="410dp"
+                    android:layout_below="@+id/ti1">
+
+                    <EditText
+                        android:id="@+id/tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingresa Telefono*"
                         android:layout_marginEnd="50dp"
                         android:maxLength="20"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ti_codigo"
+                    android:id="@+id/ti_codigop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="170dp"
+                    android:layout_marginTop="470dp"
                     android:layout_below="@+id/ti2">
 
                     <EditText
@@ -85,10 +158,66 @@
                         android:layout_marginEnd="50dp"
                         android:maxLength="5"
                         android:inputType="number" />
-
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <TextView
-                    android:layout_marginTop="240dp"
+                    android:id="@+id/estado"
+                    android:layout_marginTop="530dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estado:"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+                <TextView
+                    android:id="@+id/Tw_estado"
+                    android:layout_marginTop="570dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Muestra estado"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+               <!-- <Spinner
+                    android:id="@+id/estado"
+                    android:layout_marginTop="560dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="50dp"/>-->
+
+
+                <TextView
+                    android:id="@+id/municipio"
+                    android:layout_marginTop="620dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Municipio:"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+                <TextView
+                    android:id="@+id/tv_municipio"
+                    android:layout_marginTop="660dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Muestra municipio:"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:layout_marginTop="710dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Seleciona Colonia:*"
@@ -99,163 +228,93 @@
                     android:inputType="text" />
                 <Spinner
                     android:id="@+id/colonia"
-                    android:layout_marginTop="270dp"
+                    android:layout_marginTop="740dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="50dp"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_nom_dir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="800dp"
+                    android:layout_below="@+id/ti2">
+
+                    <EditText
+                        android:id="@+id/nom_dir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingresa Nombre del Director*"
+                        android:layout_marginEnd="50dp"
+                        android:maxLength="5"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_marginTop="860dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seleciona Rol:*"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+                <Spinner
+                    android:id="@+id/rol"
+                    android:layout_marginTop="890dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="50dp"/>
 
                 <TextView
+                    android:layout_marginTop="950dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Municipio:*"
-                    android:layout_marginTop="300dp"
+                    android:text="Seleciona el Tipo de Plantel:*"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
-                <TextView
-                    android:id="@+id/municipio"
+                <Spinner
+                    android:id="@+id/plantel"
+                    android:layout_marginTop="980dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="330dp"
-                    android:padding="10dp"
-                    android:text=""
-                    android:textSize="18dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginEnd="50dp"/>
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Estado:*"
-                    android:layout_marginTop="380dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="50dp"
-                    android:padding="10dp"
-                    android:textSize="18dp"/>
-
-                <TextView
-                    android:id="@+id/estado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:padding="10dp"
-                    android:layout_marginTop="410dp"
-                    android:text=""
-                    android:textSize="18dp"
-                    android:layout_marginEnd="50dp"/>
-
 
             </androidx.cardview.widget.CardView>
-
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapa"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Siguiente"
+                android:text="Llenar lugares de intereses"
                 android:layout_marginTop="20dp"
-                android:onClick="siguiente2"
+                android:onClick="sig_lugares_intereses"
                 android:textColor="@color/text_white"
                 android:background="@drawable/boton_redondo"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/nombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/ape1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/ape2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/p1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/p2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/r1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-            <TextView
-                android:id="@+id/r2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp"/>
-
-            <TextView
-                android:id="@+id/latitud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-            <TextView
-                android:id="@+id/longitud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-            <TextView
-                android:id="@+id/selec"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-            <TextView
-                android:id="@+id/token"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
         </LinearLayout>
 
 
     </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/selec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="10dp"/>
 </LinearLayout>

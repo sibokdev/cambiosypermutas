@@ -60,14 +60,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddressCliente extends AppCompatActivity implements OnMapReadyCallback {
 
-    private TextView nombre, ape1, ape2, phone, password, mail,
-            lati, longi, muni, estado, select, pregunta1, pregunta2, respuesta1, respuesta2,token1;
 
-    private EditText calle, numero, codigop;
-    private MapView mapa;
+
     private BovedaClient.APIBovedaClient apiBovedaClient;
-    private Spinner colonia;
-    private TextInputLayout ti_calle, ti_numero, ti_codigo;
+    private EditText oescuela,oclave, ozona, otel, ocp, onom_dir;
+    private TextView oestado,omunicipio,select;
+    private Spinner onivel_esc, oturno, ocolonia, orol, oplantel ;
+    private TextInputLayout ti_codigo;
+
+
 
     @SuppressLint("MissingPermission")
     @Override
@@ -75,33 +76,24 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_cliente);
 
-        nombre = (TextView) findViewById(R.id.nombre);
-        ape1 = (TextView) findViewById(R.id.ape1);
-        ape2 = (TextView) findViewById(R.id.ape2);
-        phone = (TextView) findViewById(R.id.phone);
-        password = (TextView) findViewById(R.id.password);
-        mail = (TextView) findViewById(R.id.email);
-        pregunta1 = (TextView) findViewById(R.id.p1);
-        pregunta2 = (TextView) findViewById(R.id.p2);
-        respuesta1 = (TextView) findViewById(R.id.r1);
-        respuesta2 = (TextView) findViewById(R.id.r2);
-        colonia = (Spinner) findViewById(R.id.colonia);
-        lati = (TextView) findViewById(R.id.latitud);
-        longi = (TextView) findViewById(R.id.longitud);
-        muni = (TextView) findViewById(R.id.municipio);
-        estado = (TextView) findViewById(R.id.estado);
-        select = (TextView) findViewById(R.id.selec);
-        token1 = (TextView) findViewById(R.id.token);
+        oescuela = (EditText) findViewById(R.id.nombre_escuela);
+        oclave = (EditText) findViewById(R.id.clave);
+        ozona = (EditText) findViewById(R.id.zona);
+        otel = (EditText) findViewById(R.id.tel);
+        ocp = (EditText) findViewById(R.id.codigop);
+        onom_dir = (EditText) findViewById(R.id.nom_dir);
 
+        oestado = (TextView) findViewById(R.id.estado);
+        omunicipio = (TextView) findViewById(R.id.municipio);
 
-        calle = (EditText) findViewById(R.id.calle);
-        numero = (EditText) findViewById(R.id.numero);
-        codigop = (EditText) findViewById(R.id.codigop);
+        onivel_esc = (Spinner) findViewById(R.id.nivel_esc);
+        oturno = (Spinner) findViewById(R.id.turno);
+        ocolonia = (Spinner) findViewById(R.id.colonia);
+        orol = (Spinner) findViewById(R.id.rol);
+        oplantel = (Spinner) findViewById(R.id.plantel);
+        ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigop) ;
 
-        ti_calle = (TextInputLayout) findViewById(R.id.ti_calle);
-        ti_numero = (TextInputLayout) findViewById(R.id.ti_numero);
-        ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigo);
-
+/*
         String nom = getIntent().getStringExtra("nombre");
         String ap1 = getIntent().getStringExtra("ape1");
         String ap2 = getIntent().getStringExtra("ape2");
@@ -134,12 +126,12 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
         mapa.getMapAsync(this);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        }
+        }*/
 
 
-        codigop.addTextChangedListener(new TextWatcher() {
+        ocp.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                String codigo = codigop.getText().toString();
+                String codigo = ocp.getText().toString();
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://api-sepomex.hckdrk.mx/")
@@ -162,27 +154,29 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
                         List<String> list = new ArrayList<String>();
 
                         for (Ejemplo eje : ejemplo) {
-                            String mu = "";
-                            String esta = "";
+                            String munic = "";
+                            String estado = "";
 
                             list.add(eje.getResponse().getAsentamiento());
 
-                            mu += "" + eje.getResponse().getMunicipio();
-                            muni.setText("" + mu);
+                            munic += "" + eje.getResponse().getMunicipio();
+                            omunicipio.setText("" + munic);
 
-                            esta += "" + eje.getResponse().getEstado();
-                            estado.setText("" + esta);
+                            estado += "" + eje.getResponse().getEstado();
+                            oestado.setText("" + estado);
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.spinner_colonia, list);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia.setAdapter(adapter);
+                        ocolonia.setAdapter(adapter);
 
-                        colonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        ocolonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             public void onItemSelected(AdapterView<?> adapter, View view,
                                                        int position, long id) {
-                                String slect = colonia.getSelectedItem().toString();
+                                String slect = ocolonia.getSelectedItem().toString();
                                 select.setText(slect);
+
+
                             }
 
                             public void onNothingSelected(AdapterView<?> arg0) {
@@ -209,112 +203,33 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
 
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapa.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapa.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapa.onPause();
-    }
-    @Override
-    public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        googleMap.setMyLocationEnabled(true);
-
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-        LocationListener locationListener = new LocationListener() {
-            @SuppressLint("MissingPermission")
-            @Override
-            public void onLocationChanged(Location location) {
-
-                longi.setText("" + location.getLongitude());
-                lati.setText("" + location.getLatitude());
-
-                if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                googleMap.setMyLocationEnabled(true);
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15f));
-
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-    }
-
-    public void siguiente2(View view) throws JSONException {
-        if (calle.length() == 0){
-            ti_calle.setError("Ingresar calle");
-        }else if(numero.length() == 0){
-            ti_calle.setErrorEnabled(false);
-            ti_numero.setError("Ingresa numero");
-        }else if(codigop.length() == 0){
-            ti_numero.setErrorEnabled(false);
+    //para validar que se metieron datos en los campos
+    public void sig_lugares_intereses(View view) throws JSONException {
+       if(ocp.length() == 0){
+           ti_codigo.setErrorEnabled(false);
             ti_codigo.setError("Ingresa codigo postal");
         }else {
             ti_codigo.setErrorEnabled(false);
 
-            String name = nombre.getText().toString();
-            String surname1 = ape1.getText().toString();
-            String surname2 = ape2.getText().toString();
-            String phon = phone.getText().toString();
-            String pass = password.getText().toString();
-            String mai = mail.getText().toString();
-            String pre1 = pregunta1.getText().toString();
-            String pre2 = pregunta2.getText().toString();
-            String res1 = respuesta1.getText().toString();
-            String res2 = respuesta2.getText().toString();
-            String street = calle.getText().toString();
-            String num = numero.getText().toString();
-            String codepos = codigop.getText().toString();
+            String name = oescuela.getText().toString();
+            String surname1 = oclave.getText().toString();
+
+            String pass = ozona.getText().toString();
+            String mai = otel.getText().toString();
+            String pre1 = ocp.getText().toString();
+            String pre2 = oestado.getText().toString();
+            String res1 = omunicipio.getText().toString();
+
+            String street = onom_dir.getText().toString();
+
             String colo = select.getText().toString();
-            String munici = muni.getText().toString();
-            String esta = estado.getText().toString();
-            String lat = lati.getText().toString();
-            String lo = longi.getText().toString();
-            String token = token1.getText().toString();
+
 
 
             HashMap<String, String> params = new HashMap<>();
             params.put("name", name);
             params.put("surname1", surname1);
-            params.put("surname2", surname2);
-            params.put("phone", phon);
+
             params.put("password", pass);
             params.put("email", mai);
             List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
@@ -326,7 +241,7 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
 
             RespuestaPreguntaSecreta respuesta2 = new RespuestaPreguntaSecreta();
             respuesta2.setPregunta(pre2);
-            respuesta2.setRespuesta(res2);
+
 
             listaRespuestas.add(respuesta2);
 
@@ -338,20 +253,15 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
                 JSONObject jGroup = new JSONObject();
                 jGroup.put("pregunta", listaRespuestas.get(i).getPregunta());
                 jGroup.put("respuesta", listaRespuestas.get(i).getRespuesta());
-                jGroup.put("phone", phon);
+
                 jArray.put(jGroup);
             }
 
             params.put("respuestas", jArray.toString());
             params.put("calle", street);
-            params.put("numero", num);
-            params.put("codigopostal", codepos);
+
             params.put("colonia", colo);
-            params.put("municipio", munici);
-            params.put("estado", esta);
-            params.put("latitud", lat);
-            params.put("longitud", lo);
-            params.put("tokenPhone",token);
+
 
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
             call.enqueue(new Callback<Responses>() {
@@ -381,4 +291,8 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
     }
 
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+    }
 }

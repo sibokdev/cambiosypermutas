@@ -6,31 +6,15 @@
     android:gravity="center_horizontal">
 
     <androidx.appcompat.widget.AppCompatButton
-        style=""
-        android:id="@+id/btnInfo"
-        android:onClick="info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:text="info"
-        android:padding="10dp"
-        android:background="@drawable/boton_redondo"
-        android:textColor="@color/cardview_light_background"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/btnLogin"/>
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/contract_service_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="Registrase"
+        android:text="Registrarse"
         android:onClick="contratar"
         android:layout_marginBottom="10dp"
         android:background="@drawable/boton_redondo"
         android:layout_alignEnd="@+id/btnLogin"
-        android:layout_toEndOf="@+id/btnInfo"
         android:textColor="@color/cardview_light_background"
         android:layout_alignParentBottom="true" />
 
@@ -41,7 +25,7 @@
         android:textColor="@color/cardview_light_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnInfo"
+        android:layout_above="@+id/contract_service_button"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:text="@string/login_login_label"
@@ -51,19 +35,22 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="15dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="40dp"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/logo" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,40 +59,43 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                app:cardElevation="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:padding="20dp"
                 app:cardCornerRadius="5dp"
-                android:padding="20dp">
+                app:cardElevation="10dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_email_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp">
+
                     <EditText
                         android:id="@+id/login_email_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:hint="@string/login_email_label"
                         android:inputType="number"
-                        android:layout_marginEnd="10dp"
                         android:maxLength="10"
-                        android:textColorHint="#fff"/>
+                        android:textColorHint="#fff" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_password_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="70dp"
                     android:layout_marginBottom="16dp">
+
                     <EditText
                         android:id="@+id/login_password_et"
                         android:layout_width="match_parent"
@@ -113,40 +103,44 @@
                         android:layout_marginEnd="10dp"
                         android:hint="@string/login_password_label"
                         android:inputType="textPassword"
-                        android:textColorHint="#fff"/>
+                        android:textColorHint="#fff" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:id="@+id/btnRecoverPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="8dp"
                     android:layout_marginTop="130dp"
+                    android:gravity="center_horizontal"
                     android:onClick="recuperar"
+                    android:padding="8dp"
                     android:text="@string/login_password_recovery_label"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
+
                 <TextView
-                    android:layout_marginTop="160dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp" />
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
             <TextView
                 android:id="@+id/token"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tokenauth"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

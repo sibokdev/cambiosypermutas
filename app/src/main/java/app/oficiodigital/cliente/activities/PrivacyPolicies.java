@@ -71,7 +71,7 @@ public class PrivacyPolicies extends BaseActivity {
 
         } else {
 
-            Intent sig1 = new Intent(this, ClienteRegister.class);
+            Intent sig1 = new Intent(this, InsertPhone.class);
             sig1.putExtra("tokenPhone", token1.getText().toString());
             startActivity(sig1);
         }
