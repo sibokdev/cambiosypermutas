@@ -68,7 +68,7 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, res1, res2;
+    private EditText et_nombre, et_ap, et_am, res1, res2;
     private TextView tv_edad, FechaN, tv_ofi, tv_inefront, phone, tv_ineback, resul, resul1, tv_edadm,
             pregunta1, pregunta2, poci1, poci2, token1;
     private Button bt_fecha, bt_inefront, bt_ineback;
@@ -92,6 +92,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_register);
 
         et_nombre = (EditText) findViewById(R.id.et_nombre);
+        et_ap = (EditText) findViewById(R.id.et_ap);
+        et_am = (EditText) findViewById(R.id.et_am);
 
         bt_fecha = (Button) findViewById(R.id.boton_fecha);
         tv_edad = (TextView) findViewById(R.id.tvEdad);
@@ -538,102 +540,34 @@ public class Register extends BaseActivity implements View.OnClickListener {
     }
 
 
-    //metodo boton Siguiente para pasar los datos
-    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
+
     public void siguiente(View view) {
-
-        Pattern pat = Pattern.compile("[A-Z-]{6}[0-9]{8}[A-Za-z]{1}[0-9]{3}");
-        Pattern pater = Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}");
-        EditText input = pw.getEditText();
-        String inputText = input.getText().toString().trim();
-        EditText input2 = pw2.getEditText();
-        String inputText2 = input2.getText().toString().trim();
-
-            if (et_nombre.length() == 0) {
-                n.setError("Ingresa Nombre");
-            } else {
-                n.setErrorEnabled(false);
-                if (res1.length() == 0) {
-                    ti_res1.setError("Ingresa respuesta");
-                } else {
-                    ti_res1.setErrorEnabled(false);
-                    if (res2.length() == 0) {
-                        ti_res2.setError("Ingresa respuesta");
-                    } else {
-                                    if (inputText.isEmpty()) {
-                                        pw.setError("Ingresa contraseña");
-                                    } else {
-                                        pw.setErrorEnabled(false);
-                                        if (inputText2.isEmpty()) {
-                                            pw2.setError("Ingresa contraseña");
-                                        } else {
-                                            pw2.setErrorEnabled(false);
-                                            if (resul.length() == 0 && resul1.length() == 0) {
-                                                Toast.makeText(this, "Ingresa datos de facturación ", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                if (tv_ofi.length() == 0 || tv_ofi == null) {
-                                                    Toast.makeText(this, "Ingresa oficio ", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    if (tv_inefront.length() == 0 || tv_ineback.length() == 0) {
-                                                        Toast.makeText(this, "Ingresa captura de INE ", Toast.LENGTH_SHORT).show();
-                                                    } else {
+        String name = et_nombre.getText().toString();
+        String ap = et_ap.getText().toString();
+        String am = et_am.getText().toString();
 
 
-                                                        HashMap<String, String> params = new HashMap<>();
-                                                       // params.put("email", ma);
-
-                                                        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().validateEmail(params);
-                                                        call.enqueue(new Callback<Responses>() {
-                                                            @Override
-                                                            public void onResponse(Call<Responses> call, Response<Responses> response) {
-                                                                if (response.isSuccessful()) {
-                                                                    if (response.body().getCode() == 200) {
-                                                                        //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
-                                                                        m.setError("Este Correo electronico ya ha sido registrado");
-                                                                        Toast.makeText(getApplication(), "correo ya ingresado", Toast.LENGTH_SHORT).show();
-                                                                    } else {
-                                                                        m.setErrorEnabled(false);
-                                                                        Intent sigue = new Intent(getApplication(), LoginActivity.class);
-                                                                        sigue.putExtra("office", tv_ofi.getText().toString());
-                                                                        sigue.putExtra("nombre", et_nombre.getText().toString());
-                                                                        sigue.putExtra("birthday", FechaN.getText().toString());
-                                                                        sigue.putExtra("age", tv_edadm.getText().toString());
-                                                                        sigue.putExtra("phone", phone.getText().toString());
-                                                                        sigue.putExtra("INEfront", tv_inefront.getText().toString());
-                                                                        sigue.putExtra("INEBack", tv_ineback.getText().toString());
-                                                                        sigue.putExtra("facturapropia", resul.getText().toString());
-                                                                        sigue.putExtra("facturapp", resul1.getText().toString());
-                                                                        sigue.putExtra("respuesta1", res1.getText().toString());
-                                                                        sigue.putExtra("respuesta2", res2.getText().toString());
-                                                                        sigue.putExtra("pocision1", poci1.getText().toString());
-                                                                        sigue.putExtra("pocision2", poci2.getText().toString());
-                                                                        sigue.putExtra("pregunta1", pregunta1.getText().toString());
-                                                                        sigue.putExtra("pregunta2", pregunta2.getText().toString());
-                                                                        sigue.putExtra("tokenPhone", token1.getText().toString());
-                                                                        startActivity(sigue);
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            @Override
-                                                            public void onFailure(Call<Responses> call, Throwable t) {
-                                                                L.error("login " + t.getMessage());
-                                                                //mPresenter.loginFailure(mContext.getString(R.string.login_error));
-                                                            }
-                                                        });
-
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+        HashMap<String, String> params = new HashMap<>();
+        params.put("nombre", name);
+        params.put("apaterno", ap);
+        params.put("amaterno", ap);
 
 
+        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
+        call.enqueue(new Callback<Responses>() {
 
+            @Override
+            public void onResponse(Call<Responses> call, Response<Responses> response) {
+            }
 
+            @Override
+            public void onFailure(Call<Responses> call, Throwable t) {
+
+            }
+        });
+
+        startActivity(new Intent(this, LoginActivity.class));
+
+    }
 }
 
