@@ -127,21 +127,21 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <TextView
+                android:id="@+id/tv_sexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="380dp"
                 android:layout_marginStart="20dp"
-                android:textSize="18dp"
+                android:layout_marginTop="380dp"
                 android:padding="10dp"
-                android:text="Sexo"/>
+                android:text="Sexo"
+                android:textSize="18dp" />
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="420dp">
                 <RadioButton
-                    android:id="@+id/fem"
+                    android:id="@+id/rb_fem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
@@ -150,7 +150,7 @@
                     android:text="Femenino"/>
 
                 <RadioButton
-                    android:id="@+id/masc"
+                    android:id="@+id/rb_masc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#747373"
@@ -188,7 +188,7 @@
                     android:drawableBottom="@drawable/ic_date_range"/>
 
                 <TextView
-                    android:id="@+id/FechaNacimiento"
+                    android:id="@+id/tv_FechaNacimiento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
@@ -270,7 +270,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/mail"
+                    android:id="@+id/et_mail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ingresa correo electrónico*"
@@ -287,7 +287,7 @@
 
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ingresa contraseña*"
@@ -304,7 +304,7 @@
                 android:layout_marginStart="20dp">
 
                 <EditText
-                    android:id="@+id/password2"
+                    android:id="@+id/et_password2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirmación contraseña*"
@@ -316,7 +316,7 @@
 
             <Spinner
                 android:id="@+id/preguntas"
-                android:layout_marginTop="220dp"
+                android:layout_marginTop="290dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -326,7 +326,7 @@
             </Spinner>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_res1"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="350dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp">
@@ -341,7 +341,7 @@
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/preguntas2"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="430dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -353,7 +353,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_res2"
                 android:layout_width="match_parent"
-                android:layout_marginTop="420dp"
+                android:layout_marginTop="480dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp">
 

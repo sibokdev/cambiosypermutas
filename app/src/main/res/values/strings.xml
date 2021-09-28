@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Values -->
-    <string name="app_name">Bóveda Dox</string>
+    <string name="app_name">Cambios y permutas</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyBvDFwTwCUTPOh37bhyGcImcRnsd47coGY
     </string>

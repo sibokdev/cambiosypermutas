@@ -68,14 +68,13 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, et_am, res1, res2;
-    private TextView tv_edad, FechaN, tv_ofi, tv_inefront, phone, tv_ineback, resul, resul1, tv_edadm,
-            pregunta1, pregunta2, poci1, poci2, token1;
-    private Button bt_fecha, bt_inefront, bt_ineback;
-    private RadioButton rb_si, rb_no, rb_si1, rb_no1;
-    private ImageView img_inefront, img_ineback;
+    private EditText et_nombre, et_ap, et_am, et_numtel1, et_numtel2, et_cedula, et_mail, et_password, et_password2;
+    private TextView tv_edad, FechaN, phone, resul, resul1, tv_edadm,
+            pregunta1, pregunta2, poci1, poci2, tv_sexo, token1;
+    private Button  bt_fecha;
+    private RadioButton rb_fem, rb_masc;
     private Spinner p1, p2;
-    private TextInputLayout pw, pw2, n, ap1, ap2, ine, m, ti_res1, ti_res2;
+    private TextInputLayout pw, pw2, ti_res1, ti_res2, ti_password, ti_password2;
 
     private static final String CARPETA_PRINCIPAL = "app.oficiodigita.proveedor"; //directorio principal
     private static final String CARPETA_IMAGEN = "Pictures"; //carpeta donde se guardan las fotos
@@ -94,24 +93,28 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_nombre = (EditText) findViewById(R.id.et_nombre);
         et_ap = (EditText) findViewById(R.id.et_ap);
         et_am = (EditText) findViewById(R.id.et_am);
+        et_numtel1 = (EditText) findViewById(R.id.et_numtel1);
+        et_numtel2 = (EditText) findViewById(R.id.et_numtel2);
+        et_cedula = (EditText) findViewById(R.id.et_cedula);
+        et_mail = (EditText) findViewById(R.id.et_mail);
+        et_password = (EditText) findViewById(R.id.et_password) ;
+        et_password2 = (EditText) findViewById(R.id.et_password2) ;
 
         bt_fecha = (Button) findViewById(R.id.boton_fecha);
         tv_edad = (TextView) findViewById(R.id.tvEdad);
         tv_edadm = (TextView) findViewById(R.id.tvApareceEdad);
 
-        tv_ofi = (TextView) findViewById(R.id.oficios);
-        res1 = (EditText) findViewById(R.id.res1);
-        res2 = (EditText) findViewById(R.id.res2);
+        tv_sexo = (TextView) findViewById(R.id.tv_sexo);
 
-        pw2 = (TextInputLayout) findViewById(R.id.ti_password2);
-        pw = (TextInputLayout) findViewById(R.id.ti_password);
+        rb_fem = (RadioButton) findViewById(R.id.rb_fem);
+        rb_masc = (RadioButton) findViewById(R.id.rb_masc);
+
+        ti_password = (TextInputLayout) findViewById(R.id.ti_password);
+        ti_password2 = (TextInputLayout) findViewById(R.id.ti_password2);
+
         pregunta1 = (TextView) findViewById(R.id.pregunta1);
         pregunta2 = (TextView) findViewById(R.id.pregunta2);
 
-        n = (TextInputLayout) findViewById(R.id.ti_nombre);
-        ap1 = (TextInputLayout) findViewById(R.id.ti_ap1);
-        ap2 = (TextInputLayout) findViewById(R.id.ti_ap2);
-        m = (TextInputLayout) findViewById(R.id.ti_mail);
         ti_res1 = (TextInputLayout) findViewById(R.id.ti_res1);
         ti_res2 = (TextInputLayout) findViewById(R.id.ti_res2);
 
@@ -144,28 +147,18 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         bt_fecha.setOnClickListener(this);
 
-        //Centro de trabajo si o no
-       /* rb_si.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //Sexo fem masc
+        rb_fem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    resul.setText("Si");
+                    tv_sexo.setText("femenino");
                 } else {
-                    resul.setText("No");
+                    tv_sexo.setText("masculino");
                 }
             }
         });
 
-        rb_si1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    resul1.setText("Si");
-                } else {
-                    resul1.setText("No");
-                }
-            }
-        });*/
 
         /*List<Oficios> list1 = Oficios.listAll(Oficios.class);
         List<String> lis1 = new ArrayList<String>();
@@ -312,173 +305,6 @@ public class Register extends BaseActivity implements View.OnClickListener {
         return +añoss + "";
     }
 
-    //boton camara 1
-    String currentPhotoPath;
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    String currentPhotoPath1;
-
-    private File createImageFile1() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath1 = image.getAbsolutePath();
-        return image;
-    }
-
-
-    static final int REQUEST_TAKE_PHOTO = 1;
-
-    private void abrircamara() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "app.oficiodigital.proveedor.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-        }
-    }
-
-    //boton imagen 2
-    static final int REQUEST_TAKE_PHOTOS = 1;
-
-    private void abrircamara1() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile1();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "app.oficiodigital.proveedor.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTOS);
-            }
-        }
-    }
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_IMAGE_CAPTURES = 1;
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURES) {
-            if (resultCode == RESULT_OK) {
-
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-                    bitmap = crupAndScale(bitmap, 10);
-                    img_inefront.setImageBitmap(bitmap);
-                    Toast.makeText(this, "Imagen Guardada", Toast.LENGTH_SHORT).show();
-                    bt_inefront.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(244, 207, 62)));
-                    String imagenString = convertirImgString(bitmap);
-
-                    tv_inefront.setText(imagenString);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap1 = BitmapFactory.decodeFile(currentPhotoPath1);
-                    bitmap1 = crupAndScale(bitmap1, 10);
-
-
-                    img_ineback.setImageBitmap(bitmap1);
-                    Toast.makeText(this, "Imagen Guardada2", Toast.LENGTH_SHORT).show();
-                    bt_ineback.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(244, 207, 62)));
-
-
-                    String imagenString1 = convertirImgString1(bitmap1);
-
-                    tv_ineback.setText(imagenString1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
-
-    public static Bitmap crupAndScale(Bitmap source, int scale) {
-        int factor = source.getHeight() <= source.getWidth() ? source.getHeight() : source.getWidth();
-        int longer = source.getHeight() >= source.getWidth() ? source.getHeight() : source.getWidth();
-        int x = source.getHeight() >= source.getWidth() ? 0 : (longer - factor) / 2;
-        int y = source.getHeight() <= source.getWidth() ? 0 : (longer - factor) / 2;
-        source = Bitmap.createBitmap(source, x, y, factor, factor);
-        source = Bitmap.createScaledBitmap(source, scale, scale, false);
-        return source;
-    }
-
-    private String convertirImgString(Bitmap bitmap) {
-        ByteArrayOutputStream array = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, array);
-        byte[] imagenByte = array.toByteArray();
-        String imagenString = Base64.encodeToString(imagenByte, Base64.DEFAULT);
-
-        return imagenString;
-    }
-
-    private String convertirImgString1(Bitmap bitmap) {
-        ByteArrayOutputStream array = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, array);
-        byte[] imagenByte = array.toByteArray();
-        String imagenString1 = Base64.encodeToString(imagenByte, Base64.DEFAULT);
-
-        return imagenString1;
-    }
-
     public void primerPregunta() {
         List<Preguntas1> list = Preguntas1.listAll(Preguntas1.class);
         List<String> lis = new ArrayList<String>();
@@ -545,12 +371,37 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
+        String tl1 = et_numtel1.getText().toString();
+        String tl2 = et_numtel2.getText().toString();
+        String ced = et_cedula.getText().toString();
+        String ema = et_mail.getText().toString();
+        String pass = et_password.getText().toString();
+        String pass2 = et_password2.getText().toString();
+        String sex = tv_sexo.getText().toString();
+        String ed = tv_edad.getText().toString();
+
+//        int pars_tlf1 = Integer.parseInt((tl1);
+//        int pars_tlf2 = Integer.parseInt((tl2);
+//        int pars_edad = Integer.parseInt(ed);
 
 
         HashMap<String, String> params = new HashMap<>();
         params.put("nombre", name);
         params.put("apaterno", ap);
-        params.put("amaterno", ap);
+        params.put("amaterno", am);
+        params.put("telefono1", tl1);
+        params.put("telefono2", tl2);
+
+//        HashMap<Integer, Integer> paramsi = new HashMap<>();
+//        params.put("telefono1", pars_tlf1);
+//        params.put("telefono2", pars_tlf2);
+
+        params.put("sexo", sex);
+        params.put("edad", ed);
+
+        params.put("cedula_prof", ced);
+        params.put("correo", ema);
+        params.put("password", pass);
 
 
         Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
