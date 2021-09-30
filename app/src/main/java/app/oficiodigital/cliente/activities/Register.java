@@ -276,7 +276,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     final int mesActual = mess + 1;
                     String diaFormato = (diaa < 10) ? "0" + String.valueOf(diaa) : String.valueOf(diaa);
                     String mesFormato = (mesActual < 10) ? "0" + String.valueOf(mesActual) : String.valueOf(mesActual);
-                    FechaN.setText("" + diaFormato + "/" + mesFormato + "/" + año);
+                    //FechaN.setText("" + diaFormato + "/" + mesFormato + "/" + año);
                     aa = año;
                     ma = Integer.parseInt(mesFormato);
                     da = Integer.parseInt(diaFormato);
@@ -378,7 +378,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String pass = et_password.getText().toString();
         String pass2 = et_password2.getText().toString();
         String sex = tv_sexo.getText().toString();
-        String ed = tv_edad.getText().toString();
+        String ed = tv_edadm.getText().toString();
 
 //        int pars_tlf1 = Integer.parseInt((tl1);
 //        int pars_tlf2 = Integer.parseInt((tl2);
@@ -392,15 +392,11 @@ public class Register extends BaseActivity implements View.OnClickListener {
         params.put("telefono1", tl1);
         params.put("telefono2", tl2);
 
-//        HashMap<Integer, Integer> paramsi = new HashMap<>();
-//        params.put("telefono1", pars_tlf1);
-//        params.put("telefono2", pars_tlf2);
-
         params.put("sexo", sex);
         params.put("edad", ed);
 
         params.put("cedula_prof", ced);
-        params.put("correo", ema);
+        params.put("email", ema);
         params.put("password", pass);
 
 

@@ -58,15 +58,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Ari on 23/04/2021.
  */
 
-public class AddressCliente extends AppCompatActivity implements OnMapReadyCallback {
+//cuando usamos el escuchadorse implementa el adapterview y los metodos con el foquito y se colocan abajo los mtds
+public class AddressCliente extends AppCompatActivity implements OnMapReadyCallback,AdapterView.OnItemSelectedListener {
 
 
 
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private EditText oescuela,oclave, ozona, otel, ocp, onom_dir;
     private TextView oestado,omunicipio,select;
-    private Spinner onivel_esc, oturno, ocolonia, orol, oplantel ;
+    private Spinner onivel_esc, oturno, ocolonia, orol, otipo_plantel ;
     private TextInputLayout ti_codigo;
+
+    //para que relacione el spinner y sus contenidos con el layout
+    ArrayAdapter<String> aacl, aane, aatn, aarl, aatp;
+
+    //declarar un arreglo con los elemntos que contiene el spinner
+    //String [] arreglo_cl = new String [] {"",""};
+    String [] arreglo_ne = new String [] {"Preescolar", "Primaria", "Secundaria"};
+    String [] arreglo_tn = new String [] {"Matutino", "Vespertino"};
+    String [] arreglo_rl = new String [] {"", ""};
+    String [] arreglo_tp = new String [] {"Municipal","Estatal", "Federal", "Federalizado"};
 
 
 
@@ -76,22 +87,52 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_cliente);
 
-        oescuela = (EditText) findViewById(R.id.nombre_escuela);
-        oclave = (EditText) findViewById(R.id.clave);
-        ozona = (EditText) findViewById(R.id.zona);
-        otel = (EditText) findViewById(R.id.tel);
-        ocp = (EditText) findViewById(R.id.codigop);
-        onom_dir = (EditText) findViewById(R.id.nom_dir);
+        //asociamos lode arriba con esto
+        //casteo
+        oescuela = (EditText) findViewById(R.id.et_nombre_escuela);
+        oclave = (EditText) findViewById(R.id.et_clave);
+        ozona = (EditText) findViewById(R.id.et_zona);
+        otel = (EditText) findViewById(R.id.et_tel);
+        ocp = (EditText) findViewById(R.id.et_codigop);
 
-        oestado = (TextView) findViewById(R.id.estado);
-        omunicipio = (TextView) findViewById(R.id.municipio);
 
-        onivel_esc = (Spinner) findViewById(R.id.nivel_esc);
-        oturno = (Spinner) findViewById(R.id.turno);
-        ocolonia = (Spinner) findViewById(R.id.colonia);
-        orol = (Spinner) findViewById(R.id.rol);
-        oplantel = (Spinner) findViewById(R.id.plantel);
+        oestado = (TextView) findViewById(R.id.tv_estado);
+        omunicipio = (TextView) findViewById(R.id.tv_municipio);
+
+        onom_dir = (EditText) findViewById(R.id.et_nom_dir);
+
+        //definimos el spinner
+        onivel_esc = (Spinner) findViewById(R.id.sp_nivel_esc);
+        oturno = (Spinner) findViewById(R.id.sp_turno);
+        ocolonia = (Spinner) findViewById(R.id.sp_colonia);
+        orol = (Spinner) findViewById(R.id.sp_rol);
+        otipo_plantel = (Spinner) findViewById(R.id.sp_plantel);
+
+
+        //creamos un escucha para que pueda mostrar el contenidodel spinner
+        //ocolonia.setOnItemSelectedListener(this);
+        onivel_esc.setOnItemSelectedListener(this);
+        oturno.setOnItemSelectedListener(this);
+        orol.setOnItemSelectedListener(this);
+        otipo_plantel.setOnItemSelectedListener(this);
+
+        //faltaria relacionar el arrayadapter con el contendio que tendra el spinner con la vista
+        aane = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,arreglo_ne);
+        //llenamos el contenido del sppiner con el nuevo arrayadapter
+        onivel_esc.setAdapter(aane);
+        //
+        aatn = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,arreglo_tn);
+        oturno.setAdapter(aatn);
+        //
+        aarl = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,arreglo_rl);
+        orol.setAdapter(aarl);
+        //
+        aatp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,arreglo_tp);
+        otipo_plantel.setAdapter(aatp);
+
+
         ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigop) ;
+
 
 
 
@@ -179,58 +220,74 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
 
             String esc = oescuela.getText().toString();
             String clv = oclave.getText().toString();
-
             String zon = ozona.getText().toString();
             String tl = otel.getText().toString();
             String cp = ocp.getText().toString();
+            String nom_direc= onom_dir.getText().toString();
             String estd = oestado.getText().toString();
             String mun = omunicipio.getText().toString();
 
-            String nom_dir = onom_dir.getText().toString();
+
+           //para spinner se hace el arreglo para el indie que se seleccione
+           int indice_ne = onivel_esc.getSelectedItemPosition();
+           String I = "";
+           if(indice_ne ==0 ){
+               I = "Preescolar";
+           }else if (indice_ne == 1){
+               I = "Primaria";
+           }else if (indice_ne == 2) {
+               I = "Secundaria";
+           }
+
+           int indice_tn = oturno.getSelectedItemPosition();
+           String Itn = "";
+           if(indice_tn ==0 ){
+               Itn = "Matutino";
+           }else if (indice_tn == 1){
+               Itn = "Vespertino";
+           }
+
+           int indice_rl = orol.getSelectedItemPosition();
+           String Irl = "";
+           if(indice_rl ==0 ){
+               Irl = "";
+           }else if (indice_rl == 1){
+               Irl = "";
+           }
+
+           int indice_tp = oturno.getSelectedItemPosition();
+           String Itp = "";
+           if(indice_tp ==0 ){
+               Itp = "Municipal";
+           }else if (indice_tp == 1){
+               Itp = "Estatal";
+           }else if (indice_tp == 2){
+               Itp = "Federal";
+           }else if (indice_tp == 3){
+               Itp = "Federalizado";
+           }
+
+
+          // String ticodpo = ti_codigo.getText().toString();//textinputlayout
 
             String colo = select.getText().toString();
 
-           onivel_esc = (Spinner) findViewById(R.id.nivel_esc);
-           oturno = (Spinner) findViewById(R.id.turno);
-           ocolonia = (Spinner) findViewById(R.id.colonia);
-           orol = (Spinner) findViewById(R.id.rol);
-           oplantel = (Spinner) findViewById(R.id.plantel);
+
+
+
 
             HashMap<String, String> params = new HashMap<>();
-            /*params.put("name", name);
-            params.put("surname1", surname1);
+            params.put("nombre_esc", esc);
+            params.put("clave_esc", clv);
+            params.put("zona_esc", zon);
+            params.put("telefono1", tl);
+           params.put("c_postal", cp);
+           params.put("nombre_direc", nom_direc);
+           params.put("estado", estd);
+           params.put("municipio", mun);
+           params.put("nivel_esc", tl);
+           params.put("turno", tl);
 
-            params.put("password", pass);
-            params.put("email", mai);
-            List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
-            RespuestaPreguntaSecreta respuesta = new RespuestaPreguntaSecreta();
-            respuesta.setPregunta(pre1);
-            respuesta.setRespuesta(res1);
-
-            listaRespuestas.add(respuesta);
-
-            RespuestaPreguntaSecreta respuesta2 = new RespuestaPreguntaSecreta();
-            respuesta2.setPregunta(pre2);*/
-
-
-            /*listaRespuestas.add(respuesta2);
-
-
-            JSONObject jResult = new JSONObject();
-            JSONArray jArray = new JSONArray();
-
-            for (int i = 0; i < listaRespuestas.size(); i++) {
-                JSONObject jGroup = new JSONObject();
-                jGroup.put("pregunta", listaRespuestas.get(i).getPregunta());
-                jGroup.put("respuesta", listaRespuestas.get(i).getRespuesta());
-
-                jArray.put(jGroup);
-            }
-
-            params.put("respuestas", jArray.toString());
-            params.put("calle", street);
-
-            params.put("colonia", colo);*/
 
 
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
@@ -255,7 +312,7 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
     public void alerta(){
         String msg = getString(R.string.creando);
         ProgressDialog progress = new ProgressDialog(this);
-        progress.setTitle("Creando cuenta");
+        progress.setTitle("Guardando datos");
         progress.setMessage(msg);
         progress.show();
     }
@@ -263,6 +320,16 @@ public class AddressCliente extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
