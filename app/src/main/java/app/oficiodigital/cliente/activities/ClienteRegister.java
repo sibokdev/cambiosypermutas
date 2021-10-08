@@ -207,7 +207,7 @@ public class ClienteRegister extends BaseActivity {
         }else{
             ti_res2.setErrorEnabled(false);
 
-            Intent sigue = new Intent(this, AddressCliente.class);
+            Intent sigue = new Intent(this, principalMenu.class);
             sigue.putExtra("nombre", et_nombre.getText().toString());
             sigue.putExtra("ape1", et_ap1.getText().toString());
             sigue.putExtra("ape2", et_ap2.getText().toString());
