@@ -40,6 +40,10 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +58,7 @@ import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
+import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.storage.ModelsBD.Oficios;
 import app.oficiodigital.cliente.storage.ModelsBD.Preguntas1;
@@ -68,7 +73,8 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, et_am, et_numtel1, et_numtel2, et_cedula, et_mail, et_password, et_password2;
+    private EditText et_nombre, et_ap, et_am, et_numtel1, et_numtel2, et_cedula, et_mail, et_password, et_password2
+           , presult1,  presult2;
     private TextView tv_edad, FechaN, phone, resul, resul1, tv_edadm,
             pregunta1, pregunta2, poci1, poci2, tv_sexo, token1;
     private Button  bt_fecha;
@@ -125,6 +131,12 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         p1 = (Spinner) findViewById(R.id.preguntas);
         p2 = (Spinner) findViewById(R.id.preguntas2);
+        poci1 = (TextView) findViewById(R.id.poci1);
+        poci2 = (TextView) findViewById(R.id.poci2);
+        presult1 = (EditText) findViewById(R.id.res1);
+        presult2 = (EditText) findViewById(R.id.res2);
+
+
 
         token1 = (TextView) findViewById(R.id.token);
         String token = getIntent().getStringExtra("tokenPhone");
@@ -326,7 +338,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 int sele = p1.getSelectedItemPosition();
                 String se = "" + sele;
                 //pregunta1.setText(slect);
-               // poci1.setText(se);
+               poci1.setText(se);
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -357,7 +369,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 int sele = p2.getSelectedItemPosition();
                 String se = "" + sele;
                 //pregunta2.setText(slect);
-                //poci2.setText(se);
+                poci2.setText(se);
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -367,7 +379,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
 
 
-    public void siguiente(View view) {
+    public void siguiente(View view) throws JSONException {
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
@@ -379,6 +391,10 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String pass2 = et_password2.getText().toString();
         String sex = tv_sexo.getText().toString();
         String ed = tv_edadm.getText().toString();
+        String pre1 = poci1.getText().toString();
+        String pre2 = poci1.getText().toString();
+        String res1 = presult1.getText().toString();
+        String res2 = presult1.getText().toString();
 
 //        int pars_tlf1 = Integer.parseInt((tl1);
 //        int pars_tlf2 = Integer.parseInt((tl2);
@@ -398,6 +414,37 @@ public class Register extends BaseActivity implements View.OnClickListener {
         params.put("cedula_prof", ced);
         params.put("email", ema);
         params.put("password", pass);
+
+        List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
+        RespuestaPreguntaSecreta respuesta = new RespuestaPreguntaSecreta();
+        respuesta.setPregunta(pre1);
+        respuesta.setRespuesta(res1);
+
+        listaRespuestas.add(respuesta);
+
+        RespuestaPreguntaSecreta respuesta2 = new RespuestaPreguntaSecreta();
+        respuesta2.setPregunta(pre2);
+        respuesta2.setRespuesta(res2);
+
+        listaRespuestas.add(respuesta2);
+
+
+        JSONObject jResult = new JSONObject();
+        JSONArray jArray = new JSONArray();
+
+        for (int i = 0; i < listaRespuestas.size(); i++) {
+            JSONObject jGroup = new JSONObject();
+            try {
+                jGroup.put("pregunta", listaRespuestas.get(i).getPregunta());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            jGroup.put("respuesta", listaRespuestas.get(i).getRespuesta());
+            jGroup.put("phone", tl1);
+            jArray.put(jGroup);
+        }
+
+        params.put("respuestas", jArray.toString());
 
 
         Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
