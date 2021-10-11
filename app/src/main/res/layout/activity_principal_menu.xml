@@ -6,7 +6,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="horizontal">
 
 
     <include
@@ -24,7 +25,7 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
@@ -70,10 +71,10 @@
                         android:id="@+id/et_nombre_escuela"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese el nombre de la escuela:"
                         android:layout_marginEnd="50dp"
-                        android:maxLength="50"
-                        android:inputType="textPersonName" />
+                        android:hint="Ingrese el nombre de la escuela:"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="50" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -167,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Ingresa Telefono:"
                         android:layout_marginEnd="50dp"
-                        android:maxLength="20"
+                        android:maxLength="10"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -288,7 +289,7 @@
                         android:hint="Ingresa Nombre del Director*"
                         android:layout_marginEnd="50dp"
                         android:maxLength="30"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName|textCapWords" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -461,6 +462,7 @@ procedimiento administrativo?"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/boton_redondo"
+                android:enabled="false"
                 android:onClick="sig_lugares_intereses"
                 android:text="Llenar lugares de intereses"
                 android:textColor="@color/text_white" />

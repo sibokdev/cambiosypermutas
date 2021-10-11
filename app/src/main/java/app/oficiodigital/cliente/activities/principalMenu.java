@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -68,22 +69,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class principalMenu extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-    private TextView id, lati, longi, muni, estado, select,p1,p2,r1,r2,po1,po2, token1;
-    private EditText calle, numero, codigop;
+    private TextView muni, estado, select;
+    private EditText codigop;
     private MapView mapa;
     private String phon;
-    private ImageView imageView;
-    GoogleMap googleMap;
-    private double longitude , latitude;
     private BovedaClient.APIBovedaClient apiBovedaClient;
-    private TextInputLayout ti_calle, ti_numero, ti_codigo;
-
-    private LocationManager ubicacion;
 
     private ImageView imagen;
     private TextView nombre, email, nombramiento, laborando;
@@ -97,6 +92,7 @@ public class principalMenu extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_menu);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -158,12 +154,11 @@ public class principalMenu extends BaseActivity
 
 
             @Override
-            public void onFailure (Call < List < Datos >> call, Throwable t){
+            public void onFailure(Call<List<Datos>> call, Throwable t) {
                 //  L.error("getOficios " + t.getMessage());
             }
 
         });
-
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -173,31 +168,18 @@ public class principalMenu extends BaseActivity
         //primerPregunta();
         //asociamos lode arriba con esto
         //casteo
-
-        ti_calle = (TextInputLayout) findViewById(R.id.ti_calle);
-        ti_numero = (TextInputLayout) findViewById(R.id.ti_numero);
-        ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigo);
-
-        lugares = (Button) findViewById(R.id.sig_lugares_intereses);
-
-        calle = (EditText) findViewById(R.id.calle);
-        numero = (EditText) findViewById(R.id.numero);
         codigop = (EditText) findViewById(R.id.et_codigop);
 
         estado = (TextView) findViewById(R.id.estado);
         muni = (TextView) findViewById(R.id.municipio);
 
-        lati = (TextView) findViewById(R.id.latitud);
-        longi = (TextView) findViewById(R.id.longitud);
         select = (TextView) findViewById(R.id.select);
         mapa = (MapView) findViewById(R.id.mapa);
 
         mapa.onCreate(savedInstanceState);
 
-
         oescuela = (EditText) findViewById(R.id.et_nombre_escuela);
-        if (oescuela.getText().toString().trim().equalsIgnoreCase(""))
-            oescuela.setError("Este campo no puede quedar vacio");
+
         oclave = (EditText) findViewById(R.id.et_clave);
         ozona = (EditText) findViewById(R.id.et_zona);
         otel = (EditText) findViewById(R.id.et_tel);
@@ -208,8 +190,6 @@ public class principalMenu extends BaseActivity
         estado = (TextView) findViewById(R.id.tv_estado);
 
         onom_dir = (EditText) findViewById(R.id.et_nom_dir);
-
-        ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigop);
 
         //definimos el spinner
         onivel_esc = (Spinner) findViewById(R.id.sp_nivel_esc);
@@ -225,8 +205,7 @@ public class principalMenu extends BaseActivity
 
         seekBar = (SeekBar) findViewById(R.id.seekBar_anios);
 
-       // aceptar = (Button) findViewById(R.id.btn_acep);
-
+        lugares = (Button) findViewById(R.id.sig_lugares_intereses);
 
 
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -252,13 +231,13 @@ public class principalMenu extends BaseActivity
                             String mu = "";
                             String esta = "";
 
-                           list.add(eje.getAsentamiento());
+                            list.add(eje.getAsentamiento());
 
                             mu += "" + eje.getMunicipio();
                             muni.setText(" " + mu);
 
                             esta += "" + eje.getEstado();
-                            estado.setText(" "+ esta );
+                            estado.setText(" " + esta);
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.spinner_colonia, list);
@@ -281,7 +260,7 @@ public class principalMenu extends BaseActivity
 
                     @Override
                     public void onFailure(Call<List<Ejemplo>> call, Throwable t) {
-                       // Toast.makeText(getApplication(), "error de siempre", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplication(), "error de siempre", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -293,23 +272,21 @@ public class principalMenu extends BaseActivity
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
-        
 
+//Condicional seekbar antiguedad
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 salida.setText((String.valueOf(progress) + " Años"));
 
-               /* String sal = salida.getText().toString();
-                int sal_int = Integer.parseInt(sal);*/
-
                 if (progress <= 2){
                     Toast.makeText(principalMenu.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
+                    lugares.setEnabled(false);
                 }else if (progress > 2){
                     Toast.makeText(principalMenu.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                            lugares.setEnabled(true);
                 }
             }
-
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -317,6 +294,7 @@ public class principalMenu extends BaseActivity
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
@@ -354,189 +332,7 @@ public class principalMenu extends BaseActivity
 
 
         //--------------------------------------------------------------------
-
-
-
     }
-
-     /*   fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new HomeFragment());
-        fragmentTransaction.commit();*/
-
-
-
-        //__________________________________________________________________________________________
-
-
-       /*     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
-
-    }*/
-        //_____________________________________________________________________________________
-
-    //___________________________________________________________________________________________
-        //para validar que se metieron datos en los campos
-
-
-    private void alerta() {
-        String msg = getString(R.string.creando);
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setTitle("Guardando datos");
-        progress.setMessage(msg);
-        progress.show();
-    }
-
-   /*public void tv_salida(View view){
-       String sal = salida.getText().toString();
-       int sal_int = Integer.parseInt(sal);
-
-       if (sal_int <= 2){
-           Toast.makeText(principalMenu.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-       }else if (sal_int > 2){
-           Toast.makeText(principalMenu.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-       }*/
-              /*  AlertDialog.Builder builder = new AlertDialog.Builder(principalMenu.this);
-                builder.setIcon(R.mipmap.ic_launcher).setTitle("Guardado").
-                        setMessage("Se ha captado la antiguedad").
-               // builder.setTitle("Guardado");
-                        setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       Toast.makeText(principalMenu.this, "Guardado", Toast.LENGTH_SHORT).show();
-                   }
-               }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });*/
-
-               /* AlertDialog alertDialog=builder.create();
-                alertDialog.show();*/
-   //}
-   public void sig_lugares_intereses(View view){
-       // Toast.makeText(this, "holaa dani", Toast.LENGTH_SHORT).show();
-
-       String esc = oescuela.getText().toString();
-       String clv = oclave.getText().toString();
-       String zon = ozona.getText().toString();
-       String tl = otel.getText().toString();
-       String cp = codigop.getText().toString();
-       String nom_direc= onom_dir.getText().toString();
-       String estd = estado.getText().toString();
-       String mun = muni.getText().toString();
-       String colo = select.getText().toString();
-       String sal = salida.getText().toString();
-
-
-       //guardar la seleccion del usuario del spinner de nivel escolar
-       String seleccion = onivel_esc.getSelectedItem().toString();
-       Log.d("Here-----", "Seleccion-----------------::: "+seleccion);
-       if (seleccion.equals("Preescolar")){
-                    /*int suma = valor1_int + valor2_int;
-                    String resultado = String.valueOf(suma);
-                    tv1.setText(resultado);*/
-       }else if (seleccion.equals("Primaria")){
-       }else if (seleccion.equals("Secundaria")){
-       }
-
-       //guardado de seleccion spinnner turno
-       String seleccion_tn = oturno.getSelectedItem().toString();
-       if (seleccion_tn.equals("Matutino")){
-       }else if (seleccion_tn.equals("Vespertino")){
-       }
-
-       //guardado de seleccion spinnner rol
-       String seleccion_ct = ocategoria.getSelectedItem().toString();
-       if (seleccion_ct.equals("Docente")){
-       }else if (seleccion_ct.equals("Subdirector")){
-       }else if (seleccion_ct.equals("Director")){
-       }
-
-       //Sleccion spinnner tipo plantel
-       String seleccion_tp = otipo_plantel.getSelectedItem().toString();
-       if (seleccion_tp.equals("Municipal")){
-       }else if (seleccion_tp.equals("Estatal")){
-       }else if (seleccion_tp.equals("Federal")){
-       }else if (seleccion_tp.equals("Federalizado")){
-       }
-
-       //Sleccion spinnner nombramiento
-       String seleccion_nombram = spinombramiento.getSelectedItem().toString();
-       if (seleccion_nombram.equals("Si")){
-       }else if (seleccion_nombram.equals("No")){
-       }
-
-
-       /*//Seekbar
-       //guardado de años laborando
-            String seleccion_anio = salida.getText().toString();
-            int val = Integer.parseInt(seleccion_anio);
-            if (val < 2) {
-                salida.setText("No puedes aplicar");
-            }else if (val > 2){
-                salida.setText("Puedes aplicar");
-            }*/
-
-       //Sleccion spinnner nota
-       String seleccion_nota = onota.getSelectedItem().toString();
-       if (seleccion_nota.equals("Si")){
-       }else if (seleccion_nota.equals("No")){
-       }
-
-       //Sleccion spinnner procedimiento
-       String seleccion_proc = oprocedimiento.getSelectedItem().toString();
-       if (seleccion_proc.equals("Si")){
-       }else if (seleccion_proc.equals("No")){
-       }
-
-
-       //Envio a BD
-       HashMap<String, String> params = new HashMap<>();
-       params.put("nombre_esc", esc);
-       params.put("clave_esc", clv);
-       params.put("nivel_escolar", seleccion);
-       params.put("turno", seleccion_tn);
-       params.put("zona_esc", zon);
-       params.put("telefono", tl);
-       params.put("c_postal", cp);
-       params.put("estado", estd);
-       params.put("municipio", mun);
-       params.put("colonia", colo);
-       params.put("nombre_direc", nom_direc);
-       params.put("rol", seleccion_ct);
-       params.put("tipo_plantel", seleccion_tp);
-
-       params.put("nombramiento", seleccion_nombram);
-       params.put("labor", sal);
-       params.put("nota", seleccion_nota);
-       params.put("procedimiento", seleccion_proc);
-
-
-
-       Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params);
-       call.enqueue(new Callback<Responses>() {
-
-           @Override
-           public void onResponse(Call<Responses> call, Response<Responses> response) {
-           }
-
-           @Override
-           public void onFailure(Call<Responses> call, Throwable t) {
-
-           }
-       });
-
-
-       startActivity(new Intent(this, LoginActivity.class));
-       alerta();
-   }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -546,8 +342,6 @@ public class principalMenu extends BaseActivity
             super.onBackPressed();
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -581,7 +375,6 @@ public class principalMenu extends BaseActivity
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -618,8 +411,179 @@ public class principalMenu extends BaseActivity
         return true;
     }
 
+    private void alerta() {
+        String msg = getString(R.string.creando);
+        ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Guardando datos");
+        progress.setMessage(msg);
+        progress.show();
+    }
+
+   public void sig_lugares_intereses(View view) {
+       // Toast.makeText(this, "holaa dani", Toast.LENGTH_SHORT).show();
+       //lugares.setEnabled(false);
+
+       //Metodo validacion de error campo vacio
+       oescuela.setError(null);
+       oclave.setError(null);
+       ozona.setError(null);
+       otel.setError(null);
+       codigop.setError(null);
+       onom_dir.setError(null);
+       salida.setError(null);
+       oescuela.setError(null);
+       oescuela.setError(null);
+       oescuela.setError(null);
+       oescuela.setError(null);
+       oescuela.setError(null);
+       oescuela.setError(null);
+
+
+       String esc = oescuela.getText().toString();
+       String clv = oclave.getText().toString();
+       String zon = ozona.getText().toString();
+       String tl = otel.getText().toString();
+       String cp = codigop.getText().toString();
+       String nom_direc = onom_dir.getText().toString();
+       String estd = estado.getText().toString();
+       String mun = muni.getText().toString();
+       String colo = select.getText().toString();
+       String sal = salida.getText().toString();
+
+
+       //guardar la seleccion del usuario del spinner de nivel escolar
+       String seleccion = onivel_esc.getSelectedItem().toString();
+       Log.d("Here-----", "Seleccion-----------------::: " + seleccion);
+       if (seleccion.equals("Preescolar")) {
+                    /*int suma = valor1_int + valor2_int;
+                    String resultado = String.valueOf(suma);
+                    tv1.setText(resultado);*/
+       } else if (seleccion.equals("Primaria")) {
+       } else if (seleccion.equals("Secundaria")) {
+       }
+
+       //guardado de seleccion spinnner turno
+       String seleccion_tn = oturno.getSelectedItem().toString();
+       if (seleccion_tn.equals("Matutino")) {
+       } else if (seleccion_tn.equals("Vespertino")) {
+       }
+
+       //guardado de seleccion spinnner rol
+       String seleccion_ct = ocategoria.getSelectedItem().toString();
+       if (seleccion_ct.equals("Docente")) {
+       } else if (seleccion_ct.equals("Subdirector")) {
+       } else if (seleccion_ct.equals("Director")) {
+       }
+
+       //Sleccion spinnner tipo plantel
+       String seleccion_tp = otipo_plantel.getSelectedItem().toString();
+       if (seleccion_tp.equals("Municipal")) {
+       } else if (seleccion_tp.equals("Estatal")) {
+       } else if (seleccion_tp.equals("Federal")) {
+       } else if (seleccion_tp.equals("Federalizado")) {
+       }
+
+       //Sleccion spinnner nombramiento
+       String seleccion_nombram = spinombramiento.getSelectedItem().toString();
+       if (seleccion_nombram.equals("Si")) {
+       } else if (seleccion_nombram.equals("No")) {
+       }
+
+       //Sleccion spinnner nota
+       String seleccion_nota = onota.getSelectedItem().toString();
+       if (seleccion_nota.equals("Si")) {
+       } else if (seleccion_nota.equals("No")) {
+       }
+
+       //Sleccion spinnner procedimiento
+       String seleccion_proc = oprocedimiento.getSelectedItem().toString();
+       if (seleccion_proc.equals("Si")) {
+       } else if (seleccion_proc.equals("No")) {
+       }
+
+
+       //Validaciones campos
+       if (TextUtils.isEmpty(esc)) {
+           oescuela.setError(getString(R.string.error_campo_oblogatorio));
+           oescuela.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(clv)) {
+           oclave.setError(getString(R.string.error_campo_oblogatorio));
+           oclave.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(zon)) {
+           ozona.setError(getString(R.string.error_campo_oblogatorio));
+           ozona.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(tl)) {
+           otel.setError(getString(R.string.error_campo_oblogatorio));
+           otel.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(cp)) {
+           codigop.setError(getString(R.string.error_campo_oblogatorio));
+           codigop.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(nom_direc)) {
+           onom_dir.setError(getString(R.string.error_campo_oblogatorio));
+           onom_dir.requestFocus();
+           return;
+       }
+       if (TextUtils.isEmpty(sal)) {
+           salida.setError(getString(R.string.error_campo_oblogatorio));
+           salida.requestFocus();
+           return;
+       }
+
+       Toast.makeText(getApplicationContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+
+
+       //Envio a BD
+       HashMap<String, String> params = new HashMap<>();
+       params.put("nombre_esc", esc);
+       params.put("clave_esc", clv);
+       params.put("nivel_escolar", seleccion);
+       params.put("turno", seleccion_tn);
+       params.put("zona_esc", zon);
+       params.put("telefono", tl);
+       params.put("c_postal", cp);
+       params.put("estado", estd);
+       params.put("municipio", mun);
+       params.put("colonia", colo);
+       params.put("nombre_direc", nom_direc);
+       params.put("rol", seleccion_ct);
+       params.put("tipo_plantel", seleccion_tp);
+
+       params.put("nombramiento", seleccion_nombram);
+       params.put("labor", sal);
+       params.put("nota", seleccion_nota);
+       params.put("procedimiento", seleccion_proc);
+
+       Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params);
+       call.enqueue(new Callback<Responses>() {
+
+           @Override
+           public void onResponse(Call<Responses> call, Response<Responses> response) {
+           }
+
+           @Override
+           public void onFailure(Call<Responses> call, Throwable t) {
+
+           }
+       });
+       startActivity(new Intent(this, LoginActivity.class));
+       alerta();
+   }
 
 
 
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
