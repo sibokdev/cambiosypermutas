@@ -47,7 +47,7 @@ public class BovedaClient {
 
         @POST("courier/generateInvitationCode")
         @FormUrlEncoded
-        Call<Responses> generate (@FieldMap HashMap<String, String> params);
+        Call<Responses> generate(@FieldMap HashMap<String, String> params);
 
         @POST("courier/updatePassword")
         @FormUrlEncoded

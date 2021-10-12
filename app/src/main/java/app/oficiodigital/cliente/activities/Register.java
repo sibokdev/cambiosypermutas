@@ -337,7 +337,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 String slect = p1.getSelectedItem().toString();
                 int sele = p1.getSelectedItemPosition();
                 String se = "" + sele;
-                //pregunta1.setText(slect);
+                pregunta1.setText(slect);
                poci1.setText(se);
             }
 
@@ -368,7 +368,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 String slect = p2.getSelectedItem().toString();
                 int sele = p2.getSelectedItemPosition();
                 String se = "" + sele;
-                //pregunta2.setText(slect);
+                pregunta2.setText(slect);
                 poci2.setText(se);
             }
 
@@ -391,8 +391,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String pass2 = et_password2.getText().toString();
         String sex = tv_sexo.getText().toString();
         String ed = tv_edadm.getText().toString();
-        String pre1 = poci1.getText().toString();
-        String pre2 = poci1.getText().toString();
+        String pre1 = pregunta1.getText().toString();
+        String pre2 = pregunta2.getText().toString();
         String res1 = presult1.getText().toString();
         String res2 = presult1.getText().toString();
 
@@ -447,7 +447,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         params.put("respuestas", jArray.toString());
 
 
-        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
+        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient(). registrarClientes(params);
         call.enqueue(new Callback<Responses>() {
 
             @Override

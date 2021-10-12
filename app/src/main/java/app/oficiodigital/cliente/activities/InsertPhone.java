@@ -78,7 +78,6 @@ public class InsertPhone extends BaseActivity {
 
     public void siguiente(View view) {
 
-
         String phon;
         phon = phone.getText().toString();
 

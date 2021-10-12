@@ -165,7 +165,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        Intent intent = new Intent(this,PrivacyPolicies.class);
+        Intent intent = new Intent(this, Register.class);
         intent.putExtra("tokenPhone", token1.getText().toString());
         startActivity(intent);
     }
