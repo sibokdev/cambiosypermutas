@@ -34,8 +34,8 @@ import retrofit2.Response;
 public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.UsuarioViewHolder> implements ListAdapter {
 
         FragmentActivity context;
-private List<Solicitudes> list;
-private List<Solicitudes> originalList;
+private final List<Solicitudes> list;
+private final List<Solicitudes> originalList;
 
 
 public AdapterSolicitudes(List<Solicitudes> list, FragmentActivity context) {

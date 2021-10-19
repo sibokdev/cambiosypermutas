@@ -12,8 +12,8 @@ import app.oficiodigital.cliente.repos.FinancialRepo;
 
 public class DeleteCreditCardPresenter implements DeleteCreditCardContract.Presenter {
 
-    private FinancialRepo mFinancialRepo;
-    private DeleteCreditCardContract.View mDeleteCreditCardListener;
+    private final FinancialRepo mFinancialRepo;
+    private final DeleteCreditCardContract.View mDeleteCreditCardListener;
 
     public DeleteCreditCardPresenter(Context context, DeleteCreditCardContract.View listener) {
         mFinancialRepo = new FinancialRepo(context, this);

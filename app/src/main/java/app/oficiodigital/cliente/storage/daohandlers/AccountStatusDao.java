@@ -17,7 +17,7 @@ import app.oficiodigital.cliente.utils.TableConstants.AccountStatusTable;
 
 public class AccountStatusDao extends DaoBase implements DaoInt {
 
-    private AccountStatusParser mAccountStatusParser;
+    private final AccountStatusParser mAccountStatusParser;
 
     public AccountStatusDao(Context ctx) {
         super(ctx);

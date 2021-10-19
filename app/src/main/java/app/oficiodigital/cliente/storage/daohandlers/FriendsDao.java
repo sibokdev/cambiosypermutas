@@ -18,7 +18,7 @@ import app.oficiodigital.cliente.utils.TableConstants.FriendsTable;
 
 public class FriendsDao extends DaoBase implements DaoInt {
 
-    private FriendsParser mFriendsParser;
+    private final FriendsParser mFriendsParser;
 
     public FriendsDao(Context ctx) {
         super(ctx);

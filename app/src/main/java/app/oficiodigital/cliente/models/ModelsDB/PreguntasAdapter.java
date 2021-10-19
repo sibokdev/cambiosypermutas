@@ -16,8 +16,8 @@ import app.oficiodigital.cliente.R;
 
 public class PreguntasAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Preguntas1> preguntasArrayList;
+    private final Context context;
+    private final ArrayList<Preguntas1> preguntasArrayList;
 
     public PreguntasAdapter(Context context, ArrayList<Preguntas1> preguntasArrayList) {
         this.context = context;

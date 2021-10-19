@@ -48,7 +48,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
 
 
     FragmentActivity context;
-    private List<Tarjetas> list;
+    private final List<Tarjetas> list;
     private String tok;
     private Tarjetas api;
     String  phon;

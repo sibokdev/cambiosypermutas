@@ -12,8 +12,8 @@ import app.oficiodigital.cliente.repos.FinancialRepo;
 
 public class GetUrgentCostPresenter implements GetUrgentCostContract.Presenter {
 
-    private FinancialRepo mFinancialRepo;
-    private GetUrgentCostContract.View mGetUrgentCostListener;
+    private final FinancialRepo mFinancialRepo;
+    private final GetUrgentCostContract.View mGetUrgentCostListener;
 
     public GetUrgentCostPresenter(Context context, GetUrgentCostContract.View listener){
         mGetUrgentCostListener = listener;

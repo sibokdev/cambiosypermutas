@@ -10,7 +10,7 @@ import app.oficiodigital.cliente.BuildConfig;
  */
 public class L {
 
-    private static String TAG = "Boveda DOX";
+    private static final String TAG = "Boveda DOX";
 
     public static void info(String msg) {
         if (BuildConfig.DEBUG)

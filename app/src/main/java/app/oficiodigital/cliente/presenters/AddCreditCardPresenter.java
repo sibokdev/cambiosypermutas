@@ -12,8 +12,8 @@ import app.oficiodigital.cliente.repos.FinancialRepo;
 
 public class AddCreditCardPresenter implements AddCreditCardContract.Presenter {
 
-    private FinancialRepo mFinancialRepo;
-    private AddCreditCardContract.View mAddCreditCardListener;
+    private final FinancialRepo mFinancialRepo;
+    private final AddCreditCardContract.View mAddCreditCardListener;
 
     public AddCreditCardPresenter(Context context, AddCreditCardContract.View listener) {
         mFinancialRepo = new FinancialRepo(context, this);

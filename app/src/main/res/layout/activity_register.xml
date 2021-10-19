@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+                    android:inputType="textPersonName|textCapWords"
                     android:lines="1"
                     android:hint="Ingresa Nombre*"
                     android:maxLength="100"/>
@@ -66,10 +66,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+                    android:inputType="textPersonName|textCapWords"
                     android:lines="1"
                     android:hint="Ingresa Apellido paterno*"
-                    android:maxLength="100"/>
+                    android:maxLength="25"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -84,10 +84,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+                    android:inputType="textPersonName|textCapWords"
                     android:lines="1"
                     android:hint="Ingresa Apellido Materno*"
-                    android:maxLength="100"/>
+                    android:maxLength="30"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,10 +102,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:lines="1"
                     android:hint="Numero de telefono*"
-                    android:maxLength="100" />
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -121,9 +121,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Segundo nùmero de telefono"
                     android:lines="1"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:layout_marginEnd="50dp"
-                    android:maxLength="100"/>
+                    android:maxLength="10"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 

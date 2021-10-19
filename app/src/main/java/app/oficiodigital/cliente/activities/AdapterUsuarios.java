@@ -28,8 +28,8 @@ import app.oficiodigital.cliente.models.Datos;
 public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.UsuarioViewHolder> implements ListAdapter {
 
     FragmentActivity context;
-    private List<Busqueda> list;
-    private List<Busqueda> originalList;
+    private final List<Busqueda> list;
+    private final List<Busqueda> originalList;
 
 
 

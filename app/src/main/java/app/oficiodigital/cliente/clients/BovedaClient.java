@@ -21,7 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -134,6 +133,10 @@ public class BovedaClient {
         @POST("client/registroDataSchool")
         @FormUrlEncoded
         Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params);
+
+        @POST("client/registroIntereses")
+        @FormUrlEncoded
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params);
 
 
     }

@@ -8,7 +8,7 @@ public class DataBaseCreator extends SQLiteOpenHelper {
 
     private static final String dbName = TableStructures.DATABASE_NAME;
 
-    private static int DB_VERSION = 1;
+    private static final int DB_VERSION = 1;
 
     private static final String TABLE_USER = TableStructures.TableUser.CREATE;
 
