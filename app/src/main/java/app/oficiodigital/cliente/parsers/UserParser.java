@@ -10,7 +10,7 @@ import app.oficiodigital.cliente.storage.TableStructures;
 
 public class UserParser implements ParserInt {
 
-    private String[] fields;
+    private final String[] fields;
 
     public UserParser() {
         fields = TableStructures.TableUser.FIELDS;

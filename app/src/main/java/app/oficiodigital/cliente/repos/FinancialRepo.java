@@ -7,7 +7,7 @@ import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.content.Context;
 import android.os.Bundle;
-;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -35,14 +35,14 @@ import retrofit2.Response;
 
 public class FinancialRepo {
 
-    private Context mContext;
+    private final Context mContext;
     private AddCreditCardPresenter mAddCreditCardPresenter;
     private FinancialDataPresenter mFinancialDataPresenter;
     private AddPaymentPresenter mAddPaymentPresenter;
     private GetUrgentCostPresenter mGetUrgentCostPresenter;
     private DeleteCreditCardPresenter mDeleteCreditCardPresenter;
     private CreditCardDao mCreditCardDao;
-    private String mToken;
+    private final String mToken;
     private String token;
 
 

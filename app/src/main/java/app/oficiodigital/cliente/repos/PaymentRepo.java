@@ -22,9 +22,9 @@ import retrofit2.Response;
 
 public class PaymentRepo {
 
-    private AddPaypalPaymentPresenter mAddPaypalPaymentPresenter;
-    private String mToken;
-    private Context mContext;
+    private final AddPaypalPaymentPresenter mAddPaypalPaymentPresenter;
+    private final String mToken;
+    private final Context mContext;
 
     public PaymentRepo(Context context, AddPaypalPaymentPresenter paypalPaymentPresenter) {
         mContext = context;

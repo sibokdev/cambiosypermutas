@@ -8,6 +8,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Respuestas;
 import app.oficiodigital.cliente.models.Solicitudes;
@@ -21,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -88,6 +88,12 @@ public class BovedaClient {
         @GET("client/Address{id}")
         Call<List<Direccion>> getDirrecion(@Path("id") String id);
 
+        @GET("client/DataSchool{phone}")
+        Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
+//____________________
+
+
+
         @POST("client/updateStatusPago")
         @FormUrlEncoded
         Call<Responses> updatePago(@FieldMap HashMap<String, String> params);
@@ -134,6 +140,10 @@ public class BovedaClient {
         @POST("client/registroDataSchool")
         @FormUrlEncoded
         Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params);
+
+        @POST("client/registroIntereses")
+        @FormUrlEncoded
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params);
 
 
     }

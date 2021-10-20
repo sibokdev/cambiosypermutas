@@ -5,28 +5,19 @@ import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
@@ -36,17 +27,13 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.contracts.LoginContract;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
-import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
-import app.oficiodigital.cliente.models.User;
 import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.presenters.LoginPresenter;
 import app.oficiodigital.cliente.storage.CustomerDataPersistence;
 import app.oficiodigital.cliente.utils.L;
-import app.oficiodigital.cliente.utils.NetworkState;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,7 +122,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
     public void recuperar(View view) {
 
-        startActivity(new Intent(this, RecoverPhone.class));
+        startActivity(new Intent(this, ViewDSchool.class));
     }
 
     /*@OnClick(R.id.btnLogin)
@@ -159,15 +146,13 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void info(View view) {
-        Intent intent1 = new Intent(this, AddCCPaymentActivity.class);
+        Intent intent1 = new Intent(this, ViewDSchool.class);
         startActivity(intent1);
     }
 
 
     public void contratar(View view) {
-        Intent intent = new Intent(this, Register.class);
-        intent.putExtra("tokenPhone", token1.getText().toString());
-        startActivity(intent);
+        startActivity(new Intent(this, ViewDSchool.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -195,7 +180,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
                         alerta();
                         //pagos();
-                        Intent intent = new Intent(getApplication(), principalMenu.class);
+                        Intent intent = new Intent(getApplication(), DataSchool.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
                         startActivity(intent);

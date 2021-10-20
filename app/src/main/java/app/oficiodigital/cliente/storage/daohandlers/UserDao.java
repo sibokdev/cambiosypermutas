@@ -15,7 +15,7 @@ import app.oficiodigital.cliente.storage.TableStructures;
 
 public class UserDao extends DaoBase implements DaoInt {
 
-    private String idField;
+    private final String idField;
 
     public UserDao(Context ctx) {
         super(ctx);

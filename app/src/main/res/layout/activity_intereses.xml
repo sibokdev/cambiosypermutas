@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.Intereses">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="Lugares de intereses"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/button_bg_dark_green"
+                    android:textSize="25dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="40dp"
+                    android:gravity="left"
+                    android:padding="15dp"
+                    android:text="Lugar de intereses 1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/button_bg_dark_green"
+                    android:textSize="20dp" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_codigop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ti2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="100dp">
+
+                    <EditText
+                        android:id="@+id/et_codigop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Ingresa Código Postal:"
+                        android:inputType="number"
+                        android:maxLength="5" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Seleciona Colonia:"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/sp_colonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="210dp"
+                    android:layout_marginEnd="50dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Municipio:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/municipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="360dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Estado:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/estado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="@color/white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="40dp"
+                    android:gravity="left"
+                    android:padding="15dp"
+                    android:text="Lugar de intereses 2"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/button_bg_dark_green"
+                    android:textSize="20dp" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_codigop2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ti2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="100dp">
+
+                    <EditText
+                        android:id="@+id/et_codigop2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Ingresa Código Postal:"
+                        android:inputType="number"
+                        android:maxLength="5" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Seleciona Colonia:"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/sp_colonia2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="210dp"
+                    android:layout_marginEnd="50dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Municipio:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/municipio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="360dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Estado:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/estado2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="@color/white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="40dp"
+                    android:gravity="left"
+                    android:padding="15dp"
+                    android:text="Lugar de intereses 3"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/button_bg_dark_green"
+                    android:textSize="20dp" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_codigop3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ti2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="100dp">
+
+                    <EditText
+                        android:id="@+id/et_codigop3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Ingresa Código Postal:"
+                        android:inputType="number"
+                        android:maxLength="5" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Seleciona Colonia:"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/sp_colonia3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="210dp"
+                    android:layout_marginEnd="50dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Municipio:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/municipio3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="360dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="Estado:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/estado3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_guardar"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/boton_redondo"
+
+                android:onClick="guardar"
+                android:text="Guardar"
+                android:textColor="@color/text_white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_match"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/boton_redondo"
+                android:enabled="false"
+                android:onClick="match"
+                android:text="Match"
+                android:textColor="@color/text_white"
+                tools:ignore="OnClick" />
+
+            <TextView
+                android:id="@+id/select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/select2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/select3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

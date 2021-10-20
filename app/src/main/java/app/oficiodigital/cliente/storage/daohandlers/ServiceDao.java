@@ -20,7 +20,7 @@ import static android.R.attr.id;
 
 public class ServiceDao extends DaoBase implements DaoInt {
 
-    private ServiceParser mServiceParser;
+    private final ServiceParser mServiceParser;
 
     public ServiceDao(Context ctx) {
         super(ctx);

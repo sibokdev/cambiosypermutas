@@ -1,26 +1,17 @@
 package app.oficiodigital.cliente.activities;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.icu.util.Calendar;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.text.format.Time;
-import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,15 +19,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -44,25 +32,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.models.Responses;
-import app.oficiodigital.cliente.storage.ModelsBD.Oficios;
 import app.oficiodigital.cliente.storage.ModelsBD.Preguntas1;
-import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,7 +70,16 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
     //private CompleteRegisterPresenter mPresenter;
 
-    private int aa = 0, ma = 0, da = 0, años = 0, mes = 0, dia = 0, año = 0, messs = 0, dias = 0, años1 = 0;
+    private int aa = 0;
+    private int ma = 0;
+    private int da = 0;
+    private int años = 0;
+    private int mes = 0;
+    private int dia = 0;
+    private int año = 0;
+    private int messs = 0;
+    private int dias = 0;
+    private final int años1 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,8 +276,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
                 public void onDateSet(DatePicker view, int año, int mess, int diaa) {
                     final int mesActual = mess + 1;
-                    String diaFormato = (diaa < 10) ? "0" + String.valueOf(diaa) : String.valueOf(diaa);
-                    String mesFormato = (mesActual < 10) ? "0" + String.valueOf(mesActual) : String.valueOf(mesActual);
+                    String diaFormato = (diaa < 10) ? "0" + diaa : String.valueOf(diaa);
+                    String mesFormato = (mesActual < 10) ? "0" + mesActual : String.valueOf(mesActual);
                     //FechaN.setText("" + diaFormato + "/" + mesFormato + "/" + año);
                     aa = año;
                     ma = Integer.parseInt(mesFormato);
@@ -380,6 +370,18 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
 
     public void siguiente(View view) throws JSONException {
+        et_nombre.setError(null);
+        et_ap.setError(null);
+        et_am.setError(null);
+        et_numtel1.setError(null);
+        et_numtel2.setError(null);
+        et_cedula.setError(null);
+        et_mail.setError(null);
+        et_password.setError(null);
+        et_password2.setError(null);
+        tv_sexo.setError(null);
+        tv_edad.setError(null);
+
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
@@ -401,12 +403,69 @@ public class Register extends BaseActivity implements View.OnClickListener {
 //        int pars_edad = Integer.parseInt(ed);
 
 
+//Validaciones campos
+        if (TextUtils.isEmpty(name)) {
+            et_nombre.setError(getString(R.string.error_campo_oblogatorio));
+            et_nombre.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(ap)) {
+            et_ap.setError(getString(R.string.error_campo_oblogatorio));
+            et_ap.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(am)) {
+            et_am.setError(getString(R.string.error_campo_oblogatorio));
+            et_am.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(tl1)) {
+            et_numtel1.setError(getString(R.string.error_campo_oblogatorio));
+            et_numtel1.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(tl2)) {
+            et_numtel2.setError(getString(R.string.error_campo_oblogatorio));
+            et_numtel2.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(ced)) {
+            et_cedula.setError(getString(R.string.error_campo_oblogatorio));
+            et_cedula.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(ema)) {
+            et_mail.setError(getString(R.string.error_campo_oblogatorio));
+            et_mail.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(pass)) {
+            et_password.setError(getString(R.string.error_campo_oblogatorio));
+            et_password.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(pass2)) {
+            et_password2.setError(getString(R.string.error_campo_oblogatorio));
+            et_password2.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(sex)) {
+            tv_sexo.setError(getString(R.string.error_campo_oblogatorio));
+            tv_sexo.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(ed)) {
+            tv_edad.setError(getString(R.string.error_campo_oblogatorio));
+            tv_edad.requestFocus();
+            return;
+        }
+
         HashMap<String, String> params = new HashMap<>();
         params.put("nombre", name);
         params.put("apaterno", ap);
         params.put("amaterno", am);
-        params.put("telefono1", tl1);
-        params.put("telefono2", tl2);
+        params.put("phone", tl1);
+        params.put("phone2", tl2);
 
         params.put("sexo", sex);
         params.put("edad", ed);
@@ -444,7 +503,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             jArray.put(jGroup);
         }
 
-        params.put("respuestas", jArray.toString());
+        params.put("respuesta", jArray.toString());
 
 
         Call<Responses> call = BovedaClient.getInstanceClient().getApiClient(). registrarClientes(params);

@@ -16,7 +16,7 @@ import app.oficiodigital.cliente.utils.TableConstants.DocumentInServiceTable;
 
 public class DocumentsInServiceDao extends DaoBase implements DaoInt {
 
-    private DocumentsInServiceParser mDocumentsInServiceParser;
+    private final DocumentsInServiceParser mDocumentsInServiceParser;
 
     public DocumentsInServiceDao(Context ctx) {
         super(ctx);

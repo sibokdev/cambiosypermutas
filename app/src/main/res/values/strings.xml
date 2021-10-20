@@ -388,7 +388,7 @@
     <string name="msg_subscribed">Sucess topico</string>
     <string name="msg_subscribe_failed">Faile topico</string>
 
-    
+
     <!-- errores -->
     <string name="error_campo_oblogatorio">Campo obligatorio</string>
     <string name="error_campo_numerico">Campo numerico </string>

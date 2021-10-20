@@ -18,7 +18,7 @@ import app.oficiodigital.cliente.utils.TableConstants.AuditTable;
 
 public class AuditDao extends DaoBase implements DaoInt {
 
-    private AuditParser mAuditParser;
+    private final AuditParser mAuditParser;
 
     public AuditDao(Context context) {
         super(context);

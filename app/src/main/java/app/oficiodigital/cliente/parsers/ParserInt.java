@@ -7,10 +7,10 @@ import java.util.HashMap;
 
 public interface ParserInt {
 
-    public abstract ContentValues serialize(Object object);
+    ContentValues serialize(Object object);
 
-    public Object deserialize(HashMap map);
+    Object deserialize(HashMap map);
 
-    public ArrayList<? extends Object> deserialize(ArrayList<HashMap> mapList);
+    ArrayList<? extends Object> deserialize(ArrayList<HashMap> mapList);
 
 }

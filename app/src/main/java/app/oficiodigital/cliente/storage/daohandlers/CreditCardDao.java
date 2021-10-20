@@ -17,7 +17,7 @@ import app.oficiodigital.cliente.utils.TableConstants.CreditCardsTable;
 
 public class CreditCardDao extends DaoBase implements DaoInt {
 
-    private CreditCardParser mCreditCardParser;
+    private final CreditCardParser mCreditCardParser;
 
     public CreditCardDao(Context ctx) {
         super(ctx);

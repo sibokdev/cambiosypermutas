@@ -17,7 +17,7 @@ import app.oficiodigital.cliente.utils.TableConstants.SubTypesTable;
 
 public class SubtypeDao extends DaoBase implements DaoInt {
 
-    private SubtypeParser mSubtypeParser;
+    private final SubtypeParser mSubtypeParser;
 
     public SubtypeDao(Context ctx) {
         super(ctx);

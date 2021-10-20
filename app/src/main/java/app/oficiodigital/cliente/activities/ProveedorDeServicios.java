@@ -84,7 +84,16 @@ public class ProveedorDeServicios extends BaseActivity implements View.OnClickLi
 
     //private CompleteRegisterPresenter mPresenter;
 
-    private int aa = 0, ma = 0, da = 0, años = 0, mes = 0, dia = 0, año = 0, messs = 0, dias = 0, años1 = 0;
+    private int aa = 0;
+    private int ma = 0;
+    private int da = 0;
+    private int años = 0;
+    private int mes = 0;
+    private int dia = 0;
+    private int año = 0;
+    private int messs = 0;
+    private int dias = 0;
+    private final int años1 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -355,8 +364,8 @@ public class ProveedorDeServicios extends BaseActivity implements View.OnClickLi
 
                 public void onDateSet(DatePicker view, int año, int mess, int diaa) {
                     final int mesActual = mess + 1;
-                    String diaFormato = (diaa < 10) ? "0" + String.valueOf(diaa) : String.valueOf(diaa);
-                    String mesFormato = (mesActual < 10) ? "0" + String.valueOf(mesActual) : String.valueOf(mesActual);
+                    String diaFormato = (diaa < 10) ? "0" + diaa : String.valueOf(diaa);
+                    String mesFormato = (mesActual < 10) ? "0" + mesActual : String.valueOf(mesActual);
                     FechaN.setText("" + diaFormato + "/" + mesFormato + "/" + año);
                     aa = año;
                     ma = Integer.parseInt(mesFormato);

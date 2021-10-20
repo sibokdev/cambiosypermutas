@@ -18,7 +18,7 @@ import app.oficiodigital.cliente.utils.TableConstants.MovementsTable;
 
 public class MovementsDao extends DaoBase implements DaoInt {
 
-    private MovementsParser mMovementsParser;
+    private final MovementsParser mMovementsParser;
 
     public MovementsDao(Context ctx) {
         super(ctx);

@@ -18,7 +18,7 @@ import app.oficiodigital.cliente.utils.TableConstants.ClarificationTable;
 
 public class ClarificationDao extends DaoBase implements DaoInt {
 
-    private ClarificationParser mClarificationParser;
+    private final ClarificationParser mClarificationParser;
 
     public ClarificationDao(Context ctx) {
         super(ctx);

@@ -17,7 +17,7 @@ import app.oficiodigital.cliente.utils.TableConstants.TypesTable;
 
 public class TypeDao extends DaoBase implements DaoInt {
 
-    private TypeParser mTypeParser;
+    private final TypeParser mTypeParser;
 
     public TypeDao(Context ctx) {
         super(ctx);

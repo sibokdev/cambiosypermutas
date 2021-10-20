@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
@@ -28,7 +27,7 @@ import retrofit2.Response;
 
 public class Solicitudes_cotizaciones extends Fragment {
     private RecyclerView lista;
-    private TextView list1, phone, nombres;
+    private TextView list1, phone, nombres,escuela;
     private SearchView buscador;
     private EditText busc;
     ArrayAdapter<String> adapter;
@@ -44,6 +43,7 @@ public class Solicitudes_cotizaciones extends Fragment {
         lista = (RecyclerView) view.findViewById(R.id.lista);
         nombres = (TextView) view.findViewById(R.id.nombre);
         phone = (TextView) view.findViewById(R.id.phone);
+        escuela = (TextView) view.findViewById(R.id.nombreE) ;
 
 
         List<Phone> list1 = Phone.listAll(Phone.class);
@@ -58,6 +58,7 @@ public class Solicitudes_cotizaciones extends Fragment {
         lista.setLayoutManager(manager);
 
         getOficios();
+       /* getDataSchool();*/
 
         return view;
     }
@@ -89,4 +90,40 @@ public class Solicitudes_cotizaciones extends Fragment {
         });
 
     }
+
+/*    public void getDataSchool(){
+
+        //String phon = "2461633409";
+        Call<List<DatosSchool>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDataSchool(phone.getText().toString());
+        callVersiones.enqueue(new Callback<List<DatosSchool>>() {
+            @Override
+            public void onResponse(Call<List<DatosSchool>> call, Response<List<DatosSchool>> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                List<DatosSchool> respuestas = response.body();
+                List<String> list = new ArrayList<String>();
+
+                for (DatosSchool res : respuestas) {
+
+                    String nombre = "";
+                    String codigop = "";
+                    String direc = " ";
+
+                    *//*nombre = "" + res.getEscuela();
+                    escuela.setText(nombre);
+                    codigop = res.getCP();*//*
+
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<DatosSchool>> call, Throwable t) {
+                L.error("getDataSchool " + t.getMessage());
+            }
+        });
+
+    }*/
 }
