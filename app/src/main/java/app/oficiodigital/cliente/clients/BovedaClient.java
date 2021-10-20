@@ -8,6 +8,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Respuestas;
 import app.oficiodigital.cliente.models.Solicitudes;
@@ -86,6 +87,12 @@ public class BovedaClient {
 
         @GET("client/Address{id}")
         Call<List<Direccion>> getDirrecion(@Path("id") String id);
+
+        @GET("client/DataSchool{phone}")
+        Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
+//____________________
+
+
 
         @POST("client/updateStatusPago")
         @FormUrlEncoded

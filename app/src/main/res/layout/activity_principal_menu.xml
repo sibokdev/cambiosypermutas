@@ -6,8 +6,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+
 
     <include
         layout="@layout/app_bar_principal_menu2"
@@ -22,41 +24,46 @@
 
     </FrameLayout>
 
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-         android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_principal_menu2"
         app:menu="@menu/activity_principal_menu_drawer" />
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/perfil">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="60dp">
 
-            <androidx.cardview.widget.CardView
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="70dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_height="1300dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
 
 
 
 
+                <TextView
+                    android:id="@+id/select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
+            </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

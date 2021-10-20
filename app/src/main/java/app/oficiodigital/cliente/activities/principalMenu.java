@@ -1,6 +1,5 @@
 package app.oficiodigital.cliente.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
@@ -31,13 +29,9 @@ import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
 import app.oficiodigital.cliente.fragments.PublicarEmpleo;
 import app.oficiodigital.cliente.fragments.Solicitudes_cotizaciones;
-import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.notifications.Alert;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class principalMenu extends BaseActivity
@@ -89,48 +83,11 @@ public class principalMenu extends BaseActivity
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
 
-        phone.setText(phon);
-        Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
-        callVersiones.enqueue(new Callback<List<Datos>>() {
-            @Override
-            public void onResponse(Call<List<Datos>> call, Response<List<Datos>> response) {
-
-                if (!response.isSuccessful()) {
-                    //colonia.("Code: " + response.code());
-                    return;
-                }
-
-                List<Datos> respuestas = response.body();
-                List<String> list = new ArrayList<String>();
-
-                for (Datos res : respuestas) {
-
-                    list.add(res.getName());
-                    String name = "";
-                    String correo = "";
-                    name += " " + res.getName();
-                    name += " " + res.getSurname1();
-                    name += " " + res.getSurname2();
-                    nombre.setText(name);
-
-                    correo = "" + res.getEmail();
-                    email.setText(correo);
-
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<List<Datos>> call, Throwable t) {
-                //  L.error("getOficios " + t.getMessage());
-            }
-
-        });
-
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.conten, new HomeFragment());
         fragmentTransaction.commit();
+
 //-----------------------------------------------------------------------------
     }
     @Override
@@ -210,17 +167,4 @@ public class principalMenu extends BaseActivity
         drawerLayout.closeDrawers();
         return true;
     }
-
-    private void alerta() {
-        String msg = getString(R.string.creando);
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setTitle("Guardando datos");
-        progress.setMessage(msg);
-        progress.show();
-
-
-    }
-   /* @Override
-    public void onClick(View v) {
-    }*/
 }
