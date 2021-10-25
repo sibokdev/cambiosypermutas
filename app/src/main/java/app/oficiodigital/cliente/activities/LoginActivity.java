@@ -152,7 +152,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        startActivity(new Intent(this, ViewDSchool.class));
+        startActivity(new Intent(this, DataSchool.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();

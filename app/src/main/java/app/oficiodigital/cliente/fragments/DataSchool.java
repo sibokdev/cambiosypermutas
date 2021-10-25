@@ -5,6 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import androidx.core.app.ActivityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -22,9 +29,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.maps.MapView;
 
 import java.util.ArrayList;
@@ -32,8 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.DataSchool;
 import app.oficiodigital.cliente.activities.Intereses;
+import app.oficiodigital.cliente.activities.ViewDSchool;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.Responses;
@@ -41,8 +45,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class HomeFragment extends Fragment {
+public class DataSchool extends Fragment {
+    DrawerLayout drawerLayout;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     private TextView muni, estado, select;
     private MapView mapa;
     private EditText codigop;
@@ -55,15 +61,18 @@ public class HomeFragment extends Fragment {
     private Button lugares;
     private int datos;
 
+    FragmentInteres fragment_interes;
+
+    public DataSchool() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_data_school, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-       phone = (TextView)  view.findViewById(R.id.phone);
+        fragment_interes = new FragmentInteres();
 
         //primerPregunta();
         //asociamos lode arriba con esto
@@ -112,10 +121,190 @@ public class HomeFragment extends Fragment {
         lugares.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Iniciar juego desde el fragment", Toast.LENGTH_SHORT).show();
+              /*  Toast.makeText(getContext(),"Iniciar juego desde el fragment", Toast.LENGTH_SHORT).show();*/
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
+                /*switch (view.getId()){
+                    case R.id.sig_lugares_intereses:
+                        transaction.replace(R.id.conten, fragment_interes);*/
+
+                /*FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction= fragmentManager.beginTransaction();
+                *//*FragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());*//*
+                fragmentTransaction.add(R.id.conten, new FragmentInteres());*/
+
+                oescuela.setError(null);
+                oclave.setError(null);
+                ozona.setError(null);
+                otel.setError(null);
+                codigop.setError(null);
+                onom_dir.setError(null);
+                salida.setError(null);
+
+
+                String esc = oescuela.getText().toString();
+                String clv = oclave.getText().toString();
+                String zon = ozona.getText().toString();
+                String tl = otel.getText().toString();
+                String cp = codigop.getText().toString();
+                String nom_direc = onom_dir.getText().toString();
+                String estd = estado.getText().toString();
+                String mun = muni.getText().toString();
+                String colo = select.getText().toString();
+                String sal = salida.getText().toString();
+
+
+                //guardar la seleccion del usuario del spinner de nivel escolar
+                String seleccion = onivel_esc.getSelectedItem().toString();
+                Log.d("Here-----", "Seleccion-----------------::: " + seleccion);
+                if (seleccion.equals("Preescolar")) {
+                    /*int suma = valor1_int + valor2_int;
+                    String resultado = String.valueOf(suma);
+                    tv1.setText(resultado);*/
+                } else if (seleccion.equals("Primaria")) {
+                } else if (seleccion.equals("Secundaria")) {
+                }
+
+                //guardado de seleccion spinnner turno
+                String seleccion_tn = oturno.getSelectedItem().toString();
+                if (seleccion_tn.equals("Matutino")) {
+                } else if (seleccion_tn.equals("Vespertino")) {
+                }
+
+                //guardado de seleccion spinnner rol
+                String seleccion_ct = ocategoria.getSelectedItem().toString();
+                if (seleccion_ct.equals("Docente")) {
+                } else if (seleccion_ct.equals("Subdirector")) {
+                } else if (seleccion_ct.equals("Director")) {
+                }
+
+                //Sleccion spinnner tipo plantel
+                String seleccion_tp = otipo_plantel.getSelectedItem().toString();
+                if (seleccion_tp.equals("Municipal")) {
+                } else if (seleccion_tp.equals("Estatal")) {
+                } else if (seleccion_tp.equals("Federal")) {
+                } else if (seleccion_tp.equals("Federalizado")) {
+                }
+
+                //Sleccion spinnner nombramiento
+                String seleccion_nombram = spinombramiento.getSelectedItem().toString();
+                if (seleccion_nombram.equals("No")) {
+                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
+                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
+                    // lugares.setEnabled(false);
+                } else if (seleccion_nombram.equals("Si")) {
+                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                    // lugares.setEnabled(true);
+                }
+        /*int seleccion_nombram = spinombramiento.getSelectedItemPosition();
+        if(seleccion_nombram==1){
+            System.out.println("Si");
+        }else if(seleccion_nombram==2){
+            System.out.println("No");
+        }*/
+
+                //Sleccion spinnner nota
+                String seleccion_nota = onota.getSelectedItem().toString();
+                if (seleccion_nota.equals("Si")) {
+                } else if (seleccion_nota.equals("No")) {
+                }
+
+                //Sleccion spinnner procedimiento
+                String seleccion_proc = oprocedimiento.getSelectedItem().toString();
+                if (seleccion_proc.equals("Si")) {
+                } else if (seleccion_proc.equals("No")) {
+                }
+
+
+                //Validaciones campos
+                if (TextUtils.isEmpty(esc)) {
+                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
+                    oescuela.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(clv)) {
+                    oclave.setError(getString(R.string.error_campo_oblogatorio));
+                    oclave.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(zon)) {
+                    ozona.setError(getString(R.string.error_campo_oblogatorio));
+                    ozona.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(tl)) {
+                    otel.setError(getString(R.string.error_campo_oblogatorio));
+                    otel.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp)) {
+                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(nom_direc)) {
+                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
+                    onom_dir.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(sal)) {
+                    salida.setError(getString(R.string.error_campo_oblogatorio));
+                    salida.requestFocus();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(seleccion_nombram)) {
+                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
+                    spinombramiento.requestFocus();
+                    return;
+                }
+
+
+                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+
+
+                //Envio a BD
+                HashMap<String, String> params = new HashMap<>();
+                params.put("nombre_esc", esc);
+                params.put("clave_esc", clv);
+                params.put("nivel_escolar", seleccion);
+                params.put("turno", seleccion_tn);
+                params.put("zona_esc", zon);
+                params.put("telefono", tl);
+                params.put("c_postal", cp);
+                params.put("estado", estd);
+                params.put("municipio", mun);
+                params.put("colonia", colo);
+                params.put("nombre_direc", nom_direc);
+                params.put("rol", seleccion_ct);
+                params.put("tipo_plantel", seleccion_tp);
+
+                params.put("nombramiento", seleccion_nombram);
+                params.put("labor", sal);
+                params.put("nota", seleccion_nota);
+                params.put("procedimiento", seleccion_proc);
+
+                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params);
+                call.enqueue(new Callback<Responses>() {
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                    }
+
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+
+                    }
+                });
+
+       /* Intent intent = new Intent(getApplicationContext(),Intereses.class);
+        startActivity(intent);*/
+        /*intent.putExtra("nombre",oescuela.getText().toString());
+        startActivity(intent);*/
+               /* startActivity(new Intent(getActivity(), Intereses.class));*/
+
             }
         });
-
 
         /*Bundle parametros = this.getIntent().getExtras();
         String datos = parametros.getString("datos");
@@ -294,18 +483,11 @@ public class HomeFragment extends Fragment {
                 // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
             }
         });
-
         return view;
     }
-    private void alerta() {
-        String msg = getString(R.string.creando);
-        ProgressDialog progress = new ProgressDialog(getContext());
-        progress.setTitle("Guardando datos");
-        progress.setMessage(msg);
-        progress.show();
-    }
 
-    public void sig_lugares_intereses(View view) {
+
+   /* public void sig_lugares_intereses(View view) {
         oescuela.setError(null);
         oclave.setError(null);
         ozona.setError(null);
@@ -331,9 +513,9 @@ public class HomeFragment extends Fragment {
         String seleccion = onivel_esc.getSelectedItem().toString();
         Log.d("Here-----", "Seleccion-----------------::: " + seleccion);
         if (seleccion.equals("Preescolar")) {
-                    /*int suma = valor1_int + valor2_int;
+                    *//*int suma = valor1_int + valor2_int;
                     String resultado = String.valueOf(suma);
-                    tv1.setText(resultado);*/
+                    tv1.setText(resultado);*//*
         } else if (seleccion.equals("Primaria")) {
         } else if (seleccion.equals("Secundaria")) {
         }
@@ -369,12 +551,12 @@ public class HomeFragment extends Fragment {
             //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
             // lugares.setEnabled(true);
         }
-        /*int seleccion_nombram = spinombramiento.getSelectedItemPosition();
+        *//*int seleccion_nombram = spinombramiento.getSelectedItemPosition();
         if(seleccion_nombram==1){
             System.out.println("Si");
         }else if(seleccion_nombram==2){
             System.out.println("No");
-        }*/
+        }*//*
 
         //Sleccion spinnner nota
         String seleccion_nota = onota.getSelectedItem().toString();
@@ -469,13 +651,14 @@ public class HomeFragment extends Fragment {
 
             }
         });
-/*transaction.addToBackStack(null);*/
-       /* Intent intent = new Intent(getApplicationContext(),Intereses.class);
-        startActivity(intent);*/
-        /*intent.putExtra("nombre",oescuela.getText().toString());
-        startActivity(intent);*/
+
+       *//* Intent intent = new Intent(getApplicationContext(),Intereses.class);
+        startActivity(intent);*//*
+        *//*intent.putExtra("nombre",oescuela.getText().toString());
+        startActivity(intent);*//*
         startActivity(new Intent(getActivity(), FragmentInteres.class));
 
-    }
+    }*/
+
 
 }

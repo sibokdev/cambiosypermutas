@@ -26,6 +26,7 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.BusquedaFragment;
+import app.oficiodigital.cliente.fragments.DataSchool;
 import app.oficiodigital.cliente.fragments.HomeFragment;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
@@ -182,7 +183,7 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
         FragmentTransaction ft = fm.beginTransaction();
         switch (item.getItemId()) {
             case R.id.nav_home:
-                ft.replace(R.id.conten, new HomeFragment()).commit();
+                ft.replace(R.id.conten, new DataSchool()).commit();
                 break;
             case R.id.nav_perfil:
                 ft.replace(R.id.conten, new Perfil_Fragmen()).commit();

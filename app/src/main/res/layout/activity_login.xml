@@ -9,14 +9,14 @@
         android:id="@+id/contract_service_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btnLogin"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
-        android:text="Registrarse"
-        android:onClick="contratar"
         android:layout_marginBottom="10dp"
         android:background="@drawable/boton_redondo"
-        android:layout_alignEnd="@+id/btnLogin"
-        android:textColor="@color/cardview_light_background"
-        android:layout_alignParentBottom="true" />
+        android:onClick="contratar"
+        android:text="Registrarse"
+        android:textColor="@color/cardview_light_background" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
@@ -37,7 +37,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="47dp">
 
         <LinearLayout

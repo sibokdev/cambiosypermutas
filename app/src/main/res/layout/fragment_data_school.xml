@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.DataSchool">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/datosescuela">
+        android:id="@+id/perfil">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -327,6 +328,7 @@
                         android:text="¿Tienes nombramiento
                     definitivo?"
                         android:textSize="18dp" />
+
                     <Spinner
                         android:id="@+id/sp_nombramiento"
                         android:layout_width="match_parent"
@@ -335,16 +337,17 @@
                         android:layout_marginTop="80dp"
                         android:layout_marginEnd="50dp" />
 
-                    <TextView android:id="@+id/tvInvisibleError"
+                    <TextView
+                        android:id="@+id/tvInvisibleError"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_alignRight="@+id/spnMySpinner"
                         android:layout_alignBottom="@+id/spnMySpinner"
                         android:layout_marginTop="120dp"
-                        android:paddingTop="0dp"
-                        android:paddingRight="50dp"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        android:paddingTop="0dp"
+                        android:paddingRight="50dp" />
 
                     <TextView
                         android:id="@+id/tv_anios"
@@ -440,15 +443,15 @@ procedimiento administrativo?"
 
 
                 <androidx.appcompat.widget.AppCompatButton
-
+                    android:id="@+id/sig_lugares_intereses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:onClick="sig_lugares_intereses"
                     android:layout_marginTop="20dp"
-                    android:enabled="false"
                     android:layout_marginEnd="40dp"
                     android:background="@drawable/boton_redondo"
+                    android:enabled="false"
+                    android:onClick="sig_lugares_intereses"
                     android:text="Llenar lugares de intereses"
                     android:textColor="@color/text_white" />
 
@@ -462,12 +465,5 @@ procedimiento administrativo?"
 
         </ScrollView>
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"/>
-
 
 </FrameLayout>

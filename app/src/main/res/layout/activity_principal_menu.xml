@@ -34,36 +34,7 @@
         app:headerLayout="@layout/nav_header_principal_menu2"
         app:menu="@menu/activity_principal_menu_drawer" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/perfil">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-
-
-
-
-                <TextView
-                    android:id="@+id/select"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </ScrollView>
-    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
