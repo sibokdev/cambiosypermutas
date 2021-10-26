@@ -1,15 +1,32 @@
 package app.oficiodigital.cliente.activities;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -18,38 +35,53 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.BusquedaFragment;
+import app.oficiodigital.cliente.fragments.FragmentInteres;
 import app.oficiodigital.cliente.fragments.Historial;
 import app.oficiodigital.cliente.fragments.HomeFragment;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
 import app.oficiodigital.cliente.fragments.PublicarEmpleo;
-import app.oficiodigital.cliente.fragments.Solicitudes_cotizaciones;
+import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.notifications.Alert;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+/*import com.android.volley.toolbox.JsonArrayRequest;*/
 
 public class principalMenu extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-
+    private TextView muni, estado, select;
+    private EditText codigop;
     private MapView mapa;
     private String phon;
     private BovedaClient.APIBovedaClient apiBovedaClient;
 
     private ImageView imagen;
     private TextView nombre, email, nombramiento, laborando;
-
+    private EditText oescuela,oclave, ozona, otel, onom_dir;
     private TextView salida, phone;
+    private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, colonia;
+    private SeekBar seekBar;
+    private Button lugares;
+    private int datos;
+    /*FragmentDS fragmentDS;*/
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +89,7 @@ public class principalMenu extends BaseActivity
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -68,28 +101,43 @@ public class principalMenu extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_escact);
 
-        View hView = navigationView.getHeaderView(0);
-
-        List<Phone> list = Phone.listAll(Phone.class);
+        View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
         for (Phone p : list) {
             phon = p.getPhone();
 
         }
 
-        imagen = (ImageView) hView.findViewById(R.id.foto);
+/*        imagen = (ImageView) hView.findViewById(R.id.foto);
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
-        phone = (TextView) hView.findViewById(R.id.phone);
+        phone = (TextView) hView.findViewById(R.id.phone);*/
+
+
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new HomeFragment());
+
+
+        fragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());
+        /* fragmentTransaction.add(R.id.conten, new FragmentInteres());*/
+        /*getSupportFragmentManager().beginTransaction().add(R.id.conten,HomeFragment).commit();*/
+
+        /*fragmentTransaction.addToBackStack(null);*/
         fragmentTransaction.commit();
 
-//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
     }
+
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -140,8 +188,8 @@ public class principalMenu extends BaseActivity
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         switch (item.getItemId()) {
-            case R.id.nav_home:
-                ft.replace(R.id.conten, new HomeFragment()).commit();
+            case R.id.nav_escact:
+                ft.replace(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool()).commit();
                 break;
             case R.id.nav_perfil:
                 ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
@@ -149,17 +197,14 @@ public class principalMenu extends BaseActivity
             case R.id.nav_busqueda:
                 ft.replace(R.id.conten, new BusquedaFragment()).commit();
                 break;
+            case R.id.nav_interes:
+                ft.replace(R.id.conten, new FragmentInteres()).commit();
+                break;
             case R.id.nav_metodos:
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
-            case R.id.nav_solicitud:
-                ft.replace(R.id.conten, new Solicitudes_cotizaciones()).commit();
-                break;
-            case R.id.nav_publicar:
-                ft.replace(R.id.conten, new PublicarEmpleo()).commit();
-                break;
-            case R.id.nav_historial:
-                ft.replace(R.id.conten, new Historial()).commit();
+            case R.id.nav_compartir:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
                 break;
 
         }
@@ -167,4 +212,16 @@ public class principalMenu extends BaseActivity
         drawerLayout.closeDrawers();
         return true;
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+

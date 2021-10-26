@@ -152,7 +152,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        startActivity(new Intent(this, DataSchool.class));
+        startActivity(new Intent(this, principalMenu.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -180,7 +180,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
                         alerta();
                         //pagos();
-                        Intent intent = new Intent(getApplication(), DataSchool.class);
+                        Intent intent = new Intent(getApplication(), principalMenu.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
                         startActivity(intent);
