@@ -10,6 +10,21 @@ public class Ejemplo {
     private int code_error;
     private String error_message;
     private DatosCodigo response;
+    String asentamiento;
+    String municipio;
+    String estado;
+
+    public String getAsentamiento() {
+        return asentamiento;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 
 
     public void setErro(boolean erro) {
@@ -25,6 +40,10 @@ public class Ejemplo {
     }
 
 
+    public void setAsentamiento(String asentamiento) {
+        this.asentamiento = asentamiento;
+    }
+
     public boolean isError() {
         return erro;
     }
@@ -39,6 +58,14 @@ public class Ejemplo {
 
     public boolean isErro() {
         return erro;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public DatosCodigo getResponse() {

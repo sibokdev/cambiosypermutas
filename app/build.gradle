@@ -67,6 +67,7 @@ dependencies {
     implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
     //implementation project(path: ':openpayandroid')
     implementation files('/Users/alfred/Desktop/FWT Repo/cambiosypermutas/app/libs/openpay-v2.0.3.aar')
+    //implementation files('C:\\Users\\Alex\\Documents\\GitHub\\cambiosypermutas\\app\\libs\\openpay-v2.0.3.aar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

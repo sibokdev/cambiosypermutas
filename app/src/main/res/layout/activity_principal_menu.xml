@@ -6,7 +6,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:fitsSystemWindows="true">
 
 
@@ -20,7 +19,6 @@
         android:id="@+id/conten"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
     </FrameLayout>
 
@@ -47,7 +45,7 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_height="1030dp">
+                android:layout_height="1300dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,10 +70,10 @@
                         android:id="@+id/et_nombre_escuela"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese el nombre de la escuela*"
+                        android:hint="Ingrese el nombre de la escuela:"
                         android:layout_marginEnd="50dp"
-                        android:maxLength="20"
-                        android:inputType="text" />
+                        android:maxLength="50"
+                        android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -89,47 +87,53 @@
                         android:id="@+id/et_clave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingresa Clave de la escuela*"
+                        android:hint="Ingresa Clave de la escuela:"
                         android:layout_marginEnd="50dp"
-                        android:inputType="text"
-                        android:maxLength="150"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_marginTop="170dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleciona Nivel escolar:*"
+                    android:text="Seleciona Nivel escolar:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
+
                 <Spinner
                     android:id="@+id/sp_nivel_esc"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginTop="210dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="50dp"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:spinnerMode="dialog"
+                    android:padding="15dp">
+                </Spinner>
 
                 <TextView
                     android:layout_marginTop="260dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleciona Turno:*"
+                    android:text="Seleciona Turno:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
+
                 <Spinner
                     android:id="@+id/sp_turno"
-                    android:layout_marginTop="290dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="50dp"/>
+                    android:layout_marginTop="290dp"
+                    android:layout_marginEnd="50dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ti_zona"
@@ -143,7 +147,7 @@
                         android:id="@+id/et_zona"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingresa Zona*"
+                        android:hint="Ingresa Zona:"
                         android:layout_marginEnd="50dp"
                         android:maxLength="20"
                         android:inputType="text" />
@@ -161,7 +165,7 @@
                         android:id="@+id/et_tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingresa Telefono*"
+                        android:hint="Ingresa Telefono:"
                         android:layout_marginEnd="50dp"
                         android:maxLength="20"
                         android:inputType="number" />
@@ -179,35 +183,29 @@
                         android:id="@+id/et_codigop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingresa Código Postal*"
+                        android:hint="Ingresa Código Postal:"
                         android:layout_marginEnd="50dp"
                         android:maxLength="5"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <TextView
-                    android:id="@+id/estado"
                     android:layout_marginTop="530dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Estado:"
+                    android:text="Seleciona Colonia:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
-                <TextView
-                    android:id="@+id/tv_estado"
+                <Spinner
+                    android:id="@+id/sp_colonia"
                     android:layout_marginTop="570dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Muestra estado"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="50dp"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:inputType="text" />
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="50dp"/>
                 <!-- <Spinner
                      android:id="@+id/estado"
                      android:layout_marginTop="560dp"
@@ -233,7 +231,7 @@
                     android:layout_marginTop="660dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Muestra municipio:"
+                    android:text=""
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
@@ -242,22 +240,37 @@
 
 
                 <TextView
+                    android:id="@+id/estado"
                     android:layout_marginTop="710dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleciona Colonia:*"
+                    android:text="Estado:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
-                <Spinner
-                    android:id="@+id/sp_colonia"
+
+                <TextView
+                    android:id="@+id/tv_estado"
                     android:layout_marginTop="740dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="50dp"/>
+                    android:text=""
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:inputType="text" />
+
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="231dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="800dp"
+                    android:layout_marginEnd="10dp" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -265,7 +278,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="800dp"
+                    android:layout_marginTop="1060dp"
                     android:layout_below="@+id/ti2">
 
                     <EditText
@@ -274,33 +287,33 @@
                         android:layout_height="wrap_content"
                         android:hint="Ingresa Nombre del Director*"
                         android:layout_marginEnd="50dp"
-                        android:maxLength="5"
-                        android:inputType="text" />
+                        android:maxLength="30"
+                        android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:layout_marginTop="860dp"
+                    android:layout_marginTop="1130dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleciona Rol:*"
+                    android:text="Seleciona Categoria:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="text" />
                 <Spinner
-                    android:id="@+id/sp_rol"
-                    android:layout_marginTop="890dp"
+                    android:id="@+id/sp_categoria"
+                    android:layout_marginTop="1170dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="50dp"/>
 
                 <TextView
-                    android:layout_marginTop="950dp"
+                    android:layout_marginTop="1220dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Seleciona el Tipo de Plantel:*"
+                    android:text="Seleciona el Tipo de Plantel:"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="50dp"
                     android:textSize="18dp"
@@ -308,7 +321,7 @@
                     android:inputType="text" />
                 <Spinner
                     android:id="@+id/sp_plantel"
-                    android:layout_marginTop="980dp"
+                    android:layout_marginTop="1260dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
@@ -319,21 +332,24 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
+                android:layout_height="603dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginEnd="10dp"
                 app:cardBackgroundColor="@color/white">
 
                 <TextView
+                    android:id="@+id/tv_nombra"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="69dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+
+                    android:lines="2"
                     android:padding="10dp"
-                    android:text="¿Tienes nombramiento definitivo?"
+                    android:text="¿Tienes nombramiento
+                    definitivo?"
                     android:textSize="18dp" />
 
                 <Spinner
@@ -345,38 +361,114 @@
                     android:layout_marginEnd="50dp" />
 
                 <TextView
+                    android:id="@+id/tv_anios"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="69dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="140dp"
                     android:layout_marginEnd="50dp"
-                    android:inputType="text"
+                    android:justificationMode="inter_word"
+                    android:lines="2"
+                    android:max="50"
                     android:padding="10dp"
-                    android:text="¿Cuantós años llevas laborando en esta escuela?"
+                    android:progress="1"
+                    android:text="¿Cuantós años llevas laborando
+                    en esta escuela?"
                     android:textSize="18dp" />
 
                 <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="200dp"
+                    android:id="@+id/seekBar_anios"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:layout_marginTop="250dp"
+                    android:layout_marginTop="230dp"
+                    android:layout_marginEnd="50dp"
+
+                    android:max="10" />
+
+                <TextView
+                    android:id="@+id/tv_salida"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginEnd="50dp"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="18dp" />
+
+                <!--<Button
+                    android:id="@+id/btn_acep"
+                    android:onClick="aceptar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Guardar"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginStart="190dp"
+                    />-->
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="69dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="350dp"
+                    android:layout_marginEnd="50dp"
+                    android:justificationMode="inter_word"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:text="¿Tienes alguna nota desfavorable
+en esta escuela"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/sp_not_desf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="400dp"
                     android:layout_marginEnd="50dp" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="69dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="450dp"
+                    android:layout_marginEnd="50dp"
+                    android:justificationMode="inter_word"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:text="¿Estas sujeto a
+procedimiento administrativo?"
+                    android:textSize="18dp" />
 
+                <Spinner
+                    android:id="@+id/sp_proc_Adm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="490dp"
+                    android:layout_marginEnd="50dp" />
             </androidx.cardview.widget.CardView>
 
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sig_lugares_intereses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Llenar lugares de intereses"
-                android:layout_marginTop="20dp"
-                android:onClick="sig_lugares_intereses"
-                android:textColor="@color/text_white"
-                android:background="@drawable/boton_redondo"
                 android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/boton_redondo"
+                android:onClick="sig_lugares_intereses"
+                android:text="Llenar lugares de intereses"
+                android:textColor="@color/text_white" />
+
+            <TextView
+                android:id="@+id/select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
