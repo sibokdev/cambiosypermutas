@@ -80,16 +80,16 @@ public class MetodosPago extends Fragment {
             }
         });
 
-        List<DeviceId> list = DeviceId.listAll(DeviceId.class);
-        for (DeviceId p : list) {
+        List<TokenAuth> list = TokenAuth.listAll(TokenAuth.class);
+        for (TokenAuth p : list) {
             String devi = "";
 
-            devi = p.getDevice_session_id();
+            devi = p.getToken();
             device.setText(devi);
         }
 
 
-         tok = token.getText().toString();
+         tok = device.getText().toString();
 
         getTarjetas();
         return view;
@@ -99,7 +99,7 @@ public class MetodosPago extends Fragment {
 
     public void getTarjetas() {
 
-        String authHeader = "Bearer " + token.getText().toString();
+        String authHeader = "Bearer " + tok;
 
             Call<List<Tarjetas>> call = DOXClient.getInstanceClient().getApiClient().getCards2(authHeader);
 

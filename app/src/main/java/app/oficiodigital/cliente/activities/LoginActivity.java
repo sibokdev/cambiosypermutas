@@ -27,6 +27,8 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.contracts.LoginContract;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.Preguntas1;
+import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.presenters.LoginPresenter;
@@ -177,6 +179,10 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
                         String token = response.body().getResponse().getAuth().getToken();
                         tokena.setText(token);
+
+                        TokenAuth tokenauth = new TokenAuth();
+                        tokenauth.setToken(token);
+                        tokenauth.save();
 
                         alerta();
                         //pagos();
