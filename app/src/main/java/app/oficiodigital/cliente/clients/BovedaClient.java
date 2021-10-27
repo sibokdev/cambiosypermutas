@@ -82,7 +82,7 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> recover(@FieldMap HashMap<String, String> params);
 
-        @GET("client/Datos{phone}")
+        @GET("courier/getDatos{phone}")
         Call<List<Datos>> getDatos(@Path("phone") String phone);
 
         @GET("client/Address{id}")
