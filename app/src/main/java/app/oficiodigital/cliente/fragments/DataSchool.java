@@ -124,14 +124,6 @@ public class DataSchool extends Fragment {
               /*  Toast.makeText(getContext(),"Iniciar juego desde el fragment", Toast.LENGTH_SHORT).show();*/
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
-                /*switch (view.getId()){
-                    case R.id.sig_lugares_intereses:
-                        transaction.replace(R.id.conten, fragment_interes);*/
-
-                /*FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction= fragmentManager.beginTransaction();
-                *//*FragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());*//*
-                fragmentTransaction.add(R.id.conten, new FragmentInteres());*/
 
                 oescuela.setError(null);
                 oclave.setError(null);
@@ -196,12 +188,6 @@ public class DataSchool extends Fragment {
                     //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
                     // lugares.setEnabled(true);
                 }
-        /*int seleccion_nombram = spinombramiento.getSelectedItemPosition();
-        if(seleccion_nombram==1){
-            System.out.println("Si");
-        }else if(seleccion_nombram==2){
-            System.out.println("No");
-        }*/
 
                 //Sleccion spinnner nota
                 String seleccion_nota = onota.getSelectedItem().toString();
@@ -297,24 +283,9 @@ public class DataSchool extends Fragment {
                     }
                 });
 
-       /* Intent intent = new Intent(getApplicationContext(),Intereses.class);
-        startActivity(intent);*/
-        /*intent.putExtra("nombre",oescuela.getText().toString());
-        startActivity(intent);*/
-               /* startActivity(new Intent(getActivity(), Intereses.class));*/
 
             }
         });
-
-        /*Bundle parametros = this.getIntent().getExtras();
-        String datos = parametros.getString("datos");
-        oescuela.setText(datos)*/
-        ;
-       /* Bundle parametros = this.getIntent().getExtras();
-        if(parametros !=null){
-            String datos = parametros.getString("datos");
-            oescuela.setText(datos);
-        }*/
 
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -433,24 +404,11 @@ public class DataSchool extends Fragment {
         /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
         spinombramiento.setAdapter(adapter_nombra);
 
-
-      /*  int selectionPosition= adapter_nombra.getPosition("No");
-        spinombramiento.setSelection(selectionPosition);
-        spinombramiento.setAdapter(adapter_nombra);
-        if (adapter_nombra != null) {
-            int spinnerPosition = adapter_nombra.getPosition(adapter_nombra);
-            spinombramiento.setSelection(spinnerPosition);
-        }*/
-
         ArrayAdapter<String> adapter_nota = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nota);
         onota.setAdapter(adapter_nota);
 
         ArrayAdapter<String> adapter_proce = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_proced);
         oprocedimiento.setAdapter(adapter_proce);
-
-
-
-
 
 
         /*Spinner sp = findViewById(R.id.spinnerCategoriasReporteGastos);*/
@@ -468,14 +426,7 @@ public class DataSchool extends Fragment {
                             lugares.setEnabled(true);
                         }
                 }
-                /* if (spinombramiento.equals ("No")){
-                 *//*Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();*//*
-                    ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    lugares.setEnabled(false);
-                }else if (spinombramiento.equals ("Si")){
-                    Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    lugares.setEnabled(true);
-                }*/
+
             }
 
             @Override

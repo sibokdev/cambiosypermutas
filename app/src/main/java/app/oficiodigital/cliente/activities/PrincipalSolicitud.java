@@ -24,6 +24,7 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.BusquedaFragment;
+import app.oficiodigital.cliente.fragments.FragmentInteres;
 import app.oficiodigital.cliente.fragments.HomeFragment;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
@@ -177,8 +178,8 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         switch (item.getItemId()) {
-            case R.id.nav_home:
-                ft.replace(R.id.conten, new HomeFragment()).commit();
+            case R.id.nav_escact:
+                ft.replace(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool()).commit();
                 break;
             case R.id.nav_perfil:
                 ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
@@ -186,11 +187,14 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
             case R.id.nav_busqueda:
                 ft.replace(R.id.conten, new BusquedaFragment()).commit();
                 break;
+            case R.id.nav_interes:
+                ft.replace(R.id.conten, new FragmentInteres()).commit();
+                break;
             case R.id.nav_metodos:
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
-            case R.id.nav_solicitud:
-                ft.replace(R.id.conten, new Solicitudes_cotizaciones()).commit();
+            case R.id.nav_compartir:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
                 break;
 
         }

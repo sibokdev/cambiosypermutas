@@ -58,7 +58,8 @@ import retrofit2.Response;
 
 /*import com.android.volley.toolbox.JsonArrayRequest;*/
 
-public class DataSchool extends BaseActivity
+public class DataSchool {
+}/*extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -78,7 +79,7 @@ public class DataSchool extends BaseActivity
     private SeekBar seekBar;
     private Button lugares;
     private int datos;
-/*FragmentDS fragmentDS;*/
+*//*FragmentDS fragmentDS;*//*
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -100,7 +101,7 @@ public class DataSchool extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_escact);
 
         View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
         for (Phone p : list) {
@@ -108,10 +109,10 @@ public class DataSchool extends BaseActivity
 
         }
 
-/*        imagen = (ImageView) hView.findViewById(R.id.foto);
+*//*        imagen = (ImageView) hView.findViewById(R.id.foto);
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
-        phone = (TextView) hView.findViewById(R.id.phone);*/
+        phone = (TextView) hView.findViewById(R.id.phone);*//*
 
 
 
@@ -120,10 +121,10 @@ public class DataSchool extends BaseActivity
 
 
         fragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());
-       /* fragmentTransaction.add(R.id.conten, new FragmentInteres());*/
-        /*getSupportFragmentManager().beginTransaction().add(R.id.conten,HomeFragment).commit();*/
+       *//* fragmentTransaction.add(R.id.conten, new FragmentInteres());*//*
+        *//*getSupportFragmentManager().beginTransaction().add(R.id.conten,HomeFragment).commit();*//*
 
-        /*fragmentTransaction.addToBackStack(null);*/
+        *//*fragmentTransaction.addToBackStack(null);*//*
         fragmentTransaction.commit();
 
 
@@ -187,29 +188,30 @@ public class DataSchool extends BaseActivity
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         switch (item.getItemId()) {
-            case R.id.nav_home:
+            case R.id.nav_escact:
                 ft.replace(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool()).commit();
                 break;
             case R.id.nav_perfil:
                 ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
                 break;
+            case R.id.nav_busqueda:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                break;
             case R.id.nav_metodos:
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
-            case R.id.nav_publicar:
-                ft.replace(R.id.conten, new PublicarEmpleo()).commit();
+            case R.id.nav_compartir:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
                 break;
-            case R.id.nav_historial:
-                ft.replace(R.id.conten, new Historial()).commit();
-                break;
+
         }
         setTitle(item.getTitle());
         drawerLayout.closeDrawers();
         return true;
     }
 
+*/
 
-    }
 
 
 
