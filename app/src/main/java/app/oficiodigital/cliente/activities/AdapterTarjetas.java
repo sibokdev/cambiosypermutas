@@ -102,7 +102,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                         }
                         String mToken = "Bearer " + tok;
 
-                        String id = "1150";
+                        String id = id_datos;
 
                         api = new Tarjetas();
                          api.setId_api_card(holder.api.getText().toString());
@@ -300,7 +300,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
             phone = pho.getPhone();
             phon = phone;
         }
-
+   //String phone = "2481674511";
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phon);
         callVersiones.enqueue(new Callback<List<Datos>>() {
             @Override
@@ -309,10 +309,10 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                 List<Datos> respuestas = response.body();
 
 
-                /*for (Datos res: respuestas) {
+                for (Datos res: respuestas) {
                     id_datos = ""+ res.getId();
 
-                }*/
+                }
             }
             @Override
             public void onFailure(Call<List<Datos>> call, Throwable t) {

@@ -75,7 +75,6 @@ public class MetodosPago extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddCCPaymentActivity.class);
-                intent.putExtra("token", token.getText().toString());
                 startActivity(intent);
             }
         });

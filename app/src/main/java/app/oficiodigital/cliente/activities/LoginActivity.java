@@ -178,7 +178,11 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                     if (response.body().getResponse() != null) {
 
                         String token = response.body().getResponse().getAuth().getToken();
+                        String phone = response.body().getResponse().getUser().getPhone();
                         tokena.setText(token);
+                        Phone phon = new Phone();
+                        phon.setPhone(phone);
+                        phon.save();
 
                         TokenAuth tokenauth = new TokenAuth();
                         tokenauth.setToken(token);
@@ -205,10 +209,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        Phone phon = new Phone();
-        String phone = email.getText().toString();
-        phon.setPhone(phone);
-        phon.save();
+
 
 
     }
