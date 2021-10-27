@@ -102,7 +102,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                         }
                         String mToken = "Bearer " + tok;
 
-                        String id = id_datos;
+                        String id = "1150";
 
                         api = new Tarjetas();
                          api.setId_api_card(holder.api.getText().toString());
@@ -309,10 +309,10 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                 List<Datos> respuestas = response.body();
 
 
-                for (Datos res: respuestas) {
+                /*for (Datos res: respuestas) {
                     id_datos = ""+ res.getId();
 
-                }
+                }*/
             }
             @Override
             public void onFailure(Call<List<Datos>> call, Throwable t) {
