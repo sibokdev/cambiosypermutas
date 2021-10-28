@@ -122,7 +122,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
     public void recuperar(View view) {
 
-        startActivity(new Intent(this, ViewDSchool.class));
+        startActivity(new Intent(this, RecoverPhone.class));
     }
 
     /*@OnClick(R.id.btnLogin)
@@ -152,7 +152,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        startActivity(new Intent(this, principalMenu.class));
+        startActivity(new Intent(this, Register.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -199,10 +199,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        Phone phon = new Phone();
-        String phone = email.getText().toString();
-        phon.setPhone(phone);
-        phon.save();
+
 
 
     }
