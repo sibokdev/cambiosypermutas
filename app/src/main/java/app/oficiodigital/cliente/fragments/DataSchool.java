@@ -548,8 +548,8 @@ public class DataSchool extends Fragment {
                     spinombramiento.setEnabled(false);
 
                     //-----------------------------------------------------------------------
-
-                    int sb_labor = seekBar.getProgress(pro);
+                    String labor= seekBar+ res.getLabor();
+                    int sb_labor = seekBar.getProgress();
                     seekBar.setProgress(sb_labor);
                     seekBar.setEnabled(false);
 
