@@ -41,6 +41,7 @@ import java.util.List;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
+import app.oficiodigital.cliente.fragments.DataSchool;
 import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.storage.ModelsBD.Preguntas1;
@@ -519,7 +520,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, principalMenu.class));
 
     }
 }

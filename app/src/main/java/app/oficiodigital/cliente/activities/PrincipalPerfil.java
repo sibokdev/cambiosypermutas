@@ -2,7 +2,6 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +24,9 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.BusquedaFragment;
-import app.oficiodigital.cliente.fragments.DataSchool;
 import app.oficiodigital.cliente.fragments.FragmentInteres;
-import app.oficiodigital.cliente.fragments.HomeFragment;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
-import app.oficiodigital.cliente.fragments.Solicitudes_cotizaciones;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.notifications.Alert;

@@ -152,7 +152,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        startActivity(new Intent(this, principalMenu.class));
+        startActivity(new Intent(this, Register.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -178,11 +178,21 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                         String token = response.body().getResponse().getAuth().getToken();
                         tokena.setText(token);
 
+
+                        String phone = response.body().getResponse().getUser().getPhone();
+                        String id = response.body().getResponse().getUser().getId();
+
+                        Phone phon = new Phone();
+                        phon.setPhone(phone);
+                        phon.save();
+
+
                         alerta();
                         //pagos();
                         Intent intent = new Intent(getApplication(), principalMenu.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplication(), "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -199,10 +209,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        Phone phon = new Phone();
-        String phone = email.getText().toString();
-        phon.setPhone(phone);
-        phon.save();
+
 
 
     }
