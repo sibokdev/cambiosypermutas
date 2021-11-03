@@ -24,6 +24,12 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/id"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

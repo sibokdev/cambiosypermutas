@@ -27,6 +27,8 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.contracts.LoginContract;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.Preguntas1;
+import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.presenters.LoginPresenter;
@@ -61,6 +63,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     public static boolean isAppRunning = false;
     private static final String CHANNEL_ID = "Notificacion";
     private static final int notificationId = 0;
+
 
     @Override
     public void onStart() {
@@ -176,13 +179,27 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                     if (response.body().getResponse() != null) {
 
                         String token = response.body().getResponse().getAuth().getToken();
+                        String phone = response.body().getResponse().getUser().getPhone();
                         tokena.setText(token);
+                        Phone phon = new Phone();
+                        phon.setPhone(phone);
+                        phon.save();
+
+                        TokenAuth tokenauth = new TokenAuth();
+                        tokenauth.setToken(token);
+                        tokenauth.save();
+
+                        String id = response.body().getResponse().getUser().getId();
+                        TokenAuth userId = new TokenAuth();
+                        userId.setUserId(id);
+                        userId.save();
 
                         alerta();
                         //pagos();
                         Intent intent = new Intent(getApplication(), principalMenu.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplication(), "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();

@@ -82,7 +82,7 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> recover(@FieldMap HashMap<String, String> params);
 
-        @GET("client/Datos{phone}")
+        @GET("courier/getDatos{phone}")
         Call<List<Datos>> getDatos(@Path("phone") String phone);
 
         @GET("client/Address{id}")
@@ -137,9 +137,9 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> Getsolicitud(@FieldMap HashMap<String, String> params1);
 
-        @POST("client/registroDataSchool")
+        @POST("client/registroDataSchool{id}")
         @FormUrlEncoded
-        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params);
+        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params, @Path("id") String id );
 
         @POST("client/registroIntereses")
         @FormUrlEncoded

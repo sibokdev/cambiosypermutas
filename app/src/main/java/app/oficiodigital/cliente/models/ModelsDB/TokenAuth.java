@@ -12,6 +12,17 @@ public class TokenAuth extends SugarRecord {
     @Column(name="device_session_id")
     private String device_session_id= " ";
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    @Column(name="userId")
+    private String userId= " ";
+
     public String getDevice_session_id() {
         return device_session_id;
     }

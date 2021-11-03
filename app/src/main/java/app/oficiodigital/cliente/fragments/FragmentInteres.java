@@ -34,6 +34,7 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.activities.LoginActivity;
 import app.oficiodigital.cliente.activities.ViewDSchool;
+import app.oficiodigital.cliente.activities.principalMenu;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.Responses;
@@ -172,7 +173,7 @@ guardar.setOnClickListener(new View.OnClickListener() {
             });
         /*startActivity(new Intent(this, DataSchool.class));
         alerta();*/
-            Intent intent = new Intent(getActivity(), ViewDSchool.class);
+            Intent intent = new Intent(getContext(), principalMenu.class);
             startActivity(intent);
 
     }
