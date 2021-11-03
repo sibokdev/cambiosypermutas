@@ -64,6 +64,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     private static final String CHANNEL_ID = "Notificacion";
     private static final int notificationId = 0;
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -124,7 +125,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
     public void recuperar(View view) {
 
-        startActivity(new Intent(this, ViewDSchool.class));
+        startActivity(new Intent(this, RecoverPhone.class));
     }
 
     /*@OnClick(R.id.btnLogin)
@@ -154,7 +155,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void contratar(View view) {
-        startActivity(new Intent(this, principalMenu.class));
+        startActivity(new Intent(this, Register.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -188,11 +189,17 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                         tokenauth.setToken(token);
                         tokenauth.save();
 
+                        String id = response.body().getResponse().getUser().getId();
+                        TokenAuth userId = new TokenAuth();
+                        userId.setUserId(id);
+                        userId.save();
+
                         alerta();
                         //pagos();
                         Intent intent = new Intent(getApplication(), principalMenu.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplication(), "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();

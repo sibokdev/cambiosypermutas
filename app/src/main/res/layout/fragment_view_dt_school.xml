@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ViewDtSchool">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/perfil">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="1385dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Datos de tu Escuela actual"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textSize="25dp" />
+
+
+                    <TextView
+                        android:id="@+id/viewDS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="50"
+                        android:padding="7dp"
+                        android:text="Nombre de la escuela:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_nombre_escuela"
+                        android:labelFor="@+id/viewDS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="110dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nombre de la escuela:"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="50"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="170dp"
+                        android:layout_marginEnd="50dp"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                        android:inputType="textCapCharacters"
+                        android:padding="7dp"
+
+                        android:text="Clave de la escuela:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_clave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="210dp"
+                        android:layout_marginEnd="50dp"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                        android:hint="Clave de la escuela:"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="270dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:text="Nivel escolar:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_nivesco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="310dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nivel escolar"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="370dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:text="Turno:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_turno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="410dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Turno"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="470dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:padding="7dp"
+                        android:text="Zona:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_zona"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="510dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Zona"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="570dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="7dp"
+                        android:text="Telefono:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="610dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Telefono"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="670dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="number"
+                        android:padding="7dp"
+                        android:text="Código Postal:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_codigop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="710dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Código Postal"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="770dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:text="Colonia:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_colonia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="810dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Colonia"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="870dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:text="Municipio:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_municipio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="910dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Municipio"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="970dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:text="Estado:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1010dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Estado"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1070dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="30"
+                        android:padding="7dp"
+                        android:text="Nombre del director:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_nom_dir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1110dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nombre director"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="30"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1170dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:text="Categoria:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1210dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Categoria"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1270dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:text="Tipo de Plantel:"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_plantel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="1310dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Tipo de Plantel"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="425dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:text="Nombramiento definitivo?"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_nombramiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nombramiento"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="120dp"
+                        android:layout_marginEnd="50dp"
+                        android:max="50"
+                        android:padding="7dp"
+                        android:text="Años laborando"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_anios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="160dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint=" años laborando"
+                        android:max="50"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="220dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:text="Nota desfavorable?"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_nota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="260dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nota desfavorable"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="320dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:text="Sujeto a procedimiento?"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_proced"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="360dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="procedimiento"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/modificar"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/boton_redondo"
+                    android:enabled="false"
+                    android:onClick="modificar"
+                    android:text="Modificar"
+                    android:textColor="@color/text_white" />
+
+               <!-- <Button
+                    android:id="@+id/guardar"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginTop="-50dp"
+                    android:background="@drawable/boton_redondo"
+                    android:onClick="Guardar"
+                    android:text="Guardar"
+                    android:textColor="@color/text_white" />-->
+
+                <TextView
+                    android:id="@+id/select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

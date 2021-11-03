@@ -137,9 +137,9 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> Getsolicitud(@FieldMap HashMap<String, String> params1);
 
-        @POST("client/registroDataSchool")
+        @POST("client/registroDataSchool{id}")
         @FormUrlEncoded
-        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params);
+        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params, @Path("id") String id );
 
         @POST("client/registroIntereses")
         @FormUrlEncoded
