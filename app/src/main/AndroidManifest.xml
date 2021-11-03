@@ -50,9 +50,7 @@
         <activity
             android:name=".activities.principalMenu"
             android:exported="true" />
-        <activity
-            android:name=".activities.Intereses"
-            android:exported="true" />
+
         <activity android:name=".activities.EsperaCotizacion" />
         <activity android:name=".activities.ListadoCotizacion" />
         <activity android:name=".activities.DetallesPublicarEmpleo" />
@@ -66,7 +64,7 @@
             android:value="preguntas.db" />
         <meta-data
             android:name="VERSION"
-            android:value="6" />
+            android:value="7" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -118,7 +116,6 @@
         <activity android:name=".activities.InsertCode" />
         <activity android:name=".activities.Register" />
         <activity android:name=".activities.ProveedorDeServicios" />
-        <activity android:name=".activities.DataSchool" />
         <activity
             android:name=".activities.AceptarCargoRevision"
             tools:ignore="DuplicateActivity" />

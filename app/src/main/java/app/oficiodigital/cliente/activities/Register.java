@@ -520,7 +520,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        startActivity(new Intent(this, principalMenu.class));
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 }

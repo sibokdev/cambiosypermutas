@@ -449,8 +449,7 @@ procedimiento administrativo?"
                         android:layout_marginEnd="40dp"
                         android:background="@drawable/boton_redondo"
                         android:enabled="false"
-                        android:onClick="guardar"
-                        android:text="Guardar"
+                        android:text="guardar"
                         android:textColor="@color/text_white" />
 
                 </androidx.cardview.widget.CardView>
@@ -459,7 +458,8 @@ procedimiento administrativo?"
                 <TextView
                     android:id="@+id/select"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

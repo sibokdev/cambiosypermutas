@@ -93,6 +93,13 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
+                        for (TokenAuth pho : list1) {
+                            String phone = "";
+
+                            phone = pho.getToken();
+                            tok = phone;
+                        }
                         String mToken = "Bearer " + tok;
 
                         String id = id_datos;
@@ -293,24 +300,25 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
             phone = pho.getPhone();
             phon = phone;
         }
-
+   //String phone = "2481674511";
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phon);
         callVersiones.enqueue(new Callback<List<Datos>>() {
             @Override
             public void onResponse(Call<List<Datos>> call, Response<List<Datos>> response) {
+
                 List<Datos> respuestas = response.body();
 
 
-                for (Datos res : respuestas) {
-                    id_datos = "" + res.getId();
+                for (Datos res: respuestas) {
+                    id_datos = ""+ res.getId();
 
                 }
             }
-                @Override
-                public void onFailure(Call<List<Datos>> call, Throwable t) {
-                    //  L.error("getOficios " + t.getMessage());
-                }
-            });
+            @Override
+            public void onFailure(Call<List<Datos>> call, Throwable t) {
+                //  L.error("getOficios " + t.getMessage());
+            }
+        });
     }
 
 
