@@ -125,7 +125,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
     public void recuperar(View view) {
 
-        startActivity(new Intent(this, ViewDSchool.class));
+        startActivity(new Intent(this, RecoverPhone.class));
     }
 
     /*@OnClick(R.id.btnLogin)
