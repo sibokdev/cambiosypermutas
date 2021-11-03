@@ -333,7 +333,7 @@ public class DatosServicio extends BaseActivity implements View.OnClickListener,
         for (TokenAuth pho : list1) {
             String phone = "";
 
-            phone = pho.getToken();
+            phone = pho.getTokenauth();
             tok = phone;
         }
         String mToken = "Bearer " + tok;

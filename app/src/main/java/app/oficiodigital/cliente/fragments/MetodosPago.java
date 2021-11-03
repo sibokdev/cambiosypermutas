@@ -25,6 +25,8 @@ import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.DeviceId;
+import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.Token;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Tarjetas;
@@ -53,10 +55,10 @@ public class MetodosPago extends Fragment {
 
         //String tok = getActivity().getIntent().getExtras().getString("token");
        List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
-        for (TokenAuth pho : list1) {
+        for (TokenAuth token : list1) {
             String phone = "";
 
-            phone = pho.getToken();
+            phone = token.getTokenauth();
             tok = phone;
         }
 
@@ -79,16 +81,8 @@ public class MetodosPago extends Fragment {
             }
         });
 
-        List<TokenAuth> list = TokenAuth.listAll(TokenAuth.class);
-        for (TokenAuth p : list) {
-            String devi = "";
 
-            devi = p.getToken();
-            device.setText(devi);
-        }
-
-
-         tok = device.getText().toString();
+        // tok = device.getText().toString();
 
         getTarjetas();
         return view;

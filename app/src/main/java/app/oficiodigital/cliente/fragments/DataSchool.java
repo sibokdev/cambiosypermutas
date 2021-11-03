@@ -44,6 +44,7 @@ import app.oficiodigital.cliente.activities.ViewDSchool;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.Token;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
@@ -623,11 +624,11 @@ public class DataSchool extends Fragment {
                 params.put("nota", seleccion_nota);
                 params.put("procedimiento", seleccion_proc);
 
-                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
-                for (TokenAuth ids : userId) {
+                List<Token> userId = Token.listAll(Token.class);
+                for (Token ids : userId) {
 
 
-                    id = ids.getUserId();
+                   id = ids.getUserId();
 
                 }
 
@@ -800,8 +801,8 @@ public class DataSchool extends Fragment {
                 params.put("nota", seleccion_nota);
                 params.put("procedimiento", seleccion_proc);
 
-                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
-                for (TokenAuth ids : userId) {
+                List<Token> userId = Token.listAll(Token.class);
+                for (Token ids : userId) {
 
 
                     id = ids.getUserId();
@@ -838,6 +839,7 @@ public class DataSchool extends Fragment {
         codigop.setError(null);
         onom_dir.setError(null);
         salida.setError(null);
+
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
 
