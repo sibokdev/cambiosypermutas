@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
+
 /**
  * Created by Roberasd on 25/11/16.
  */
@@ -21,6 +23,7 @@ public class Response {
     private Document document;
     private Service service;
     private Payment payment;
+    private DatosIntereses datosIntereses;
     private ArrayList<Service> services;
     private ArrayList<Document> documents;
     //private ArrayList<Movements> movements;
@@ -36,6 +39,15 @@ public class Response {
     private Address address;
     //private Clarification clarification;
     //private ArrayList<Clarification> clarifications;
+
+
+    public DatosIntereses getDatosIntereses() {
+        return datosIntereses;
+    }
+
+    public void setDatosIntereses(DatosIntereses datosIntereses) {
+        this.datosIntereses = datosIntereses;
+    }
 
     public Payment getPayment() {
         return payment;

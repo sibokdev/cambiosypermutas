@@ -2,17 +2,25 @@ package app.oficiodigital.cliente.models.Request;
 
 public class DatosIntereses {
 
-
+    String id;
     String codigo;
     String colonia;
     String municipio;
     String estado;
 
-    public DatosIntereses(String codigo, String colonia, String municipio, String estado) {
+    public DatosIntereses(String codigo, String colonia, String municipio, String estado,String id) {
         this.codigo = codigo;
         this.colonia = colonia;
         this.municipio = municipio;
         this.estado = estado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCodigo() {
