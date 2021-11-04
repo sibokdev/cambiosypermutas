@@ -1,18 +1,19 @@
 package app.oficiodigital.cliente.models.Request;
+public class Intereses {
+    private String codigo="";
+    private String colonia="";
+    private String municipio="";
+    private String estado="";
+    private String telefono="";
 
-public class DatosIntereses {
 
 
-    String codigo;
-    String colonia;
-    String municipio;
-    String estado;
-
-    public DatosIntereses(String codigo, String colonia, String municipio, String estado) {
+    public Intereses() {
         this.codigo = codigo;
         this.colonia = colonia;
         this.municipio = municipio;
         this.estado = estado;
+        this.telefono = telefono;
     }
 
     public String getCodigo() {
@@ -45,5 +46,13 @@ public class DatosIntereses {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
