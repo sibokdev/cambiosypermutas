@@ -534,12 +534,7 @@ public class DataSchool extends Fragment {
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
                 if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
                 } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
                 }
 
                 //Sleccion spinnner nota
@@ -838,6 +833,7 @@ public class DataSchool extends Fragment {
         codigop.setError(null);
         onom_dir.setError(null);
         salida.setError(null);
+
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
 

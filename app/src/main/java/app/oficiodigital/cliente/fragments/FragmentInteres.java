@@ -4,19 +4,19 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,13 +32,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.LoginActivity;
-import app.oficiodigital.cliente.activities.ViewDSchool;
 import app.oficiodigital.cliente.activities.principalMenu;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
+import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
-import app.oficiodigital.cliente.notifications.Alert;
+import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +53,14 @@ public class FragmentInteres extends Fragment {
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
     /*private Button guardar, match;*/
+    ArrayAdapter<String> adapter_cp;
+
+    String phones = "", id = "";
+
+    FragmentInteres fragment_interes;
+    DataSchool dataSchool;
+    ViewDtSchool viewDtSchool;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +92,8 @@ public class FragmentInteres extends Fragment {
         select3 = (TextView) view.findViewById(R.id.select3);
         guardar = (Button) view.findViewById(R.id.btn_guardar);
 
+        getDataIntereses();
+
                /* guardar = (Button) view.findViewById(R.id.btn_guardar);
                 match = (Button) view.findViewById(R.id.btn_match);*/
 
@@ -90,94 +102,8 @@ public class FragmentInteres extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Iniciar juego desde el fragment", Toast.LENGTH_SHORT).show();*/
 
-guardar.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-
-            codigop.setError(null);
-            codigop2.setError(null);
-            codigop3.setError(null);
 
 
-            String cp = codigop.getText().toString();
-            String estd = estado.getText().toString();
-            String mun = muni.getText().toString();
-            String colo = select.getText().toString();
-
-            String cp2 = codigop2.getText().toString();
-            String estd2 = estado2.getText().toString();
-            String mun2 = muni2.getText().toString();
-            String colo2 = select2.getText().toString();
-
-            String cp3 = codigop3.getText().toString();
-            String estd3 = estado3.getText().toString();
-            String mun3 = muni3.getText().toString();
-            String colo3 = select3.getText().toString();
-
-            /*String guard = guardar.*/
-
-
-
-
-            if (TextUtils.isEmpty(cp)) {
-                codigop.setError(getString(R.string.error_campo_oblogatorio));
-                codigop.requestFocus();
-                return;
-            }
-            if (TextUtils.isEmpty(cp2)) {
-                codigop2.setError(getString(R.string.error_campo_oblogatorio));
-                codigop2.requestFocus();
-                return;
-            }
-            if (TextUtils.isEmpty(cp3)) {
-                codigop3.setError(getString(R.string.error_campo_oblogatorio));
-                codigop3.requestFocus();
-                return;
-            }
-
-
-            Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
-
-
-            //Envio a BD
-            HashMap<String, String> params = new HashMap<>();
-
-            params.put("c_postal", cp);
-            params.put("estado", estd);
-            params.put("municipio", mun);
-            params.put("colonia", colo);
-
-            params.put("c_postal2", cp2);
-            params.put("estado2", estd2);
-            params.put("municipio2", mun2);
-            params.put("colonia2", colo2);
-
-            params.put("c_postal3", cp3);
-            params.put("estado3", estd3);
-            params.put("municipio3", mun3);
-            params.put("colonia3", colo3);
-
-
-
-            Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroIntereses(params);
-            call.enqueue(new Callback<Responses>() {
-
-                @Override
-                public void onResponse(Call<Responses> call, Response<Responses> response) {
-                }
-
-                @Override
-                public void onFailure(Call<Responses> call, Throwable t) {
-
-                }
-            });
-        /*startActivity(new Intent(this, DataSchool.class));
-        alerta();*/
-            Intent intent = new Intent(getContext(), principalMenu.class);
-            startActivity(intent);
-
-    }
-});
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -211,10 +137,10 @@ guardar.setOnClickListener(new View.OnClickListener() {
                             estado.setText(" " + esta);
                         }
 
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
+                        adapter_cp = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
                         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia.setAdapter(adapter);
+                        adapter_cp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        colonia.setAdapter(adapter_cp);
 
                         colonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             public void onItemSelected(AdapterView<?> adapter, View view,
@@ -368,6 +294,341 @@ guardar.setOnClickListener(new View.OnClickListener() {
         //--------------------------------------------------------------------
         return view;
     }
+
+    public void guardarMetodo() {
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
+                codigop.setError(null);
+                codigop2.setError(null);
+                codigop3.setError(null);
+
+
+                String cp = codigop.getText().toString();
+                String estd = estado.getText().toString();
+                String mun = muni.getText().toString();
+                String colo = select.getText().toString();
+
+                String cp2 = codigop2.getText().toString();
+                String estd2 = estado2.getText().toString();
+                String mun2 = muni2.getText().toString();
+                String colo2 = select2.getText().toString();
+
+                String cp3 = codigop3.getText().toString();
+                String estd3 = estado3.getText().toString();
+                String mun3 = muni3.getText().toString();
+                String colo3 = select3.getText().toString();
+
+                /*String guard = guardar.*/
+
+
+                if (TextUtils.isEmpty(cp)) {
+                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp2)) {
+                    codigop2.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop2.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp3)) {
+                    codigop3.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop3.requestFocus();
+                    return;
+                }
+
+
+                Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+
+
+                //Envio a BD
+                HashMap<String, String> params = new HashMap<>();
+
+                params.put("c_postal", cp);
+                params.put("colonia", colo);
+                params.put("municipio", mun);
+                params.put("estado", estd);
+
+
+                params.put("c_postal2", cp2);
+                params.put("estado2", estd2);
+                params.put("municipio2", mun2);
+                params.put("colonia2", colo2);
+
+                params.put("c_postal3", cp3);
+                params.put("estado3", estd3);
+                params.put("municipio3", mun3);
+                params.put("colonia3", colo3);
+
+                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
+                for (TokenAuth ids : userId) {
+
+
+                    id = ids.getUserId();
+                }
+
+                    Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroIntereses(params, id);
+                call.enqueue(new Callback<Responses>() {
+
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                    }
+
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+
+                    }
+                });
+        /*startActivity(new Intent(this, DataSchool.class));
+        alerta();*/
+              /*  Intent intent = new Intent(getContext(), principalMenu.class);
+                startActivity(intent);*/
+
+            }
+        });
+    }
+
+    public void modificarMetodo(){
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
+                codigop.setError(null);
+                codigop2.setError(null);
+                codigop3.setError(null);
+
+
+                String cp = codigop.getText().toString();
+                String estd = estado.getText().toString();
+                String mun = muni.getText().toString();
+                String colo = select.getText().toString();
+
+                String cp2 = codigop2.getText().toString();
+                String estd2 = estado2.getText().toString();
+                String mun2 = muni2.getText().toString();
+                String colo2 = select2.getText().toString();
+
+                String cp3 = codigop3.getText().toString();
+                String estd3 = estado3.getText().toString();
+                String mun3 = muni3.getText().toString();
+                String colo3 = select3.getText().toString();
+
+
+
+                if (TextUtils.isEmpty(cp)) {
+                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp2)) {
+                    codigop2.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop2.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp3)) {
+                    codigop3.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop3.requestFocus();
+                    return;
+                }
+
+
+
+                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+
+
+                HashMap<String, String> params = new HashMap<>();
+
+                params.put("c_postal", cp);
+                params.put("estado", estd);
+                params.put("municipio", mun);
+                params.put("colonia", colo);
+
+                params.put("c_postal2", cp2);
+                params.put("estado2", estd2);
+                params.put("municipio2", mun2);
+                params.put("colonia2", colo2);
+
+                params.put("c_postal3", cp3);
+                params.put("estado3", estd3);
+                params.put("municipio3", mun3);
+                params.put("colonia3", colo3);
+
+                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
+                for (TokenAuth ids : userId) {
+
+
+                    id = ids.getUserId();
+
+                }
+
+                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroIntereses(params,id);
+                call.enqueue(new Callback<Responses>() {
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                        getDataIntereses();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+
+                    }
+                });
+
+
+            }
+        });
+
+    }
+
+    private void getDataIntereses() {
+        codigop.setError(null);
+        codigop2.setError(null);
+        codigop3.setError(null);
+
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
+
+            phones = pho.getPhone();
+
+        }
+        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDataIntereses(phones);
+        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+
+                List<DatosIntereses> respuestas = response.body();
+                List<String> list = new ArrayList<String>();
+
+
+                for (DatosIntereses res : respuestas) {
+                    if (res.getC_postal() == null) {
+                        guardarMetodo();
+                    }else {
+
+
+
+                        String cp = "" + res.getC_postal();
+                        codigop.setText(cp);
+                        codigop.setEnabled(false);
+
+                        String sl = "" + res.getColonia();
+                        select.setText(sl);
+                        colonia.setEnabled(false);
+
+                        String municipio = "" + res.getMunicipio();
+                        muni.setText(municipio);
+                        muni.setEnabled(false);
+
+                        String estad = "" + res.getEstado();
+                        estado.setText(estad);
+                        estado.setEnabled(false);
+
+
+                        String cp2 = "" + res.getC_postal2();
+                        codigop2.setText(cp2);
+                        codigop2.setEnabled(false);
+
+                        String sl2 = "" + res.getColonia2();
+                        select2.setText(sl2);
+                        colonia2.setEnabled(false);
+
+                        String municipio2 = "" + res.getMunicipio2();
+                        muni2.setText(municipio2);
+                        muni2.setEnabled(false);
+
+                        String estad2 = "" + res.getEstado2();
+                        estado2.setText(estad2);
+                        estado2.setEnabled(false);
+
+
+                        String cp3 = "" + res.getC_postal3();
+                        codigop3.setText(cp3);
+                        codigop3.setEnabled(false);
+
+                        String sl3 = "" + res.getColonia3();
+                        select3.setText(sl3);
+                        colonia3.setEnabled(false);
+
+                        String municipio3 = "" + res.getMunicipio3();
+                        muni3.setText(municipio3);
+                        muni3.setEnabled(false);
+
+                        String estad3 = "" + res.getEstado3();
+                        estado3.setText(estad3);
+                        estado3.setEnabled(false);
+
+
+
+                        guardar.setText("modificar.");
+                        guardar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Modificar();
+                                //oescuela.setEnabled(true);
+                            }
+                        });
+
+
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
+                L.error("getDataSchool " + t.getMessage());
+            }
+        });
+    }
+public void Modificar(){
+    Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDataIntereses(phones);
+    callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+
+            List<DatosIntereses> respuestas = response.body();
+
+            for (DatosIntereses res : respuestas) {
+
+                String cpmod = "" + res.getC_postal();
+                codigop.setText(cpmod);
+                codigop.setEnabled(true);
+
+                String slmod = "" + res.getColonia();
+                select.setText(slmod);
+                colonia.setEnabled(true);
+
+                String municipiomod = "" + res.getMunicipio();
+                muni.setText(municipiomod);
+                muni.setEnabled(true);
+
+                String estadmod = "" + res.getEstado();
+                estado.setText(estadmod);
+                estado.setEnabled(true);
+
+
+                guardar.setText("guardar");
+                guardar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        modificarMetodo();
+                    }
+                });
+            }
+        }
+        @Override
+        public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
+            L.error("getDataIntereses " + t.getMessage());
+        }
+    });
+}
 
 
     private void alerta() {
