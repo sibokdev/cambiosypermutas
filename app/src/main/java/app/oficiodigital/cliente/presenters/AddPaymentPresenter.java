@@ -12,8 +12,8 @@ import app.oficiodigital.cliente.repos.FinancialRepo;
 
 public class AddPaymentPresenter implements AddPaymentContract.Presenter {
 
-    private FinancialRepo mFinancialRepo;
-    private AddPaymentContract.View mAddPaymentListener;
+    private final FinancialRepo mFinancialRepo;
+    private final AddPaymentContract.View mAddPaymentListener;
 
     public AddPaymentPresenter(Context context, AddPaymentContract.View listener){
         mFinancialRepo = new FinancialRepo(context, this);

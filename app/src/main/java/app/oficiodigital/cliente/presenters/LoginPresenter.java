@@ -9,9 +9,9 @@ import app.oficiodigital.cliente.repos.LoginRepo;
 
 public class LoginPresenter implements LoginContract.Presenter {
 
-    private Context ctx;
-    private LoginContract.View viewListener;
-    private LoginRepo repo;
+    private final Context ctx;
+    private final LoginContract.View viewListener;
+    private final LoginRepo repo;
 
     public LoginPresenter(Context ctx, LoginContract.View viewListener) {
         this.ctx = ctx;

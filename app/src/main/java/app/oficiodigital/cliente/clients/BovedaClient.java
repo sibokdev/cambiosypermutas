@@ -8,6 +8,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Respuestas;
 import app.oficiodigital.cliente.models.Solicitudes;
@@ -21,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -47,7 +47,7 @@ public class BovedaClient {
 
         @POST("courier/generateInvitationCode")
         @FormUrlEncoded
-        Call<Responses> generate (@FieldMap HashMap<String, String> params);
+        Call<Responses> generate(@FieldMap HashMap<String, String> params);
 
         @POST("courier/updatePassword")
         @FormUrlEncoded
@@ -82,11 +82,17 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> recover(@FieldMap HashMap<String, String> params);
 
-        @GET("client/Datos{phone}")
+        @GET("courier/getDatos{phone}")
         Call<List<Datos>> getDatos(@Path("phone") String phone);
 
         @GET("client/Address{id}")
         Call<List<Direccion>> getDirrecion(@Path("id") String id);
+
+        @GET("client/DataSchool{phone}")
+        Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
+//____________________
+
+
 
         @POST("client/updateStatusPago")
         @FormUrlEncoded
@@ -131,9 +137,13 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> Getsolicitud(@FieldMap HashMap<String, String> params1);
 
-        @POST("client/registroDataSchool")
+        @POST("client/registroDataSchool{id}")
         @FormUrlEncoded
-        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params);
+        Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params, @Path("id") String id );
+
+        @POST("client/registroIntereses")
+        @FormUrlEncoded
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params);
 
 
     }

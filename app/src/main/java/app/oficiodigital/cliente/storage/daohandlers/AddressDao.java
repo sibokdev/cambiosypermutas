@@ -18,7 +18,7 @@ import app.oficiodigital.cliente.utils.TableConstants.AddressTable;
 
 public class AddressDao extends DaoBase implements DaoInt {
 
-    private AddressParser mAddressParser;
+    private final AddressParser mAddressParser;
 
     public AddressDao(Context context) {
         super(context);

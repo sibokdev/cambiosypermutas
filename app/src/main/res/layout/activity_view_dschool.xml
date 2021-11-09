@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ViewDSchool">
+
+    <include
+        layout="@layout/app_bar_principal_menu2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <FrameLayout
+        android:id="@+id/conten"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_principal_menu2"
+        app:menu="@menu/activity_principal_menu_drawer" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/perfil">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="900dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Datos de la Escuela"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textSize="25dp" />
+
+
+
+                        <TextView
+                            android:id="@+id/tv_nombre_escuela"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="50dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="70dp"
+                            android:padding="7dp"
+                            android:textSize="24dp"
+                            android:hint="Nombre de la escuela:"
+                            android:inputType="textPersonName|textCapWords"
+                            android:maxLength="50" />
+
+
+
+                        <TextView
+                            android:id="@+id/tv_clave"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="50dp"
+                            android:layout_marginTop="130dp"
+                            android:padding="7dp"
+                            android:textSize="24dp"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                            android:hint="Clave de la escuela:"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="10" />
+
+
+                    <TextView
+                        android:id="@+id/tv_nivesco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="190dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:textSize="24dp"
+                        android:inputType="text"
+                        android:hint="Nivel escolar"
+                     />
+
+
+                    <TextView
+                        android:id="@+id/tv_turno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="250dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:inputType="text"
+                        android:hint="Turno"
+                        android:textSize="24dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_zona"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="50dp"
+                            android:textSize="24dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="310dp"
+                            android:padding="7dp"
+                            android:hint="Zona"
+                            android:inputType="text"
+                            android:maxLength="20" />
+
+
+                        <TextView
+                            android:id="@+id/tv_tel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="50dp"
+                            android:textSize="24dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="370dp"
+                            android:padding="7dp"
+                            android:hint="Telefono"
+                            android:inputType="number"
+                            android:maxLength="10" />
+
+                        <TextView
+                            android:id="@+id/tv_codigop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="50dp"
+                            android:textSize="24dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="430dp"
+                            android:padding="7dp"
+                            android:hint="Código Postal"
+                            android:inputType="number"
+                            android:maxLength="5" />
+
+                    <TextView
+                        android:id="@+id/tv_colonia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="490dp"
+                        android:padding="7dp"
+                        android:inputType="text"
+                        android:hint="Colonia"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_municipio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="550dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:hint="Municipio"
+                        android:textSize="24dp" />
+
+
+
+                    <TextView
+                        android:id="@+id/tv_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="610dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:hint="Estado"
+                        android:textSize="24dp" />
+
+
+
+
+                        <TextView
+                            android:id="@+id/tv_nom_dir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="50dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="700dp"
+                            android:padding="7dp"
+                            android:hint="Nombre director"
+                            android:textSize="24dp"
+                            android:inputType="textPersonName|textCapWords"
+                            android:maxLength="30" />
+
+                    <TextView
+                        android:id="@+id/tv_cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="760dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:hint="Categoria"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_plantel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="820dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="7dp"
+                        android:hint="Tipo de Plantel"
+                        android:textSize="24dp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <TextView
+                        android:id="@+id/tv_nombramiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nombramiento"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_anios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginEnd="50dp"
+                        android:max="50"
+                        android:hint=" años laborando"
+                        android:padding="7dp"
+                        android:textSize="24dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_nota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:textSize="24dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginEnd="50dp"
+                        android:hint="Nota desfavorable" />
+
+
+                    <TextView
+                        android:id="@+id/tv_proced"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="200dp"
+                        android:layout_marginEnd="50dp"
+                        android:padding="7dp"
+                        android:hint="procedimiento"
+                        android:textSize="24dp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/sig_lugares_intereses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:onClick="sig"
+                    android:layout_marginTop="20dp"
+                    android:enabled="false"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/boton_redondo"
+                    android:text="Llenar lugares de intereses"
+                    android:textColor="@color/text_white"
+                    tools:ignore="OnClick" />
+
+
+                <TextView
+                    android:id="@+id/select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+

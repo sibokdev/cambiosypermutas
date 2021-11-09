@@ -47,7 +47,7 @@
 
     <!-- Recover Screen -->
     <string name="recover_welcome_msg">Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</string>
-    <string name="recover_email_label">Ingresa numero de telefono</string>
+    <string name="recover_email_label">Ingresa número de teléfono</string>
     <string name="recover_recover_label">Enviar código</string>
     <string name="recover_back_label">Regresar</string>
     <string name="recover_resume_send_msg">Hemos enviado la contraseña a tu correo electrónico.\n\n Si requieres mayor soporte estamos a tus órdenes en el teléfono 5544332211</string>
@@ -388,5 +388,10 @@
     <string name="msg_subscribed">Sucess topico</string>
     <string name="msg_subscribe_failed">Faile topico</string>
 
+
+    <!-- errores -->
+    <string name="error_campo_oblogatorio">Campo obligatorio</string>
+    <string name="error_campo_numerico">Campo numerico </string>
+    <string name="error_campo_superar">Debe superar los 2 años</string>
 
 </resources>

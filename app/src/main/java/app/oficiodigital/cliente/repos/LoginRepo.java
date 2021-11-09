@@ -16,9 +16,9 @@ import retrofit2.Response;
 
 public class LoginRepo {
 
-    private LoginPresenter presenter;
-    private UserDao dao;
-    private Context mContext;
+    private final LoginPresenter presenter;
+    private final UserDao dao;
+    private final Context mContext;
 
     public LoginRepo(Context context, LoginPresenter presenter) {
         this.presenter = presenter;

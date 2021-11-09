@@ -14,8 +14,8 @@ import app.oficiodigital.cliente.repos.PaymentRepo;
 
 public class AddPaypalPaymentPresenter implements AddPaypalPaymentContract.Presenter {
 
-    private AddPaypalPaymentContract.View mAddPaypalPaymentListener;
-    private PaymentRepo mPaymentRepo;
+    private final AddPaypalPaymentContract.View mAddPaypalPaymentListener;
+    private final PaymentRepo mPaymentRepo;
 
     public AddPaypalPaymentPresenter(Context context, AddPaypalPaymentContract.View listener) {
         mAddPaypalPaymentListener = listener;

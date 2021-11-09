@@ -101,7 +101,7 @@ public class AddCCPaymentActivity extends BaseActivity implements AddCreditCardC
         token1  =(TextView) findViewById(R.id.token);
 
 
-         token = getIntent().getStringExtra("token");
+        token = getIntent().getStringExtra("token");
         token1.setText(token);
 
         //setupUI();
@@ -261,11 +261,11 @@ public class AddCCPaymentActivity extends BaseActivity implements AddCreditCardC
         for (TokenAuth pho : list1) {
             String phone = "";
 
-            phone = pho.getToken();
+            phone = pho.getTokenauth();
             tok = phone;
         }
 
-        String authHeader = "Bearer " + tok ;
+        String authHeader = "Bearer " + tok;
         Call<Responses> call = DOXClient.getInstanceClient()
                 .getApiClient().addCard(creditCard, authHeader);
 

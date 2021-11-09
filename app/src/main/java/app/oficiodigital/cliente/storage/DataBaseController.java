@@ -14,7 +14,7 @@ public class DataBaseController {
 
     private DataBaseCreator mDbHelper;
     private SQLiteDatabase mDb;
-    private Context mContext;
+    private final Context mContext;
 
     public DataBaseController(Context context) {
         mContext = context;

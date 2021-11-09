@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +13,7 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.clients.CatalogsClient;
-import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.models.Busqueda;
-import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.utils.L;
@@ -151,7 +146,7 @@ public class EnvioSolicitud extends BaseActivity {
                 for (TokenAuth p : list1) {
                     String phone = "";
 
-                    phone = p.getToken();
+                    phone = p.getTokenauth();
                     tok = phone;
                 }
 

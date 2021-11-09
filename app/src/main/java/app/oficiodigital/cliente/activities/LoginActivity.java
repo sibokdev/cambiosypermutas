@@ -5,28 +5,19 @@ import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
@@ -36,17 +27,16 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.contracts.LoginContract;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.Preguntas1;
+import app.oficiodigital.cliente.models.ModelsDB.Token;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
-import app.oficiodigital.cliente.models.User;
 import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.presenters.LoginPresenter;
 import app.oficiodigital.cliente.storage.CustomerDataPersistence;
 import app.oficiodigital.cliente.utils.L;
-import app.oficiodigital.cliente.utils.NetworkState;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,6 +64,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     public static boolean isAppRunning = false;
     private static final String CHANNEL_ID = "Notificacion";
     private static final int notificationId = 0;
+
 
     @Override
     public void onStart() {
@@ -159,15 +150,13 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     public void info(View view) {
-        Intent intent1 = new Intent(this, AddCCPaymentActivity.class);
+        Intent intent1 = new Intent(this, ViewDSchool.class);
         startActivity(intent1);
     }
 
 
     public void contratar(View view) {
-        Intent intent = new Intent(this,PrivacyPolicies.class);
-        intent.putExtra("tokenPhone", token1.getText().toString());
-        startActivity(intent);
+        startActivity(new Intent(this, Register.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -191,13 +180,27 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                     if (response.body().getResponse() != null) {
 
                         String token = response.body().getResponse().getAuth().getToken();
+                        String phone = response.body().getResponse().getUser().getPhone();
                         tokena.setText(token);
+                        Phone phon = new Phone();
+                        phon.setPhone(phone);
+                        phon.save();
+
+                        TokenAuth tokenauth = new TokenAuth();
+                        tokenauth.setTokenauth(token);
+                        tokenauth.save();
+
+                        String id = response.body().getResponse().getUser().getId();
+                        Token userId = new Token();
+                        userId.setUserId(id);
+                        userId.save();
 
                         alerta();
                         //pagos();
                         Intent intent = new Intent(getApplication(), principalMenu.class);
                         intent.putExtra("phone", email.getText().toString());
                         intent.putExtra("token",tokena.getText().toString());
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplication(), "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -214,10 +217,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        Phone phon = new Phone();
-        String phone = email.getText().toString();
-        phon.setPhone(phone);
-        phon.save();
+
 
 
     }

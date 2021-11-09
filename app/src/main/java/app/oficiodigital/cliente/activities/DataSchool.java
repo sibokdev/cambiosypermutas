@@ -1,275 +1,168 @@
 package app.oficiodigital.cliente.activities;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+/*import com.android.volley.toolbox.JsonArrayRequest;*/
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+public class DataSchool {
+}/*extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.material.textfield.TextInputLayout;
+    DrawerLayout drawerLayout;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    private TextView muni, estado, select;
+    private EditText codigop;
+    private MapView mapa;
+    private String phon;
+    private BovedaClient.APIBovedaClient apiBovedaClient;
 
-import org.json.JSONException;
+    private ImageView imagen;
+    private TextView nombre, email, nombramiento, laborando;
+    private EditText oescuela,oclave, ozona, otel, onom_dir;
+    private TextView salida, phone;
+    private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, colonia;
+    private SeekBar seekBar;
+    private Button lugares;
+    private int datos;
+*//*FragmentDS fragmentDS;*//*
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.clients.BovedaClient;
-import app.oficiodigital.cliente.models.Ejemplo;
-import app.oficiodigital.cliente.models.ModelsDB.Preguntas1;
-import app.oficiodigital.cliente.models.Responses;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class DataSchool extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener{
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_principal_menu);
+        ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-        private BovedaClient.APIBovedaClient apiBovedaClient;
-        private EditText oescuela,oclave, ozona, otel, ocp, onom_dir;
-        private TextView oestado,omunicipio,select;
-        private Spinner onivel_esc, oturno, ocolonia, orol, otipo_plantel ;
-        private TextInputLayout ti_codigo;
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_escact);
 
-
-
-
-
-        @SuppressLint("MissingPermission")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_address_cliente);
-            //setContentView(R.layout.activity_principal_menu);
-            //primerPregunta();
-            //asociamos lode arriba con esto
-            //casteo
-            oescuela = (EditText) findViewById(R.id.et_nombre_escuela);
-            oclave = (EditText) findViewById(R.id.et_clave);
-            ozona = (EditText) findViewById(R.id.et_zona);
-            otel = (EditText) findViewById(R.id.et_tel);
-            ocp = (EditText) findViewById(R.id.et_codigop);
-
-
-            oestado = (TextView) findViewById(R.id.tv_estado);
-            omunicipio = (TextView) findViewById(R.id.tv_municipio);
-
-            onom_dir = (EditText) findViewById(R.id.et_nom_dir);
-
-            //definimos el spinner
-            onivel_esc = (Spinner) findViewById(R.id.sp_nivel_esc);
-            oturno = (Spinner) findViewById(R.id.sp_turno);
-            ocolonia = (Spinner) findViewById(R.id.sp_colonia);
-           // orol = (Spinner) findViewById(R.id.sp_rol);
-            otipo_plantel = (Spinner) findViewById(R.id.sp_plantel);
-
-            ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigop);
-
-            //Creamos un arreglo o un vector que nos permita agregar todos lo textos que querramos
-            String [] opciones = {"Preescolar", "Primaria", "Secundaria"};
-
-            // NUeva clase
-            // Cremos la comunicacion para el spinner en layout
-            ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,opciones);
-            //le decimos que coloque dtodo esto dentro del spinner
-            onivel_esc.setAdapter(adapter);
-
-
-
-
-
-            ocp.addTextChangedListener(new TextWatcher() {
-                public void afterTextChanged(Editable s) {
-                    String codigop = ocp.getText().toString();
-
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("https://api-sepomex.hckdrk.mx/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    apiBovedaClient = retrofit.create(BovedaClient.APIBovedaClient.class);
-
-                    Call<List<Ejemplo>> call = apiBovedaClient.getcode(codigop);
-                    call.enqueue(new Callback<List<Ejemplo>>() {
-                        @Override
-                        public void onResponse(Call<List<Ejemplo>> call, Response<List<Ejemplo>> response) {
-                            if (!response.isSuccessful()) {
-                                //colonia.("Code: " + response.code());
-                                return;
-                            }
-
-                            List<Ejemplo> ejemplo = response.body();
-
-                            List<String> list = new ArrayList<String>();
-
-                            for (Ejemplo eje : ejemplo) {
-                                String munic = "";
-                                String estado = "";
-
-                                list.add(eje.getResponse().getAsentamiento());
-
-                                munic += "" + eje.getResponse().getMunicipio();
-                                omunicipio.setText("" + munic);
-
-                                estado += "" + eje.getResponse().getEstado();
-                                oestado.setText("" + estado);
-                            }
-
-
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.spinner_colonia, list);
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            ocolonia.setAdapter(adapter);
-
-                            ocolonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                public void onItemSelected(AdapterView<?> adapter, View view,
-                                                           int position, long id) {
-                                    String slect = ocolonia.getSelectedItem().toString();
-                                    select.setText(slect);
-
-
-                                }
-
-                                public void onNothingSelected(AdapterView<?> arg0) {
-                                }
-                            });
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<Ejemplo>> call, Throwable t) {
-                            Toast.makeText(getApplication(), "error de siempre", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                }
-
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
-            });
+        View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
+        for (Phone p : list) {
+            phon = p.getPhone();
 
         }
-  /*  public void primerPregunta() {
-        List<Preguntas1> list = Preguntas1.listAll(Preguntas1.class);
-        List<String> lis = new ArrayList<String>();
-        Preguntas1 preguntas = new Preguntas1();
-        for (int i = 0; i < list.size(); i++) {
-            preguntas = list.get(i);
-            lis.add(preguntas.getPreguntas());
-            //Preguntas1.deleteAll(Preguntas1.class);
-        }
-        String [] opciones = {"Preescolar", "Primaria", "Secundaria"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), R.layout.sp, opciones);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        onivel_esc.setAdapter(adapter1);
 
-    }*/
-
-        //para validar que se metieron datos en los campos
-        public void sig_lugares_intereses(View view) throws JSONException {
+*//*        imagen = (ImageView) hView.findViewById(R.id.foto);
+        nombre = (TextView) hView.findViewById(R.id.nombre);
+        email = (TextView) hView.findViewById(R.id.email);
+        phone = (TextView) hView.findViewById(R.id.phone);*//*
 
 
-                String esc = oescuela.getText().toString();
-                String clv = oclave.getText().toString();
-                String zon = ozona.getText().toString();
-                String tl = otel.getText().toString();
-                String cp = ocp.getText().toString();
-                String nom_direc= onom_dir.getText().toString();
-                String estd = oestado.getText().toString();
-                String mun = omunicipio.getText().toString();
-                String colo = select.getText().toString();
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
 
 
-                //guardar la seleccion del usuario del spinner
-                String seleccion = onivel_esc.getSelectedItem().toString();
-                if (seleccion.equals("Preescolar")){
-                    /*int suma = valor1_int + valor2_int;
-                    String resultado = String.valueOf(suma);
-                    tv1.setText(resultado);*/
-                }else if (seleccion.equals("Primaria")){
-                }else if (seleccion.equals("Secundaria")){
-                }
+        fragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());
+       *//* fragmentTransaction.add(R.id.conten, new FragmentInteres());*//*
+        *//*getSupportFragmentManager().beginTransaction().add(R.id.conten,HomeFragment).commit();*//*
+
+        *//*fragmentTransaction.addToBackStack(null);*//*
+        fragmentTransaction.commit();
 
 
 
 
-                HashMap<String, String> params = new HashMap<>();
-                params.put("nombre_esc", esc);
-                params.put("clave_esc", clv);
-                params.put("zona_esc", zon);
-                params.put("telefono1", tl);
-                params.put("c_postal", cp);
-                params.put("nombre_direc", nom_direc);
-                params.put("estado", estd);
-                params.put("municipio", mun);
-                params.put("nivel_esc", tl);
-                params.put("turno", tl);
 
 
 
-                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
-                call.enqueue(new Callback<Responses>() {
 
-                    @Override
-                    public void onResponse(Call<Responses> call, Response<Responses> response) {
-                    }
-
-                    @Override
-                    public void onFailure(Call<Responses> call, Throwable t) {
-
-                    }
-                });
-
-                alerta();
-                startActivity(new Intent(this, LoginActivity.class));
-            }
+    }
 
 
 
-        public void alerta(){
-            String msg = getString(R.string.creando);
-            ProgressDialog progress = new ProgressDialog(this);
-            progress.setTitle("Guardando datos");
-            progress.setMessage(msg);
-            progress.show();
-        }
-
-
-        @Override
-        public void onMapReady(@NonNull GoogleMap googleMap) {
-
-        }
-
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.principal_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Alert dialog = new Alert(this);
+            dialog.setPositiveListener(getString(android.R.string.ok), (dialogInterface, i) -> {
+                startActivity(new Intent(this, LoginActivity.class));
+            });
+
+            dialog.setNegativeListener(getString(android.R.string.cancel), ((dialogInterface, i) -> {
+                dialog.close();
+            }));
+
+            dialog.fire(getString(R.string.logout_message));
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        switch (item.getItemId()) {
+            case R.id.nav_escact:
+                ft.replace(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool()).commit();
+                break;
+            case R.id.nav_perfil:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                break;
+            case R.id.nav_busqueda:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                break;
+            case R.id.nav_metodos:
+                ft.replace(R.id.conten, new MetodosPago()).commit();
+                break;
+            case R.id.nav_compartir:
+                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                break;
+
+        }
+        setTitle(item.getTitle());
+        drawerLayout.closeDrawers();
+        return true;
+    }
+
+*/
+
+
+
+
+
+
+
+
+
 
 

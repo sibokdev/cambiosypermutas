@@ -14,8 +14,8 @@ import app.oficiodigital.cliente.repos.FinancialRepo;
 
 public class FinancialDataPresenter implements FinancialDataContract.Presenter {
 
-    private FinancialDataContract.View mFinancialDataListener;
-    private FinancialRepo mFinancialRepo;
+    private final FinancialDataContract.View mFinancialDataListener;
+    private final FinancialRepo mFinancialRepo;
 
     public FinancialDataPresenter(Context context, FinancialDataContract.View financialDataListener){
         mFinancialDataListener = financialDataListener;

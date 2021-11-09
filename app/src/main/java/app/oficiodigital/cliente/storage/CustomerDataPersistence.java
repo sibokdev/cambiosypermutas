@@ -31,8 +31,8 @@ public class CustomerDataPersistence {
     private static final String TOKEN = "token";
     private static final String EXPIRES = "expires";
 
-    private SharedPreferences mManager;
-    private SharedPreferences.Editor mEditor;
+    private final SharedPreferences mManager;
+    private final SharedPreferences.Editor mEditor;
 
     public CustomerDataPersistence(Context context) {
         mManager = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

@@ -56,7 +56,7 @@ public class PayActivity extends BaseActivity implements AddPaymentContract.View
     private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
     private static final int REQUEST_CODE_PROFILE_SHARING = 3;
 
-    private static PayPalConfiguration config = new PayPalConfiguration()
+    private static final PayPalConfiguration config = new PayPalConfiguration()
             .environment(CONFIG_ENVIRONMENT)
             .clientId(CONFIG_CLIENT_ID);
 
@@ -206,8 +206,8 @@ public class PayActivity extends BaseActivity implements AddPaymentContract.View
     @Override
     public void onGetAnnualCost(float cost) {
         mMembershipCost = cost;
-        String total = "$" + String.valueOf(cost) + " MXN";
-        mAnnualCost.setText(String.valueOf(total));
+        String total = "$" + cost + " MXN";
+        mAnnualCost.setText(total);
     }
 
     @Override

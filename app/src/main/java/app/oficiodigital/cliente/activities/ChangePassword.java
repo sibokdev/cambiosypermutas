@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
+import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
@@ -30,6 +32,7 @@ public class ChangePassword extends BaseActivity{
     private TextView phone;
     private EditText contra,confir;
     private TextInputLayout ti_pass, ti_con;
+    String phon = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,17 +94,21 @@ public class ChangePassword extends BaseActivity{
     }
 
     public void cabiar(View view) {
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
+            phon = pho.getPhone();
+
+        }
 
         if (contra.length() == 0) {
             ti_pass.setError("Inserta Contraseña");
         } else {
             ti_pass.setErrorEnabled(false);
             String con = contra.getText().toString();
-            String pho = phone.getText().toString();
 
             HashMap<String, String> params = new HashMap<>();
             params.put("password", con);
-            params.put("phone", pho);
+            params.put("phone",phon);
 
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().updatePass(params);
             call.enqueue(new Callback<Responses>() {

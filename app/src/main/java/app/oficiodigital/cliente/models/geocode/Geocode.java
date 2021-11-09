@@ -9,7 +9,7 @@ public class Geocode {
     public static final String STATUS_OK = "OK";
 
     @SerializedName("results")
-    private GeoResult result[];
+    private GeoResult[] result;
     private String status;
 
 

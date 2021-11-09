@@ -7,8 +7,8 @@ import com.orm.dsl.Unique;
 public class TokenAuth extends SugarRecord {
 
     @Unique
-    @Column(name="token")
-    private String token= " ";
+    @Column(name="tokenauth")
+    private String tokenauth= " ";
     @Column(name="device_session_id")
     private String device_session_id= " ";
 
@@ -20,11 +20,11 @@ public class TokenAuth extends SugarRecord {
         this.device_session_id = device_session_id;
     }
 
-    public String getToken() {
-        return token;
+    public String getTokenauth() {
+        return tokenauth;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setTokenauth(String token) {
+        this.tokenauth = token;
     }
 }
