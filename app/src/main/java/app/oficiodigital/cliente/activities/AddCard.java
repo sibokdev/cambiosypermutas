@@ -290,7 +290,7 @@ public class AddCard extends BaseActivity implements AddCreditCardContract.View 
         for (TokenAuth pho : list1) {
             String phone = "";
 
-            phone = pho.getToken();
+            phone = pho.getTokenauth();
             tok = phone;
         }
 

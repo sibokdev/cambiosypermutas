@@ -146,7 +146,7 @@ public class EnvioSolicitud extends BaseActivity {
                 for (TokenAuth p : list1) {
                     String phone = "";
 
-                    phone = p.getToken();
+                    phone = p.getTokenauth();
                     tok = phone;
                 }
 

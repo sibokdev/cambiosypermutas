@@ -261,7 +261,7 @@ public class AddCCPaymentActivity extends BaseActivity implements AddCreditCardC
         for (TokenAuth pho : list1) {
             String phone = "";
 
-            phone = pho.getToken();
+            phone = pho.getTokenauth();
             tok = phone;
         }
 

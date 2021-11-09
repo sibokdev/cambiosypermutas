@@ -28,6 +28,7 @@ import app.oficiodigital.cliente.clients.DOXClient;
 import app.oficiodigital.cliente.contracts.LoginContract;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.ModelsDB.Preguntas1;
+import app.oficiodigital.cliente.models.ModelsDB.Token;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.notifications.LoadingDialog;
@@ -125,7 +126,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
     public void recuperar(View view) {
 
-        startActivity(new Intent(this, ViewDSchool.class));
+        startActivity(new Intent(this, RecoverPhone.class));
     }
 
     /*@OnClick(R.id.btnLogin)
@@ -186,11 +187,11 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                         phon.save();
 
                         TokenAuth tokenauth = new TokenAuth();
-                        tokenauth.setToken(token);
+                        tokenauth.setTokenauth(token);
                         tokenauth.save();
 
                         String id = response.body().getResponse().getUser().getId();
-                        TokenAuth userId = new TokenAuth();
+                        Token userId = new Token();
                         userId.setUserId(id);
                         userId.save();
 

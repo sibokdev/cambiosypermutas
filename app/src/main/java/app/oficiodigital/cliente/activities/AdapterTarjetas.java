@@ -97,7 +97,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                         for (TokenAuth pho : list1) {
                             String phone = "";
 
-                            phone = pho.getToken();
+                            phone = pho.getTokenauth();
                             tok = phone;
                         }
                         String mToken = "Bearer " + tok;
@@ -159,7 +159,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                         for (TokenAuth pho : list1) {
                             String phone = "";
 
-                            phone = pho.getToken();
+                            phone = pho.getTokenauth();
                             tok = phone;
                         }
 

@@ -57,7 +57,6 @@ public class AnswerQuestions extends BaseActivity {
         }
 
         phone.setText(phon);
-
         Call<List<Respuestas>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getRespuestas(phone.getText().toString());
         callVersiones.enqueue(new Callback<List<Respuestas>>() {
             @Override
