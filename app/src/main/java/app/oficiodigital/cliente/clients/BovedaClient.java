@@ -96,7 +96,7 @@ public class BovedaClient {
         Call<List<DatosIntereses>> getItereses(@Path("phone") String phone);
 
         @GET("client/getIntereses{phone}")
-        Call<Responses> getIteresess(@Path("phone") String phone);
+        Call<List<DatosIntereses>> getIteresess(@Path("phone") String phone);
 
         @GET("client/DataIntereses{id}")
         Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);

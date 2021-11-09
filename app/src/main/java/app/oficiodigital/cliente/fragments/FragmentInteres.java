@@ -426,52 +426,44 @@ public class FragmentInteres extends Fragment {
             phones = pho.getPhone();
 
         }
-        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
-        callVersiones.enqueue(new Callback<Responses>() {
+        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
+        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(Call<Responses> call, Response<Responses> response) {
+            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
 
-                if (response.isSuccessful()) {
-                    if (response.body().getCode() == 200) {
-                        guardarMetodo();
-                        Toast.makeText(getContext(),"si etra",Toast.LENGTH_LONG).show();
-                    }else if(response.body().getCode() == 202){
-                        Toast.makeText(getContext(),"si etra2",Toast.LENGTH_LONG).show();
+                List<DatosIntereses> ejemplo = response.body();
 
-                        List<String> list = new ArrayList<String>();
-                        List<String> list2 = new ArrayList<String>();
+                List<String> list = new ArrayList<String>();
+                List<String> list2 = new ArrayList<String>();
+                for (DatosIntereses eje : ejemplo) {
 
-                        String codigo = response.body().getResponse().getDatosIntereses().getCodigo();
-                        codigop.setText(codigo);
-                        list.add(response.body().getResponse().getDatosIntereses().getCodigo());
-                        list2.add(response.body().getResponse().getDatosIntereses().getId());
+                    if (eje.getCodigo() != null) {
 
-                        for(int i = 0; i<list.size(); i++){
-                            if(i==0){
-                                //codigop.setText(list.get(i));
-                                id = list2.get(i);
-                            }else if(i==1){
+                        Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
+
+                        list.add(eje.getCodigo());
+                        list2.add(eje.getId());
+
+
+                        for (int i = 0; i < list.size(); i++) {
+                            if (i == 0) {
+                               codigop.setText(list.get(i));
+                                colonia.setEnabled(false);
+                                codigop.setEnabled(false);
+                                 id = list2.get(i);
+                            } else if (i == 1) {
                                 codigop2.setText(list.get(i));
+                                colonia2.setEnabled(false);
+                                codigop2.setEnabled(false);
                                 id2 = list2.get(i);
-                            } else if(i==2){
+                            } else if (i == 2) {
                                 codigop3.setText(list.get(i));
+                                colonia3.setEnabled(false);
+                                codigop3.setEnabled(false);
                                 id3 = list2.get(i);
                             }
                         }
-
-                        //String cp = "" + res.getCodigo();
-                        //codigop.setText(cp);
-                        codigop.setEnabled(false);
-                        codigop2.setEnabled(false);
-                        codigop3.setEnabled(false);
-
-                        //String sl = "" + res.getColonia();
-                        // select.setText(sl);
-                        colonia.setEnabled(false);
-
-
-                        estado.setEnabled(false);
 
                         guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {
@@ -482,12 +474,13 @@ public class FragmentInteres extends Fragment {
                             }
                         });
 
+                    }else{
+                        guardarMetodo();
                     }
-
                 }
             }
             @Override
-            public void onFailure(Call<Responses> call, Throwable t) {
+            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
                 L.error("getDataSchool " + t.getMessage());
             }
         });
@@ -627,29 +620,22 @@ public class FragmentInteres extends Fragment {
                         for(int i = 0; i<list.size(); i++){
                             if(i==0){
                                 codigop.setText(list.get(i));
+                                codigop.setEnabled(true);
+                                colonia.setEnabled(true);
                                 id = list2.get(i);
                             }else if(i==1){
                                 codigop2.setText(list.get(i));
+                                codigop2.setEnabled(true);
+                                colonia2.setEnabled(true);
                                 id2 = list2.get(i);
                             } else if(i==2){
                                 codigop3.setText(list.get(i));
+                                codigop3.setEnabled(true);
+                                colonia3.setEnabled(true);
                                 id3 = list2.get(i);
                             }
                         }
 
-                        //String cp = "" + res.getCodigo();
-                        //codigop.setText(cp);
-                        //codigop.setEnabled(false);
-                        codigop.setEnabled(true);
-                        //codigop2.setEnabled(false);
-                        //codigop3.setEnabled(false);
-
-                        String sl = "" + res.getColonia();
-                        select.setText(sl);
-                        colonia.setEnabled(false);
-
-
-                        estado.setEnabled(false);
 
                         guardar.setText("guardar");
                         guardar.setOnClickListener(new View.OnClickListener() {

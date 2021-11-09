@@ -382,16 +382,19 @@
                 <TextView
                     android:id="@+id/select"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/select2"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/select3"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
