@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.solver.widgets.WidgetContainer;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -136,183 +137,6 @@ public class DataSchool extends Fragment {
 
         getDataSchool();
 
-
-
-        /*guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
-
-                oescuela.setError(null);
-                oclave.setError(null);
-                ozona.setError(null);
-                otel.setError(null);
-                codigop.setError(null);
-                onom_dir.setError(null);
-                salida.setError(null);
-
-
-                String esc = oescuela.getText().toString();
-                String clv = oclave.getText().toString();
-                String zon = ozona.getText().toString();
-                String tl = otel.getText().toString();
-                String cp = codigop.getText().toString();
-                String nom_direc = onom_dir.getText().toString();
-                String estd = estado.getText().toString();
-                String mun = muni.getText().toString();
-                String colo = select.getText().toString();
-                String sal = salida.getText().toString();
-
-
-
-                //Estos métodos se ejecutará cuando se presione el botón
-                String seleccion = onivel_esc.getSelectedItem().toString();
-               *//* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
-               if (seleccion.equals("Preescolar")) {
-                } else if (seleccion.equals("Primaria")) {
-                }else if (seleccion.equals("Secundaria")) {
-                }
-
-                //guardado de seleccion spinnner turno
-                String seleccion_tn = oturno.getSelectedItem().toString();
-                if (seleccion_tn.equals("Matutino")) {
-                } else if (seleccion_tn.equals("Vespertino")) {
-                }
-
-                //guardado de seleccion spinnner rol
-                String seleccion_ct = ocategoria.getSelectedItem().toString();
-                if (seleccion_ct.equals("Docente")) {
-                } else if (seleccion_ct.equals("Subdirector")) {
-                } else if (seleccion_ct.equals("Director")) {
-                }
-
-                //Sleccion spinnner tipo plantel
-                String seleccion_tp = otipo_plantel.getSelectedItem().toString();
-                if (seleccion_tp.equals("Municipal")) {
-                } else if (seleccion_tp.equals("Estatal")) {
-                } else if (seleccion_tp.equals("Federal")) {
-                } else if (seleccion_tp.equals("Federalizado")) {
-                }
-
-                //Sleccion spinnner nombramiento
-                String seleccion_nombram = spinombramiento.getSelectedItem().toString();
-                if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
-                } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
-                }
-
-                //Sleccion spinnner nota
-                String seleccion_nota = onota.getSelectedItem().toString();
-                if (seleccion_nota.equals("Si")) {
-                } else if (seleccion_nota.equals("No")) {
-                }
-
-                //Sleccion spinnner procedimiento
-                String seleccion_proc = oprocedimiento.getSelectedItem().toString();
-                if (seleccion_proc.equals("Si")) {
-                } else if (seleccion_proc.equals("No")) {
-                }
-
-
-                //Validaciones campos
-                if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
-                    ozona.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
-                    otel.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
-                    onom_dir.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(sal)) {
-                    salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
-                    return;
-                }
-
-
-                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-
-
-                //Envio a BD
-                HashMap<String, String> params = new HashMap<>();
-                params.put("nombre_esc", esc);
-                params.put("clave_esc", clv);
-                params.put("nivel_escolar", seleccion);
-                params.put("turno", seleccion_tn);
-                params.put("zona_esc", zon);
-                params.put("telefono", tl);
-                params.put("c_postal", cp);
-                params.put("estado", estd);
-                params.put("municipio", mun);
-                params.put("colonia", colo);
-                params.put("nombre_direc", nom_direc);
-                params.put("rol", seleccion_ct);
-                params.put("tipo_plantel", seleccion_tp);
-
-                params.put("nombramiento", seleccion_nombram);
-                params.put("labor", sal);
-                params.put("nota", seleccion_nota);
-                params.put("procedimiento", seleccion_proc);
-
-                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
-                for (TokenAuth ids : userId) {
-
-
-                    id = ids.getUserId();
-
-                }
-
-                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params,id);
-                call.enqueue(new Callback<Responses>() {
-
-                    @Override
-                    public void onResponse(Call<Responses> call, Response<Responses> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Responses> call, Throwable t) {
-
-                    }
-                });
-
-
-            }
-        });*/
-
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
@@ -402,67 +226,37 @@ public class DataSchool extends Fragment {
 
             }
         });
+        onivel_esc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0){
+                    Toast.makeText(getContext(), "Seleccione una opcion valida", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        //Arreglo, obtencion de valores de spinners
-        String[] opciones_ne = {"Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
-        String[] opciones_tn = {"Matutino", "Vespertino"};//arreglo turno
-        String[] opciones_cat = {"Docente", "Subdirector", "Director"};//arreglo rol
-        String[] opciones_tp = {"Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
+            }
+        });
 
-        /*Integer[] opciones_labor = {0,1,2,3,4,5,6,7,8,9};*/
-
-        String[] opciones_nombra = {"Si", "No"};
-        String[] opciones_nota = {"Si", "No"};
-        String[] opciones_proced = {"Si", "No"};
-
-
-        // NUeva clase comunicacion para spinner - layout
-         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
-        onivel_esc.setAdapter(adapter);
-        onivel_esc.setPrompt("Selecciona una opción");
-
-        adapter_tn = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tn);
-        oturno.setAdapter(adapter_tn);
-
-        adapter_ct = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_cat);
-        ocategoria.setAdapter(adapter_ct);
-
-        adapter_tp = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tp);
-        otipo_plantel.setAdapter(adapter_tp);
-
-
-        /*seekBar = new ArrayAdapter<Integer>(getActivity(), android.R.layout., opciones_labor);*/
-        /*seekBar = new SeekBarAdapter(this, R.layout., opciones_labor);*/
-
-
-        adapter_nombra = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nombra);
-        /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
-        spinombramiento.setAdapter(adapter_nombra);
-
-        adapter_nota = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nota);
-        onota.setAdapter(adapter_nota);
-
-        adapter_proce = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_proced);
-        oprocedimiento.setAdapter(adapter_proce);
-
-
-        /*Spinner sp = findViewById(R.id.spinnerCategoriasReporteGastos);*/
         spinombramiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (parent.getId()) {
-                    case R.id.sp_nombramiento:
-                        int seleccionado = spinombramiento.getSelectedItemPosition();
-                        if (seleccionado == 1) {
-                            Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(false);
-                        } else {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(true);
-                        }
+                /* int seleccionado = spinombramiento.getSelectedItemPosition();*/
+                if (position == 0) {
+                    Toast.makeText(getContext(), "Seleccione una opción valida", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
+                } else if (position == 1){
+                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(true);
+                }else{
+                    Toast.makeText(getContext(), "Debes contar con nombramiento definitivo", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
                 }
-
             }
 
             @Override
@@ -470,6 +264,48 @@ public class DataSchool extends Fragment {
                 // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
             }
         });
+
+
+        //Arreglo, obtencion de valores de spinners
+        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
+        String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
+        String[] opciones_cat = {"Seleccione","Docente", "Subdirector", "Director"};//arreglo rol
+        String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
+        String[] opciones_nombra = {"Si", "No"};
+        String[] opciones_nota = {"Seleccione","Si", "No"};
+        String[] opciones_proced = {"Si", "No"};
+
+        // NUeva clase comunicacion para spinner - layout
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
+        onivel_esc.setAdapter(adapter);
+        onivel_esc.setPrompt("Selecciona una opción");
+
+        adapter_tn = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tn);
+        oturno.setAdapter(adapter_tn);
+        oturno.setPrompt("Selecciona una opción");
+
+        adapter_ct = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_cat);
+        ocategoria.setAdapter(adapter_ct);
+        ocategoria.setPrompt("Selecciona una opción");
+
+        adapter_tp = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tp);
+        otipo_plantel.setAdapter(adapter_tp);
+        otipo_plantel.setPrompt("Selecciona una opción");
+
+        adapter_nombra = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nombra);
+        /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
+        spinombramiento.setAdapter(adapter_nombra);
+        spinombramiento.setPrompt("Selecciona una opción");
+
+
+        adapter_nota = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nota);
+        onota.setAdapter(adapter_nota);
+        onota.setPrompt("Selecciona una opción");
+
+        adapter_proce = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_proced);
+        oprocedimiento.setAdapter(adapter_proce);
+        oprocedimiento.setPrompt("Selecciona una opción");
+
 
         return view;
     }
@@ -658,14 +494,23 @@ public class DataSchool extends Fragment {
                 //FragmentTransaction transaction = getFragmentManager().beginTransaction();
                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
 
-                oescuela.setError(null);
+                /*oescuela.setError(null);
                 oclave.setError(null);
                 ozona.setError(null);
                 otel.setError(null);
                 codigop.setError(null);
                 onom_dir.setError(null);
-                salida.setError(null);
+                salida.setError(null);*/
 
+/*oescuela.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (!oescuela.hasFocus && oescuela.getText().toString() != null){
+            Toast.makeText(getActivity().getApplicationContext(), oescuela.getText().toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+});*/
+                oescuela.setSelection(oescuela.length());
 
                 String esc = oescuela.getText().toString();
                 String clv = oclave.getText().toString();
@@ -948,12 +793,15 @@ public class DataSchool extends Fragment {
                         oprocedimiento.setSelection(sp_proced);
                         oprocedimiento.setEnabled(false);
 
-                        guardar.setText("modificar.");
+                        guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Modificar();
-                                //oescuela.setEnabled(true);
+                              /*  oescuela.setFocusableInTouchMode(true);
+                               oescuela.requestFocus();
+                                oescuela.setSelection(oescuela.length());*/
+
                             }
                         });
 
