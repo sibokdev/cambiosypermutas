@@ -95,7 +95,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
     public void getOficios(){
 
-        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getOficios();
+        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getCp();
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {

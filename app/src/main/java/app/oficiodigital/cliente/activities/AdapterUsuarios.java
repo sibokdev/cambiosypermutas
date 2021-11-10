@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.models.Busqueda;
+import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Datos;
 
 /**
@@ -57,9 +58,10 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     @Override
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
        final Busqueda item = list.get(position);
-        holder.nombre.setText(item.getName()+" "+item.getSurname1()+" "+item.getSurname2().toUpperCase());
-        holder.oficio.setText(item.getOffice());
-        holder.municipio.setText(item.getMunicipio());
+        holder.nombre.setText(item.getName()+"    "+item.getSurname1()+"    "+item.getSurname2().toUpperCase());
+        holder.rol.setText(item.getRol());
+        holder.nivel.setText(item.getNivel_escolar());
+        holder.tipo.setText(item.getTipo_plantel());
         holder.token.setText(item.getTokenPhone());
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
@@ -70,7 +72,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             public void onClick(View v) {
 
                 Intent intent = new Intent(holder.itemView.getContext(),Details.class);
-                intent.putExtra("datos",  item);
+                //intent.putExtra("datos",  item);
                 holder.itemView.getContext().startActivity(intent);
 
             }
@@ -151,14 +153,16 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
         convertView = LayoutInflater.from(context).inflate(R.layout.item_busqueda, null);
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre);
-        TextView oficio = (TextView) convertView.findViewById(R.id.oficio);
-        TextView municipio = (TextView) convertView.findViewById(R.id.municipio);
+        TextView nivel = (TextView) convertView.findViewById(R.id.nivel);
+        TextView rol = (TextView) convertView.findViewById(R.id.rol);
+        TextView tipo = (TextView) convertView.findViewById(R.id.tipo);
         TextView token = (TextView) convertView.findViewById(R.id.token);
         TextView tele = (TextView) convertView.findViewById(R.id.telefono);
 
         nombre.setText(item.getName());
-        oficio.setText(item.getOffice());
-        municipio.setText(item.getMunicipio());
+        nivel.setText(item.getNivel_escolar());
+        rol.setText(item.getRol());
+        tipo.setText(item.getTipo_plantel());
         token.setText(item.getTokenPhone());
         return convertView;
     }
@@ -185,12 +189,13 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,oficio,municipio,token,telefono,des;
+        public TextView nombre,nivel,rol,token,telefono,des,tipo;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre);
-            oficio = (TextView) itemView.findViewById(R.id.oficio);
-            municipio = (TextView) itemView.findViewById(R.id.municipio);
+            nivel = (TextView) itemView.findViewById(R.id.nivel);
+            rol = (TextView) itemView.findViewById(R.id.rol);
+            tipo = (TextView) itemView.findViewById(R.id.tipo);
             token = (TextView) itemView.findViewById(R.id.token);
             telefono = (TextView) itemView.findViewById(R.id.telefono);
             des = (TextView) itemView.findViewById(R.id.des);

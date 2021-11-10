@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscar trabajador"
+            android:text="Buscar intereses"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
             android:padding="10dp"
@@ -44,13 +44,13 @@
 
         <SearchView
             android:id="@+id/buscador"
-            android:layout_marginTop="140dp"
             android:layout_width="match_parent"
-            android:queryHint="Busca trabajador u oficio"
-            android:iconifiedByDefault="false"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="140dp"
             android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content">
+            android:iconifiedByDefault="false"
+            android:queryHint="Busca lugares de interes ">
 
         </SearchView>
 

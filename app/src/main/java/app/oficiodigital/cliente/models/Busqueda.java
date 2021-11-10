@@ -17,8 +17,12 @@ public class Busqueda implements Serializable {
     String phone;
     String Description;
 
+    String rol;
+    String nivel_escolar;
+    String tipo_plantel;
+
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
-                    String tokenPhone, String phone, String Description) {
+                    String tokenPhone, String phone, String Description, String rol) {
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
@@ -26,6 +30,31 @@ public class Busqueda implements Serializable {
         this.tokenPhone=tokenPhone;
         this.phone=phone;
         this.Description=Description;
+
+    }
+
+    public String getNivel_escolar() {
+        return nivel_escolar;
+    }
+
+    public void setNivel_escolar(String nivel_escolar) {
+        this.nivel_escolar = nivel_escolar;
+    }
+
+    public String getTipo_plantel() {
+        return tipo_plantel;
+    }
+
+    public void setTipo_plantel(String tipo_plantel) {
+        this.tipo_plantel = tipo_plantel;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getDescription() {

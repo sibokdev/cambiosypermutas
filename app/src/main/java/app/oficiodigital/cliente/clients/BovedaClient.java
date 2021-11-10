@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.models.Busqueda;
+import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
@@ -130,6 +131,9 @@ public class BovedaClient {
 
         @GET("client/getOficios")
         Call<List<Busqueda>> getOficios();
+
+        @GET("client/getCP")
+        Call<List<Busqueda>> getCp();
 
         @POST("client/registroUsers")
         @FormUrlEncoded
