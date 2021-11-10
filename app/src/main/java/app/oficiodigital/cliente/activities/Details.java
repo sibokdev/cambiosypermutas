@@ -11,7 +11,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 
 public class Details extends BaseActivity {
 
-    private TextView nombre, oficio,municipio,token1, apM, apP,phone,phone1, des;
+    private TextView nombre, estado,municipio,token1, apM, apP,phone,phone1, des, tipo;
     private Busqueda busqueda;
 
     @Override
@@ -20,8 +20,9 @@ public class Details extends BaseActivity {
         setContentView(R.layout.activity_details);
 
         nombre = (TextView) findViewById(R.id.nombre);
-        oficio = (TextView) findViewById(R.id.oficio);
+        estado = (TextView) findViewById(R.id.estado);
         municipio = (TextView) findViewById(R.id.municipio);
+        tipo = (TextView) findViewById(R.id.tipo);
         token1 = (TextView) findViewById(R.id.token);
         apM = (TextView) findViewById(R.id.apellido1);
         apP = (TextView) findViewById(R.id.apellido2);
@@ -34,7 +35,8 @@ public class Details extends BaseActivity {
         nombre.setText(busqueda.getName().toUpperCase());
         apM.setText(busqueda.getSurname1().toUpperCase());
         apP.setText(busqueda.getSurname2().toUpperCase());
-        oficio.setText(busqueda.getOffice().toUpperCase());
+        estado.setText(busqueda.getOffice().toUpperCase());
+        tipo.setText(busqueda.getOffice().toUpperCase());
         municipio.setText(busqueda.getMunicipio().toUpperCase());
         token1.setText(busqueda.getTokenPhone());
         phone.setText(busqueda.getPhone());
@@ -46,7 +48,7 @@ public class Details extends BaseActivity {
 
     public void cotizacion(View view){
         Intent intent = new Intent(getApplication(), DatosServicio.class);
-        intent.putExtra("oficio", oficio.getText().toString());
+        intent.putExtra("estado", estado.getText().toString());
         intent.putExtra("nombre", nombre.getText().toString());
         intent.putExtra("ap1", apP.getText().toString());
         intent.putExtra("ap2", apM.getText().toString());

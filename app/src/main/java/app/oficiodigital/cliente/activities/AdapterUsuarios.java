@@ -58,9 +58,10 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     @Override
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
        final Busqueda item = list.get(position);
-        holder.nombre.setText(item.getName()+"    "+item.getSurname1()+"    "+item.getSurname2().toUpperCase());
+        holder.nombre.setText(item.getName()+"    "+item.getSurname1().toUpperCase());
         holder.rol.setText(item.getRol());
         holder.nivel.setText(item.getNivel_escolar());
+        holder.estado.setText(item.getEstado());
         holder.tipo.setText(item.getTipo_plantel());
         holder.token.setText(item.getTokenPhone());
         holder.telefono.setText(item.getPhone());
@@ -140,7 +141,6 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         }
         notifyDataSetChanged();
     }
-
     @Override
     public Object getItem(int position) {
         return list.get(position);
@@ -155,6 +155,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre);
         TextView nivel = (TextView) convertView.findViewById(R.id.nivel);
         TextView rol = (TextView) convertView.findViewById(R.id.rol);
+        TextView estado = (TextView) convertView.findViewById(R.id.estado);
         TextView tipo = (TextView) convertView.findViewById(R.id.tipo);
         TextView token = (TextView) convertView.findViewById(R.id.token);
         TextView tele = (TextView) convertView.findViewById(R.id.telefono);
@@ -162,6 +163,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         nombre.setText(item.getName());
         nivel.setText(item.getNivel_escolar());
         rol.setText(item.getRol());
+        estado.setText(item.getEstado());
         tipo.setText(item.getTipo_plantel());
         token.setText(item.getTokenPhone());
         return convertView;
@@ -189,13 +191,14 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,tipo;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre);
             nivel = (TextView) itemView.findViewById(R.id.nivel);
             rol = (TextView) itemView.findViewById(R.id.rol);
             tipo = (TextView) itemView.findViewById(R.id.tipo);
+            estado = (TextView) itemView.findViewById(R.id.estado);
             token = (TextView) itemView.findViewById(R.id.token);
             telefono = (TextView) itemView.findViewById(R.id.telefono);
             des = (TextView) itemView.findViewById(R.id.des);

@@ -826,6 +826,7 @@ public class DataSchool extends Fragment {
                         String nombreesc = "" + res.getNombre_esc();
                        oescuela.setText(nombreesc);
                        oescuela.setEnabled(true);
+                       oescuela.requestFocus();
 
                         String claveesc = "" + res.getClave_esc();
                         oclave.setText(claveesc);

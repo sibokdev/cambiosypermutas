@@ -12,20 +12,22 @@ public class Busqueda implements Serializable {
     String surname1;
     String surname2;
     String office;
+    String estado;
     String municipio;
     String tokenPhone;
     String phone;
     String Description;
-
     String rol;
     String nivel_escolar;
     String tipo_plantel;
 
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
-                    String tokenPhone, String phone, String Description, String rol) {
+                    String estado, String tipo, String tokenPhone, String phone, String Description, String rol) {
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
+        this.estado = estado;
+        this.tipo_plantel = tipo;
         this.office = office;
         this.tokenPhone=tokenPhone;
         this.phone=phone;
@@ -115,6 +117,14 @@ public class Busqueda implements Serializable {
 
     public String getOffice() {
         return office;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setOffice(String office) {
