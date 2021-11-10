@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="1100dp"
@@ -80,28 +81,27 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="180dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="185dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
-                        android:text="Seleciona Nivel escolar:"
+                        android:text="Nivel escolar:"
                         android:textSize="18dp" />
 
                     <Spinner
                         android:id="@+id/sp_nivel_esc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="200dp"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="210dp"
                         android:layout_marginEnd="50dp"
-                        android:padding="15dp"
-                        android:spinnerMode="dialog"></Spinner>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="270dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -113,9 +113,10 @@
                         android:id="@+id/sp_turno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="300dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/ti_zona"
@@ -174,7 +175,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="530dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -186,16 +187,9 @@
                         android:id="@+id/sp_colonia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="570dp"
                         android:layout_marginEnd="50dp" />
-                    <!-- <Spinner
-                 android:id="@+id/estado"
-                 android:layout_marginTop="560dp"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginStart="25dp"
-                 android:layout_marginEnd="50dp"/>-->
 
 
                     <TextView
@@ -214,7 +208,7 @@
                         android:id="@+id/tv_municipio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="660dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -239,7 +233,7 @@
                         android:id="@+id/tv_estado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="740dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -269,7 +263,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="920dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -281,14 +275,15 @@
                         android:id="@+id/sp_categoria"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="960dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="1000dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
@@ -300,12 +295,12 @@
                         android:id="@+id/sp_plantel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="1040dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog" />
 
                 </androidx.cardview.widget.CardView>
-
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -319,7 +314,7 @@
                         android:id="@+id/tv_nombra"
                         android:layout_width="match_parent"
                         android:layout_height="69dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
 
@@ -333,9 +328,10 @@
                         android:id="@+id/sp_nombramiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="80dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog"/>
 
                     <TextView
                         android:id="@+id/tvInvisibleError"
@@ -387,21 +383,12 @@
                         android:text=""
                         android:textSize="18dp" />
 
-                    <!--<Button
-                android:id="@+id/btn_acep"
-                android:onClick="aceptar"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Guardar"
-                android:layout_marginTop="260dp"
-                android:layout_marginStart="190dp"
-                />-->
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="69dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="350dp"
                         android:layout_marginEnd="50dp"
                         android:justificationMode="inter_word"
@@ -415,14 +402,15 @@ en esta escuela"
                         android:id="@+id/sp_not_desf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="400dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="69dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="450dp"
                         android:layout_marginEnd="50dp"
                         android:justificationMode="inter_word"
@@ -436,15 +424,16 @@ procedimiento administrativo?"
                         android:id="@+id/sp_proc_Adm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
+                        android:layout_marginStart="21dp"
                         android:layout_marginTop="490dp"
-                        android:layout_marginEnd="50dp" />
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/guardar"
                         android:layout_width="170dp"
                         android:layout_height="50dp"
-                        android:layout_marginStart="100dp"
+                        android:layout_marginStart="90dp"
                         android:layout_marginTop="550dp"
                         android:layout_marginEnd="40dp"
                         android:background="@drawable/boton_redondo"

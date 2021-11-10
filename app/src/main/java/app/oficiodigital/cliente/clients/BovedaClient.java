@@ -8,6 +8,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Respuestas;
@@ -23,6 +24,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -90,6 +92,14 @@ public class BovedaClient {
 
         @GET("client/DataSchool{phone}")
         Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
+        @GET("client/getIntereses{phone}")
+        Call<List<DatosIntereses>> getItereses(@Path("phone") String phone);
+
+        @GET("client/getIntereses{phone}")
+        Call<List<DatosIntereses>> getIteresess(@Path("phone") String phone);
+
+        @GET("client/DataIntereses{id}")
+        Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);
 //____________________
 
 
@@ -143,7 +153,15 @@ public class BovedaClient {
 
         @POST("client/registroIntereses")
         @FormUrlEncoded
-        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params);
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params, String id);
+
+        @POST("client/intereses{phone}")
+        @FormUrlEncoded
+        Call<Responses> registroInte(@FieldMap HashMap<String, String> params, @Path("phone")  String phone);
+
+        @PUT("client/updateIntereses{phone}")
+        @FormUrlEncoded
+        Call<Responses> updateInte(@FieldMap HashMap<String, String> params, @Path("phone") String phone);
 
 
     }
