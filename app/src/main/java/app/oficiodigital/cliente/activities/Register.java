@@ -10,7 +10,9 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.Time;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
@@ -62,7 +65,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private Button  bt_fecha;
     private RadioButton rb_fem, rb_masc;
     private Spinner p1, p2;
-    private TextInputLayout pw, pw2, ti_res1, ti_res2, ti_password, ti_password2;
+    private TextInputLayout tvN,tvp1,tvp2, tvt1, tvt2, tvc,tcpas1,tcpass2,tce,tcr1, tcr2,ti_res1, ti_res2, ti_password, ti_password2;
 
     private static final String CARPETA_PRINCIPAL = "app.oficiodigita.proveedor"; //directorio principal
     private static final String CARPETA_IMAGEN = "Pictures"; //carpeta donde se guardan las fotos
@@ -127,6 +130,18 @@ public class Register extends BaseActivity implements View.OnClickListener {
         presult1 = (EditText) findViewById(R.id.res1);
         presult2 = (EditText) findViewById(R.id.res2);
 
+        tvN = (TextInputLayout) findViewById(R.id.ti_nombre);
+        tvp1 = (TextInputLayout) findViewById(R.id.ti_ap);
+        tvp2 = (TextInputLayout) findViewById(R.id.ti_am);
+        tvt1 = (TextInputLayout) findViewById(R.id.ti_numtel1);
+        tvt2 = (TextInputLayout) findViewById(R.id.ti_numtel2);
+        tvc = (TextInputLayout) findViewById(R.id.ti_cedula);
+        tce = (TextInputLayout) findViewById(R.id.ti_mail);
+        tcpas1 = (TextInputLayout) findViewById(R.id.ti_password);
+        tcpass2 = (TextInputLayout) findViewById(R.id.ti_password2);
+        tcr1 = (TextInputLayout) findViewById(R.id.ti_res1);
+        tcr2 = (TextInputLayout) findViewById(R.id.ti_res2);
+
 
 
         token1 = (TextView) findViewById(R.id.token);
@@ -158,6 +173,46 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     tv_sexo.setText("femenino");
                 } else {
                     tv_sexo.setText("masculino");
+                }
+            }
+        });
+
+        et_password2.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                String strPass1 = et_password.getText().toString();
+                String strPass2 = et_password2.getText().toString();
+                if (strPass1.equals(strPass2)) {
+                    tcpass2.setErrorEnabled(false);
+
+                } else {
+                    tcpass2.setError("contraseñas diferentes");
+
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        et_password.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = tcpas1.getEditText();
+                Pattern passw = Pattern.compile("[A-Z-a-z-0-9]{8,100}");
+                String inputText = input.getText().toString().trim();
+                if (passw.matcher(inputText).matches() == false) {
+                    tcpas1.setError("Debes ingresar al menos 8 caracteres");
+                } else {
+                    tcpas1.setErrorEnabled(false);
+
                 }
             }
         });
@@ -399,55 +454,41 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String res1 = presult1.getText().toString();
         String res2 = presult1.getText().toString();
 
-//        int pars_tlf1 = Integer.parseInt((tl1);
-//        int pars_tlf2 = Integer.parseInt((tl2);
-//        int pars_edad = Integer.parseInt(ed);
-
-
 //Validaciones campos
         if (TextUtils.isEmpty(name)) {
-            et_nombre.setError(getString(R.string.error_campo_oblogatorio));
-            et_nombre.requestFocus();
+            tvN.setError("Ingresa nombre");
             return;
         }
         if (TextUtils.isEmpty(ap)) {
-            et_ap.setError(getString(R.string.error_campo_oblogatorio));
-            et_ap.requestFocus();
+            tvp1.setError("Ingresa apellido paterno");
             return;
         }
         if (TextUtils.isEmpty(am)) {
-            et_am.setError(getString(R.string.error_campo_oblogatorio));
-            et_am.requestFocus();
+            tvp2.setError("Ingresa apellido materno");
             return;
         }
         if (TextUtils.isEmpty(tl1)) {
-            et_numtel1.setError(getString(R.string.error_campo_oblogatorio));
-            et_numtel1.requestFocus();
+            tvt1.setError("Ingresa número de teléfono");
             return;
         }
         if (TextUtils.isEmpty(tl2)) {
-            et_numtel2.setError(getString(R.string.error_campo_oblogatorio));
-            et_numtel2.requestFocus();
+            tvt2.setError("Ingresa número de teléfono");
             return;
         }
         if (TextUtils.isEmpty(ced)) {
-            et_cedula.setError(getString(R.string.error_campo_oblogatorio));
-            et_cedula.requestFocus();
+            tvc.setError("Ingresa cedula profecional");
             return;
         }
         if (TextUtils.isEmpty(ema)) {
-            et_mail.setError(getString(R.string.error_campo_oblogatorio));
-            et_mail.requestFocus();
+            tce.setError("Ingresa email");
             return;
         }
         if (TextUtils.isEmpty(pass)) {
-            et_password.setError(getString(R.string.error_campo_oblogatorio));
-            et_password.requestFocus();
+            tcpas1.setError("Ingresa contraseña");
             return;
         }
         if (TextUtils.isEmpty(pass2)) {
-            et_password2.setError(getString(R.string.error_campo_oblogatorio));
-            et_password2.requestFocus();
+            tcpass2.setError("Ingresa confirmacion de contraseña");
             return;
         }
         if (TextUtils.isEmpty(sex)) {
@@ -458,6 +499,14 @@ public class Register extends BaseActivity implements View.OnClickListener {
         if (TextUtils.isEmpty(ed)) {
             tv_edad.setError(getString(R.string.error_campo_oblogatorio));
             tv_edad.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(res1)) {
+            tcr1.setError("Ingresa respuesta");
+            return;
+        }
+        if (TextUtils.isEmpty(res2)) {
+            tcr2.setError("Ingresa respuesta");
             return;
         }
 
