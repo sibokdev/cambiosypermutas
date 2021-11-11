@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
@@ -22,6 +24,7 @@ import app.oficiodigital.cliente.activities.AdapterUsuarios;
 import app.oficiodigital.cliente.activities.Details;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Busqueda;
+import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
@@ -37,6 +40,11 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private EditText busc;
       ArrayAdapter<String> adapter;
       String phon;
+
+    String rol;
+    String tipo = "";
+    String nivel = "";
+    String estado = "";
 
     List<Busqueda> listUsuarios;
     AdapterUsuarios adapterUsuarios;
@@ -69,6 +77,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
 
         getOficios();
+        getdatos();
         // listUsuarios = GetData();
     //adapterUsuarios = new AdapterUsuarios(listUsuarios);
       //  lista.setAdapter(adapterUsuarios);
@@ -93,6 +102,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         return bus;
     }*/
 
+
     public void getOficios(){
 
         Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getCp();
@@ -104,18 +114,17 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     return;
                 }
 
+                List<Busqueda> ejemplo = response.body();
+
+                List<String> list = new ArrayList<String>();
 
 
-                listUsuarios = response.body();
 
-               adapterUsuarios = new AdapterUsuarios(listUsuarios);
+                for (Busqueda eje : ejemplo) {
 
-                BusquedaFragment f = new BusquedaFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("phone",phone.getText().toString());
-                f.setArguments(bundle);
+                    list.add(eje.getRol());
 
-                lista.setAdapter(adapterUsuarios);
+                }
             }
 
             @Override
@@ -123,6 +132,44 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 L.error("getOficios " + t.getMessage());
             }
         });
+
+    }
+
+    public void getdatos(){
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("rol", rol);
+        params.put("nivel_escolar", "Primaria");
+        params.put("tipo_plantel", "Federal");
+        params.put("estado", " Puebla");
+
+        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getInfo(params);
+        callVersiones.enqueue(new Callback<List<Busqueda>>() {
+            @Override
+            public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                listUsuarios = response.body();
+
+                adapterUsuarios = new AdapterUsuarios(listUsuarios);
+
+                BusquedaFragment f = new BusquedaFragment();
+                Bundle bundle = new Bundle();
+              //  bundle.putString("phone",phone.getText().toString());
+                f.setArguments(bundle);
+
+                lista.setAdapter(adapterUsuarios);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Busqueda>> call, Throwable t) {
+                L.error("getOficios " + t.getMessage());
+            }
+        });
+
 
     }
 
