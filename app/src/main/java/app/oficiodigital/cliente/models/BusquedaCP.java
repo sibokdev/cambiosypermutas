@@ -12,6 +12,10 @@ public class BusquedaCP {
         this.tipo_plantel = tipo_plantel;
     }
 
+    public BusquedaCP() {
+
+    }
+
     public String getRol() {
         return rol;
     }

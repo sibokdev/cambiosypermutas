@@ -35,6 +35,10 @@ public class Busqueda implements Serializable {
 
     }
 
+    public Busqueda() {
+
+    }
+
     public String getNivel_escolar() {
         return nivel_escolar;
     }

@@ -1,5 +1,6 @@
 package app.oficiodigital.cliente.fragments;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +30,12 @@ import app.oficiodigital.cliente.activities.AdapterUsuarios;
 import app.oficiodigital.cliente.activities.Details;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Busqueda;
+import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
+import app.oficiodigital.cliente.models.Request.Estados;
+import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,10 +54,15 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     String rol;
     String tipo = "";
     String nivel = "";
-    String estado = "";
-
+    String estado = "", estado2 = "";
+    String roles;
     List<Busqueda> listUsuarios;
+    BusquedaCP datosEnviar = new BusquedaCP();
+    List<Busqueda> ejemplo;
+    List<String> list;
     AdapterUsuarios adapterUsuarios;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +75,8 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         nombres = (TextView) view.findViewById(R.id.nombre);
         buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
+
+
 
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -77,7 +94,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
 
         getOficios();
-        getdatos();
+
         // listUsuarios = GetData();
     //adapterUsuarios = new AdapterUsuarios(listUsuarios);
       //  lista.setAdapter(adapterUsuarios);
@@ -109,22 +126,39 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
-
-                if (!response.isSuccessful()) {
-                    return;
-                }
-
                 List<Busqueda> ejemplo = response.body();
 
-                List<String> list = new ArrayList<String>();
-
-
+                List<String> list2 = new ArrayList<String>();
+                list = new ArrayList<String>();
+                List<String> listTipo = new ArrayList<String>();
+                List<String> listNivel = new ArrayList<String>();
+                List<String> listestado = new ArrayList<String>();
 
                 for (Busqueda eje : ejemplo) {
 
-                    list.add(eje.getRol());
+                    if (eje.getEstado() != null) {
+                        list.add(eje.getRol());
+                        listTipo.add(eje.getTipo_plantel());
+                        listNivel.add(eje.getNivel_escolar());
+                        listestado.add(eje.getEstado());
 
+                        rol = "" + list.get(0);
+                        tipo = "" + listTipo.get(0);
+                        nivel = "" + listNivel.get(0);
+
+
+                        for (int i = 0; i < list.size(); i++) {
+                            if (i == 0) {
+                                estado = " " + listestado.get(i);
+                            } else if (i == 1) {
+                                estado2 = " " + listestado.get(i);
+                            }
+                        }
+                    }
                 }
+
+             getdatoss(estado, estado2, tipo, nivel, rol);
+
             }
 
             @Override
@@ -133,15 +167,43 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
             }
         });
 
+
+
     }
 
-    public void getdatos(){
+    public void getdatoss(String e1, String e2,String ti, String ni, String ro){
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("rol", rol);
-        params.put("nivel_escolar", "Primaria");
-        params.put("tipo_plantel", "Federal");
-        params.put("estado", " Puebla");
+        params.put("rol", ro);
+        params.put("nivel_escolar", ni);
+        params.put("tipo_plantel", ti);
+        //params.put("estado", estado);
+
+        List<Estados> listaRespuestas = new ArrayList<Estados>();
+        Estados respuesta = new Estados();
+        respuesta.setEstado(e1);
+
+        listaRespuestas.add(respuesta);
+
+        Estados respuesta2 = new Estados();
+        respuesta2.setEstado(e2);
+        listaRespuestas.add(respuesta2);
+
+
+        JSONObject jResult = new JSONObject();
+        JSONArray jArray = new JSONArray();
+
+        for (int i = 0; i < listaRespuestas.size(); i++) {
+            JSONObject jGroup = new JSONObject();
+            try {
+                jGroup.put("estado", listaRespuestas.get(i).getEstado());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            jArray.put(jGroup);
+        }
+
+        params.put("estados", jArray.toString());
 
         Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getInfo(params);
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
@@ -157,7 +219,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
                 BusquedaFragment f = new BusquedaFragment();
                 Bundle bundle = new Bundle();
-              //  bundle.putString("phone",phone.getText().toString());
+                //  bundle.putString("phone",phone.getText().toString());
                 f.setArguments(bundle);
 
                 lista.setAdapter(adapterUsuarios);
@@ -169,6 +231,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 L.error("getOficios " + t.getMessage());
             }
         });
+
 
 
     }
