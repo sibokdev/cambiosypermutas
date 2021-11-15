@@ -133,7 +133,7 @@ public class BovedaClient {
         Call<List<Busqueda>> getOficios();
 
         @GET("client/getCP")
-        Call<List<Busqueda>> getCp();
+        Call<List<Busqueda>> getCp(@FieldMap HashMap<String, String> params);
 
 
         @POST("client/getInformation")

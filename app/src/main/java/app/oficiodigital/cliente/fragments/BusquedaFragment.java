@@ -75,10 +75,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         nombres = (TextView) view.findViewById(R.id.nombre);
         buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
-
-
-
-
+        
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         lista.setLayoutManager(manager);
 
@@ -91,38 +88,18 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
             phon = phone;
         }
         phone.setText(phon);
-
-
         getOficios();
-
-        // listUsuarios = GetData();
-    //adapterUsuarios = new AdapterUsuarios(listUsuarios);
-      //  lista.setAdapter(adapterUsuarios);
-
-
-         //adapterUsuarios = new AdapterUsuarios(getActivity(), GetData());
-        //lista.setAdapter(adapterUsuarios);
-
         buscador.setOnQueryTextListener(this);
 
         return view;
     }
-    /*private List<Busqueda>  GetData() {
-        List<Busqueda> bus  = new ArrayList<>();
-
-        bus.add(new Busqueda("ARIANA TEPEPA CERVANTES","plomero"));
-        bus.add(new Busqueda("bere","carpintero"));
-        bus.add(new Busqueda("daniel","bombero"));
-        bus.add(new Busqueda("esteban","lechero"));
-        bus.add(new Busqueda("yoshio","mecanico"));
-
-        return bus;
-    }*/
-
 
     public void getOficios(){
 
-        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getCp();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone", phon);
+
+        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getCp(params);
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
