@@ -132,7 +132,8 @@ public class BovedaClient {
         @GET("client/getOficios")
         Call<List<Busqueda>> getOficios();
 
-        @GET("client/getCP")
+        @POST("client/getCP")
+        @FormUrlEncoded
         Call<List<Busqueda>> getCp(@FieldMap HashMap<String, String> params);
 
 
