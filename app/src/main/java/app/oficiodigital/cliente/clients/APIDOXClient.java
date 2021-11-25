@@ -154,7 +154,7 @@ public interface APIDOXClient {
                              @Header("Authorization") String authorization);
 
     @GET("client/cards")
-    Call<List<Tarjetas>> getCards2(@Header("Authorization") String authorization);
+    Call<Responses> getCards2(@Header("Authorization") String authorization);
 
     @GET("client/cards")
     Call<Responses> getCards(@Header("Authorization") String authorization);

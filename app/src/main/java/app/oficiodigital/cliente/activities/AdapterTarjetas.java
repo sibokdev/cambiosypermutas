@@ -48,13 +48,13 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
 
 
     FragmentActivity context;
-    private final List<Tarjetas> list;
+    private final Responses list;
     private String tok;
     private Tarjetas api;
     String  phon;
     String id_datos;
 
-    public AdapterTarjetas(List<Tarjetas> list) {
+    public AdapterTarjetas(Responses list) {
         this.list = list;
 
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Datos;
+import app.oficiodigital.cliente.models.DatosPago;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.Request.DatosIntereses;
@@ -35,7 +36,7 @@ public class BovedaClient {
 
     private static BovedaClient INSTANCE_CLIENT = null;
     private static APIBovedaClient API_CLIENT = null;
-    private final String BASE_URL = "https://drber.com.mx/api/v1/";
+    private final String BASE_URL = "https://cambiosypermutas.com.mx/api/v1/";
     private OkHttpClient mHttpClient;
     private OkHttpClient.Builder mHttpBuilder;
 
@@ -101,6 +102,10 @@ public class BovedaClient {
 
         @GET("client/DataIntereses{id}")
         Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);
+
+        @GET("client/getPagos{user_id}")
+        Call<Responses> getPago(@Path("user_id") String phone);
+
 //____________________
 
 

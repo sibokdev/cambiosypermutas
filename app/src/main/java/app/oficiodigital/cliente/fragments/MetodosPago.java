@@ -43,7 +43,8 @@ public class MetodosPago extends Fragment {
     private RecyclerView pagos;
     private String tok;
 
-    List<Tarjetas> listUsuarios;
+    //List<Tarjetas> listUsuarios;
+    Responses listUsuarios;
     AdapterTarjetas adapterUsuarios;
 
     @Override
@@ -94,11 +95,11 @@ public class MetodosPago extends Fragment {
 
         String authHeader = "Bearer " + tok;
 
-            Call<List<Tarjetas>> call = DOXClient.getInstanceClient().getApiClient().getCards2(authHeader);
+            Call<Responses> call = DOXClient.getInstanceClient().getApiClient().getCards2(authHeader);
 
-            call.enqueue(new Callback<List<Tarjetas>>() {
+            call.enqueue(new Callback<Responses>() {
                 @Override
-                public void onResponse(Call<List<Tarjetas>> call, Response<List<Tarjetas>> response) {
+                public void onResponse(Call<Responses> call, Response<Responses> response) {
                     if (response.body() != null) {
 
                       listUsuarios = response.body();
@@ -110,7 +111,7 @@ public class MetodosPago extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<List<Tarjetas>> call, Throwable t) {
+                public void onFailure(Call<Responses> call, Throwable t) {
                     L.error("Get cards " + t.getMessage());
                     //mFinancialDataPresenter.onGetCardsFail(mContext.getString(R.string.error_getting_cards_list));
                 }

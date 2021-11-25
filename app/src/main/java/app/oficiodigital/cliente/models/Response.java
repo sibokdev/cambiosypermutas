@@ -37,9 +37,18 @@ public class Response {
     private ArrayList<Types> types;
     private ArrayList<Address> addresses;
     private Address address;
+    private DatosPago datosPago;
     //private Clarification clarification;
     //private ArrayList<Clarification> clarifications;
 
+
+    public DatosPago getDatosPago() {
+        return datosPago;
+    }
+
+    public void setDatosPago(DatosPago datosPago) {
+        this.datosPago = datosPago;
+    }
 
     public DatosIntereses getDatosIntereses() {
         return datosIntereses;

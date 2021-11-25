@@ -33,7 +33,6 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
-import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Request.Estados;
 import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.utils.L;

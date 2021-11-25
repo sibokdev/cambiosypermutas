@@ -1,16 +1,7 @@
 package app.oficiodigital.cliente.models.Request;
 
 public class Estados {
-
     String estado;
-
-    public Estados(String estado) {
-        this.estado = estado;
-    }
-
-    public Estados() {
-
-    }
 
     public String getEstado() {
         return estado;

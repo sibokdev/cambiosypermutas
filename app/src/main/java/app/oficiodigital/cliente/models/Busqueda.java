@@ -21,6 +21,7 @@ public class Busqueda implements Serializable {
     String nivel_escolar;
     String tipo_plantel;
 
+
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
                     String estado, String tipo, String tokenPhone, String phone, String Description, String rol) {
         this.name = name;

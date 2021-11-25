@@ -9,18 +9,34 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import app.oficiodigital.cliente.R;
+import app.oficiodigital.cliente.clients.BovedaClient;
+import app.oficiodigital.cliente.clients.DOXClient;
+import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.BusquedaCP;
 import app.oficiodigital.cliente.models.Datos;
+import app.oficiodigital.cliente.models.DatosPago;
+import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
+import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.models.Tarjetas;
+import app.oficiodigital.cliente.utils.L;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Ari on 03/05/2021.
@@ -31,6 +47,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     FragmentActivity context;
     private final List<Busqueda> list;
     private final List<Busqueda> originalList;
+    String tok;
 
 
 
@@ -72,9 +89,71 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(holder.itemView.getContext(),Details.class);
+                String id = "198";
+
+                Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getPago(id);
+                callVersiones.enqueue(new Callback<Responses>() {
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                            if(response.body().getCode() == 200){
+                                Toast.makeText(v.getContext(),"si hay pago",Toast.LENGTH_SHORT).show();
+
+                                if(response.body().getResponse().getDatosPago().getDate()){
+                                    // Intent intent = new Intent(holder.itemView.getContext(), principalMenu.class);
+                                    //intent.putExtra("datos",  item);
+                                    //holder.itemView.getContext().startActivity(intent);
+                                }else{
+                                    Toast.makeText(v.getContext(),"volver a pagar",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }else if(response.body().getCode() == 202){
+                                List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
+                                for (TokenAuth token : list1) {
+                                    String phone = "";
+
+                                    phone = token.getTokenauth();
+                                    tok = phone;
+                                }
+                                Toast.makeText(v.getContext(),"no hay pago",Toast.LENGTH_SHORT).show();
+                                String authHeader = "Bearer " + tok;
+
+                                Call<Responses> call1 = DOXClient.getInstanceClient().getApiClient().getCards2(authHeader);
+
+                                call1.enqueue(new Callback<Responses>() {
+                                    @Override
+                                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                                        if (response.body().getCode() == 200) {
+
+                                            Toast.makeText(v.getContext(),"si hay tarjetas",Toast.LENGTH_SHORT).show();
+
+                                        }else if (response.body().getCode() == 202){
+                                            Toast.makeText(v.getContext(),"no hay tarjetas",Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Responses> call, Throwable t) {
+                                        L.error("Get cards " + t.getMessage());
+                                        //mFinancialDataPresenter.onGetCardsFail(mContext.getString(R.string.error_getting_cards_list));
+                                    }
+                                });
+
+                        }
+
+                    }
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+                        L.error("getDataSchool " + t.getMessage());
+                    }
+                });
+
+                //Intent intent = new Intent(holder.itemView.getContext(),Details.class);
                 //intent.putExtra("datos",  item);
-                holder.itemView.getContext().startActivity(intent);
+                //holder.itemView.getContext().startActivity(intent);
 
             }
         });
