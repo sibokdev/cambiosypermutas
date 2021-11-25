@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,9 +74,9 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
 
     @Override
     public void onBindViewHolder(AdapterTarjetas.UsuarioViewHolder holder, int position) {
-        final Tarjetas item = list.get(position);
+        final CreditCard item = list.getResponse().getCards().get(position);
         holder.num.setText(item.getNumber());
-        holder.api.setText(item.getId_api_card());
+        holder.api.setText(item.getId());
 
         tarjetaPrincipal();
 
@@ -163,7 +164,7 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
                             tok = phone;
                         }
 
-                        String card = item.getId_api_card();
+                        String card = item.getId();
                         String token2 = "Bearer " + tok;
 
                         Call<Responses> call = DOXClient.getInstanceClient().getApiClient().dropCard(card, token2);
@@ -211,8 +212,13 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return 0;
     }
+/*
+    @Override
+    public int getItemCount() {
+       *//* return list.size();*//*
+    }*/
 
     public void alerta(){}
 
@@ -229,14 +235,24 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
 
     @Override
     public int getCount() {
-        return list.size();
+        return 0;
     }
-
 
     @Override
+    public Object getItem(int i) {
+        return null;
+    }
+/*
+    @Override
+    public int getCount() {
+        return list.size();
+    }*/
+
+
+  /*  @Override
     public Object getItem(int position) {
         return list.get(position);
-    }
+    }*/
 
     public void getPhone() {
 
@@ -264,6 +280,12 @@ public class AdapterTarjetas extends RecyclerView.Adapter<AdapterTarjetas.Usuari
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence[] getAutofillOptions() {
+        return new CharSequence[0];
     }
 
     @Override

@@ -1,11 +1,16 @@
 package app.oficiodigital.cliente.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
@@ -49,6 +54,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     private final List<Busqueda> originalList;
     String tok;
 
+    Dialog dialog;
+
 
 
     public AdapterUsuarios(List<Busqueda> list, FragmentActivity context) {
@@ -68,6 +75,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     @Override
     public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_busqueda, parent, false);
+        dialog = new Dialog(parent.getContext());
         return new UsuarioViewHolder(v);
 
     }
@@ -104,7 +112,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                                     // Intent intent = new Intent(holder.itemView.getContext(), principalMenu.class);
                                     //intent.putExtra("datos",  item);
                                     //holder.itemView.getContext().startActivity(intent);
-                                }else{
+                                }else{//
+                                    openTwoDialog();
                                     Toast.makeText(v.getContext(),"volver a pagar",Toast.LENGTH_SHORT).show();
                                 }
 
@@ -124,11 +133,10 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                                 call1.enqueue(new Callback<Responses>() {
                                     @Override
                                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-                                        if (response.body().getCode() == 200) {
-
-                                            Toast.makeText(v.getContext(),"si hay tarjetas",Toast.LENGTH_SHORT).show();
-
+                                        if (response.body().getCode() == 200) {/////////
+                                            openOneDialog();
                                         }else if (response.body().getCode() == 202){
+
                                             Toast.makeText(v.getContext(),"no hay tarjetas",Toast.LENGTH_SHORT).show();
 
                                         }
@@ -158,6 +166,64 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             }
         });
 
+    }
+
+    private void openTwoDialog() {
+        dialog.setContentView(R.layout.twodialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView imageViewClose= dialog.findViewById(R.id.imageViewClose);
+        Button btnOk= dialog.findViewById(R.id.btnOk);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                Toast.makeText(btnOk.getContext(), "Dialog Close", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                Toast.makeText(btnOk.getContext(), "Button OK", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        dialog.show();
+    }
+
+    private void openOneDialog() {
+        dialog.setContentView(R.layout.onedialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView imageViewClose= dialog.findViewById(R.id.imageViewClose);
+        Button btnOk= dialog.findViewById(R.id.btnOk);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                Toast.makeText(btnOk.getContext(), "Dialog Close", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                Toast.makeText(btnOk.getContext(), "Button OK", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        dialog.show();
     }
 
     @Override
