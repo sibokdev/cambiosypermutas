@@ -38,6 +38,7 @@ import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Tarjetas;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -114,17 +115,17 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
 
-                        if(response.body().getCode() == 200){
+                        if(response.body().getCode() == 200) {
                             Toast.makeText(v.getContext(),"si hay pago",Toast.LENGTH_SHORT).show();
 
-                            if(response.body().getResponse().getDatosPago().getDate()){
+                           /* if(response.body().getResponse().getDatosPago().getDate()){
                                 // Intent intent = new Intent(holder.itemView.getContext(), principalMenu.class);
                                 //intent.putExtra("datos",  item);
                                 //holder.itemView.getContext().startActivity(intent);
                             }else{//
                                // openTwoDialog();
                                 Toast.makeText(v.getContext(),"volver a pagar",Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
 
                         }else if(response.body().getCode() == 202){
                             List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
@@ -144,8 +145,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                                 public void onResponse(Call<Responses> call, Response<Responses> response) {
 
                                     if (response.body().getCode() == 200) {
-                                        //openOneDialog();
-                                        Toast.makeText(v.getContext(),"si hay tarjetas",Toast.LENGTH_SHORT).show();
+                                        openOneDialog();
+                                        //Toast.makeText(v.getContext(),"si hay tarjetas",Toast.LENGTH_SHORT).show();
 
                                     }else if (response.body().getCode() == 202){
 
@@ -223,6 +224,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                 dialog.dismiss();
 
                 Toast.makeText(btnOk.getContext(), "Button OK", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -230,7 +233,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         dialog.show();
     }*/
 
-    /*private void openOneDialog() {
+    private void openOneDialog() {
         dialog.setContentView(R.layout.onedialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -250,14 +253,58 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
-                Toast.makeText(btnOk.getContext(), "Button OK", Toast.LENGTH_SHORT).show();
+                //alerta();
+               pagos();
+                Toast.makeText(btnOk.getContext(), "se muestra pantalla donde se muestran los datos de los usuarios", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         dialog.show();
+    }
+
+    public void pagos(){
+
+        String deviceSessionId = "139e5a687c52A428b41e0f8cce2b5dba";
+        String mToken = "Bearer " + tok ;
+
+        Call<Responses> call = DOXClient.getInstanceClient().getApiClient()
+                .addPayment(deviceSessionId, mToken);
+
+        call.enqueue(new Callback<Responses>() {
+            @Override
+            public void onResponse(Call<Responses> call, Response<Responses> response) {
+                if (response.body() != null) {
+                    if (response.code() == 200) {
+                        // mAddPaymentPresenter.onAddPayment();
+                        Toast.makeText(dialog.getContext(), "success", Toast.LENGTH_SHORT).show();
+                    } else
+                        // mAddPaymentPresenter.onAddPaymentFail(response.body().getMessage());
+                        Toast.makeText(dialog.getContext(), "ocurrio un error al realizar el pago", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(dialog.getContext(), "no hay tarjetas", Toast.LENGTH_SHORT).show();
+
+                    // mAddPaymentPresenter.onAddPaymentFail(mContext.getString(R.string.error_doing_payment));
+                    //
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Responses> call, Throwable t) {
+                L.error("Add payment " + t.getMessage());
+                //mAddPaymentPresenter.onAddPaymentFail(mContext.getString(R.string.error_doing_payment));
+            }
+        });
+    }
+
+    /*public void alerta(){
+
+        String msg = "realizando cobro";
+        LoadingDialog.show(context.getApplication(), msg);
+
     }*/
+
 
     @Override
     public int getItemCount() {

@@ -314,7 +314,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     public void pagos(){
-        String deviceSessionId = "6ad429f2ec0cAe3d89cb32ef07738b4f";
+        String deviceSessionId = "139e5a687c52A428b41e0f8cce2b5dba";
         String mToken = "Bearer " + "m4BcuNy7CLA7EoOdNd3g37QbSpEtxYnh2FYJwVK6";
 
         Call<Responses> call = DOXClient.getInstanceClient().getApiClient()
