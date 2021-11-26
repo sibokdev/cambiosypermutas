@@ -7,74 +7,105 @@
     android:layout_height="wrap_content"
     app:cardElevation="10dp"
     app:cardCornerRadius="5dp"
-    android:layout_margin="10dp">
-
+    android:layout_margin="10dp"
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:animateLayoutChanges="true">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="150dp"
-            android:background="@mipmap/perfil"
-            android:layout_height="150dp" />
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="2dp"
+            android:background="@mipmap/perfil" />
+
+        <Button
+            android:id="@+id/completedata"
+            android:layout_width="140dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="-150dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/boton_verde"
+            android:shadowColor="#009688"
+            android:text="Ver datos completos"
+            android:textColor="@color/text_white"
+            android:textColorHighlight="@color/teal_700" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:textSize="18dp"
+                android:text="Nombre apellido apellido"
                 android:textAllCaps="true"
-                android:text="Nombre apellido apellido"/>
-            <TextView
-                android:id="@+id/oficio"
-                android:layout_width="match_parent"
-                android:padding="10dp"
                 android:textSize="18dp"
-                android:layout_height="wrap_content"
-                android:text="Oficio"/>
+                android:textStyle="bold|normal" />
+
             <TextView
-                android:id="@+id/municipio"
+                android:id="@+id/estado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="18dp"
-                android:text="Municipio"/>
+                android:padding="5dp"
+                android:text="Estado"
+                android:textSize="18dp" />
+
             <TextView
+                android:id="@+id/nivel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="18dp"
-                android:text="Calificación"/>
+                android:padding="5dp"
+                android:text="Nivel escolar"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/rol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Rol escolar"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Tipo escuela"
+                android:textSize="18dp" />
+
             <TextView
                 android:id="@+id/telefono"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/token"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/des"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
 
     </LinearLayout>

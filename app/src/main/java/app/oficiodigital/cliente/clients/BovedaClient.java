@@ -76,18 +76,6 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> register(@FieldMap HashMap<String, String> params);
 
-        @POST("courier/reenviarCode")
-        @FormUrlEncoded
-        Call<Responses> reenviar(@FieldMap HashMap<String, String> params);
-
-        @POST("courier/RecoverPhone")
-        @FormUrlEncoded
-        Call<Responses> recover(@FieldMap HashMap<String, String> params);
-
-        @GET("courier/getDatos{phone}")
-        Call<List<Datos>> getDatos(@Path("phone") String phone);
-
-        @GET("client/Address{id}")
         Call<List<Direccion>> getDirrecion(@Path("id") String id);
 
         @GET("client/DataSchool{phone}")
@@ -100,8 +88,23 @@ public class BovedaClient {
 
         @GET("client/DataIntereses{id}")
         Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);
+
+        @GET("client/getPagos{user_id}")
+        Call<Responses> getPago(@Path("user_id") String phone);
 //____________________
 
+        @POST("courier/reenviarCode")
+        @FormUrlEncoded
+        Call<Responses> reenviar(@FieldMap HashMap<String, String> params);
+
+        @POST("courier/RecoverPhone")
+        @FormUrlEncoded
+        Call<Responses> recover(@FieldMap HashMap<String, String> params);
+
+        @GET("courier/getDatos{phone}")
+        Call<List<Datos>> getDatos(@Path("phone") String phone);
+
+        @GET("client/Address{id}")
 
 
         @POST("client/updateStatusPago")
@@ -134,6 +137,15 @@ public class BovedaClient {
         @POST("client/registroUsers")
         @FormUrlEncoded
         Call<Responses> registrarClientes(@FieldMap HashMap<String, String> params);
+
+        @POST("client/getCP")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getCp(@FieldMap HashMap<String, String> params);
+
+
+        @POST("client/getInformation")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getInfo(@FieldMap HashMap<String, String> params);
 
         @POST("client/solicitud")
         @FormUrlEncoded
