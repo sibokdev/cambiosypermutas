@@ -33,6 +33,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.DatosPago;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.ModelsDB.Token;
 import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Responses;
@@ -95,10 +96,19 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String ids="";
 
-                String id = "198";
+                List<Token> list1 = Token.listAll(Token.class);
+                for (Token token : list1) {
+                    String userId = "";
 
-                Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getPago(id);
+                    userId = token.getUserId();
+                    ids = userId;
+                }
+
+                //String id = "198";
+
+                Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getPago(ids);
                 callVersiones.enqueue(new Callback<Responses>() {
                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
@@ -107,14 +117,14 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                         if(response.body().getCode() == 200){
                             Toast.makeText(v.getContext(),"si hay pago",Toast.LENGTH_SHORT).show();
 
-                           /* if(response.body().getResponse().getDatosPago().getDate()){
+                            if(response.body().getResponse().getDatosPago().getDate()){
                                 // Intent intent = new Intent(holder.itemView.getContext(), principalMenu.class);
                                 //intent.putExtra("datos",  item);
                                 //holder.itemView.getContext().startActivity(intent);
                             }else{//
-                                openTwoDialog();
+                               // openTwoDialog();
                                 Toast.makeText(v.getContext(),"volver a pagar",Toast.LENGTH_SHORT).show();
-                            }*/
+                            }
 
                         }else if(response.body().getCode() == 202){
                             List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
@@ -125,7 +135,31 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                                 tok = phone;
                             }
                             Toast.makeText(v.getContext(),"no hay pago",Toast.LENGTH_SHORT).show();
-                            String authHeader = "Bearer " + tok;
+
+                            String mToken = "Bearer " + tok;
+                            Call<Responses> call1 = DOXClient.getInstanceClient().getApiClient().getCard(mToken);
+
+                            call1.enqueue(new Callback<Responses>() {
+                                @Override
+                                public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                                    if (response.body().getCode() == 200) {
+                                        //openOneDialog();
+                                        Toast.makeText(v.getContext(),"si hay tarjetas",Toast.LENGTH_SHORT).show();
+
+                                    }else if (response.body().getCode() == 202){
+
+                                        Toast.makeText(v.getContext(),"no hay tarjetas",Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Responses> call, Throwable t) {
+                                    L.error("Get cards " + t.getMessage());
+                                    //mFinancialDataPresenter.onGetCardsFail(mContext.getString(R.string.error_getting_cards_list));
+                                }
+                            });
 
                                /* Call<Responses> call1 = DOXClient.getInstanceClient().getApiClient().getCards(authHeader);
 
