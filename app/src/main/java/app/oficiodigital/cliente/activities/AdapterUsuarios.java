@@ -84,7 +84,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     @Override
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
         final Busqueda item = list.get(position);
-        holder.nombre.setText(item.getName()+"    "+item.getSurname1().toUpperCase());
+//        holder.nombre.setText(item.getName()+"    "+item.getSurname1().toUpperCase());
         holder.rol.setText(item.getRol());
         holder.nivel.setText(item.getNivel_escolar());
         holder.estado.setText(item.getEstado());
@@ -92,6 +92,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.token.setText(item.getTokenPhone());
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +203,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     }
 
-    /*private void openTwoDialog() {
+    private void openTwoDialog() {
         dialog.setContentView(R.layout.twodialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -231,7 +232,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
 
         dialog.show();
-    }*/
+    }
 
     private void openOneDialog() {
         dialog.setContentView(R.layout.onedialog);
@@ -277,7 +278,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                 if (response.body() != null) {
                     if (response.code() == 200) {
                         // mAddPaymentPresenter.onAddPayment();
-                        Toast.makeText(dialog.getContext(), "success", Toast.LENGTH_SHORT).show();
+                        openOneDialog();
+                       // Toast.makeText(dialog.getContext(), "success", Toast.LENGTH_SHORT).show();
                     } else
                         // mAddPaymentPresenter.onAddPaymentFail(response.body().getMessage());
                         Toast.makeText(dialog.getContext(), "ocurrio un error al realizar el pago", Toast.LENGTH_SHORT).show();
@@ -297,6 +299,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             }
         });
     }
+
 
     /*public void alerta(){
 
