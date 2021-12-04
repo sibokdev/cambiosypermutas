@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -69,8 +70,28 @@ public class DataSchool extends Fragment {
     private SeekBar seekBar;
     private Button  guardar;
     private int datos;
+
     ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln;
 
+    private int aniosAntiguedad=0;
+    private int nivel = 0;
+    private int turno = 0;
+    private int categoria = 0;
+    private int tipo = 0;
+    private int cont_nombramiento = 0;
+    private int nota_des = 0;
+    private int suj_proced = 0;
+
+    String esc = "";
+    String clv ="";
+    String zon ="";
+    String tl ="";
+    String cp ="";
+    String nom_direc ="";
+    String estd ="";
+    String mun ="";
+    String colo ="";
+    String sal ="";
 
     String phones = "", id = "";
 
@@ -118,7 +139,7 @@ public class DataSchool extends Fragment {
 
         //definimos el spinner
         onivel_esc = (Spinner) view.findViewById(R.id.sp_nivel_esc);
-        /* viewnivesco =(TextView) view.findViewById(R.id.tv_nivesco);*/
+
 
         oturno = (Spinner) view.findViewById(R.id.sp_turno);
         ocategoria = (Spinner) view.findViewById(R.id.sp_categoria);
@@ -134,8 +155,10 @@ public class DataSchool extends Fragment {
 
 
         guardar = (Button) view.findViewById(R.id.guardar);
-
+        guardar.setEnabled(true);
         getDataSchool();
+
+
 
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -180,90 +203,153 @@ public class DataSchool extends Fragment {
                                 String slect = ocolonia.getSelectedItem().toString();
                                 select.setText(slect);
                             }
-
                             public void onNothingSelected(AdapterView<?> arg0) {
                             }
                         });
-
                     }
-
                     @Override
                     public void onFailure(Call<List<Ejemplo>> call, Throwable t) {
                         // Toast.makeText(getApplication(), "error de siempre", Toast.LENGTH_SHORT).show();
-
                     }
                 });
             }
-
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
 
+
 //Condicional seekbar antiguedad
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.post(new Runnable() {//En este caso también significa que el oyente sólo se desencadena en un elemento cambiante.
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                salida.setText((progress + " Años"));
-
-                if (progress <= 2) {
-                    Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(false);
-                } else if (progress > 2) {
-                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        onivel_esc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0){
-                    Toast.makeText(getContext(), "Seleccione una opcion valida", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(false);
-                } else{
-                    guardar.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            public void run() {
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        salida.setText((progress + " Años"));
+                        aniosAntiguedad=progress;
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
             }
         });
 
-        spinombramiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        onivel_esc.post(new Runnable() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                /* int seleccionado = spinombramiento.getSelectedItemPosition();*/
-                if (position == 0) {
-                    Toast.makeText(getContext(), "Seleccione una opción valida", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(false);
-                } else if (position == 1){
-                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(true);
-                }else{
-                    Toast.makeText(getContext(), "Debes contar con nombramiento definitivo", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
+            public void run() {
+                onivel_esc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        nivel = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
             }
         });
+
+        oturno.post(new Runnable() {
+            @Override
+            public void run() {
+                oturno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        turno = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
+        });
+
+        ocategoria.post(new Runnable() {
+            @Override
+            public void run() {
+                ocategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        categoria = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
+        });
+
+        otipo_plantel.post(new Runnable() {
+            @Override
+            public void run() {
+                otipo_plantel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        tipo = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+
+            }
+        });
+
+        spinombramiento.post(new Runnable() {
+            @Override
+            public void run() {
+                spinombramiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        cont_nombramiento = position;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
+                    }
+                });
+            }
+        });
+
+        onota.post(new Runnable() {
+            @Override
+            public void run() {
+                onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        nota_des = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+        });
+
+        oprocedimiento.post(new Runnable() {
+            @Override
+            public void run() {
+                oprocedimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        suj_proced = i;
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+            }
+        });
+
 
 
         //Arreglo, obtencion de valores de spinners
@@ -271,9 +357,9 @@ public class DataSchool extends Fragment {
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
         String[] opciones_cat = {"Seleccione","Docente", "Subdirector", "Director"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
-        String[] opciones_nombra = {"Si", "No"};
+        String[] opciones_nombra = {"Seleccione","Si", "No"};
         String[] opciones_nota = {"Seleccione","Si", "No"};
-        String[] opciones_proced = {"Si", "No"};
+        String[] opciones_proced = {"Seleccione","Si", "No"};
 
         // NUeva clase comunicacion para spinner - layout
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
@@ -315,7 +401,92 @@ public class DataSchool extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
+                if (aniosAntiguedad <= 2) {
+                    Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
+                } else if (aniosAntiguedad > 2) {
+                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(true);
+                }
+
+                if ( nivel== 0){
+                    TextView errorText = (TextView)onivel_esc.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+
+                if (turno == 0){
+                    //Toast.makeText(getContext(), "Seleccione una opcion valida", Toast.LENGTH_SHORT).show();
+                    TextView errorText = (TextView)oturno.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+                if (categoria == 0){
+                    TextView errorText = (TextView)ocategoria.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+                if (tipo == 0){
+                    TextView errorText = (TextView)otipo_plantel.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+
+                if (cont_nombramiento == 0) {
+                    Toast.makeText(getContext(), "Seleccione una opción valida", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
+                } else if (cont_nombramiento == 1){
+                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(true);
+                }else{
+                    Toast.makeText(getContext(), "Debes contar con nombramiento definitivo", Toast.LENGTH_SHORT).show();
+                    guardar.setEnabled(false);
+                }
+
+
+                if (nota_des == 0){
+                    TextView errorText = (TextView)onota.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else if (nota_des == 1){
+                    Toast.makeText(getContext(), "Lo sentimos, no debe contar con ninguna nota desfavorable", Toast.LENGTH_LONG).show();
+                    guardar.setEnabled(false);
+                }
+
+
+                if (suj_proced == 0){
+                    TextView errorText = (TextView)oprocedimiento.getSelectedView();
+                    errorText.setError("");
+                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                    errorText.setText("Seleccione una opcion valida!!");
+                    guardar.setEnabled(false);
+                } else if (suj_proced == 1){
+                    Toast.makeText(getContext(), "Lo sentimos, no debe estar sujeto a ningun procedimiento administrativo", Toast.LENGTH_LONG).show();
+                    guardar.setEnabled(false);
+                }
+
 
                 oescuela.setError(null);
                 oclave.setError(null);
@@ -326,17 +497,16 @@ public class DataSchool extends Fragment {
                 salida.setError(null);
 
 
-                String esc = oescuela.getText().toString();
-                String clv = oclave.getText().toString();
-                String zon = ozona.getText().toString();
-                String tl = otel.getText().toString();
-                String cp = codigop.getText().toString();
-                String nom_direc = onom_dir.getText().toString();
-                String estd = estado.getText().toString();
-                String mun = muni.getText().toString();
-                String colo = select.getText().toString();
-                String sal = salida.getText().toString();
-
+                esc = oescuela.getText().toString().trim();
+                clv = oclave.getText().toString().trim();
+                zon = ozona.getText().toString().trim();
+                tl = otel.getText().toString().trim();
+                cp = codigop.getText().toString().trim();
+                nom_direc = onom_dir.getText().toString().trim();
+                estd = estado.getText().toString().trim();
+                mun = muni.getText().toString().trim();
+                colo = select.getText().toString().trim();
+                sal = salida.getText().toString().trim();
 
 
                 //Estos métodos se ejecutará cuando se presione el botón
@@ -377,7 +547,9 @@ public class DataSchool extends Fragment {
                 //Sleccion spinnner nota
                 String seleccion_nota = onota.getSelectedItem().toString();
                 if (seleccion_nota.equals("Si")) {
+
                 } else if (seleccion_nota.equals("No")) {
+
                 }
 
                 //Sleccion spinnner procedimiento
@@ -387,50 +559,55 @@ public class DataSchool extends Fragment {
                 }
 
 
+             /*   if (TextUtils.isEmpty(esc) && TextUtils.isEmpty(clv) && TextUtils.isEmpty(zon) &&
+                        TextUtils.isEmpty(tl) && TextUtils.isEmpty(cp) && TextUtils.isEmpty(nom_direc) &&
+                        TextUtils.isEmpty(sal)) {
+                    Toast.makeText(getActivity(), "Debes completar los campos", Toast.LENGTH_SHORT).show();
+                }*/
+
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
                     oescuela.setError(getString(R.string.error_campo_oblogatorio));
                     oescuela.requestFocus();
                     return;
+                    //return;
                 }
                 if (TextUtils.isEmpty(clv)) {
                     oclave.setError(getString(R.string.error_campo_oblogatorio));
                     oclave.requestFocus();
+                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
                     ozona.setError(getString(R.string.error_campo_oblogatorio));
                     ozona.requestFocus();
+                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
                     otel.setError(getString(R.string.error_campo_oblogatorio));
                     otel.requestFocus();
+                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
                     codigop.setError(getString(R.string.error_campo_oblogatorio));
                     codigop.requestFocus();
+                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
                     onom_dir.setError(getString(R.string.error_campo_oblogatorio));
                     onom_dir.requestFocus();
+                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
                     salida.requestFocus();
+                    //return;
                     return;
                 }
-
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
-                    return;
-                }
-
-
                 Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
 
 
@@ -497,14 +674,6 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);*/
 
-/*oescuela.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        if (!oescuela.hasFocus && oescuela.getText().toString() != null){
-            Toast.makeText(getActivity().getApplicationContext(), oescuela.getText().toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
-});*/
                 oescuela.setSelection(oescuela.length());
 
                 String esc = oescuela.getText().toString();
