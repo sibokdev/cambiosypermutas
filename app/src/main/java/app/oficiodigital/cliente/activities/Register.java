@@ -47,6 +47,7 @@ import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.DataSchool;
 import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.storage.ModelsBD.Preguntas1;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -568,9 +569,14 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
             }
         });
-
+alerta();
         startActivity(new Intent(this, LoginActivity.class));
 
+    }
+
+    private void alerta() {
+        String msg = getString(R.string.register_msg);
+        LoadingDialog.show(this, msg);
     }
 }
 
