@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.MapView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +72,8 @@ public class DataSchool extends Fragment {
     private Button  guardar;
     private int datos;
 
+    private TextInputLayout ti_nombre_escuela, ti_clave, ti_zona, ti_tel, ti_codigop, ti_nom_dir;
+
     ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln;
 
     private int aniosAntiguedad=0;
@@ -82,7 +85,7 @@ public class DataSchool extends Fragment {
     private int nota_des = 0;
     private int suj_proced = 0;
 
-    String esc = "";
+/*    String esc = "";
     String clv ="";
     String zon ="";
     String tl ="";
@@ -91,7 +94,7 @@ public class DataSchool extends Fragment {
     String estd ="";
     String mun ="";
     String colo ="";
-    String sal ="";
+    String sal ="";*/
 
     String phones = "", id = "";
 
@@ -150,9 +153,15 @@ public class DataSchool extends Fragment {
         onota = (Spinner) view.findViewById(R.id.sp_not_desf);
         oprocedimiento = (Spinner) view.findViewById(R.id.sp_proc_Adm);
 
-
         seekBar = (SeekBar) view.findViewById(R.id.seekBar_anios);
 
+
+        ti_nombre_escuela = (TextInputLayout) view.findViewById(R.id.ti_nombre_escuela);
+        ti_clave =(TextInputLayout) view.findViewById(R.id.ti_clave);
+        ti_zona = (TextInputLayout) view.findViewById(R.id.ti_zona);
+        ti_tel = (TextInputLayout) view.findViewById(R.id.ti_tel);
+        ti_codigop = (TextInputLayout) view.findViewById(R.id.ti_codigop);
+        ti_nom_dir = (TextInputLayout) view.findViewById(R.id.ti_nom_dir);
 
         guardar = (Button) view.findViewById(R.id.guardar);
         guardar.setEnabled(true);
@@ -488,48 +497,35 @@ public class DataSchool extends Fragment {
                 }
 
 
-                oescuela.setError(null);
-                oclave.setError(null);
-                ozona.setError(null);
-                otel.setError(null);
-                codigop.setError(null);
-                onom_dir.setError(null);
-                salida.setError(null);
-
-
-                esc = oescuela.getText().toString().trim();
-                clv = oclave.getText().toString().trim();
-                zon = ozona.getText().toString().trim();
-                tl = otel.getText().toString().trim();
-                cp = codigop.getText().toString().trim();
-                nom_direc = onom_dir.getText().toString().trim();
-                estd = estado.getText().toString().trim();
-                mun = muni.getText().toString().trim();
-                colo = select.getText().toString().trim();
-                sal = salida.getText().toString().trim();
+                String esc = oescuela.getText().toString().trim();
+                String clv = oclave.getText().toString().trim();
+                String zon = ozona.getText().toString().trim();
+                String tl = otel.getText().toString().trim();
+                String cp = codigop.getText().toString().trim();
+                String nom_direc = onom_dir.getText().toString().trim();
+                String estd = estado.getText().toString().trim();
+                String mun = muni.getText().toString().trim();
+                String colo = select.getText().toString().trim();
+                String sal = salida.getText().toString().trim();
 
 
                 //Estos métodos se ejecutará cuando se presione el botón
                 String seleccion = onivel_esc.getSelectedItem().toString();
-                //* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
                 if (seleccion.equals("Preescolar")) {
                 } else if (seleccion.equals("Primaria")) {
                 }else if (seleccion.equals("Secundaria")) {
                 }
-
                 //guardado de seleccion spinnner turno
                 String seleccion_tn = oturno.getSelectedItem().toString();
                 if (seleccion_tn.equals("Matutino")) {
                 } else if (seleccion_tn.equals("Vespertino")) {
                 }
-
                 //guardado de seleccion spinnner rol
                 String seleccion_ct = ocategoria.getSelectedItem().toString();
                 if (seleccion_ct.equals("Docente")) {
                 } else if (seleccion_ct.equals("Subdirector")) {
                 } else if (seleccion_ct.equals("Director")) {
                 }
-
                 //Sleccion spinnner tipo plantel
                 String seleccion_tp = otipo_plantel.getSelectedItem().toString();
                 if (seleccion_tp.equals("Municipal")) {
@@ -537,21 +533,16 @@ public class DataSchool extends Fragment {
                 } else if (seleccion_tp.equals("Federal")) {
                 } else if (seleccion_tp.equals("Federalizado")) {
                 }
-
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
                 if (seleccion_nombram.equals("No")) {
                 } else if (seleccion_nombram.equals("Si")) {
                 }
-
                 //Sleccion spinnner nota
                 String seleccion_nota = onota.getSelectedItem().toString();
                 if (seleccion_nota.equals("Si")) {
-
                 } else if (seleccion_nota.equals("No")) {
-
                 }
-
                 //Sleccion spinnner procedimiento
                 String seleccion_proc = oprocedimiento.getSelectedItem().toString();
                 if (seleccion_proc.equals("Si")) {
@@ -559,53 +550,41 @@ public class DataSchool extends Fragment {
                 }
 
 
-             /*   if (TextUtils.isEmpty(esc) && TextUtils.isEmpty(clv) && TextUtils.isEmpty(zon) &&
-                        TextUtils.isEmpty(tl) && TextUtils.isEmpty(cp) && TextUtils.isEmpty(nom_direc) &&
-                        TextUtils.isEmpty(sal)) {
-                    Toast.makeText(getActivity(), "Debes completar los campos", Toast.LENGTH_SHORT).show();
-                }*/
 
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
+                    ti_nombre_escuela.setError("Ingresa el nombre de la escuela");
+                   // oescuela.requestFocus();
                     return;
-                    //return;
                 }
                 if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
-                    //return;
+                    ti_clave.setError("Ingresa la clave de la escuela");
+                   // oclave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_zona.setError("Ingresa la zona");
                     ozona.requestFocus();
-                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_tel.setError("Ingresa el telefono");
                     otel.requestFocus();
-                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_codigop.setError("Ingresa el código postal");
                     codigop.requestFocus();
-                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_nom_dir.setError("Ingresa el nombre del director");
                     onom_dir.requestFocus();
-                    //return;
                     return;
                 }
                 if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
                     salida.requestFocus();
-                    //return;
                     return;
                 }
                 Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
@@ -666,15 +645,8 @@ public class DataSchool extends Fragment {
                 //FragmentTransaction transaction = getFragmentManager().beginTransaction();
                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
 
-                /*oescuela.setError(null);
-                oclave.setError(null);
-                ozona.setError(null);
-                otel.setError(null);
-                codigop.setError(null);
-                onom_dir.setError(null);
-                salida.setError(null);*/
 
-                oescuela.setSelection(oescuela.length());
+               // oescuela.setSelection(oescuela.length());
 
                 String esc = oescuela.getText().toString();
                 String clv = oclave.getText().toString();
@@ -744,32 +716,32 @@ public class DataSchool extends Fragment {
 
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
+                    ti_nombre_escuela.setError("Ingresa el nombre de la escuela");
+                    // oescuela.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
+                    ti_clave.setError("Ingresa la clave de la escuela");
+                    // oclave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_zona.setError("Ingresa la zona");
                     ozona.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_tel.setError("Ingresa el telefono");
                     otel.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_codigop.setError("Ingresa el código postal");
                     codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_nom_dir.setError("Ingresa el nombre del director");
                     onom_dir.requestFocus();
                     return;
                 }
@@ -778,13 +750,6 @@ public class DataSchool extends Fragment {
                     salida.requestFocus();
                     return;
                 }
-
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
-                    return;
-                }
-
 
                 Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
 
@@ -841,13 +806,13 @@ public class DataSchool extends Fragment {
 
 
     private void getDataSchool() {
-        oescuela.setError(null);
+     /*   oescuela.setError(null);
         oclave.setError(null);
         ozona.setError(null);
         otel.setError(null);
         codigop.setError(null);
         onom_dir.setError(null);
-        salida.setError(null);
+        salida.setError(null);*/
 
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
