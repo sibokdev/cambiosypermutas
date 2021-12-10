@@ -2,6 +2,7 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class RecoverPhone extends BaseActivity {
                         }else{
                             Intent inte = new Intent(RecoverPhone.this, RecoverCode.class);
                             inte.putExtra("phone", phone.getText().toString());
+                            openLoadingDialog();
                             startActivity(inte);
                         }
                     }
@@ -76,6 +78,20 @@ public class RecoverPhone extends BaseActivity {
 
         }
 
+    }
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 
 }

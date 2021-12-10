@@ -323,6 +323,7 @@
                 android:spinnerMode="dialog"
                 android:padding="15dp">
             </Spinner>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_res1"
                 android:layout_marginTop="350dp"

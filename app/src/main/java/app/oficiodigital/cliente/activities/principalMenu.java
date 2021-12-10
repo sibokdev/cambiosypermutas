@@ -3,6 +3,7 @@ package app.oficiodigital.cliente.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -195,6 +196,22 @@ public class principalMenu extends BaseActivity
         return true;
     }
 
+
+    public void openLoadingDialog() {
+        // textView3.setText("Validando código...");
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
+    }
 
 }
 

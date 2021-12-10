@@ -116,6 +116,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
 
+
+
                         if(response.body().getCode() == 200) {
                             Toast.makeText(v.getContext(),"si hay pago",Toast.LENGTH_SHORT).show();
 

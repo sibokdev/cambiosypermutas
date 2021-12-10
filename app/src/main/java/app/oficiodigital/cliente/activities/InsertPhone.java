@@ -23,6 +23,7 @@ import app.oficiodigital.cliente.R;
 
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,8 +87,10 @@ public class InsertPhone extends BaseActivity {
         } else {
             pho.setErrorEnabled(false);
 
+
             HashMap<String, String> params = new HashMap<>();
             params.put("phone", phon);
+
 
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().generate(params);
             call.enqueue(new Callback<Responses>() {
@@ -101,6 +104,7 @@ public class InsertPhone extends BaseActivity {
                             Intent inte = new Intent(InsertPhone.this, InsertCode.class);
                             inte.putExtra("phone", phone.getText().toString());
                             inte.putExtra("tokenPhone", token1.getText().toString());
+                            alerta();
                             startActivity(inte);
                         }
                     }
@@ -116,5 +120,10 @@ public class InsertPhone extends BaseActivity {
 
         }
 
+    }
+
+    private void alerta() {
+        String msg = getString(R.string.cargando_msg);
+        LoadingDialog.show(this, msg);
     }
 }

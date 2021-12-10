@@ -1,7 +1,6 @@
 package app.oficiodigital.cliente.fragments;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -9,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.solver.widgets.WidgetContainer;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -17,10 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,15 +38,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.Intereses;
-import app.oficiodigital.cliente.activities.ViewDSchool;
+import app.oficiodigital.cliente.activities.LoginActivity;
+import app.oficiodigital.cliente.activities.principalMenu;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.ModelsDB.Token;
-import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -238,6 +234,11 @@ public class DataSchool extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         salida.setText((progress + " Años"));
                         aniosAntiguedad=progress;
+                        if (aniosAntiguedad <= 2) {
+                            Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
+                        } else if (aniosAntiguedad > 2) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -256,7 +257,16 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         nivel = i;
-                    }
+                        if ( nivel== 0) {
+                            TextView errorText = (TextView) onivel_esc.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                            guardar.setEnabled(false);
+                        }else if (nivel > 0){
+                                guardar.setEnabled(true);
+
+                    }}
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
                     }
@@ -271,7 +281,17 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         turno = i;
-                    }
+                        if (turno == 0) {
+                            TextView errorText = (TextView) oturno.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                            }
+                        }
+
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
                     }
@@ -286,6 +306,15 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         categoria = i;
+                        if (categoria == 0) {
+                            TextView errorText = (TextView) ocategoria.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -301,6 +330,15 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         tipo = i;
+                        if (tipo == 0) {
+                            TextView errorText = (TextView) otipo_plantel.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -317,6 +355,23 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         cont_nombramiento = position;
+                        if (cont_nombramiento == 0) {
+                            TextView errorText = (TextView) spinombramiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                            guardar.setEnabled(false);
+
+                        } else if (cont_nombramiento == 1) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                            guardar.setEnabled(true);
+                        } else {
+                            TextView errorText = (TextView) spinombramiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Debes contar con nombramineto definitivo!!");
+                            guardar.setEnabled(false);
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -333,6 +388,18 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         nota_des = i;
+                        if (nota_des == 0){
+                            TextView errorText = (TextView)onota.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                        } else if (nota_des == 1){
+                            Toast.makeText(getContext(), "Lo sentimos, no debe contar con ninguna nota desfavorable", Toast.LENGTH_LONG).show();
+                        guardar.setEnabled(false);
+                        }else{
+                            guardar.setEnabled(true);
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -349,6 +416,17 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         suj_proced = i;
+                        if (suj_proced == 0){
+                            TextView errorText = (TextView)oprocedimiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+
+                        } else if (suj_proced == 1){
+                            Toast.makeText(getContext(), "Lo sentimos, no debe estar sujeto a ningun procedimiento administrativo", Toast.LENGTH_LONG).show();
+                            guardar.setEnabled(false);
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -410,51 +488,39 @@ public class DataSchool extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
+                oescuela.setError(null);
+                oclave.setError(null);
+                ozona.setError(null);
+                otel.setError(null);
+                codigop.setError(null);
+                onom_dir.setError(null);
+                salida.setError(null);
+
                 if (aniosAntiguedad <= 2) {
-                    Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
                     guardar.setEnabled(false);
                 } else if (aniosAntiguedad > 2) {
-                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
                     guardar.setEnabled(true);
                 }
 
                 if ( nivel== 0){
-                    TextView errorText = (TextView)onivel_esc.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
-                } else{
+                } else if (nivel > 0){
                     guardar.setEnabled(true);
                 }
 
 
                 if (turno == 0){
-                    //Toast.makeText(getContext(), "Seleccione una opcion valida", Toast.LENGTH_SHORT).show();
-                    TextView errorText = (TextView)oturno.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
                 } else{
                     guardar.setEnabled(true);
                 }
                 if (categoria == 0){
-                    TextView errorText = (TextView)ocategoria.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
                 } else{
                     guardar.setEnabled(true);
                 }
 
                 if (tipo == 0){
-                    TextView errorText = (TextView)otipo_plantel.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
                 } else{
                     guardar.setEnabled(true);
@@ -462,39 +528,32 @@ public class DataSchool extends Fragment {
 
 
                 if (cont_nombramiento == 0) {
-                    Toast.makeText(getContext(), "Seleccione una opción valida", Toast.LENGTH_SHORT).show();
                     guardar.setEnabled(false);
                 } else if (cont_nombramiento == 1){
-                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
                     guardar.setEnabled(true);
                 }else{
-                    Toast.makeText(getContext(), "Debes contar con nombramiento definitivo", Toast.LENGTH_SHORT).show();
                     guardar.setEnabled(false);
                 }
 
 
                 if (nota_des == 0){
-                    TextView errorText = (TextView)onota.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
                 } else if (nota_des == 1){
-                    Toast.makeText(getContext(), "Lo sentimos, no debe contar con ninguna nota desfavorable", Toast.LENGTH_LONG).show();
                     guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
                 }
 
 
                 if (suj_proced == 0){
-                    TextView errorText = (TextView)oprocedimiento.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                    errorText.setText("Seleccione una opcion valida!!");
                     guardar.setEnabled(false);
                 } else if (suj_proced == 1){
-                    Toast.makeText(getContext(), "Lo sentimos, no debe estar sujeto a ningun procedimiento administrativo", Toast.LENGTH_LONG).show();
                     guardar.setEnabled(false);
+                }else {
+                    guardar.setEnabled(true);
                 }
+
+
 
 
                 String esc = oescuela.getText().toString().trim();
@@ -554,40 +613,35 @@ public class DataSchool extends Fragment {
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
                     ti_nombre_escuela.setError("Ingresa el nombre de la escuela");
-                   // oescuela.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(clv)) {
                     ti_clave.setError("Ingresa la clave de la escuela");
-                   // oclave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
                     ti_zona.setError("Ingresa la zona");
-                    ozona.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
                     ti_tel.setError("Ingresa el telefono");
-                    otel.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
                     ti_codigop.setError("Ingresa el código postal");
-                    codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
                     ti_nom_dir.setError("Ingresa el nombre del director");
-                    onom_dir.requestFocus();
                     return;
                 }
-                if (TextUtils.isEmpty(sal)) {
+              /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
+
                     return;
-                }
-                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                }*/
+
+             //   Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
 
 
                 //Envio a BD
@@ -614,7 +668,6 @@ public class DataSchool extends Fragment {
                 List<Token> userId = Token.listAll(Token.class);
                 for (Token ids : userId) {
 
-
                    id = ids.getUserId();
 
                 }
@@ -624,7 +677,9 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-
+                        Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                        alerta();
+                        ((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -632,19 +687,32 @@ public class DataSchool extends Fragment {
 
                     }
                 });
-
+                getActivity().getSupportFragmentManager().beginTransaction().replace
+                        (R.id.conten,fragment_interes).addToBackStack(null).commit();
 
             }
         });
-
     }
+
+    private void alerta() {
+        String msg = getString(R.string.register_msg);
+        LoadingDialog.show(getActivity(), msg);
+    }
+
+
     public void modificarMetodo(){
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
-
+                oescuela.setError(null);
+                oclave.setError(null);
+                ozona.setError(null);
+                otel.setError(null);
+                codigop.setError(null);
+                onom_dir.setError(null);
+                salida.setError(null);
 
                // oescuela.setSelection(oescuela.length());
 
@@ -693,12 +761,7 @@ public class DataSchool extends Fragment {
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
                 if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
                 } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
                 }
 
                 //Sleccion spinnner nota
@@ -717,41 +780,40 @@ public class DataSchool extends Fragment {
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
                     ti_nombre_escuela.setError("Ingresa el nombre de la escuela");
-                    // oescuela.requestFocus();
+                    //ti_nombre_escuela.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(clv)) {
                     ti_clave.setError("Ingresa la clave de la escuela");
-                    // oclave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
                     ti_zona.setError("Ingresa la zona");
-                    ozona.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
                     ti_tel.setError("Ingresa el telefono");
-                    otel.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
                     ti_codigop.setError("Ingresa el código postal");
-                    codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
                     ti_nom_dir.setError("Ingresa el nombre del director");
-                    onom_dir.requestFocus();
                     return;
                 }
-                if (TextUtils.isEmpty(sal)) {
+              /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
                     return;
-                }
+                }*/
 
-                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+
+
+                //llamada de metodo de clase de activity a este fragment
+                //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
+                ((principalMenu)getActivity()).openLoadingDialog();
 
 
                 //Envio a BD
@@ -789,6 +851,8 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
                       getDataSchool();
+                      //  Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                      //  alerta();
                     }
 
                     @Override
@@ -796,23 +860,23 @@ public class DataSchool extends Fragment {
 
                     }
                 });
-
+               // ((principalMenu)getActivity()).openLoadingDialog();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).
+                        addToBackStack(null).commit();
 
             }
         });
 
     }
 
-
-
     private void getDataSchool() {
-     /*   oescuela.setError(null);
+        oescuela.setError(null);
         oclave.setError(null);
         ozona.setError(null);
         otel.setError(null);
         codigop.setError(null);
         onom_dir.setError(null);
-        salida.setError(null);*/
+        salida.setError(null);
 
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
