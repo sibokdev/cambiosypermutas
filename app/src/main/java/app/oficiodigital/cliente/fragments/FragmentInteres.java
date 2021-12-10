@@ -27,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,6 +60,24 @@ public class FragmentInteres extends Fragment {
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
+
+    private TextInputLayout ti_codigop, ti_codigop2, ti_codigop3;
+
+    String cp = "";
+    String estd = "";
+    String mun = "";
+    String colo = "";
+
+    String cp2 = "";
+    String estd2 = "";
+    String mun2 = "";
+    String colo2 = "";
+
+    String cp3 = "";
+    String estd3 = "";
+    String mun3 = "";
+    String colo3 = "";
+
     /*private Button guardar, match;*/
     ArrayAdapter<String> adapter_cp;
 
@@ -96,8 +116,13 @@ public class FragmentInteres extends Fragment {
         select = (TextView) view.findViewById(R.id.select);
         select2 = (TextView) view.findViewById(R.id.select2);
         select3 = (TextView) view.findViewById(R.id.select3);
-        guardar = (Button) view.findViewById(R.id.btn_guardar);
 
+        ti_codigop = (TextInputLayout) view.findViewById(R.id.ti_codigop);
+        ti_codigop2 = (TextInputLayout) view.findViewById(R.id.ti_codigop2);
+        ti_codigop3 = (TextInputLayout) view.findViewById(R.id.ti_codigop3);
+
+        guardar = (Button) view.findViewById(R.id.btn_guardar);
+        guardar.setEnabled(true);
         getDataIntereses();
 
 
@@ -296,44 +321,49 @@ public class FragmentInteres extends Fragment {
             public void onClick(View view) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+
                 codigop.setError(null);
+                codigop2.setError(null);
+                codigop3.setError(null);
 
-                String cp = codigop.getText().toString();
-                String estd = estado.getText().toString();
-                String mun = muni.getText().toString();
-                String colo = select.getText().toString();
 
-                String cp2 = codigop2.getText().toString();
-                String estd2 = estado2.getText().toString();
-                String mun2 = muni2.getText().toString();
-                String colo2 = select2.getText().toString();
 
-                String cp3 = codigop3.getText().toString();
-                String estd3 = estado3.getText().toString();
-                String mun3 = muni3.getText().toString();
-                String colo3 = select3.getText().toString();
+                cp = codigop.getText().toString();
+                estd = estado.getText().toString();
+                mun = muni.getText().toString();
+                colo = select.getText().toString();
+
+                cp2 = codigop2.getText().toString();
+                estd2 = estado2.getText().toString();
+                mun2 = muni2.getText().toString();
+                colo2 = select2.getText().toString();
+
+                cp3 = codigop3.getText().toString();
+                estd3 = estado3.getText().toString();
+                mun3 = muni3.getText().toString();
+                colo3 = select3.getText().toString();
 
                 //tring guard = guardar
 
 
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop.requestFocus();
+                    ti_codigop.setError("Ingrese código postal");
                     return;
                 }
+
                 if (TextUtils.isEmpty(cp2)) {
-                    codigop2.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop2.requestFocus();
+                    ti_codigop2.setError("Ingrese código postal");
                     return;
                 }
                 if (TextUtils.isEmpty(cp3)) {
-                    codigop3.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop3.requestFocus();
+                    ti_codigop3.setError("Ingrese código postal");
                     return;
                 }
 
 
                 Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+
                 List<Phone> userId = Phone.listAll(Phone.class);
                 for (Phone phon : userId) {
 
@@ -497,21 +527,37 @@ public class FragmentInteres extends Fragment {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
         codigop.setError(null);
+        codigop2.setError(null);
+        codigop3.setError(null);
 
-        String cp = codigop.getText().toString();
-        String estd = estado.getText().toString();
-        String mun = muni.getText().toString();
-        String colo = select.getText().toString();
+        cp = codigop.getText().toString();
+        estd = estado.getText().toString();
+        mun = muni.getText().toString();
+        colo = select.getText().toString();
 
-        String cp2 = codigop2.getText().toString();
-        String estd2 = estado2.getText().toString();
-        String mun2 = muni2.getText().toString();
-        String colo2 = select2.getText().toString();
+        cp2 = codigop2.getText().toString();
+        estd2 = estado2.getText().toString();
+        mun2 = muni2.getText().toString();
+        colo2 = select2.getText().toString();
 
-        String cp3 = codigop3.getText().toString();
-        String estd3 = estado3.getText().toString();
-        String mun3 = muni3.getText().toString();
-        String colo3 = select3.getText().toString();
+        cp3 = codigop3.getText().toString();
+        estd3 = estado3.getText().toString();
+        mun3 = muni3.getText().toString();
+        colo3 = select3.getText().toString();
+
+        if (TextUtils.isEmpty(cp)) {
+            ti_codigop.setError("Ingrese código postal");
+            return;
+        }
+
+        if (TextUtils.isEmpty(cp2)) {
+            ti_codigop2.setError("Ingrese código postal");
+            return;
+        }
+        if (TextUtils.isEmpty(cp3)) {
+            ti_codigop3.setError("Ingrese código postal");
+            return;
+        }
 
         HashMap<String, String> params = new HashMap<>();
 

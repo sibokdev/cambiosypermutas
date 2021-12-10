@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -84,6 +85,7 @@ public class RecoverCode extends BaseActivity {
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
                     Intent inte = new Intent(RecoverCode.this, AnswerQuestions.class);
                     inte.putExtra("phone", phone.getText().toString());
+                    openLoadingDialog();
                     startActivity(inte);
 
                 }
@@ -131,5 +133,20 @@ public class RecoverCode extends BaseActivity {
         alertDialog.show();
 
     }
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
+    }
+
 
 }

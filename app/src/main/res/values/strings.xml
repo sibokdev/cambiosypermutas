@@ -45,6 +45,9 @@
     <string name="email_invalid">El correo no es valido</string>
     <string name="fields_empty">Ingresa todos los campos</string>
     <string name="register_msg">Procesando registro</string>
+    <string name="cargando_msg">Cargando</string>
+    <string name="validando_codigo">Validando Código</string>
+    <string name="contra_actu">Contraseña actualizada</string>
 
     <!-- Recover Screen -->
     <string name="recover_welcome_msg">Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</string>

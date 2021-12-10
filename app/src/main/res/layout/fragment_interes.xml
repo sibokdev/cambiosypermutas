@@ -136,6 +136,14 @@
                         android:text=""
                         android:textSize="18dp" />
 
+                    <Spinner
+                        android:id="@+id/sp_colonia3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="210dp"
+                        android:layout_marginEnd="50dp" />
+
                 </androidx.cardview.widget.CardView>
 
 
@@ -296,14 +304,6 @@
                         android:text="Seleciona Colonia:"
                         android:textSize="18dp" />
 
-                    <Spinner
-                        android:id="@+id/sp_colonia3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="210dp"
-                        android:layout_marginEnd="50dp" />
-
 
                     <TextView
                         android:layout_width="match_parent"
@@ -361,6 +361,7 @@
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="40dp"
+                    android:enabled="false"
                     android:background="@drawable/boton_redondo"
                     android:text="Guardar"
                     android:textColor="@color/text_white" />

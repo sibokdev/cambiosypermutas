@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -16,6 +18,7 @@ import java.util.regex.Pattern;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +33,8 @@ public class InsertCode extends BaseActivity {
     private EditText code;
     private TextView phone, token1;
     private TextInputLayout codigo;
+
+    private TextView textView3;
     AlertDialog.Builder builder;
 
 
@@ -42,6 +47,8 @@ public class InsertCode extends BaseActivity {
         phone = (TextView) findViewById(R.id.phone);
         codigo = (TextInputLayout)findViewById(R.id.ti_code);
         token1 = (TextView)findViewById(R.id.token);
+
+        textView3 = (TextView) findViewById(R.id.textView3);
 
         String token = getIntent().getStringExtra("tokenPhone");
         token1.setText(token);
@@ -60,18 +67,14 @@ public class InsertCode extends BaseActivity {
         cod = code.getText().toString();
 
         Pattern pat = Pattern.compile("[0-9]{6}");
-
         if (pat.matcher(cod).matches() == false) {
             codigo.setError("Ingresa codigo de 6 digitos");
         } else {
             codigo.setErrorEnabled(false);
-
             HashMap<String, String> params = new HashMap<>();
             params.put("code", cod);
-
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().validate(params);
             call.enqueue(new Callback<Responses>() {
-
                 @Override
                 public void onResponse(Call<Responses> call, Response<Responses> response) {
                     if (response.isSuccessful()) {
@@ -81,23 +84,23 @@ public class InsertCode extends BaseActivity {
                         }
                     }
                 }
-
                 @Override
                 public void onFailure(Call<Responses> call, Throwable t) {
                     L.error("login " + t.getMessage());
-                    //Toast.makeText(getApplicationContext(), "codigo correcto", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "codigo correcto", Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
                     Intent inte = new Intent(InsertCode.this, Register.class);
                     inte.putExtra("tokenPhone", token1.getText().toString());
                     inte.putExtra("phone", phone.getText().toString());
+                    openLoadingDialog();
                     startActivity(inte);
-
                 }
             });
-
         }
-
     }
+
+
+
 
     public void reenviar(View view) {
 
@@ -136,6 +139,22 @@ public class InsertCode extends BaseActivity {
         });
         alertDialog.show();
 
+    }
+
+    public void openLoadingDialog() {
+        // textView3.setText("Validando código...");
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 
 
