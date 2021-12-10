@@ -20,6 +20,8 @@ public class Busqueda implements Serializable {
     String rol;
     String nivel_escolar;
     String tipo_plantel;
+    String nombre_esc;
+    String turno;
 
 
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
@@ -36,8 +38,24 @@ public class Busqueda implements Serializable {
 
     }
 
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
     public Busqueda() {
 
+    }
+
+    public String getNombre_esc() {
+        return nombre_esc;
+    }
+
+    public void setNombre_esc(String nombre_esc) {
+        this.nombre_esc = nombre_esc;
     }
 
     public String getNivel_escolar() {

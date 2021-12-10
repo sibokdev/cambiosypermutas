@@ -108,25 +108,30 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                     ids = userId;
                 }
 
+                Intent intent = new Intent(holder.itemView.getContext(), Details.class);
+                intent.putExtra("datos", item);
+                holder.itemView.getContext().startActivity(intent);
+
                 //String id = "198";
 
-                Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getPago(ids);
+               /* Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getPago(ids);
                 callVersiones.enqueue(new Callback<Responses>() {
                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
 
-                        if(response.body().getCode() == 200) {
+
+                        /*if(response.body().getCode() == 200) {
                             Toast.makeText(v.getContext(),"si hay pago",Toast.LENGTH_SHORT).show();
 
-                           /* if(response.body().getResponse().getDatosPago().getDate()){
+                            if(response.body().getResponse().getDatosPago().getDate()){
                                 // Intent intent = new Intent(holder.itemView.getContext(), principalMenu.class);
                                 //intent.putExtra("datos",  item);
                                 //holder.itemView.getContext().startActivity(intent);
                             }else{//
                                // openTwoDialog();
                                 Toast.makeText(v.getContext(),"volver a pagar",Toast.LENGTH_SHORT).show();
-                            }*/
+                            }
 
                         }else if(response.body().getCode() == 202){
                             List<TokenAuth> list1 = TokenAuth.listAll(TokenAuth.class);
@@ -183,16 +188,16 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                                         L.error("Get cards " + t.getMessage());
                                         //mFinancialDataPresenter.onGetCardsFail(mContext.getString(R.string.error_getting_cards_list));
                                     }
-                                });*/
+                                });
 
-                        }
+                        }*/
 
-                    }
+                   /* }
                     @Override
                     public void onFailure(Call<Responses> call, Throwable t) {
                         L.error("getDataSchool " + t.getMessage());
                     }
-                });
+                });*/
 
                 //Intent intent = new Intent(holder.itemView.getContext(),Details.class);
                 //intent.putExtra("datos",  item);
