@@ -54,7 +54,7 @@ import retrofit2.Response;
 
 public class Perfil_Fragmen extends Fragment {
     private static final int RESULT_OK = 0;
-    private TextView nombre, phone1, phone2, email, phone, id, direccion, id1, foto2;
+    private TextView nombre, phone1, phone2, email, phone, id, estado, id1, foto2;
     private LinearLayout ll_email, ll_telefono, ll_phone2, ll_direccion;
     private ImageView foto;
     private CircleImageView fotos;
@@ -77,7 +77,7 @@ public class Perfil_Fragmen extends Fragment {
         phone = (TextView) view.findViewById(R.id.phone);
         id = (TextView) view.findViewById(R.id.id_datos);
         id1 = (TextView) view.findViewById(R.id.id_datos1);
-        direccion = (TextView) view.findViewById(R.id.dirrecion);
+        estado = (TextView) view.findViewById(R.id.estado);
         ll_email = (LinearLayout) view.findViewById(R.id.ll_email);
         //nuevo = (EditText) view.findViewById(R.id.nuevo);
         //confirmacion = (EditText) view.findViewById(R.id.confirmacion);
@@ -232,6 +232,7 @@ public class Perfil_Fragmen extends Fragment {
                     String phon = "";
                     String phon2 = "";
                     String id_datos = "";
+                    String esta = "";
                     name += " " + res.getName();
                     name += " " + res.getSurname1();
                     name += " " + res.getSurname2();
@@ -242,6 +243,11 @@ public class Perfil_Fragmen extends Fragment {
 
                     phon = "" + res.getPhone();
                     phone1.setText(phon);
+
+                    esta  = "" + res.getEstado();
+                    estado.setText(esta);
+
+
 
                     if(res.getPhone2() == null){
                         phone2.setText("Agregar nuevo telefono");
@@ -254,7 +260,7 @@ public class Perfil_Fragmen extends Fragment {
                     id.setText(id_datos);
                 }
 
-                Call<List<Direccion>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getDirrecion(id.getText().toString());
+              /*  Call<List<Direccion>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getDirrecion(id.getText().toString());
                 callVersiones1.enqueue(new Callback<List<Direccion>>() {
                     @Override
                     public void onResponse(Call<List<Direccion>> call, Response<List<Direccion>> response) {
@@ -274,7 +280,7 @@ public class Perfil_Fragmen extends Fragment {
                             dire += " " + res.getColonia();
                             dire += " " + res.getMunicipio();
                             dire += " " + res.getEstado();
-                            direccion.setText(dire);
+                            estado.setText(dire);
 
                         }
                     }
@@ -283,7 +289,7 @@ public class Perfil_Fragmen extends Fragment {
                     public void onFailure(Call<List<Direccion>> call, Throwable t) {
                         //  L.error("getOficios " + t.getMessage());
                     }
-                });
+                });*/
 
             }
 
@@ -322,7 +328,7 @@ public class Perfil_Fragmen extends Fragment {
         HashMap<String, String> params = new HashMap<>();
         params.put("perfil",per);
 
-        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().photoPerfil(phone.getText().toString(),params);
+        /*Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().photoPerfil(phone.getText().toString(),params);
         call.enqueue(new Callback<Responses>()
         {
             @Override
@@ -334,7 +340,7 @@ public class Perfil_Fragmen extends Fragment {
 
 
             }
-        });
+        });*/
 
 
         return view;

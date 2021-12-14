@@ -48,15 +48,9 @@ public class AnswerQuestions extends BaseActivity {
         ti_p1 = (TextInputLayout)findViewById(R.id.ti_p1);
         ti_p2 = (TextInputLayout)findViewById(R.id.ti_p2);
 
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            String phone = "";
+        String phon = getIntent().getStringExtra("phone");
 
-            phone = pho.getPhone();
-            phon = phone;
-        }
-
-        //phone.setText(phon);
+        phone.setText(phon);
         Call<List<Respuestas>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getRespuestas(phon);
         callVersiones.enqueue(new Callback<List<Respuestas>>() {
             @Override

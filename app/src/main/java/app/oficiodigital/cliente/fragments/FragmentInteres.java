@@ -510,7 +510,7 @@ public class FragmentInteres extends Fragment {
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
                         Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
                         // alerta();
-                        ((principalMenu)getActivity()).openLoadingDialog();
+                        //((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -631,7 +631,7 @@ public class FragmentInteres extends Fragment {
             public void onResponse(Call<Responses> call, Response<Responses> response) {
                 Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
                 //alerta();
-                ((principalMenu)getActivity()).openLoadingDialog();
+                //((principalMenu)getActivity()).openLoadingDialog();
 
             }
 

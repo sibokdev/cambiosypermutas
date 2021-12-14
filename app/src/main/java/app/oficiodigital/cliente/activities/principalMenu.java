@@ -230,23 +230,6 @@ public class principalMenu extends BaseActivity
         return true;
     }
 
-
-    public void openLoadingDialog() {
-        // textView3.setText("Validando código...");
-        loadingDialog loadingDialog = new loadingDialog(this);
-        loadingDialog.startLoadingDialog();
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                loadingDialog.dismisDialog();
-            }
-        },1500); //You can change this time as you wish
-    }
-
 }
 
 

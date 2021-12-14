@@ -680,7 +680,6 @@ public class DataSchool extends Fragment {
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
                         Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
                         alerta();
-                        ((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -814,7 +813,7 @@ public class DataSchool extends Fragment {
 
                 //llamada de metodo de clase de activity a este fragment
                 //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
-                ((principalMenu)getActivity()).openLoadingDialog();
+                //((principalMenu)getActivity().openLoadingDialog();
 
 
                 //Envio a BD

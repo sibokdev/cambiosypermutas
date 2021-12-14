@@ -186,9 +186,9 @@
                         android:layout_marginEnd="20dp"
                         android:textSize="18dp"
                         android:padding="5dp"
-                        android:text="Dirección"/>
+                        android:text="Estado"/>
                     <TextView
-                        android:id="@+id/dirrecion"
+                        android:id="@+id/estado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
