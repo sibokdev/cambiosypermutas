@@ -488,6 +488,7 @@ public class DataSchool extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
                 oescuela.setError(null);
                 oclave.setError(null);
                 ozona.setError(null);

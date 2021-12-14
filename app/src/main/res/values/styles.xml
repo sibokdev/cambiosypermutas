@@ -26,6 +26,24 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="ButtonVerde">
+        <item name="android:background">#008577</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ButtonVpr">
+        <item name="android:background">#750a23</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+
     <style name="ButtonCancel">
         <item name="android:background">@color/button_bg_red</item>
         <item name="android:layout_width">match_parent</item>

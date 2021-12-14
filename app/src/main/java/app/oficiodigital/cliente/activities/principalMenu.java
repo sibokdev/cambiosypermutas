@@ -244,7 +244,7 @@ public class principalMenu extends BaseActivity
 
                 loadingDialog.dismisDialog();
             }
-        },5000); //You can change this time as you wish
+        },1500); //You can change this time as you wish
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
@@ -55,11 +56,13 @@ import retrofit2.Response;
 
 public class FragmentInteres extends Fragment {
     DrawerLayout drawerLayout;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     private TextView muni, muni2, muni3, estado, estado2, estado3, select, select2, select3;
     private EditText codigop, codigop2, codigop3;
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private Spinner colonia, colonia2, colonia3;
-    private Button guardar;
+    private Button guardar_int;
 
     private TextInputLayout ti_codigop, ti_codigop2, ti_codigop3;
 
@@ -94,7 +97,7 @@ public class FragmentInteres extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_interes, container, false);
 
-
+        //dataSchool = new DataSchool();
 //------------------------------------------------------------------------------
         //primerPregunta();
         //asociamos lode arriba con esto
@@ -121,8 +124,9 @@ public class FragmentInteres extends Fragment {
         ti_codigop2 = (TextInputLayout) view.findViewById(R.id.ti_codigop2);
         ti_codigop3 = (TextInputLayout) view.findViewById(R.id.ti_codigop3);
 
-        guardar = (Button) view.findViewById(R.id.btn_guardar);
-        guardar.setEnabled(true);
+        guardar_int = (Button) view.findViewById(R.id.guardar_int);
+
+        guardar_int.setEnabled(true);
         getDataIntereses();
 
 
@@ -315,12 +319,86 @@ public class FragmentInteres extends Fragment {
         return view;
     }
 
-    public void guardarMetodo(){
-        guardar.setOnClickListener(new View.OnClickListener() {
+
+
+
+    private void getDataIntereses() {
+        codigop.setError(null);
+        codigop2.setError(null);
+        codigop3.setError(null);
+
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
+
+            phones = pho.getPhone();
+
+        }
+        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
+        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+
+                List<DatosIntereses> ejemplo = response.body();
+
+                List<String> list = new ArrayList<String>();
+                List<String> list2 = new ArrayList<String>();
+                for (DatosIntereses eje : ejemplo) {
+
+                    if (eje.getCodigo() != null) {
+                        //guardarMetodo();
+                        //Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
+
+                        list.add(eje.getCodigo());
+                        list2.add(eje.getId());
+
+
+                        for (int i = 0; i < list.size(); i++) {
+                            if (i == 0) {
+                               codigop.setText(list.get(i));
+                                colonia.setEnabled(false);
+                                codigop.setEnabled(false);
+                                 id = list2.get(i);
+                            } else if (i == 1) {
+                                codigop2.setText(list.get(i));
+                                colonia2.setEnabled(false);
+                                codigop2.setEnabled(false);
+                                id2 = list2.get(i);
+                            } else if (i == 2) {
+                                codigop3.setText(list.get(i));
+                                colonia3.setEnabled(false);
+                                codigop3.setEnabled(false);
+                                id3 = list2.get(i);
+                            }
+                        }
+
+                        guardar_int.setText("modificar");
+                        guardar_int.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View view) {
+                                modificarMetodo();
+                            }
+                        });
+
+                    }else{
+                        guardarMetodo();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
+                L.error("getDataIntereses" + t.getMessage());
+            }
+        });
+    }
+
+    private void guardarMetodo() {
+        guardar_int.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
 
                 codigop.setError(null);
                 codigop2.setError(null);
@@ -348,21 +426,21 @@ public class FragmentInteres extends Fragment {
 
                 if (TextUtils.isEmpty(cp)) {
                     ti_codigop.setError("Ingrese código postal");
-                    return;
+                    // return;
                 }
 
                 if (TextUtils.isEmpty(cp2)) {
                     ti_codigop2.setError("Ingrese código postal");
-                    return;
+                    // return;
                 }
                 if (TextUtils.isEmpty(cp3)) {
                     ti_codigop3.setError("Ingrese código postal");
-                    return;
+                    //return;
                 }
 
 
                 Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
 
                 List<Phone> userId = Phone.listAll(Phone.class);
                 for (Phone phon : userId) {
@@ -381,23 +459,22 @@ public class FragmentInteres extends Fragment {
                 codigos.setMunicipio(mun);
                 codigos.setEstado(estd);
                 codigos.setTelefono(phone);
-
                 intereses.add(codigos);
+
                 Intereses codigos1 = new Intereses();
                 codigos1.setCodigo(cp2);
                 codigos1.setColonia(colo2);
                 codigos1.setMunicipio(mun2);
                 codigos1.setEstado(estd2);
                 codigos1.setTelefono(phone);
-
                 intereses.add(codigos1);
+
                 Intereses codigos2 = new Intereses();
                 codigos2.setCodigo(cp3);
                 codigos2.setColonia(colo3);
                 codigos2.setMunicipio(mun3);
                 codigos2.setEstado(estd3);
                 codigos2.setTelefono(phone);
-
                 intereses.add(codigos2);
 
 
@@ -431,6 +508,9 @@ public class FragmentInteres extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
+                        Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                        // alerta();
+                        ((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -439,79 +519,6 @@ public class FragmentInteres extends Fragment {
                     }
                 });
 
-            }
-        });
-
-    }
-
-
-    private void getDataIntereses() {
-        codigop.setError(null);
-        codigop2.setError(null);
-        codigop3.setError(null);
-
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-
-            phones = pho.getPhone();
-
-        }
-        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
-        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
-
-                List<DatosIntereses> ejemplo = response.body();
-
-                List<String> list = new ArrayList<String>();
-                List<String> list2 = new ArrayList<String>();
-                for (DatosIntereses eje : ejemplo) {
-
-                    if (eje.getCodigo() != null) {
-
-                        Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
-
-                        list.add(eje.getCodigo());
-                        list2.add(eje.getId());
-
-
-                        for (int i = 0; i < list.size(); i++) {
-                            if (i == 0) {
-                               codigop.setText(list.get(i));
-                                colonia.setEnabled(false);
-                                codigop.setEnabled(false);
-                                 id = list2.get(i);
-                            } else if (i == 1) {
-                                codigop2.setText(list.get(i));
-                                colonia2.setEnabled(false);
-                                codigop2.setEnabled(false);
-                                id2 = list2.get(i);
-                            } else if (i == 2) {
-                                codigop3.setText(list.get(i));
-                                colonia3.setEnabled(false);
-                                codigop3.setEnabled(false);
-                                id3 = list2.get(i);
-                            }
-                        }
-
-                        guardar.setText("modificar");
-                        guardar.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View view) {
-                                modificarMetodo();
-                            }
-                        });
-
-                    }else{
-                        guardarMetodo();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
-                L.error("getDataSchool " + t.getMessage());
             }
         });
     }
@@ -525,7 +532,7 @@ public class FragmentInteres extends Fragment {
         }
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
+       // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
         codigop.setError(null);
         codigop2.setError(null);
         codigop3.setError(null);
@@ -559,6 +566,8 @@ public class FragmentInteres extends Fragment {
             return;
         }
 
+        Toast.makeText(getContext(), "Se han actualizado correctamente los datos", Toast.LENGTH_SHORT).show();
+        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
         HashMap<String, String> params = new HashMap<>();
 
         List<Intereses> intereses = new ArrayList<Intereses>();
@@ -569,8 +578,8 @@ public class FragmentInteres extends Fragment {
         codigos.setMunicipio(mun);
         codigos.setEstado(estd);
         codigos.setTelefono(phone);
-
         intereses.add(codigos);
+
         Intereses codigos1 = new Intereses();
         codigos1.setId(id2);
         codigos1.setCodigo(cp2);
@@ -578,8 +587,8 @@ public class FragmentInteres extends Fragment {
         codigos1.setMunicipio(mun2);
         codigos1.setEstado(estd2);
         codigos1.setTelefono(phone);
-
         intereses.add(codigos1);
+
         Intereses codigos2 = new Intereses();
         codigos2.setId(id3);
         codigos2.setCodigo(cp3);
@@ -620,6 +629,9 @@ public class FragmentInteres extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<Responses> call, Response<Responses> response) {
+                Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                //alerta();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
             }
 
@@ -683,14 +695,13 @@ public class FragmentInteres extends Fragment {
                         }
 
 
-                        guardar.setText("guardar");
-                        guardar.setOnClickListener(new View.OnClickListener() {
+                        guardar_int.setText("guardar");
+                        guardar_int.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 modificar();
                             }
                         });
-
 
                     }
 
@@ -698,7 +709,7 @@ public class FragmentInteres extends Fragment {
             }
             @Override
             public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
-                L.error("getDataSchool " + t.getMessage());
+                L.error("getDataIntereses" + t.getMessage());
             }
         });
 
