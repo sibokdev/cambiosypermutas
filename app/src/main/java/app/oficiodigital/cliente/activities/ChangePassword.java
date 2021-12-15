@@ -128,7 +128,7 @@ public class ChangePassword extends BaseActivity{
 
 
             Intent inte = new Intent(this, LoginActivity.class);
-            alerta();
+            //alerta();
             startActivity(inte);
         }
     }

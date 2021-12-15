@@ -126,8 +126,9 @@ public class FragmentInteres extends Fragment {
 
         guardar_int = (Button) view.findViewById(R.id.guardar_int);
 
-        guardar_int.setEnabled(true);
+        //guardar_int.setEnabled(true);
         getDataIntereses();
+        guardarMetodo();
 
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -538,17 +539,17 @@ public class FragmentInteres extends Fragment {
         codigop3.setError(null);
 
         cp = codigop.getText().toString();
-        estd = estado.getText().toString();
+        estd = estado.getText().toString().trim();
         mun = muni.getText().toString();
         colo = select.getText().toString();
 
         cp2 = codigop2.getText().toString();
-        estd2 = estado2.getText().toString();
+        estd2 = estado2.getText().toString().trim();
         mun2 = muni2.getText().toString();
         colo2 = select2.getText().toString();
 
         cp3 = codigop3.getText().toString();
-        estd3 = estado3.getText().toString();
+        estd3 = estado3.getText().toString().trim();
         mun3 = muni3.getText().toString();
         colo3 = select3.getText().toString();
 
