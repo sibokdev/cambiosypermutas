@@ -155,8 +155,8 @@ public class Perfil_Fragmen extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme);
-                builder.setTitle("Agregar Número Telefónico");
-                builder.setMessage("¿Deseas agregar número telefonico?");
+                builder.setTitle("Editar Número Telefónico");
+                builder.setMessage("¿Deseas editar número telefonico?");
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

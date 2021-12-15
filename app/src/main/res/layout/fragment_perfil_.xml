@@ -168,7 +168,7 @@
                         android:padding="5dp"
                         android:textSize="18dp"
                         android:layout_marginEnd="20dp"
-                        android:drawableRight="@drawable/ic_add_circle"
+                        android:drawableRight="@drawable/ic_edit"
                         android:text="Agregar segundo telefono"/>
 
                 </LinearLayout>
@@ -196,7 +196,6 @@
                         android:layout_marginEnd="20dp"
                         android:padding="5dp"
                         android:textSize="18dp"
-                        android:drawableRight="@drawable/ic_edit"
                         android:text="Aparece Dirección"/>
 
                 </LinearLayout>
