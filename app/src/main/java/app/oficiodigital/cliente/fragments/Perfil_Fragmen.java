@@ -328,7 +328,7 @@ public class Perfil_Fragmen extends Fragment {
         HashMap<String, String> params = new HashMap<>();
         params.put("perfil",per);
 
-        /*Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().photoPerfil(phone.getText().toString(),params);
+        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().photoPerfil(phone.getText().toString(),params);
         call.enqueue(new Callback<Responses>()
         {
             @Override
@@ -340,7 +340,7 @@ public class Perfil_Fragmen extends Fragment {
 
 
             }
-        });*/
+        });
 
 
         return view;

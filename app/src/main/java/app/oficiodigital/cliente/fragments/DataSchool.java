@@ -642,8 +642,8 @@ public class DataSchool extends Fragment {
                     return;
                 }*/
 
-             //   Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
                 //Envio a BD
                 HashMap<String, String> params = new HashMap<>();
@@ -679,7 +679,8 @@ public class DataSchool extends Fragment {
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
                         Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
-                        alerta();
+                        //alerta();
+                       // ((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -808,8 +809,8 @@ public class DataSchool extends Fragment {
                     return;
                 }*/
 
-               // Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
                 //llamada de metodo de clase de activity a este fragment
                 //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
