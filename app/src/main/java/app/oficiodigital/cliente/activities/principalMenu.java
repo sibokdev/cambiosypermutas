@@ -34,6 +34,7 @@ import app.oficiodigital.cliente.fragments.BusquedaFragment;
 import app.oficiodigital.cliente.fragments.FragmentInteres;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
+import app.oficiodigital.cliente.fragments.Share;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.notifications.Alert;
@@ -235,7 +236,7 @@ public class principalMenu extends BaseActivity
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
             case R.id.nav_compartir:
-                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                ft.replace(R.id.conten, new Share()).commit();
                 break;
 
         }
@@ -243,6 +244,7 @@ public class principalMenu extends BaseActivity
         drawerLayout.closeDrawers();
         return true;
     }
+
 
 }
 
