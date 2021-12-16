@@ -34,7 +34,7 @@ public class BovedaClient {
 
     private static BovedaClient INSTANCE_CLIENT = null;
     private static APIBovedaClient API_CLIENT = null;
-    private final String BASE_URL = "https://drber.com.mx/api/v1/";
+    private final String BASE_URL = "https://cambiosypermutas.com.mx/api/v1/";
     private OkHttpClient mHttpClient;
     private OkHttpClient.Builder mHttpBuilder;
 
