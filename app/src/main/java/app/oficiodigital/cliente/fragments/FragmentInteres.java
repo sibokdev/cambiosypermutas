@@ -99,7 +99,7 @@ public class FragmentInteres extends Fragment {
         select = (TextView) view.findViewById(R.id.select);
         select2 = (TextView) view.findViewById(R.id.select2);
         select3 = (TextView) view.findViewById(R.id.select3);
-        guardar = (Button) view.findViewById(R.id.guardar_int);
+        guardar = (Button) view.findViewById(R.id.btn_guardar);
 
         getDataIntereses();
 
