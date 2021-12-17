@@ -21,8 +21,9 @@
 
         <!-- Base Colors -->
         <color name="greenDark">#f4cf3e</color>
-        <color name="greenNormal">#f4cf3e</color>
+        <color name="yellowNormal">#f4cf3e</color>
         <color name="greenLight">#f4cf3e</color>
+    <color name="greenDarli">#008577</color>
 
         <color name="greyDark">#747474</color>
         <color name="greyNormal">#9E9E9E</color>
