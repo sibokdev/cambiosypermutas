@@ -48,16 +48,10 @@ public class AnswerQuestions extends BaseActivity {
         ti_p1 = (TextInputLayout)findViewById(R.id.ti_p1);
         ti_p2 = (TextInputLayout)findViewById(R.id.ti_p2);
 
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            String phone = "";
-
-            phone = pho.getPhone();
-            phon = phone;
-        }
+        String phon = getIntent().getStringExtra("phone");
 
         phone.setText(phon);
-        Call<List<Respuestas>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getRespuestas(phone.getText().toString());
+        Call<List<Respuestas>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getRespuestas(phon);
         callVersiones.enqueue(new Callback<List<Respuestas>>() {
             @Override
             public void onResponse(Call<List<Respuestas>> call, Response<List<Respuestas>> response) {

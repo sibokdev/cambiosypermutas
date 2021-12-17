@@ -12,20 +12,74 @@ public class Busqueda implements Serializable {
     String surname1;
     String surname2;
     String office;
+    String estado;
     String municipio;
     String tokenPhone;
     String phone;
     String Description;
+    String rol;
+    String nivel_escolar;
+    String tipo_plantel;
+    String nombre_esc;
+    String turno;
+
 
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
-                    String tokenPhone, String phone, String Description) {
+                    String estado, String tipo, String tokenPhone, String phone, String Description, String rol) {
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
+        this.estado = estado;
+        this.tipo_plantel = tipo;
         this.office = office;
         this.tokenPhone=tokenPhone;
         this.phone=phone;
         this.Description=Description;
+
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    public Busqueda() {
+
+    }
+
+    public String getNombre_esc() {
+        return nombre_esc;
+    }
+
+    public void setNombre_esc(String nombre_esc) {
+        this.nombre_esc = nombre_esc;
+    }
+
+    public String getNivel_escolar() {
+        return nivel_escolar;
+    }
+
+    public void setNivel_escolar(String nivel_escolar) {
+        this.nivel_escolar = nivel_escolar;
+    }
+
+    public String getTipo_plantel() {
+        return tipo_plantel;
+    }
+
+    public void setTipo_plantel(String tipo_plantel) {
+        this.tipo_plantel = tipo_plantel;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getDescription() {
@@ -86,6 +140,14 @@ public class Busqueda implements Serializable {
 
     public String getOffice() {
         return office;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setOffice(String office) {

@@ -2,6 +2,7 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,6 +19,7 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -126,7 +128,14 @@ public class ChangePassword extends BaseActivity{
 
 
             Intent inte = new Intent(this, LoginActivity.class);
+            //alerta();
             startActivity(inte);
         }
     }
+
+    private void alerta() {
+        String msg = getString(R.string.contra_actu);
+        LoadingDialog.show(getApplication(), msg);
+    }
+
 }

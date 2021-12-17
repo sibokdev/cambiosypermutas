@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
@@ -26,6 +27,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -416,7 +419,6 @@ public class FragmentInteres extends Fragment {
                 });
 
                 getDataIntereses();
-            }
 
         });
 
@@ -460,10 +462,10 @@ public class FragmentInteres extends Fragment {
 
                         for (int i = 0; i < list.size(); i++) {
                             if (i == 0) {
-                               codigop.setText(list.get(i));
+                                codigop.setText(list.get(i));
                                 colonia.setEnabled(false);
                                 codigop.setEnabled(false);
-                                 id = list2.get(i);
+                                id = list2.get(i);
                             } else if (i == 1) {
                                 codigop2.setText(list.get(i));
                                 colonia2.setEnabled(false);
@@ -496,6 +498,7 @@ public class FragmentInteres extends Fragment {
                         });
 
                     }else if(response.body().getCode() == 202){
+
                         guardarMetodo();
                     }
 

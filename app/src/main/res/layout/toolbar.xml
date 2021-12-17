@@ -5,7 +5,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
+    android:background="#008577"
     android:titleTextColor="@color/text_white"
     android:elevation="4dp"
     android:theme="@style/DoxToolbarAppearance"

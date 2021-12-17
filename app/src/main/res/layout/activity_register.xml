@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="145dp"
                 android:id="@+id/ti_ap">
 
                 <EditText
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="210dp"
                 android:id="@+id/ti_am">
 
                 <EditText
@@ -94,7 +94,7 @@
                 android:id="@+id/ti_numtel1"
                 android:layout_width="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="260dp"
+                android:layout_marginTop="270dp"
                 android:layout_height="wrap_content">
 
                 <EditText
@@ -104,7 +104,7 @@
                     android:layout_marginEnd="50dp"
                     android:inputType="number"
                     android:lines="1"
-                    android:hint="Numero de telefono*"
+                    android:hint="Número de teléfono*"
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,14 +112,14 @@
                 android:id="@+id/ti_numtel2"
                 android:layout_width="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="320dp"
+                android:layout_marginTop="330dp"
                 android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/et_numtel2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Segundo nùmero de telefono"
+                    android:hint="Segundo nùmero de teléfono"
                     android:lines="1"
                     android:inputType="number"
                     android:layout_marginEnd="50dp"
@@ -132,14 +132,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="380dp"
+                android:layout_marginTop="390dp"
                 android:padding="10dp"
                 android:text="Sexo"
                 android:textSize="18dp" />
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="420dp">
+                android:layout_marginTop="430dp">
                 <RadioButton
                     android:id="@+id/rb_fem"
                     android:layout_width="match_parent"
@@ -176,7 +176,7 @@
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:inputType="date"
-                    android:hint="Fecha de Nacimiento *" />
+                    android:hint="Fecha de nacimiento *" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/boton_fecha"
@@ -227,14 +227,13 @@
                 android:layout_width="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="600dp"
-
                 android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/et_cedula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingresa Cedula Profesional*"
+                    android:hint="Ingresa cédula profesional*"
                     android:lines="1"
                     android:inputType="textCapCharacters"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
@@ -249,7 +248,7 @@
             android:layout_marginTop="80dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_height="530dp">
+            android:layout_height="580dp">
 
             <TextView
                 android:id="@+id/datos"
@@ -282,7 +281,7 @@
                 android:id="@+id/ti_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="110dp"
                 android:layout_marginStart="20dp">
 
 
@@ -299,7 +298,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_password2"
                 android:layout_width="match_parent"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp">
 
@@ -316,14 +315,15 @@
 
             <Spinner
                 android:id="@+id/preguntas"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="280dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:spinnerMode="dialog"
                 android:padding="15dp">
             </Spinner>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_res1"
                 android:layout_marginTop="350dp"
@@ -344,7 +344,7 @@
                 android:layout_marginTop="430dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:spinnerMode="dialog"
                 android:padding="15dp">
@@ -353,7 +353,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_res2"
                 android:layout_width="match_parent"
-                android:layout_marginTop="480dp"
+                android:layout_marginTop="490dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp">
 
@@ -375,7 +375,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Siguiente"
+            android:text="Guardar"
             android:textColor="@color/text_white"
             android:background="@drawable/boton_redondo"
             android:onClick="siguiente"
@@ -383,31 +383,34 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"/>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
             android:id="@+id/token"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/poci1"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/poci2"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/pregunta1"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/pregunta2"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
 
 

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/perfil">
+        android:id="@+id/intereses">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -18,12 +18,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 android:orientation="vertical">
 
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                    android:layout_width="367dp"
                     android:layout_height="470dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -135,6 +135,7 @@
                         android:padding="10dp"
                         android:text=""
                         android:textSize="18dp" />
+
 
                 </androidx.cardview.widget.CardView>
 
@@ -248,7 +249,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="470dp"
+                    android:layout_height="540dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
@@ -351,51 +352,52 @@
                         android:padding="10dp"
                         android:text=""
                         android:textSize="18dp" />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_guardar"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginTop="460dp"
+                        android:layout_marginEnd="40dp"
+                        android:background="@drawable/boton_rojo"
+                        android:text="Guardar"
+                        android:textColor="@color/text_white" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_match"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="180dp"
+                        android:layout_marginTop="460dp"
+                        android:layout_marginEnd="40dp"
+                        android:background="@drawable/boton_redondo"
+                        android:enabled="false"
+                        android:text="Match"
+                        android:textColor="@color/text_white"/>
+
                 </androidx.cardview.widget.CardView>
 
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_guardar"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/boton_redondo"
-                    android:text="Guardar"
-                    android:textColor="@color/text_white" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_match"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="220dp"
-                    android:layout_marginTop="-50dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/boton_redondo"
-                    android:enabled="false"
-                    android:onClick="match"
-                    android:text="Match"
-                    android:textColor="@color/text_white"
-                    tools:ignore="OnClick" />
 
                 <TextView
                     android:id="@+id/select"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/select2"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/select3"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

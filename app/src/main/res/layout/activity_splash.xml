@@ -2,21 +2,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#008577">
+
 
     <ImageView
-        android:layout_width="500dp"
-        android:layout_height="1400dp"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/fondo_gob_gyn_splashr" />
-
-
-    <ImageView
-        android:layout_width="410dp"
-        android:layout_height="106dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="594dp"
-        android:src="@drawable/gob" />
+        android:src="@drawable/cp_trans_neg" />
 
 
 </RelativeLayout>
