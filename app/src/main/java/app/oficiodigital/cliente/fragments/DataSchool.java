@@ -951,7 +951,7 @@ public class DataSchool extends Fragment {
                         onom_dir.setText(nomdir);
                         onom_dir.setEnabled(false);
 
-                        String catego = "" + res.getCategoria();
+                        String catego = "" + res.getRol();
                         int sp_catego = adapter_ct.getPosition(catego);
                         ocategoria.setSelection(sp_catego);
                         ocategoria.setEnabled(false);

@@ -303,17 +303,17 @@ public class FragmentInteres extends Fragment {
                 codigop.setError(null);
 
                 String cp = codigop.getText().toString();
-                String estd = estado.getText().toString();
+                String estd = estado.getText().toString().trim();
                 String mun = muni.getText().toString();
                 String colo = select.getText().toString();
 
                 String cp2 = codigop2.getText().toString();
-                String estd2 = estado2.getText().toString();
+                String estd2 = estado2.getText().toString().trim();
                 String mun2 = muni2.getText().toString();
                 String colo2 = select2.getText().toString();
 
                 String cp3 = codigop3.getText().toString();
-                String estd3 = estado3.getText().toString();
+                String estd3 = estado3.getText().toString().trim();
                 String mun3 = muni3.getText().toString();
                 String colo3 = select3.getText().toString();
 
@@ -576,7 +576,7 @@ public class FragmentInteres extends Fragment {
                 jGroup.put("codigo", intereses.get(i).getCodigo());
                 jGroup.put("colonia", intereses.get(i).getColonia());
                 jGroup.put("municipio", intereses.get(i).getMunicipio());
-                jGroup.put("estado", intereses.get(i).getEstado());
+                jGroup.put("estado", intereses.get(i).getEstado().trim());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
