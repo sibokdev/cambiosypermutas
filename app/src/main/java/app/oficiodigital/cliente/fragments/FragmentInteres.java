@@ -297,7 +297,7 @@ public class FragmentInteres extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                // FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
 
                 codigop.setError(null);
@@ -407,9 +407,6 @@ public class FragmentInteres extends Fragment {
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
 
-                        if(response.isSuccessful()){
-                            getDataIntereses();
-                        }
                     }
 
                     @Override
@@ -419,6 +416,7 @@ public class FragmentInteres extends Fragment {
                 });
 
                 getDataIntereses();
+            }
 
         });
 
