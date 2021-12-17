@@ -412,6 +412,8 @@ public class FragmentInteres extends Fragment {
                     }
                 });
 
+                getDataIntereses();
+
             }
         });
 
@@ -443,7 +445,7 @@ public class FragmentInteres extends Fragment {
 
                     if (eje.getCodigo() != null) {
 
-                       // Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
 
                         list.add(eje.getCodigo());
                         list2.add(eje.getId());
@@ -478,6 +480,7 @@ public class FragmentInteres extends Fragment {
                         });
 
                     }else{
+                        Toast.makeText(getContext(),"metodo guardar", Toast.LENGTH_SHORT).show();
                         guardarMetodo();
                     }
                 }

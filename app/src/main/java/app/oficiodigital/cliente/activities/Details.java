@@ -34,9 +34,8 @@ public class Details extends BaseActivity {
 
         busqueda = (Busqueda) getIntent().getExtras().getSerializable("datos");
 
-        nombre.setText(busqueda.getName().toUpperCase());
-        apM.setText(busqueda.getSurname1().toUpperCase());
-        apP.setText(busqueda.getSurname2().toLowerCase());
+        nombre.setText(busqueda.getName().toUpperCase() + busqueda.getSurname1() + busqueda.getSurname2());
+
         nombreE.setText(busqueda.getNombre_esc().toUpperCase());
         nivel.setText(busqueda.getNivel_escolar().toLowerCase());
         puesto.setText(busqueda.getRol().toUpperCase());

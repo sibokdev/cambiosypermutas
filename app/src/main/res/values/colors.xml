@@ -41,8 +41,9 @@
 
         <!-- Buttons Colors -->
         <color name="button_bg_dark_green">#008577</color>
+    <color name="button_bg_light_green">#008577</color>
+
         <color name="button_bg_dark_yellow">@color/greenDark</color>
-        <color name="button_bg_light_green">@color/greenLight</color>
         <color name="button_bg_gray">@color/greyDark</color>
         <color name="button_bg_red">@color/redLight</color>
         <color name="splash_circle_bg">#DBDCD5</color>

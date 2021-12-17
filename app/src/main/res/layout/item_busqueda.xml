@@ -129,7 +129,7 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
-                android:text="Tipo esuela:"
+                android:text="Tipo de escuela:"
                 android:textSize="18dp"
                 android:textStyle="bold|normal" />
 
