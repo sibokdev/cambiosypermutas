@@ -7,7 +7,7 @@
 
         <item name="android:textColorPrimary">@color/text_black</item>
         <item name="android:textColor">@color/text_black</item>
-        <item name="colorButtonNormal">@drawable/button_color_state</item>
+
     </style>
 
     <!-- Tabs -->

@@ -147,7 +147,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/boton_verde"
+                android:background="@drawable/boton_redondo"
                 android:textColor="@color/text_white"
                 android:text="Ver detalles"/>
 
