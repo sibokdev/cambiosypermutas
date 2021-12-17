@@ -85,8 +85,8 @@ public class BovedaClient {
         @GET("client/getIntereses{phone}")
         Call<List<DatosIntereses>> getItereses(@Path("phone") String phone);
 
-        @GET("client/getIntereses{phone}")
-        Call<List<DatosIntereses>> getIteresess(@Path("phone") String phone);
+        @GET("client/registroInteresess{phone}")
+        Call<Responses> getIteresess(@Path("phone") String phone);
 
         @GET("client/DataIntereses{id}")
         Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);
@@ -165,9 +165,9 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params, @Path("id") String id );
 
-        @POST("client/registroIntereses")
+        @POST("client/registroInteresess{phone}")
         @FormUrlEncoded
-        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params, String id);
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params, String phone);
 
         @POST("client/intereses{phone}")
         @FormUrlEncoded

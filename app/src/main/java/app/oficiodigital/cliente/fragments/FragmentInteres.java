@@ -297,8 +297,9 @@ public class FragmentInteres extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+                // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
+
                 codigop.setError(null);
 
                 String cp = codigop.getText().toString();
@@ -337,6 +338,7 @@ public class FragmentInteres extends Fragment {
 
 
                 Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+
                 List<Phone> userId = Phone.listAll(Phone.class);
                 for (Phone phon : userId) {
 
@@ -404,6 +406,7 @@ public class FragmentInteres extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
+
                     }
 
                     @Override
@@ -413,8 +416,8 @@ public class FragmentInteres extends Fragment {
                 });
 
                 getDataIntereses();
-
             }
+
         });
 
     }
@@ -431,23 +434,27 @@ public class FragmentInteres extends Fragment {
             phones = pho.getPhone();
 
         }
-        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
-        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
+        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
+        callVersiones.enqueue(new Callback<Responses>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+            public void onResponse(Call<Responses> call, Response<Responses> response) {
 
-                List<DatosIntereses> ejemplo = response.body();
 
-                List<String> list = new ArrayList<String>();
-                List<String> list2 = new ArrayList<String>();
-                for (DatosIntereses eje : ejemplo) {
 
-                    if (eje.getCodigo() != null) {
+                    if (response.body().getCode() == 200) {
+                        Call<List<DatosIntereses>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getItereses(phones);
+                        callVersiones1.enqueue(new Callback<List<DatosIntereses>>() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+                                List<DatosIntereses> ejemplo = response.body();
 
-                        Toast.makeText(getContext(), "si etra2", Toast.LENGTH_LONG).show();
+                        List<String> list = new ArrayList<String>();
+                        List<String> list2 = new ArrayList<String>();
+                        for (DatosIntereses eje : ejemplo) {
 
-                        list.add(eje.getCodigo());
+                            list.add(eje.getCodigo());
                         list2.add(eje.getId());
 
 
@@ -479,14 +486,23 @@ public class FragmentInteres extends Fragment {
                             }
                         });
 
-                    }else{
-                        Toast.makeText(getContext(),"metodo guardar", Toast.LENGTH_SHORT).show();
+                        }
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<DatosIntereses>> call, Throwable throwable) {
+
+                            }
+                        });
+
+                    }else if(response.body().getCode() == 202){
+
                         guardarMetodo();
                     }
-                }
+
             }
             @Override
-            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
+            public void onFailure(Call<Responses> call, Throwable t) {
                 L.error("getDataSchool " + t.getMessage());
             }
         });
@@ -500,8 +516,8 @@ public class FragmentInteres extends Fragment {
             phone = phon.getPhone();
         }
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
+       // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
         codigop.setError(null);
 
         String cp = codigop.getText().toString();
