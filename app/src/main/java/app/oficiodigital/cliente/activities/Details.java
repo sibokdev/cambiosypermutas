@@ -65,7 +65,7 @@ public class Details extends BaseActivity {
         }
         String phon = phone;
 
-        Call<List<Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(phon);
+        Call<List<Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(telefono.getText().toString());
         call.enqueue(new Callback<List<Estados>>() {
             @Override
             public void onResponse(Call<List<Estados>> call, Response<List<Estados>> response) {
@@ -77,7 +77,18 @@ public class Details extends BaseActivity {
                     list.add(estado.getEstado());
                     for(int i = 0; i<list.size(); i++) {
                         if (i == 2) {
-                                interes.setText(list.get(0) + "" +list.get(1)+ "" + list.get(2));
+                            if(list.get(0).contains(list.get(1)) && list.get(0).contains(list.get(2))){
+                                interes.setText(list.get(0));
+                            }else if(list.get(1).contains(list.get(2))){
+                                interes.setText(list.get(0) + " " + list.get(1));
+                            }else if(list.get(0).contains(list.get(1))){
+                                interes.setText(list.get(1) +" " + list.get(2));
+                            }else if(list.get(0).contains(list.get(2))){
+                                interes.setText(list.get(0) + " " + list.get(1));
+                            }else{
+                                interes.setText(list.get(0)+ " " + list.get(1) + " " + list.get(2));
+                            }
+
                         }
 
                     }
