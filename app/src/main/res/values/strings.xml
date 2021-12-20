@@ -30,6 +30,10 @@
     <string name="loading_msg">cargando…</string>
     <string name="loading_contract_msg">creando…</string>
 
+    <string name="link_c_p">
+        <a href= "https://www.cambiosypermutas.com.mx">Cambios y permutas</a>
+    </string>
+
     <!-- Login Screen -->
     <string name="login_welcome_msg">¡Bienvenido a tu proceso de cambio de plaza!</string>
     <string name="login_email_label">Correo</string>

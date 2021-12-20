@@ -2,6 +2,7 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -122,6 +123,7 @@ public class AnswerQuestions extends BaseActivity {
             if (re1.equals(r1.getText().toString()) || re2.equals(r2.getText().toString())){
                 Intent intent = new Intent(this, ChangePassword.class);
                 intent.putExtra("phone", phone.getText().toString());
+                openLoadingDialog();
                 startActivity(intent);
                 //Toast.makeText(getApplication(),"alguno esta maal pero pasa",Toast.LENGTH_SHORT).show();
             }else{
@@ -132,4 +134,18 @@ public class AnswerQuestions extends BaseActivity {
        // Intent intent = new Intent(this, ChangePassword.class);
         //startActivity(intent);
     }
-}
+
+    private void openLoadingDialog() {
+            loadingDialog loadingDialog = new loadingDialog(this);
+            loadingDialog.startLoadingDialog();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.dismisDialog();
+                }
+            },2000); //You can change this time as you wish
+        }
+    }
+

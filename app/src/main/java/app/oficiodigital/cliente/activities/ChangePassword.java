@@ -124,8 +124,22 @@ public class ChangePassword extends BaseActivity{
 
             Intent inte = new Intent(this, LoginActivity.class);
             //alerta();
+            openLoadingDialog();
             startActivity(inte);
         }
+    }
+
+    private void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 
     private void alerta() {

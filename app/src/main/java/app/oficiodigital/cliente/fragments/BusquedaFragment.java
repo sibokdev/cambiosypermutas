@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private TextView list1, phone, nombres;
     private SearchView buscador;
     private EditText busc;
+  //  private Spinner sp_parent;
+    private Spinner sp_child;
     ArrayAdapter<String> adapter;
     String phon;
 
@@ -60,6 +64,11 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     List<String> list;
     AdapterUsuarios adapterUsuarios;
 
+/*    ArrayList arrayList_parent;//array spinner busqueda estado
+    ArrayAdapter<String> arrayAdapter_parent;//arraydapter estado*/
+
+    ArrayList<String> arrayList_estados;//Arrays de estados
+    ArrayAdapter<String> arrayAdapter_child;
 
 
     @Override
@@ -73,6 +82,41 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         nombres = (TextView) view.findViewById(R.id.nombre);
         //buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
+
+       // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
+        sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
+
+        //array filtro estados
+  /*      arrayList_parent=new ArrayList<>();
+        arrayList_parent.add("Estados");*/
+
+/*
+        arrayAdapter_parent = new ArrayAdapter<>(getActivity().getApplication(), android.R.layout.simple_selectable_list_item,arrayList_parent);
+        sp_parent.setAdapter(arrayAdapter_parent);*/
+
+        //child spinner process starts
+        arrayList_estados= new ArrayList<>();
+        arrayList_estados.add("Puebla");
+        arrayList_estados.add("Tlaxcala");
+        arrayList_estados.add("Mexico");
+        arrayList_estados.add("Veracruz");
+
+        sp_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){
+                    arrayAdapter_child= new ArrayAdapter<>(getActivity().getApplication(), android.R.layout.simple_spinner_item,arrayList_estados);
+                }
+                sp_child.setAdapter(arrayAdapter_child);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //child spinner process ends
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         lista.setLayoutManager(manager);

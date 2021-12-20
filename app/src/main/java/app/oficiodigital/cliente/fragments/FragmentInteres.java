@@ -421,8 +421,6 @@ public class FragmentInteres extends Fragment {
         });
 
     }
-
-
     private void getDataIntereses() {
         codigop.setError(null);
         codigop2.setError(null);
@@ -439,9 +437,6 @@ public class FragmentInteres extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<Responses> call, Response<Responses> response) {
-
-
-
                     if (response.body().getCode() == 200) {
                         Call<List<DatosIntereses>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getItereses(phones);
                         callVersiones1.enqueue(new Callback<List<DatosIntereses>>() {
@@ -479,7 +474,6 @@ public class FragmentInteres extends Fragment {
 
                         guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {
-
                             @Override
                             public void onClick(View view) {
                                 modificarMetodo();
@@ -503,7 +497,7 @@ public class FragmentInteres extends Fragment {
             }
             @Override
             public void onFailure(Call<Responses> call, Throwable t) {
-                L.error("getDataSchool " + t.getMessage());
+                L.error("getDataIntereses " + t.getMessage());
             }
         });
     }
@@ -674,7 +668,7 @@ public class FragmentInteres extends Fragment {
             }
             @Override
             public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
-                L.error("getDataSchool " + t.getMessage());
+                L.error("getDataIntereses " + t.getMessage());
             }
         });
 
