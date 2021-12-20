@@ -8,6 +8,7 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Estados;
 import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
@@ -59,15 +60,16 @@ public class BovedaClient {
         Call<List<Solicitudes>> getSolicitudes(@Path("phoneCliente") String phone);
 
         @POST("courier/validateEmail")
-
-
         Call<Responses> validateEmail(@FieldMap HashMap<String, String> params);
+
         @GET("query/info_cp/{codigo}?token=c213f0c9-2d13-4682-9a07-a889abc7c877")
         Call<List<Ejemplo>> getcode(@Path("codigo") String getCode);
 
         @GET("client/getCP{codigo}")
         Call<List<Ejemplo>> getCP(@Path("codigo") String codigo);
 
+        @GET("client/getEstados{phone}")
+        Call<List<Estados>> getEstados(@Path("phone") String phone);
 
         @GET("courier/Respuestas{phone}")
         Call<List<Respuestas>> getRespuestas(@Path("phone") String phone);

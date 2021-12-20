@@ -131,7 +131,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         }
         phone.setText(phon);
         getOficios();
-        buscador.setOnQueryTextListener(this);
+      //  buscador.setOnQueryTextListener(this);
 
         return view;
     }
