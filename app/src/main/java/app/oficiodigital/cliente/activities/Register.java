@@ -59,7 +59,7 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, et_am, et_numtel1, et_numtel2, et_cedula, et_mail, et_password, et_password2
+    private EditText et_nombre, et_ap, et_am, et_numtel2, et_cedula, et_mail, et_password, et_password2
            , presult1,  presult2;
     private TextView tv_edad, FechaN, phone, resul, resul1, tv_edadm,
             pregunta1, pregunta2, poci1, poci2, tv_sexo, token1;
@@ -94,7 +94,6 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_nombre = (EditText) findViewById(R.id.et_nombre);
         et_ap = (EditText) findViewById(R.id.et_ap);
         et_am = (EditText) findViewById(R.id.et_am);
-        et_numtel1 = (EditText) findViewById(R.id.et_numtel1);
         et_numtel2 = (EditText) findViewById(R.id.et_numtel2);
         et_cedula = (EditText) findViewById(R.id.et_cedula);
         et_mail = (EditText) findViewById(R.id.et_mail);
@@ -134,7 +133,6 @@ public class Register extends BaseActivity implements View.OnClickListener {
         tvN = (TextInputLayout) findViewById(R.id.ti_nombre);
         tvp1 = (TextInputLayout) findViewById(R.id.ti_ap);
         tvp2 = (TextInputLayout) findViewById(R.id.ti_am);
-        tvt1 = (TextInputLayout) findViewById(R.id.ti_numtel1);
         tvt2 = (TextInputLayout) findViewById(R.id.ti_numtel2);
         tvc = (TextInputLayout) findViewById(R.id.ti_cedula);
         tce = (TextInputLayout) findViewById(R.id.ti_mail);
@@ -171,9 +169,9 @@ public class Register extends BaseActivity implements View.OnClickListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    tv_sexo.setText("femenino");
+                    tv_sexo.setText("Femenino");
                 } else {
-                    tv_sexo.setText("masculino");
+                    tv_sexo.setText("Masculino");
                 }
             }
         });
@@ -319,7 +317,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             Date date = null;
             try {
-                date = sdf.parse("1970/01/01");
+                date = sdf.parse("1990/01/01");
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -430,7 +428,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_nombre.setError(null);
         et_ap.setError(null);
         et_am.setError(null);
-        et_numtel1.setError(null);
+        phone.setError(null);
         et_numtel2.setError(null);
         et_cedula.setError(null);
         et_mail.setError(null);
@@ -442,7 +440,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
-        String tl1 = et_numtel1.getText().toString();
+        String tl1 = phone.getText().toString();
         String tl2 = et_numtel2.getText().toString();
         String ced = et_cedula.getText().toString();
         String ema = et_mail.getText().toString();
@@ -557,7 +555,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         params.put("respuesta", jArray.toString());
 
 
-        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient(). registrarClientes(params);
+        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
         call.enqueue(new Callback<Responses>() {
 
             @Override

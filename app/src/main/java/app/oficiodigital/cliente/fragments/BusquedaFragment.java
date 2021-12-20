@@ -71,7 +71,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         lista = (RecyclerView) view.findViewById(R.id.lista);
         nombres = (TextView) view.findViewById(R.id.nombre);
-        buscador = (SearchView) view.findViewById(R.id.buscador);
+        //buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -87,7 +87,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         }
         phone.setText(phon);
         getOficios();
-        buscador.setOnQueryTextListener(this);
+      //  buscador.setOnQueryTextListener(this);
 
         return view;
     }

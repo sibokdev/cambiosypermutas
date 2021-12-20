@@ -4,17 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import app.oficiodigital.cliente.R;
+import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Busqueda;
+import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Estados;
+import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.Responses;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Details extends BaseActivity {
 
-    private TextView nombre, apM, apP, nombreE,nivel,puesto,tipo,turno,telefono,lugar;
+    private TextView nombre, apM, apP, nombreE,nivel,puesto,tipo,turno,telefono,lugar,interes;
     private Busqueda busqueda;
+    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +43,11 @@ public class Details extends BaseActivity {
         turno = (TextView) findViewById(R.id.turno);
         telefono = (TextView) findViewById(R.id.telefono);
         lugar = (TextView) findViewById(R.id.lugar_actual);
+        interes = (TextView) findViewById(R.id.interesado);
 
         busqueda = (Busqueda) getIntent().getExtras().getSerializable("datos");
 
-        nombre.setText(busqueda.getName().toUpperCase() + busqueda.getSurname1() + busqueda.getSurname2());
+        nombre.setText(busqueda.getName().toUpperCase() +"  " + busqueda.getSurname1() +"  " + busqueda.getSurname2());
 
         nombreE.setText(busqueda.getNombre_esc().toUpperCase());
         nivel.setText(busqueda.getNivel_escolar().toLowerCase());
@@ -44,8 +57,41 @@ public class Details extends BaseActivity {
         telefono.setText(busqueda.getPhone().toUpperCase());
         lugar.setText(busqueda.getEstado().toUpperCase());
 
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
 
+            phone = pho.getPhone();
 
+        }
+        String phon = phone;
+
+        Call<List<Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(phon);
+        call.enqueue(new Callback<List<Estados>>() {
+            @Override
+            public void onResponse(Call<List<Estados>> call, Response<List<Estados>> response) {
+                List<Estados> ejemplo = response.body();
+
+                List<String> list = new ArrayList<String>();
+
+                for (Estados estado : ejemplo) {
+                    list.add(estado.getEstado());
+                    for(int i = 0; i<list.size(); i++) {
+                        if (i == 2) {
+                                interes.setText(list.get(0) + "" +list.get(1)+ "" + list.get(2));
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Estados>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
+
+            }
+        });
 
     }
 

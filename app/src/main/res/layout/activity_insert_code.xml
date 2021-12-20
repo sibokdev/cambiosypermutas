@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".activities.InsertCode">
 
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
 

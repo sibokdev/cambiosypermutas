@@ -48,7 +48,7 @@ public class ChangePassword extends BaseActivity{
         ti_con = (TextInputLayout)findViewById(R.id.ti_confir);
 
 
-        String phon = getIntent().getStringExtra("phone");
+        phon = getIntent().getStringExtra("phone");
 
         phone.setText(phon);
 
@@ -96,11 +96,6 @@ public class ChangePassword extends BaseActivity{
     }
 
     public void cabiar(View view) {
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            phon = pho.getPhone();
-
-        }
 
         if (contra.length() == 0) {
             ti_pass.setError("Inserta Contraseña");
