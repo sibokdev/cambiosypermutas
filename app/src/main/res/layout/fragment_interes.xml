@@ -27,7 +27,7 @@
                     android:layout_height="470dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -358,14 +358,14 @@
                         android:id="@+id/btn_guardar"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
-                        android:layout_marginStart="60dp"
+                        android:layout_marginStart="130dp"
                         android:layout_marginTop="460dp"
                         android:layout_marginEnd="40dp"
-                        android:background="@drawable/boton_rojo"
+                        android:background="@drawable/boton_redondo"
                         android:text="Guardar"
                         android:textColor="@color/text_white" />
 
-                    <androidx.appcompat.widget.AppCompatButton
+              <!--      <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_match"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
@@ -375,7 +375,7 @@
                         android:background="@drawable/boton_redondo"
                         android:enabled="false"
                         android:text="Match"
-                        android:textColor="@color/text_white"/>
+                        android:textColor="@color/text_white"/>-->
 
                 </androidx.cardview.widget.CardView>
 

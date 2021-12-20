@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Para utilizar oficio digital es necesario que ingreses tu número de celular"
+            android:text="Para poder utilizar cambios y permutas es necesario que ingreses tu número de celular"
             android:textSize="18dp"
             android:padding="10dp"
             android:gravity="center"
