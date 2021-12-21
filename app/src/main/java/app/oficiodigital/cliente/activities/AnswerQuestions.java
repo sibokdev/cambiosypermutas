@@ -1,11 +1,17 @@
 package app.oficiodigital.cliente.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,6 +36,10 @@ public class AnswerQuestions extends BaseActivity {
     private TextView tv_p1,tv_p2,phone,r1,r2;
     private EditText p1,p2;
     private TextInputLayout ti_p1,ti_p2;
+    private ImageView back;
+    Button cancelar_change_resp;
+    Dialog dialog;
+
     String phon;
 
     @Override
@@ -48,6 +58,29 @@ public class AnswerQuestions extends BaseActivity {
 
         ti_p1 = (TextInputLayout)findViewById(R.id.ti_p1);
         ti_p2 = (TextInputLayout)findViewById(R.id.ti_p2);
+
+        cancelar_change_resp = findViewById(R.id.cancelar_change_resp);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
+
+        dialog = new Dialog(this);
+
+        cancelar_change_resp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opencancelDialog();
+
+            }
+        });
+
 
         String phon = getIntent().getStringExtra("phone");
 
@@ -102,6 +135,36 @@ public class AnswerQuestions extends BaseActivity {
 
 
     }
+
+    private void opencancelDialog() {
+        dialog.setContentView(R.layout.cancel_change_pass_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView imageViewClose= dialog.findViewById(R.id.imageViewClose);
+        Button cancelar= dialog.findViewById(R.id.dialog_cancelar);
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                Toast.makeText(getApplicationContext(), "closed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                Toast.makeText(getApplicationContext(), "Cancelando", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        dialog.show();
+    }
+
 
     public void siguiente(View view){
 

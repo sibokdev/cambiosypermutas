@@ -3,6 +3,7 @@ package app.oficiodigital.cliente.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Details extends BaseActivity {
     private TextView nombre, apM, apP, nombreE,nivel,puesto,tipo,turno,telefono,lugar,interes;
     private Busqueda busqueda;
     String phone;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,16 @@ public class Details extends BaseActivity {
         telefono = (TextView) findViewById(R.id.telefono);
         lugar = (TextView) findViewById(R.id.lugar_actual);
         interes = (TextView) findViewById(R.id.interesado);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         busqueda = (Busqueda) getIntent().getExtras().getSerializable("datos");
 

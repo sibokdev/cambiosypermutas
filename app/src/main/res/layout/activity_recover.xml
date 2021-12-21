@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.RecoverPhone">
 
 
@@ -99,14 +99,14 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin">
 
-                <ImageButton
-                    android:layout_width="100dp"
-                    android:padding="40dp"
+                <ImageView
+                    android:layout_width="380dp"
+                    android:layout_height="211dp"
+                    android:padding="0dp"
                     android:layout_marginTop="60dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/logo"
-                    android:background="#00ffffff"
-                    android:layout_height="100dp" />
+                    android:src="@drawable/cp_color"
+                    android:scaleType="centerCrop"
+                    app:cardBackgroundColor="@color/white"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

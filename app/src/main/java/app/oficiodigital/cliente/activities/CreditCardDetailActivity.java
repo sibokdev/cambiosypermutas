@@ -1,6 +1,7 @@
 package app.oficiodigital.cliente.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -53,7 +54,11 @@ public class CreditCardDetailActivity extends BaseActivity implements DeleteCred
         //setupUI();
 
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
@@ -140,4 +145,5 @@ public class CreditCardDetailActivity extends BaseActivity implements DeleteCred
         LoadingDialog.dismiss();
         Snack.show(findViewById(android.R.id.content), error);
     }
+
 }

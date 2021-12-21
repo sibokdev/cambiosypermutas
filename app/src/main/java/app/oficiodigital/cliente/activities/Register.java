@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -164,6 +166,153 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         bt_fecha.setOnClickListener(this);
 
+
+        //Validaciones setError campos EditText
+            et_nombre.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    validateEditTextnom(editable);
+                }
+            });
+        et_nombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextnom(((EditText) v).getText());
+                }
+            }
+        });
+        et_ap.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextap(editable);
+            }
+        });
+        et_ap.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextap(((EditText) v).getText());
+                }
+            }
+        });
+        et_am.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextam(editable);
+            }
+        });
+        et_am.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextam(((EditText) v).getText());
+                }
+            }
+        });
+        et_cedula.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextcedula(editable);
+            }
+        });
+        et_cedula.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextcedula(((EditText) v).getText());
+                }
+            }
+        });
+        et_mail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextmail(editable);
+            }
+        });
+
+        et_mail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextmail(((EditText) v).getText());
+                }
+            }
+        });
+        presult1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextres1(editable);
+            }
+        });
+
+        presult1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextres1(((EditText) v).getText());
+                }
+            }
+        });
+        presult2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextres2(editable);
+            }
+        });
+
+        presult2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextres2(((EditText) v).getText());
+                }
+            }
+        });
+
+
         //Sexo fem masc
         rb_fem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -297,6 +446,69 @@ public class Register extends BaseActivity implements View.OnClickListener {
             }
         });*/
 
+    }
+
+    private void validateEditTextnom(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tvN.setError(null);
+        }
+        else{
+            tvN.setError(" ");
+        }
+    }
+
+    private void validateEditTextap(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tvp1.setError(null);
+        }
+        else{
+            tvp1.setError(" ");
+        }
+    }
+
+    private void validateEditTextam(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tvp2.setError(null);
+        }
+        else{
+            tvp2.setError(" ");
+        }
+    }
+
+    private void validateEditTextcedula(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tvc.setError(null);
+        }
+        else{
+            tvc.setError(" ");
+        }
+    }
+
+    private void validateEditTextmail(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tce.setError(null);
+        }
+        else{
+            tce.setError(" ");
+        }
+    }
+
+    private void validateEditTextres1(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tcr1.setError(null);
+        }
+        else{
+            tcr1.setError(" ");
+        }
+    }
+
+    private void validateEditTextres2(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            tcr2.setError(null);
+        }
+        else{
+            tcr2.setError(" ");
+        }
     }
 
 
@@ -455,39 +667,48 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
 //Validaciones campos
         if (TextUtils.isEmpty(name)) {
-            tvN.setError("Ingresa nombre");
+            tvN.setError(" ");
+            tvN.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(ap)) {
-            tvp1.setError("Ingresa apellido paterno");
+            tvp1.setError(" ");
+            tvp1.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(am)) {
-            tvp2.setError("Ingresa apellido materno");
+            tvp2.setError(" ");
+            tvp2.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(tl1)) {
-            tvt1.setError("Ingresa número de teléfono");
+            tvt1.setError(" ");
+            tvt1.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(tl2)) {
-            tvt2.setError("Ingresa número de teléfono");
+            tvt2.setError(" ");
+            tvt2.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(ced)) {
-            tvc.setError("Ingresa cedula profecional");
+            tvc.setError(" ");
+            tvc.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(ema)) {
-            tce.setError("Ingresa email");
+            tce.setError(" ");
+            tce.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(pass)) {
-            tcpas1.setError("Ingresa contraseña");
+            tcpas1.setError(" ");
+            tcpas1.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(pass2)) {
-            tcpass2.setError("Ingresa confirmacion de contraseña");
+            tcpass2.setError(" ");
+            tcpass2.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(sex)) {
@@ -501,11 +722,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
             return;
         }
         if (TextUtils.isEmpty(res1)) {
-            tcr1.setError("Ingresa respuesta");
+            tcr1.setError(" ");
+            tcr1.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(res2)) {
-            tcr2.setError("Ingresa respuesta");
+            tcr2.setError(" ");
+            tcr2.requestFocus();
             return;
         }
 
@@ -515,10 +738,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
         params.put("amaterno", am);
         params.put("phone", tl1);
         params.put("phone2", tl2);
-
         params.put("sexo", sex);
         params.put("edad", ed);
-
         params.put("cedula_prof", ced);
         params.put("email", ema);
         params.put("password", pass);
@@ -567,10 +788,27 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
             }
         });
-alerta();
+//alerta();
+        Toast.makeText(this, "Guardando registro", Toast.LENGTH_SHORT).show();
+   openLoadingDialog();
         startActivity(new Intent(this, LoginActivity.class));
 
     }
+
+    private void openLoadingDialog() {
+            loadingDialog loadingDialog = new loadingDialog(this);
+            loadingDialog.startLoadingDialog();
+
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    loadingDialog.dismisDialog();
+                }
+            },5000); //You can change this time as you wish
+            }
 
     private void alerta() {
         String msg = getString(R.string.register_msg);
