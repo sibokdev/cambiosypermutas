@@ -51,8 +51,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private TextView list1, phone, nombres, estados;
     private SearchView buscador;
     private EditText busc;
-    private Spinner sp_parent;
-    private Spinner sp_child;
+    private Spinner spinner_estados;
     ArrayAdapter<String> adapter;
     String phon;
 
@@ -67,18 +66,14 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     List<String> list;
     AdapterUsuarios adapterUsuarios;
 
-    ArrayList arrayList_parent;//array spinner busqueda estado
-    ArrayAdapter<String> arrayAdapter_parent;//arraydapter estado
 
-    ArrayList<String> arrayList_estados;//Arrays de estados
-    ArrayAdapter<String> arrayAdapter_child;
+  //  List<Busqueda> busquedaFiltrada = new ArrayList<>();
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
 
         lista = (RecyclerView) view.findViewById(R.id.lista);
@@ -86,6 +81,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
        // buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
         estados = (TextView) view.findViewById(R.id.estado);
+
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
@@ -97,27 +93,9 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         arrayAdapter_parent = new ArrayAdapter<>(getActivity().getApplication(), android.R.layout.simple_selectable_list_item,arrayList_parent);
         sp_parent.setAdapter(arrayAdapter_parent);
 
-        //child spinner process starts
-        arrayList_estados= new ArrayList<>();
-        arrayList_estados.add("Puebla");
-        arrayList_estados.add("Tlaxcala");
-        arrayList_estados.add("Mexico");
-        arrayList_estados.add("Veracruz");
 
-        sp_parent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    arrayAdapter_child= new ArrayAdapter<>(getActivity().getApplication(), android.R.layout.simple_spinner_item,arrayList_estados);
-                }
-                sp_child.setAdapter(arrayAdapter_child);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
 
         //child spinner process ends
 

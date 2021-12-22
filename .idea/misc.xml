@@ -9,44 +9,62 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/boton_redondo.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_baseline_calendar_today.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_c&amp;p_background.xml" value="0.17719298245614035" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_edit.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_aceptar_cargo_revision.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_metodos_pago.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_new_phone.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_address_cliente.xml" value="0.2107466852756455" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_cc_payment.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_address.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_cliente_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_credi_card_detail.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_data_school.xml" value="0.10733695652173914" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_details.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_detalles_publicar_empleo.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_edit_address.xml" value="0.1828125" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_envio_solicitud.xml" value="0.1" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_fotos.xml" value="0.2" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_info.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_info.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_insert_code.xml" value="0.33" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_intereses.xml" value="0.15670289855072464" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_list_cotizacion.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_listado_cotizacion.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_pay.xml" value="0.16" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_pay.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_principal_menu.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_privacy_policies.xml" value="0.21" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_recover.xml" value="0.33" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_recover.xml" value="0.25" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_recover_code.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_register.xml" value="0.28003003003003" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_respuestas_seguridad.xml" value="0.33" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_resul_solicitudes.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_splash.xml" value="0.18" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_view_dschool.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_wait_time.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_welcome.xml" value="0.33" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/app_bar_principal_menu2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/cancel_change_pass_dialog.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/content_principal_menu2.xml" value="0.10099637681159421" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/datosconpago.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/dialog_progress.xml" value="0.22" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_data_school.xml" value="0.23809523809523808" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_historial.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_home.xml" value="0.21" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_interes.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_metodos_pago.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_perfil_.xml" value="0.18" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_perfil_.xml" value="0.33" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_publicar_empleo.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_share.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_solicitudes_cotizaciones.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_v_iew_d_t_school.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_view_dt_school.xml" value="0.25" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/insert_phone.xml" value="0.5" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/insert_phone.xml" value="0.22" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_busqueda.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_historial.xml" value="0.25" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_pagos.xml" value="0.16359649122807018" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_solicitudes.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/layout_loading_dialog.xml" value="0.33" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/menu_principal.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/nav_header_principal_menu2.xml" value="0.20416666666666666" />

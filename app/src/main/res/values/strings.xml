@@ -132,7 +132,7 @@
     <string name="zip">Código Postal</string>
     <string name="add_payment_method">AGREGAR MÉTODO DE PAGO</string>
     <string name="finish_signup">Para finalizar el registro, se realizará un cobro por</string>
-    <string name="finish_signup2">por concepto de suscripción anual al servicio de Bovéda de documentos</string>
+    <string name="finish_signup2">por concepto de suscripción anual al servicio de Cambios y permutas</string>
     <string name="signup_confirmation">Tu registro al servicio de Bóveda de documentos ha sido realizado con éxito.</string>
     <string name="pay_and_continue">PAGAR Y CONTINUAR</string>
     <string name="make_payment">Realizar pago</string>

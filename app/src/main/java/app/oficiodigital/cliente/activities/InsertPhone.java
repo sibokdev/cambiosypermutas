@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class InsertPhone extends BaseActivity {
     private TextView token1;
     private TextInputLayout pho;
 
+    private ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,16 @@ public class InsertPhone extends BaseActivity {
         phone = (EditText) findViewById(R.id.phone);
         pho = (TextInputLayout)findViewById(R.id.ti_phone);
         token1 = (TextView)findViewById(R.id.token);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         String token = getIntent().getStringExtra("tokenPhone");
         token1.setText(token);

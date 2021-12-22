@@ -362,9 +362,9 @@ public class DataSchool extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         salida.setText((progress + " Años"));
                         aniosAntiguedad=progress;
-                        if (aniosAntiguedad <= 2) {
+                        if (aniosAntiguedad < 2) {
                             Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                        } else if (aniosAntiguedad > 2) {
+                        } else if (aniosAntiguedad >= 2) {
                             Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -859,7 +859,7 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-                        Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
                         //alerta();
                         // ((principalMenu)getActivity()).openLoadingDialog();
                     }

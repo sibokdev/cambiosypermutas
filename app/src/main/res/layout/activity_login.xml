@@ -16,6 +16,7 @@
         android:background="@drawable/boton_redondo"
         android:onClick="login"
         android:text="@string/login_login_label"
+        android:textSize="17dp"
         android:textColor="@color/cardview_light_background" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -28,6 +29,7 @@
         android:background="@drawable/boton_redondo"
         android:onClick="contratar"
         android:text="Registrarse"
+        android:textSize="17dp"
         android:textColor="@color/cardview_light_background" />
 
     <ScrollView
@@ -48,10 +50,12 @@
             android:padding="15dp">
 
             <ImageView
-                android:layout_width="300dp"
+                android:layout_width="380dp"
                 android:layout_height="211dp"
                 android:padding="0dp"
-                android:src="@drawable/cp_color" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/cp_color"
+                app:cardBackgroundColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
