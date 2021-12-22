@@ -88,7 +88,8 @@
         android:text="Siguiente"
         android:onClick="siguiente"
         android:textColor="@color/text_white"
-        android:background="@drawable/boton_redondo">
+        android:background="@drawable/boton_redondo"
+        android:textSize="17dp">
         </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -100,7 +101,8 @@
         android:layout_marginStart="190dp"
         android:text="cancelar"
         android:textColor="@color/text_white"
-        android:background="@drawable/boton_redondo">
+        android:background="@drawable/boton_redondo"
+        android:textSize="17dp">
     </androidx.appcompat.widget.AppCompatButton>
     <TextView
         android:id="@+id/phone"

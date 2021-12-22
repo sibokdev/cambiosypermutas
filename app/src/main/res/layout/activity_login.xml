@@ -16,6 +16,7 @@
         android:background="@drawable/boton_redondo"
         android:onClick="login"
         android:text="@string/login_login_label"
+        android:textSize="17dp"
         android:textColor="@color/cardview_light_background" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -28,6 +29,7 @@
         android:background="@drawable/boton_redondo"
         android:onClick="contratar"
         android:text="Registrarse"
+        android:textSize="17dp"
         android:textColor="@color/cardview_light_background" />
 
     <ScrollView

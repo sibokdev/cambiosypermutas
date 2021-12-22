@@ -43,6 +43,7 @@ public class RecoverCode extends BaseActivity {
         code = (EditText) findViewById(R.id.codigo);
         phone = (TextView)findViewById(R.id.phone);
         codigo = (TextInputLayout)findViewById(R.id.ti_code);
+
         back = (ImageView) findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {

@@ -109,14 +109,14 @@ public class principalMenu extends BaseActivity
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
         
-        back = (ImageView) hView.findViewById(R.id.back);
+       /* back = (ImageView) hView.findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "icon back", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         phone.setText(phon);
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
@@ -185,7 +185,7 @@ public class principalMenu extends BaseActivity
     }
 
     //control de pulsacion, boton atras
-    @Override
+/*    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode==event.KEYCODE_BACK){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -208,9 +208,31 @@ public class principalMenu extends BaseActivity
             builder.show();
         }
         return super.onKeyDown(keyCode, event);
+    }*/
+    private void cerrarAplicacion() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon_fire_exit_ios)
+                .setTitle("¿Desea salir de Cambios y permutas?")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
+                        //finish(); Si solo quiere mandar la aplicación a segundo plano
+                    }
+                }).show();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            cerrarAplicacion();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -218,7 +240,7 @@ public class principalMenu extends BaseActivity
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

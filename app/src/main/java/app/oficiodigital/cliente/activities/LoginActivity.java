@@ -134,10 +134,10 @@ LoginActivity extends BaseActivity implements LoginContract.View {
 
 
 
-    public void info(View view) {
+/*    public void info(View view) {
         Intent intent1 = new Intent(this, ViewDSchool.class);
         startActivity(intent1);
-    }
+    }*/
 
 
     public void contratar(View view) {

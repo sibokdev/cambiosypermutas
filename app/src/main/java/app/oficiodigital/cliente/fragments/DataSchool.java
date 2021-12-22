@@ -859,7 +859,7 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-                        Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
                         //alerta();
                         // ((principalMenu)getActivity()).openLoadingDialog();
                     }
