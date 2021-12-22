@@ -3,6 +3,8 @@ package app.oficiodigital.cliente.fragments;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.Request.Estados;
 import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
+import app.oficiodigital.cliente.storage.ModelsBD.Preguntas1;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +48,7 @@ import retrofit2.Response;
 public class BusquedaFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private RecyclerView lista;
-    private TextView list1, phone, nombres;
+    private TextView list1, phone, nombres, estados;
     private SearchView buscador;
     private EditText busc;
     private Spinner sp_parent;
@@ -80,10 +83,11 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         lista = (RecyclerView) view.findViewById(R.id.lista);
         nombres = (TextView) view.findViewById(R.id.nombre);
-        //buscador = (SearchView) view.findViewById(R.id.buscador);
+       // buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
+        estados = (TextView) view.findViewById(R.id.estado);
 
-        sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
+       // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
 
         //array filtro estados
@@ -130,9 +134,81 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         }
         phone.setText(phon);
         getOficios();
-        //  buscador.setOnQueryTextListener(this);
+        getEstados();
+        //buscador.setOnQueryTextListener(this);
+        sp_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String slect = sp_child.getSelectedItem().toString();
+                int sele = sp_child.getSelectedItemPosition();
+                String se = "" + sele;
+                estados.setText(slect);
+                estados.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                        adapterUsuarios.filtrar(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         return view;
+    }
+
+    public void getEstados(){
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        String phone = "";
+        for (Phone pho : list1) {
+
+            phone = pho.getPhone();
+
+        }
+        String phon = phone;
+
+        Call<List<app.oficiodigital.cliente.models.Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(phon);
+        call.enqueue(new Callback<List<app.oficiodigital.cliente.models.Estados>>() {
+            @Override
+            public void onResponse(Call<List<app.oficiodigital.cliente.models.Estados>> call, Response<List<app.oficiodigital.cliente.models.Estados>> response) {
+                List<app.oficiodigital.cliente.models.Estados> ejemplo = response.body();
+
+                List<String> list = new ArrayList<String>();
+
+                for (app.oficiodigital.cliente.models.Estados estado : ejemplo) {
+                    list.add(estado.getEstado());
+
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sp_child.setAdapter(adapter);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<app.oficiodigital.cliente.models.Estados>> call, Throwable t) {
+               // Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
+
+            }
+        });
+
     }
 
     public void getOficios(){
@@ -262,7 +338,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        //adapterUsuarios.filtrar(newText);
+        adapterUsuarios.filtrar(newText);
         return false;
     }
 }
