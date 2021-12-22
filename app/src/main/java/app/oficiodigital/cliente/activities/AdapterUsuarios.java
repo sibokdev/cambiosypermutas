@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -77,6 +78,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_busqueda, parent, false);
         dialog = new Dialog(parent.getContext());
+
         return new UsuarioViewHolder(v);
 
     }
@@ -335,7 +337,11 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         return list.size();
     }
 
-    public void filtrar(final String buscar){
+    public void filtro(){
+
+    }
+
+    public void filtrar(final CharSequence buscar){
         if(buscar.length()==0){
             list.clear();
             list.addAll(originalList);
@@ -344,28 +350,16 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
                 list.clear();
                 List<Busqueda> collect = originalList.stream()
-                        .filter(i -> i.getName().toLowerCase().contains(buscar))
+                        .filter(i -> i.getEstado().contains(buscar))
                         .collect(Collectors.toList());
-
-                List<Busqueda> collect1 = originalList.stream()
-                        .filter(i -> i.getOffice().toLowerCase().contains(buscar))
-                        .collect(Collectors.toList());
-
 
                 list.addAll(collect);
-                list.addAll(collect1);
 
             }
             else {
                 list.clear();
                 for(Busqueda i: originalList){
-                    if (i.getName().toLowerCase().contains(buscar)){
-                        list.add(i);
-                    }
-
-                }
-                for(Busqueda i: originalList){
-                    if (i.getOffice().toLowerCase().contains(buscar)){
+                    if (i.getEstado().toLowerCase().contains(buscar)){
                         list.add(i);
                     }
 
@@ -374,6 +368,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         }
         notifyDataSetChanged();
     }
+
     @Override
     public Object getItem(int position) {
         return list.get(position);
