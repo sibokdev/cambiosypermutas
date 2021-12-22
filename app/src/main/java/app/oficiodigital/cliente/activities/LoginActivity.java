@@ -5,8 +5,11 @@ import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -129,34 +132,16 @@ LoginActivity extends BaseActivity implements LoginContract.View {
         startActivity(new Intent(this, RecoverPhone.class));
     }
 
-    /*@OnClick(R.id.btnLogin)
-    public void login() {
-        String email = emailEt.getText().toString().trim();
-        String password = passwordEt.getText().toString().trim();
-        boolean fieldsOK = checkFields(new String[]{email, password});
 
-        if (NetworkState.isConnectionAvailable(this)) {
-            if (fieldsOK) {
-                if (phoneValid(email)) {
-                    displayLoadingMsg(true);
-                    presenter.login(new User(email, password));
-                }
-            } else {
-                Toast.makeText(this, R.string.check_internet_connection, Toast.LENGTH_SHORT).show();
-            }
-        }
 
+/*    public void info(View view) {
+        Intent intent1 = new Intent(this, ViewDSchool.class);
+        startActivity(intent1);
     }*/
 
 
-    public void info(View view) {
-        Intent intent1 = new Intent(this, ViewDSchool.class);
-        startActivity(intent1);
-    }
-
-
     public void contratar(View view) {
-        startActivity(new Intent(this, Register.class));
+        startActivity(new Intent(this, PrivacyPolicies.class));
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();
@@ -202,6 +187,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                         intent.putExtra("token",tokena.getText().toString());
                         intent.putExtra("id",id);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(getApplication(), "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                     }
@@ -216,10 +202,6 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                 presenter.onLoginFail(t.getMessage());
             }
         });
-
-
-
-
     }
 
     private class OnTokenAcquired implements AccountManagerCallback<Bundle> {
@@ -314,7 +296,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     public void pagos(){
-        String deviceSessionId = "6ad429f2ec0cAe3d89cb32ef07738b4f";
+        String deviceSessionId = "139e5a687c52A428b41e0f8cce2b5dba";
         String mToken = "Bearer " + "m4BcuNy7CLA7EoOdNd3g37QbSpEtxYnh2FYJwVK6";
 
         Call<Responses> call = DOXClient.getInstanceClient().getApiClient()

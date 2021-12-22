@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Share">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/perfil">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Cambios y permutas"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/button_bg_dark_green"
+        android:textStyle="bold"
+        android:textSize="25dp" />
+
+        <ViewFlipper
+            android:id="@+id/vf_carrusel"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="60dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="10dp"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            android:padding="10dp"
+            android:text="Visitanos en: "
+            android:textSize="22dp"
+            android:textStyle="italic"
+            tools:ignore="TextViewEdits" />
+
+        <TextView
+            android:id="@+id/hyper_link"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:text="@string/link_c_p"
+            android:textSize="22dp"
+        />
+
+
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

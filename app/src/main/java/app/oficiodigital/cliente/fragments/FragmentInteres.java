@@ -4,19 +4,20 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,18 +28,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.LoginActivity;
-import app.oficiodigital.cliente.activities.ViewDSchool;
 import app.oficiodigital.cliente.activities.principalMenu;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.ModelsDB.Phone;
+import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
+import app.oficiodigital.cliente.models.Request.DatosSchool;
+import app.oficiodigital.cliente.models.Request.Intereses;
+import app.oficiodigital.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.oficiodigital.cliente.models.Responses;
-import app.oficiodigital.cliente.notifications.Alert;
+import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,12 +62,20 @@ public class FragmentInteres extends Fragment {
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
     /*private Button guardar, match;*/
+    ArrayAdapter<String> adapter_cp;
+
+    String phones = "", phone = "";
+    String id = "", id2 = "", id3= "";
+
+    FragmentInteres fragment_interes;
+    DataSchool dataSchool;
+    ViewDtSchool viewDtSchool;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_interes, container, false);
-
 
 
 //------------------------------------------------------------------------------
@@ -82,102 +101,8 @@ public class FragmentInteres extends Fragment {
         select3 = (TextView) view.findViewById(R.id.select3);
         guardar = (Button) view.findViewById(R.id.btn_guardar);
 
-               /* guardar = (Button) view.findViewById(R.id.btn_guardar);
-                match = (Button) view.findViewById(R.id.btn_match);*/
+        getDataIntereses();
 
-       /* lugares.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Iniciar juego desde el fragment", Toast.LENGTH_SHORT).show();*/
-
-guardar.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-
-            codigop.setError(null);
-            codigop2.setError(null);
-            codigop3.setError(null);
-
-
-            String cp = codigop.getText().toString();
-            String estd = estado.getText().toString();
-            String mun = muni.getText().toString();
-            String colo = select.getText().toString();
-
-            String cp2 = codigop2.getText().toString();
-            String estd2 = estado2.getText().toString();
-            String mun2 = muni2.getText().toString();
-            String colo2 = select2.getText().toString();
-
-            String cp3 = codigop3.getText().toString();
-            String estd3 = estado3.getText().toString();
-            String mun3 = muni3.getText().toString();
-            String colo3 = select3.getText().toString();
-
-            /*String guard = guardar.*/
-
-
-
-
-            if (TextUtils.isEmpty(cp)) {
-                codigop.setError(getString(R.string.error_campo_oblogatorio));
-                codigop.requestFocus();
-                return;
-            }
-            if (TextUtils.isEmpty(cp2)) {
-                codigop2.setError(getString(R.string.error_campo_oblogatorio));
-                codigop2.requestFocus();
-                return;
-            }
-            if (TextUtils.isEmpty(cp3)) {
-                codigop3.setError(getString(R.string.error_campo_oblogatorio));
-                codigop3.requestFocus();
-                return;
-            }
-
-
-            Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
-
-
-            //Envio a BD
-            HashMap<String, String> params = new HashMap<>();
-
-            params.put("c_postal", cp);
-            params.put("estado", estd);
-            params.put("municipio", mun);
-            params.put("colonia", colo);
-
-            params.put("c_postal2", cp2);
-            params.put("estado2", estd2);
-            params.put("municipio2", mun2);
-            params.put("colonia2", colo2);
-
-            params.put("c_postal3", cp3);
-            params.put("estado3", estd3);
-            params.put("municipio3", mun3);
-            params.put("colonia3", colo3);
-
-
-
-            Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroIntereses(params);
-            call.enqueue(new Callback<Responses>() {
-
-                @Override
-                public void onResponse(Call<Responses> call, Response<Responses> response) {
-                }
-
-                @Override
-                public void onFailure(Call<Responses> call, Throwable t) {
-
-                }
-            });
-        /*startActivity(new Intent(this, DataSchool.class));
-        alerta();*/
-            Intent intent = new Intent(getContext(), principalMenu.class);
-            startActivity(intent);
-
-    }
-});
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -211,10 +136,10 @@ guardar.setOnClickListener(new View.OnClickListener() {
                             estado.setText(" " + esta);
                         }
 
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
+                        adapter_cp = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
                         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia.setAdapter(adapter);
+                        adapter_cp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        colonia.setAdapter(adapter_cp);
 
                         colonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             public void onItemSelected(AdapterView<?> adapter, View view,
@@ -365,25 +290,229 @@ guardar.setOnClickListener(new View.OnClickListener() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
-        //--------------------------------------------------------------------
         return view;
     }
 
+    public void guardarMetodo(){
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new DataSchool()).addToBackStack(null).commit();
 
-    private void alerta() {
-        String msg = getString(R.string.creando);
-        ProgressDialog progress = new ProgressDialog(getContext());
-        progress.setTitle("Guardando datos");
-        progress.setMessage(msg);
-        progress.show();
+                codigop.setError(null);
+
+                String cp = codigop.getText().toString();
+                String estd = estado.getText().toString().trim();
+                String mun = muni.getText().toString();
+                String colo = select.getText().toString();
+
+                String cp2 = codigop2.getText().toString();
+                String estd2 = estado2.getText().toString().trim();
+                String mun2 = muni2.getText().toString();
+                String colo2 = select2.getText().toString();
+
+                String cp3 = codigop3.getText().toString();
+                String estd3 = estado3.getText().toString().trim();
+                String mun3 = muni3.getText().toString();
+                String colo3 = select3.getText().toString();
+
+                //tring guard = guardar
+
+
+                if (TextUtils.isEmpty(cp)) {
+                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp2)) {
+                    codigop2.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop2.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp3)) {
+                    codigop3.setError(getString(R.string.error_campo_oblogatorio));
+                    codigop3.requestFocus();
+                    return;
+                }
+
+
+                Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+
+                List<Phone> userId = Phone.listAll(Phone.class);
+                for (Phone phon : userId) {
+
+
+                    phone = phon.getPhone();
+                }
+
+                //Envio a BD
+                HashMap<String, String> params = new HashMap<>();
+
+                List<Intereses> intereses = new ArrayList<Intereses>();
+                Intereses codigos = new Intereses();
+                codigos.setCodigo(cp);
+                codigos.setColonia(colo);
+                codigos.setMunicipio(mun);
+                codigos.setEstado(estd);
+                codigos.setTelefono(phone);
+
+                intereses.add(codigos);
+                Intereses codigos1 = new Intereses();
+                codigos1.setCodigo(cp2);
+                codigos1.setColonia(colo2);
+                codigos1.setMunicipio(mun2);
+                codigos1.setEstado(estd2);
+                codigos1.setTelefono(phone);
+
+                intereses.add(codigos1);
+                Intereses codigos2 = new Intereses();
+                codigos2.setCodigo(cp3);
+                codigos2.setColonia(colo3);
+                codigos2.setMunicipio(mun3);
+                codigos2.setEstado(estd3);
+                codigos2.setTelefono(phone);
+
+                intereses.add(codigos2);
+
+
+                JSONObject jResult = new JSONObject();
+                JSONArray jArray = new JSONArray();
+
+                for (int i = 0; i < intereses.size(); i++) {
+                    JSONObject jGroup = new JSONObject();
+                    try {
+                        jGroup.put("codigo", intereses.get(i).getCodigo());
+                        jGroup.put("colonia", intereses.get(i).getColonia());
+                        jGroup.put("municipio", intereses.get(i).getMunicipio());
+                        jGroup.put("estado", intereses.get(i).getEstado());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        jGroup.put("telefono", phone);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    jArray.put(jGroup);
+                }
+
+                params.put("intereses", jArray.toString());
+
+
+                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroInte(params, phone);
+                call.enqueue(new Callback<Responses>() {
+
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+
+                    }
+                });
+
+                getDataIntereses();
+            }
+
+        });
+
     }
-
-   /* public void guardar(View view) {
-
+    private void getDataIntereses() {
         codigop.setError(null);
         codigop2.setError(null);
         codigop3.setError(null);
 
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
+
+            phones = pho.getPhone();
+
+        }
+        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
+        callVersiones.enqueue(new Callback<Responses>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<Responses> call, Response<Responses> response) {
+                    if (response.body().getCode() == 200) {
+                        Call<List<DatosIntereses>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getItereses(phones);
+                        callVersiones1.enqueue(new Callback<List<DatosIntereses>>() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+                                List<DatosIntereses> ejemplo = response.body();
+
+                        List<String> list = new ArrayList<String>();
+                        List<String> list2 = new ArrayList<String>();
+                        for (DatosIntereses eje : ejemplo) {
+
+                            list.add(eje.getCodigo());
+                        list2.add(eje.getId());
+
+
+                        for (int i = 0; i < list.size(); i++) {
+                            if (i == 0) {
+                                codigop.setText(list.get(i));
+                                colonia.setEnabled(false);
+                                codigop.setEnabled(false);
+                                id = list2.get(i);
+                            } else if (i == 1) {
+                                codigop2.setText(list.get(i));
+                                colonia2.setEnabled(false);
+                                codigop2.setEnabled(false);
+                                id2 = list2.get(i);
+                            } else if (i == 2) {
+                                codigop3.setText(list.get(i));
+                                colonia3.setEnabled(false);
+                                codigop3.setEnabled(false);
+                                id3 = list2.get(i);
+                            }
+                        }
+
+                        guardar.setText("modificar");
+                        guardar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                modificarMetodo();
+                            }
+                        });
+
+                        }
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<DatosIntereses>> call, Throwable throwable) {
+
+                            }
+                        });
+
+                    }else if(response.body().getCode() == 202){
+
+                        guardarMetodo();
+                    }
+
+            }
+            @Override
+            public void onFailure(Call<Responses> call, Throwable t) {
+                L.error("getDataIntereses " + t.getMessage());
+            }
+        });
+    }
+
+    private void modificar(){
+        List<Phone> userId = Phone.listAll(Phone.class);
+        for (Phone phon : userId) {
+
+
+            phone = phon.getPhone();
+        }
+
+       // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
+        codigop.setError(null);
 
         String cp = codigop.getText().toString();
         String estd = estado.getText().toString();
@@ -400,82 +529,149 @@ guardar.setOnClickListener(new View.OnClickListener() {
         String mun3 = muni3.getText().toString();
         String colo3 = select3.getText().toString();
 
-        *//*String guard = guardar.*//*
-
-
-
-
-        if (TextUtils.isEmpty(cp)) {
-            codigop.setError(getString(R.string.error_campo_oblogatorio));
-            codigop.requestFocus();
-            return;
-        }
-        if (TextUtils.isEmpty(cp2)) {
-            codigop2.setError(getString(R.string.error_campo_oblogatorio));
-            codigop2.requestFocus();
-            return;
-        }
-        if (TextUtils.isEmpty(cp3)) {
-            codigop3.setError(getString(R.string.error_campo_oblogatorio));
-            codigop3.requestFocus();
-            return;
-        }
-
-
-        Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
-
-
-        //Envio a BD
         HashMap<String, String> params = new HashMap<>();
 
-        params.put("c_postal", cp);
-        params.put("estado", estd);
-        params.put("municipio", mun);
-        params.put("colonia", colo);
+        List<Intereses> intereses = new ArrayList<Intereses>();
+        Intereses codigos = new Intereses();
+        codigos.setId(id);
+        codigos.setCodigo(cp);
+        codigos.setColonia(colo);
+        codigos.setMunicipio(mun);
+        codigos.setEstado(estd);
+        codigos.setTelefono(phone);
 
-        params.put("c_postal2", cp2);
-        params.put("estado2", estd2);
-        params.put("municipio2", mun2);
-        params.put("colonia2", colo2);
+        intereses.add(codigos);
+        Intereses codigos1 = new Intereses();
+        codigos1.setId(id2);
+        codigos1.setCodigo(cp2);
+        codigos1.setColonia(colo2);
+        codigos1.setMunicipio(mun2);
+        codigos1.setEstado(estd2);
+        codigos1.setTelefono(phone);
 
-        params.put("c_postal3", cp3);
-        params.put("estado3", estd3);
-        params.put("municipio3", mun3);
-        params.put("colonia3", colo3);
+        intereses.add(codigos1);
+        Intereses codigos2 = new Intereses();
+        codigos2.setId(id3);
+        codigos2.setCodigo(cp3);
+        codigos2.setColonia(colo3);
+        codigos2.setMunicipio(mun3);
+        codigos2.setEstado(estd3);
+        codigos2.setTelefono(phone);
+
+        intereses.add(codigos2);
+
+        JSONObject jResult = new JSONObject();
+        JSONArray jArray = new JSONArray();
+
+        for (int i = 0; i < intereses.size(); i++) {
+            JSONObject jGroup = new JSONObject();
+            try {
+                jGroup.put("id", intereses.get(i).getId());
+                jGroup.put("codigo", intereses.get(i).getCodigo());
+                jGroup.put("colonia", intereses.get(i).getColonia());
+                jGroup.put("municipio", intereses.get(i).getMunicipio());
+                jGroup.put("estado", intereses.get(i).getEstado().trim());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                jGroup.put("telefono", phone);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            jArray.put(jGroup);
+        }
+
+        params.put("intereses", jArray.toString());
 
 
-
-        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroIntereses(params);
-        call.enqueue(new Callback<Responses>() {
-
+        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateInte(params, phone);
+        callVersiones.enqueue(new Callback<Responses>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<Responses> call, Response<Responses> response) {
+
             }
 
             @Override
             public void onFailure(Call<Responses> call, Throwable t) {
 
             }
+
         });
-        *//*startActivity(new Intent(this, DataSchool.class));
-        alerta();*//*
-        Intent intent = new Intent(getActivity(), ViewDSchool.class);
-        startActivity(intent);
-    }*/
 
-
-   /* @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        getDataIntereses();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    private void modificarMetodo(){
+        codigop.setError(null);
+        codigop2.setError(null);
+        codigop3.setError(null);
+
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        for (Phone pho : list1) {
+
+            phones = pho.getPhone();
+
+        }
+        Call<List<DatosIntereses>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getItereses(phones);
+        callVersiones.enqueue(new Callback<List<DatosIntereses>>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<List<DatosIntereses>> call, Response<List<DatosIntereses>> response) {
+
+                List<DatosIntereses> respuestas = response.body();
+                List<String> list = new ArrayList<String>();
+                List<String> list2 = new ArrayList<String>();
+
+
+                for (DatosIntereses res : respuestas) {
+                    if (res.getCodigo() == null) {
+                        guardarMetodo();
+                    }else {
+
+                        list.add(res.getCodigo());
+                        list2.add(res.getId());
+
+                        for(int i = 0; i<list.size(); i++){
+                            if(i==0){
+                                codigop.setText(list.get(i));
+                                codigop.setEnabled(true);
+                                colonia.setEnabled(true);
+                                id = list2.get(i);
+                            }else if(i==1){
+                                codigop2.setText(list.get(i));
+                                codigop2.setEnabled(true);
+                                colonia2.setEnabled(true);
+                                id2 = list2.get(i);
+                            } else if(i==2){
+                                codigop3.setText(list.get(i));
+                                codigop3.setEnabled(true);
+                                colonia3.setEnabled(true);
+                                id3 = list2.get(i);
+                            }
+                        }
+
+
+                        guardar.setText("guardar");
+                        guardar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                modificar();
+                            }
+                        });
+
+
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<DatosIntereses>> call, Throwable t) {
+                L.error("getDataIntereses " + t.getMessage());
+            }
+        });
 
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }*/
 }
+

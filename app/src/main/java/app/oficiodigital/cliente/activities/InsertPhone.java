@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import app.oficiodigital.cliente.R;
 
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +39,8 @@ public class InsertPhone extends BaseActivity {
     private TextView token1;
     private TextInputLayout pho;
 
+    private ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,16 @@ public class InsertPhone extends BaseActivity {
         phone = (EditText) findViewById(R.id.phone);
         pho = (TextInputLayout)findViewById(R.id.ti_phone);
         token1 = (TextView)findViewById(R.id.token);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         String token = getIntent().getStringExtra("tokenPhone");
         token1.setText(token);
@@ -86,8 +100,10 @@ public class InsertPhone extends BaseActivity {
         } else {
             pho.setErrorEnabled(false);
 
+
             HashMap<String, String> params = new HashMap<>();
             params.put("phone", phon);
+
 
             Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().generate(params);
             call.enqueue(new Callback<Responses>() {
@@ -101,6 +117,7 @@ public class InsertPhone extends BaseActivity {
                             Intent inte = new Intent(InsertPhone.this, InsertCode.class);
                             inte.putExtra("phone", phone.getText().toString());
                             inte.putExtra("tokenPhone", token1.getText().toString());
+                            alerta();
                             startActivity(inte);
                         }
                     }
@@ -116,5 +133,10 @@ public class InsertPhone extends BaseActivity {
 
         }
 
+    }
+
+    private void alerta() {
+        String msg = getString(R.string.cargando_msg);
+        LoadingDialog.show(this, msg);
     }
 }

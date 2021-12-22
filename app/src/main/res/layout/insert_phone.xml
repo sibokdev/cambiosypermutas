@@ -7,18 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".activities.InsertPhone">
 
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_height="200dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Para utilizar oficio digital es necesario que ingreses tu número de celular"
+            android:text="Para poder utilizar cambios y permutas es necesario que ingreses tu número de celular"
             android:textSize="18dp"
             android:padding="10dp"
             android:gravity="center"

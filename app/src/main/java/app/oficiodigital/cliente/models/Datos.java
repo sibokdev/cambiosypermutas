@@ -16,9 +16,10 @@ public class Datos {
     String municipio;
     String calle;
     String colonia;
+    String estado;
 
     public Datos(String id, String name, String surname1, String surname2, String email,
-                 String phone, String phone2, String tokenPhone, String municipio, String calle,
+                 String phone, String phone2, String tokenPhone, String estado,String municipio, String calle,
                  String colonia) {
         this.id = id;
         this.name = name;
@@ -31,6 +32,14 @@ public class Datos {
         this.municipio = municipio;
         this.calle = calle;
         this.colonia = colonia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getMunicipio() {

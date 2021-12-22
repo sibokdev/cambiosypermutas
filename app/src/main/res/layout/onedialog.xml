@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/tv_titu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:shadowColor="#B61515"
+            android:text="Obtén acceso durante 6 meses a búsquedas ilimitadas"
+            android:textAlignment="center"
+            android:textColor="#306FA1"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_pay"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/wallet"
+            />
+
+        <TextView
+            android:id="@+id/fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="160dp"
+            android:textAlignment="center"
+            android:text="Fecha de inicio:"
+            android:textSize="22dp" />
+        <TextView
+            android:id="@+id/tv_fechapago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
+            android:hint="Fecha"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/fechafin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="160dp"
+            android:textAlignment="center"
+            android:text="Fecha fín:"
+            android:textSize="22dp" />
+        <TextView
+            android:id="@+id/tv_fechapagofin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
+            android:hint="Fecha"
+            android:textSize="22dp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="345dp"
+            android:layout_marginEnd="60dp"
+            android:textAlignment="center"
+            android:text="Total: $100 pesos"
+            android:textSize="28dp" />
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="395dp"
+            android:layout_marginStart="75dp"
+            android:text="Pagar"
+            android:textSize="20dp"
+            android:background="@drawable/boton_redondo"
+
+            />
+
+        <ImageView
+            android:id="@+id/imageViewClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints,VectorDrawableCompat" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

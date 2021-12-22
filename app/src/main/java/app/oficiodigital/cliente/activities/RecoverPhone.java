@@ -2,8 +2,10 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,6 +28,7 @@ public class RecoverPhone extends BaseActivity {
 
     private EditText phone;
     private TextInputLayout pho;
+    private ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,15 @@ public class RecoverPhone extends BaseActivity {
 
         phone = (EditText)findViewById(R.id.phone);
         pho = (TextInputLayout)findViewById(R.id.ti_phone);
+        back = (ImageView) findViewById(R.id.back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
     }
 
     public void enviar(View view){
@@ -61,6 +72,7 @@ public class RecoverPhone extends BaseActivity {
                         }else{
                             Intent inte = new Intent(RecoverPhone.this, RecoverCode.class);
                             inte.putExtra("phone", phone.getText().toString());
+                            openLoadingDialog();
                             startActivity(inte);
                         }
                     }
@@ -76,6 +88,20 @@ public class RecoverPhone extends BaseActivity {
 
         }
 
+    }
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 
 }

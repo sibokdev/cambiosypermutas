@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ public class RecoverCode extends BaseActivity {
     private EditText code;
     private TextInputLayout codigo;
     private TextView phone;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,16 @@ public class RecoverCode extends BaseActivity {
         code = (EditText) findViewById(R.id.codigo);
         phone = (TextView)findViewById(R.id.phone);
         codigo = (TextInputLayout)findViewById(R.id.ti_code);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
 
         String phon = getIntent().getStringExtra("phone");
@@ -84,6 +97,7 @@ public class RecoverCode extends BaseActivity {
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
                     Intent inte = new Intent(RecoverCode.this, AnswerQuestions.class);
                     inte.putExtra("phone", phone.getText().toString());
+                    openLoadingDialog();
                     startActivity(inte);
 
                 }
@@ -131,5 +145,20 @@ public class RecoverCode extends BaseActivity {
         alertDialog.show();
 
     }
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
+    }
+
 
 }

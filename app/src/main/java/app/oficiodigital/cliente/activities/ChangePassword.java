@@ -2,6 +2,7 @@ package app.oficiodigital.cliente.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,6 +19,7 @@ import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +48,7 @@ public class ChangePassword extends BaseActivity{
         ti_con = (TextInputLayout)findViewById(R.id.ti_confir);
 
 
-        String phon = getIntent().getStringExtra("phone");
+        phon = getIntent().getStringExtra("phone");
 
         phone.setText(phon);
 
@@ -94,11 +96,6 @@ public class ChangePassword extends BaseActivity{
     }
 
     public void cabiar(View view) {
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            phon = pho.getPhone();
-
-        }
 
         if (contra.length() == 0) {
             ti_pass.setError("Inserta Contraseña");
@@ -126,7 +123,28 @@ public class ChangePassword extends BaseActivity{
 
 
             Intent inte = new Intent(this, LoginActivity.class);
+            //alerta();
+            openLoadingDialog();
             startActivity(inte);
         }
     }
+
+    private void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
+    }
+
+    private void alerta() {
+        String msg = getString(R.string.contra_actu);
+        LoadingDialog.show(getApplication(), msg);
+    }
+
 }

@@ -101,35 +101,38 @@
         android:id="@+id/principal_payment_method"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Convertir en método de pago principal"
-        android:textColor="@color/greyNormal"
-        android:padding="10dp"
+        android:layout_below="@+id/cvv"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/cvv"/>
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:text="Convertir en método de pago principal"
+        android:textColor="@color/greyNormal" />
 
     <CheckBox
         android:id="@+id/main_credit_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_alignBottom="@+id/principal_payment_method"
+        android:layout_alignParentEnd="true"
         android:checked="true"
         android:enabled="false"
-        app:buttonTint="@color/greenNormal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/principal_payment_method" />
+        android:padding="10dp"
+        app:buttonTint="@color/greenDarli" />
 
 
     <Button
         android:id="@+id/delete_credit_card"
-        style="@style/ButtonCancel"
+        android:background="@drawable/boton_redondo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_document"
-        android:layout_margin="10dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/delete_document" />
 
 
 </RelativeLayout>

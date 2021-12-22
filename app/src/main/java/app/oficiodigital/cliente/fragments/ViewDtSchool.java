@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.Intereses;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.Request.DatosSchool;

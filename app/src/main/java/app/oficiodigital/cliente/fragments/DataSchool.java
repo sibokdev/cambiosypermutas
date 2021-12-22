@@ -1,9 +1,9 @@
 package app.oficiodigital.cliente.fragments;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,10 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,21 +31,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.MapView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
-import app.oficiodigital.cliente.activities.Intereses;
-import app.oficiodigital.cliente.activities.ViewDSchool;
+import app.oficiodigital.cliente.activities.LoginActivity;
+import app.oficiodigital.cliente.activities.principalMenu;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.models.Ejemplo;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.models.ModelsDB.Token;
-import app.oficiodigital.cliente.models.ModelsDB.TokenAuth;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
+import app.oficiodigital.cliente.notifications.LoadingDialog;
 import app.oficiodigital.cliente.utils.L;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,8 +67,30 @@ public class DataSchool extends Fragment {
     private SeekBar seekBar;
     private Button  guardar;
     private int datos;
+
+    private TextInputLayout ti_nombre_escuela, ti_clave, ti_zona, ti_tel, ti_codigop, ti_nom_dir;
+
     ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln;
 
+    private int aniosAntiguedad=0;
+    private int nivel = 0;
+    private int turno = 0;
+    private int categoria = 0;
+    private int tipo = 0;
+    private int cont_nombramiento = 0;
+    private int nota_des = 0;
+    private int suj_proced = 0;
+
+/*    String esc = "";
+    String clv ="";
+    String zon ="";
+    String tl ="";
+    String cp ="";
+    String nom_direc ="";
+    String estd ="";
+    String mun ="";
+    String colo ="";
+    String sal ="";*/
 
     String phones = "", id = "";
 
@@ -117,7 +138,7 @@ public class DataSchool extends Fragment {
 
         //definimos el spinner
         onivel_esc = (Spinner) view.findViewById(R.id.sp_nivel_esc);
-        /* viewnivesco =(TextView) view.findViewById(R.id.tv_nivesco);*/
+
 
         oturno = (Spinner) view.findViewById(R.id.sp_turno);
         ocategoria = (Spinner) view.findViewById(R.id.sp_categoria);
@@ -128,190 +149,149 @@ public class DataSchool extends Fragment {
         onota = (Spinner) view.findViewById(R.id.sp_not_desf);
         oprocedimiento = (Spinner) view.findViewById(R.id.sp_proc_Adm);
 
-
         seekBar = (SeekBar) view.findViewById(R.id.seekBar_anios);
 
 
-        guardar = (Button) view.findViewById(R.id.guardar);
+        ti_nombre_escuela = (TextInputLayout) view.findViewById(R.id.ti_nombre_escuela);
+        ti_clave =(TextInputLayout) view.findViewById(R.id.ti_clave);
+        ti_zona = (TextInputLayout) view.findViewById(R.id.ti_zona);
+        ti_tel = (TextInputLayout) view.findViewById(R.id.ti_tel);
+        ti_codigop = (TextInputLayout) view.findViewById(R.id.ti_codigop);
+        ti_nom_dir = (TextInputLayout) view.findViewById(R.id.ti_nom_dir);
 
+        guardar = (Button) view.findViewById(R.id.guardar);
+      //  guardar.setEnabled(true);
         getDataSchool();
 
-
-
-        /*guardar.setOnClickListener(new View.OnClickListener() {
+            guardar.setEnabled(true);
+        //Validaciones setError campos EditText
+        //------------nombreescuela
+        oescuela.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
-
-                oescuela.setError(null);
-                oclave.setError(null);
-                ozona.setError(null);
-                otel.setError(null);
-                codigop.setError(null);
-                onom_dir.setError(null);
-                salida.setError(null);
-
-
-                String esc = oescuela.getText().toString();
-                String clv = oclave.getText().toString();
-                String zon = ozona.getText().toString();
-                String tl = otel.getText().toString();
-                String cp = codigop.getText().toString();
-                String nom_direc = onom_dir.getText().toString();
-                String estd = estado.getText().toString();
-                String mun = muni.getText().toString();
-                String colo = select.getText().toString();
-                String sal = salida.getText().toString();
-
-
-
-                //Estos métodos se ejecutará cuando se presione el botón
-                String seleccion = onivel_esc.getSelectedItem().toString();
-               *//* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
-               if (seleccion.equals("Preescolar")) {
-                } else if (seleccion.equals("Primaria")) {
-                }else if (seleccion.equals("Secundaria")) {
-                }
-
-                //guardado de seleccion spinnner turno
-                String seleccion_tn = oturno.getSelectedItem().toString();
-                if (seleccion_tn.equals("Matutino")) {
-                } else if (seleccion_tn.equals("Vespertino")) {
-                }
-
-                //guardado de seleccion spinnner rol
-                String seleccion_ct = ocategoria.getSelectedItem().toString();
-                if (seleccion_ct.equals("Docente")) {
-                } else if (seleccion_ct.equals("Subdirector")) {
-                } else if (seleccion_ct.equals("Director")) {
-                }
-
-                //Sleccion spinnner tipo plantel
-                String seleccion_tp = otipo_plantel.getSelectedItem().toString();
-                if (seleccion_tp.equals("Municipal")) {
-                } else if (seleccion_tp.equals("Estatal")) {
-                } else if (seleccion_tp.equals("Federal")) {
-                } else if (seleccion_tp.equals("Federalizado")) {
-                }
-
-                //Sleccion spinnner nombramiento
-                String seleccion_nombram = spinombramiento.getSelectedItem().toString();
-                if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
-                } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
-                }
-
-                //Sleccion spinnner nota
-                String seleccion_nota = onota.getSelectedItem().toString();
-                if (seleccion_nota.equals("Si")) {
-                } else if (seleccion_nota.equals("No")) {
-                }
-
-                //Sleccion spinnner procedimiento
-                String seleccion_proc = oprocedimiento.getSelectedItem().toString();
-                if (seleccion_proc.equals("Si")) {
-                } else if (seleccion_proc.equals("No")) {
-                }
-
-
-                //Validaciones campos
-                if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
-                    ozona.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
-                    otel.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
-                    onom_dir.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(sal)) {
-                    salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
-                    return;
-                }
-
-
-                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-
-
-                //Envio a BD
-                HashMap<String, String> params = new HashMap<>();
-                params.put("nombre_esc", esc);
-                params.put("clave_esc", clv);
-                params.put("nivel_escolar", seleccion);
-                params.put("turno", seleccion_tn);
-                params.put("zona_esc", zon);
-                params.put("telefono", tl);
-                params.put("c_postal", cp);
-                params.put("estado", estd);
-                params.put("municipio", mun);
-                params.put("colonia", colo);
-                params.put("nombre_direc", nom_direc);
-                params.put("rol", seleccion_ct);
-                params.put("tipo_plantel", seleccion_tp);
-
-                params.put("nombramiento", seleccion_nombram);
-                params.put("labor", sal);
-                params.put("nota", seleccion_nota);
-                params.put("procedimiento", seleccion_proc);
-
-                List<TokenAuth> userId = TokenAuth.listAll(TokenAuth.class);
-                for (TokenAuth ids : userId) {
-
-
-                    id = ids.getUserId();
-
-                }
-
-                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params,id);
-                call.enqueue(new Callback<Responses>() {
-
-                    @Override
-                    public void onResponse(Call<Responses> call, Response<Responses> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Responses> call, Throwable t) {
-
-                    }
-                });
-
-
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-        });*/
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditText(editable);
+            }
+        });
+        oescuela.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditText(((EditText) v).getText());
+                }
+            }
+        });
+        //------------claveescuela
+        oclave.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextclaveesc(editable);
+            }
+        });
+        oclave.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextclaveesc(((EditText) v).getText());
+                }
+            }
+        });
+        //------------zona
+        ozona.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextzona(editable);
+            }
+        });
+        ozona.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextzona(((EditText) v).getText());
+                }
+            }
+        });
+        //------------telesc
+        otel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTexttel(editable);
+            }
+        });
+        otel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTexttel(((EditText) v).getText());
+                }
+            }
+        });
+        //------------cp
+        codigop.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextcp(editable);
+            }
+        });
+        codigop.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextcp(((EditText) v).getText());
+                }
+            }
+        });
+        //------------nombredirec
+        onom_dir.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextnomdir(editable);
+            }
+        });
+        onom_dir.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextnomdir(((EditText) v).getText());
+                }
+            }
+        });
+
 
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -356,130 +336,336 @@ public class DataSchool extends Fragment {
                                 String slect = ocolonia.getSelectedItem().toString();
                                 select.setText(slect);
                             }
-
                             public void onNothingSelected(AdapterView<?> arg0) {
                             }
                         });
-
                     }
-
                     @Override
                     public void onFailure(Call<List<Ejemplo>> call, Throwable t) {
                         // Toast.makeText(getApplication(), "error de siempre", Toast.LENGTH_SHORT).show();
-
                     }
                 });
             }
-
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
 
+
 //Condicional seekbar antiguedad
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.post(new Runnable() {//En este caso también significa que el oyente sólo se desencadena en un elemento cambiante.
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                salida.setText((progress + " Años"));
-
-                if (progress <= 2) {
-                    Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(false);
-                } else if (progress > 2) {
-                    Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    guardar.setEnabled(true);
-                }
+            public void run() {
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        salida.setText((progress + " Años"));
+                        aniosAntiguedad=progress;
+                        if (aniosAntiguedad < 2) {
+                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                        } else if (aniosAntiguedad >= 2) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
             }
+        });
 
+        onivel_esc.post(new Runnable() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void run() {
+                onivel_esc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        nivel = i;
+                        if ( nivel== 0) {
+                            TextView errorText = (TextView) onivel_esc.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                            guardar.setEnabled(false);
+                        }else if (nivel > 0){
+                                guardar.setEnabled(true);
+
+                    }}
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
             }
+        });
 
+        oturno.post(new Runnable() {
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void run() {
+                oturno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        turno = i;
+                        if (turno == 0) {
+                            TextView errorText = (TextView) oturno.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                            }
+                        }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
+        });
+
+        ocategoria.post(new Runnable() {
+            @Override
+            public void run() {
+                ocategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        categoria = i;
+                        if (categoria == 0) {
+                            TextView errorText = (TextView) ocategoria.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
+        });
+
+        otipo_plantel.post(new Runnable() {
+            @Override
+            public void run() {
+                otipo_plantel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        tipo = i;
+                        if (tipo == 0) {
+                            TextView errorText = (TextView) otipo_plantel.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                            } else{
+                                guardar.setEnabled(true);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+
+            }
+        });
+
+        spinombramiento.post(new Runnable() {
+            @Override
+            public void run() {
+                spinombramiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        cont_nombramiento = position;
+                        if (cont_nombramiento == 0) {
+                            TextView errorText = (TextView) spinombramiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                            guardar.setEnabled(false);
+
+                        } else if (cont_nombramiento == 1) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                            guardar.setEnabled(true);
+                        } else {
+                            TextView errorText = (TextView) spinombramiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Lo sentimos, no cumple con los requisitos...Revise la convocatoria");
+                            guardar.setEnabled(false);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
+                    }
+                });
+            }
+        });
+
+        onota.post(new Runnable() {
+            @Override
+            public void run() {
+                onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        nota_des = i;
+                        if (nota_des == 0){
+                            TextView errorText = (TextView)onota.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                        } else if (nota_des == 1){
+                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                        guardar.setEnabled(false);
+                        }else{
+                            guardar.setEnabled(true);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+        });
+
+        oprocedimiento.post(new Runnable() {
+            @Override
+            public void run() {
+                oprocedimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        suj_proced = i;
+                        if (suj_proced == 0){
+                            TextView errorText = (TextView)oprocedimiento.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+
+                        } else if (suj_proced == 1){
+                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                            guardar.setEnabled(false);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
 
             }
         });
 
 
+
         //Arreglo, obtencion de valores de spinners
-        String[] opciones_ne = {"Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
-        String[] opciones_tn = {"Matutino", "Vespertino"};//arreglo turno
-        String[] opciones_cat = {"Docente", "Subdirector", "Director"};//arreglo rol
-        String[] opciones_tp = {"Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
-
-        /*Integer[] opciones_labor = {0,1,2,3,4,5,6,7,8,9};*/
-
-        String[] opciones_nombra = {"Si", "No"};
-        String[] opciones_nota = {"Si", "No"};
-        String[] opciones_proced = {"Si", "No"};
-
+        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
+        String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
+        String[] opciones_cat = {"Seleccione","Docente", "Subdirector", "Director"};//arreglo rol
+        String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
+        String[] opciones_nombra = {"Seleccione","Si", "No"};
+        String[] opciones_nota = {"Seleccione","Si", "No"};
+        String[] opciones_proced = {"Seleccione","Si", "No"};
 
         // NUeva clase comunicacion para spinner - layout
-         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
         onivel_esc.setAdapter(adapter);
         onivel_esc.setPrompt("Selecciona una opción");
 
         adapter_tn = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tn);
         oturno.setAdapter(adapter_tn);
+        oturno.setPrompt("Selecciona una opción");
 
         adapter_ct = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_cat);
         ocategoria.setAdapter(adapter_ct);
+        ocategoria.setPrompt("Selecciona una opción");
 
         adapter_tp = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tp);
         otipo_plantel.setAdapter(adapter_tp);
-
-
-        /*seekBar = new ArrayAdapter<Integer>(getActivity(), android.R.layout., opciones_labor);*/
-        /*seekBar = new SeekBarAdapter(this, R.layout., opciones_labor);*/
-
+        otipo_plantel.setPrompt("Selecciona una opción");
 
         adapter_nombra = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nombra);
         /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
         spinombramiento.setAdapter(adapter_nombra);
+        spinombramiento.setPrompt("Selecciona una opción");
+
 
         adapter_nota = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nota);
         onota.setAdapter(adapter_nota);
+        onota.setPrompt("Selecciona una opción");
 
         adapter_proce = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_proced);
         oprocedimiento.setAdapter(adapter_proce);
+        oprocedimiento.setPrompt("Selecciona una opción");
 
-
-        /*Spinner sp = findViewById(R.id.spinnerCategoriasReporteGastos);*/
-        spinombramiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (parent.getId()) {
-                    case R.id.sp_nombramiento:
-                        int seleccionado = spinombramiento.getSelectedItemPosition();
-                        if (seleccionado == 1) {
-                            Toast.makeText(getContext(), "No puede aplicar", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(false);
-                        } else {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(true);
-                        }
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Nada fue seleccionado. Por cierto, no he visto que este método se desencadene
-            }
-        });
 
         return view;
     }
 
-    public void guardarMetodo(){
+
+    private void validateEditText(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_nombre_escuela.setError(null);
+        } else {
+            ti_nombre_escuela.setError(" ");
+        }
+    }
+    private void validateEditTextclaveesc(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_clave.setError(null);
+        } else {
+            ti_clave.setError(" ");
+        }
+    }
+    private void validateEditTextzona(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_zona.setError(null);
+        } else {
+            ti_zona.setError(" ");
+        }
+    }
+    private void validateEditTexttel(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_tel.setError(null);
+        } else {
+            ti_tel.setError(" ");
+        }
+    }
+    private void validateEditTextcp(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_codigop.setError(null);
+        } else {
+            ti_codigop.setError(" ");
+        }
+    }
+    private void validateEditTextnomdir(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_nom_dir.setError(null);
+        } else {
+            ti_nom_dir.setError(" ");
+        }
+    }
+   ///////
+
+    private void alerta() {
+        String msg = getString(R.string.register_msg);
+        LoadingDialog.show(getActivity(), msg);
+    }
+
+    private void guardarMetodo() {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).addToBackStack(null).commit();
+               // FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                 oescuela.setError(null);
                 oclave.setError(null);
@@ -489,41 +675,92 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
+                if (aniosAntiguedad < 2) {
+                    guardar.setEnabled(false);
+                } else if (aniosAntiguedad >= 2) {
+                    guardar.setEnabled(true);
+                }
 
-                String esc = oescuela.getText().toString();
-                String clv = oclave.getText().toString();
-                String zon = ozona.getText().toString();
-                String tl = otel.getText().toString();
-                String cp = codigop.getText().toString();
-                String nom_direc = onom_dir.getText().toString();
-                String estd = estado.getText().toString();
-                String mun = muni.getText().toString();
-                String colo = select.getText().toString();
-                String sal = salida.getText().toString();
+                if ( nivel== 0){
+                    guardar.setEnabled(false);
+                } else if (nivel > 0){
+                    guardar.setEnabled(true);
+                }
 
+
+                if (turno == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+                if (categoria == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+                if (tipo == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+
+                if (cont_nombramiento == 0) {
+                    guardar.setEnabled(false);
+                } else if (cont_nombramiento == 1){
+                    guardar.setEnabled(true);
+                }else{
+                    guardar.setEnabled(false);
+                }
+
+
+                if (nota_des == 0){
+                    guardar.setEnabled(false);
+                } else if (nota_des == 1){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+
+                if (suj_proced == 0){
+                    guardar.setEnabled(false);
+                } else if (suj_proced == 1){
+                    guardar.setEnabled(false);
+                }else {
+                    guardar.setEnabled(true);
+                }
+
+                String esc = oescuela.getText().toString().trim();
+                String clv = oclave.getText().toString().trim();
+                String zon = ozona.getText().toString().trim();
+                String tl = otel.getText().toString().trim();
+                String cp = codigop.getText().toString().trim();
+                String nom_direc = onom_dir.getText().toString().trim();
+                String estd = estado.getText().toString().trim();
+                String mun = muni.getText().toString().trim();
+                String colo = select.getText().toString().trim();
+                String sal = salida.getText().toString().trim();
 
 
                 //Estos métodos se ejecutará cuando se presione el botón
                 String seleccion = onivel_esc.getSelectedItem().toString();
-                //* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
                 if (seleccion.equals("Preescolar")) {
                 } else if (seleccion.equals("Primaria")) {
                 }else if (seleccion.equals("Secundaria")) {
                 }
-
                 //guardado de seleccion spinnner turno
                 String seleccion_tn = oturno.getSelectedItem().toString();
                 if (seleccion_tn.equals("Matutino")) {
                 } else if (seleccion_tn.equals("Vespertino")) {
                 }
-
                 //guardado de seleccion spinnner rol
                 String seleccion_ct = ocategoria.getSelectedItem().toString();
                 if (seleccion_ct.equals("Docente")) {
                 } else if (seleccion_ct.equals("Subdirector")) {
                 } else if (seleccion_ct.equals("Director")) {
                 }
-
                 //Sleccion spinnner tipo plantel
                 String seleccion_tp = otipo_plantel.getSelectedItem().toString();
                 if (seleccion_tp.equals("Municipal")) {
@@ -531,24 +768,16 @@ public class DataSchool extends Fragment {
                 } else if (seleccion_tp.equals("Federal")) {
                 } else if (seleccion_tp.equals("Federalizado")) {
                 }
-
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
                 if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
                 } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
                 }
-
                 //Sleccion spinnner nota
                 String seleccion_nota = onota.getSelectedItem().toString();
                 if (seleccion_nota.equals("Si")) {
                 } else if (seleccion_nota.equals("No")) {
                 }
-
                 //Sleccion spinnner procedimiento
                 String seleccion_proc = oprocedimiento.getSelectedItem().toString();
                 if (seleccion_proc.equals("Si")) {
@@ -556,52 +785,46 @@ public class DataSchool extends Fragment {
                 }
 
 
+
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
+                    ti_nombre_escuela.setError(" ");
+                    ti_nombre_escuela.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
+                    ti_clave.setError(" ");
+                    ti_clave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
-                    ozona.requestFocus();
+                    ti_zona.setError(" ");
+                    ti_zona.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
-                    otel.requestFocus();
+                    ti_tel.setError(" ");
+                    ti_tel.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop.requestFocus();
+                    ti_codigop.setError(" ");
+                    ti_codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
-                    onom_dir.requestFocus();
+                    ti_nom_dir.setError(" ");
+                    ti_nom_dir.requestFocus();
                     return;
                 }
-                if (TextUtils.isEmpty(sal)) {
+              /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
-                    return;
-                }
 
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
                     return;
-                }
-
+                }*/
 
                 Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-
+                ((principalMenu)getActivity()).openLoadingDialog();
 
                 //Envio a BD
                 HashMap<String, String> params = new HashMap<>();
@@ -627,8 +850,7 @@ public class DataSchool extends Fragment {
                 List<Token> userId = Token.listAll(Token.class);
                 for (Token ids : userId) {
 
-
-                   id = ids.getUserId();
+                    id = ids.getUserId();
 
                 }
 
@@ -637,7 +859,9 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-
+                       // Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                        //alerta();
+                        // ((principalMenu)getActivity()).openLoadingDialog();
                     }
 
                     @Override
@@ -645,19 +869,19 @@ public class DataSchool extends Fragment {
 
                     }
                 });
-
+                getActivity().getSupportFragmentManager().beginTransaction().replace
+                        (R.id.conten,fragment_interes).addToBackStack(null).commit();
 
             }
         });
-
     }
+
     public void modificarMetodo(){
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
-
                 oescuela.setError(null);
                 oclave.setError(null);
                 ozona.setError(null);
@@ -666,6 +890,7 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
+               // oescuela.setSelection(oescuela.length());
 
                 String esc = oescuela.getText().toString();
                 String clv = oclave.getText().toString();
@@ -712,12 +937,7 @@ public class DataSchool extends Fragment {
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
                 if (seleccion_nombram.equals("No")) {
-                    //Toast.makeText(DataSchool.this,"No puede aplicar", Toast.LENGTH_SHORT).show();
-                    //   ((TextView)spinombramiento.getSelectedView()).setError("Error message");
-                    // lugares.setEnabled(false);
                 } else if (seleccion_nombram.equals("Si")) {
-                    //Toast.makeText(DataSchool.this,"Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                    // lugares.setEnabled(true);
                 }
 
                 //Sleccion spinnner nota
@@ -735,49 +955,47 @@ public class DataSchool extends Fragment {
 
                 //Validaciones campos
                 if (TextUtils.isEmpty(esc)) {
-                    oescuela.setError(getString(R.string.error_campo_oblogatorio));
-                    oescuela.requestFocus();
+                    ti_nombre_escuela.setError(" ");
+                    ti_nombre_escuela.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(clv)) {
-                    oclave.setError(getString(R.string.error_campo_oblogatorio));
-                    oclave.requestFocus();
+                    ti_clave.setError(" ");
+                    ti_clave.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(zon)) {
-                    ozona.setError(getString(R.string.error_campo_oblogatorio));
-                    ozona.requestFocus();
+                    ti_zona.setError(" ");
+                    ti_zona.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(tl)) {
-                    otel.setError(getString(R.string.error_campo_oblogatorio));
-                    otel.requestFocus();
+                    ti_tel.setError(" ");
+                    ti_tel.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
-                    codigop.requestFocus();
+                    ti_codigop.setError(" ");
+                    ti_codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(nom_direc)) {
-                    onom_dir.setError(getString(R.string.error_campo_oblogatorio));
-                    onom_dir.requestFocus();
+                    ti_nom_dir.setError(" ");
+                    ti_nom_dir.requestFocus();
                     return;
                 }
-                if (TextUtils.isEmpty(sal)) {
+              /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
-                    salida.requestFocus();
+
                     return;
-                }
+                }*/
 
-                if (TextUtils.isEmpty(seleccion_nombram)) {
-                    ((TextView) spinombramiento.getSelectedView()).setError("Debes contar con nombramiento");
-                    spinombramiento.requestFocus();
-                    return;
-                }
+                Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
-
-                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                //llamada de metodo de clase de activity a este fragment
+                //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
+                //((principalMenu)getActivity().openLoadingDialog();
 
 
                 //Envio a BD
@@ -814,7 +1032,9 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onResponse(Call<Responses> call, Response<Responses> response) {
-                      getDataSchool();
+                   // getDataSchool();
+                      //  Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                      //  alerta();
                     }
 
                     @Override
@@ -822,14 +1042,15 @@ public class DataSchool extends Fragment {
 
                     }
                 });
-
+                getDataSchool();
+               // ((principalMenu)getActivity()).openLoadingDialog();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).
+                        addToBackStack(null).commit();
 
             }
         });
 
     }
-
-
 
     private void getDataSchool() {
         oescuela.setError(null);
@@ -852,13 +1073,8 @@ public class DataSchool extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<List<DatosSchool>> call, Response<List<DatosSchool>> response) {
-
-
-
-
                 List<DatosSchool> respuestas = response.body();
                 List<String> list = new ArrayList<String>();
-
 
                 for (DatosSchool res : respuestas) {
                     if (res.getNombre_esc() == null) {
@@ -912,7 +1128,7 @@ public class DataSchool extends Fragment {
                         onom_dir.setText(nomdir);
                         onom_dir.setEnabled(false);
 
-                        String catego = "" + res.getCategoria();
+                        String catego = "" + res.getRol();
                         int sp_catego = adapter_ct.getPosition(catego);
                         ocategoria.setSelection(sp_catego);
                         ocategoria.setEnabled(false);
@@ -948,18 +1164,14 @@ public class DataSchool extends Fragment {
                         oprocedimiento.setSelection(sp_proced);
                         oprocedimiento.setEnabled(false);
 
-                        guardar.setText("modificar.");
+                        guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Modificar();
-                                //oescuela.setEnabled(true);
                             }
                         });
-
-
                     }
-
                 }
             }
             @Override
@@ -969,6 +1181,8 @@ public class DataSchool extends Fragment {
         });
 
     }
+
+
     public void Modificar() {
         Call<List<DatosSchool>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDataSchool(phones);
         callVersiones.enqueue(new Callback<List<DatosSchool>>() {

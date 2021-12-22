@@ -8,6 +8,8 @@ import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.Direccion;
 import app.oficiodigital.cliente.models.Ejemplo;
+import app.oficiodigital.cliente.models.Estados;
+import app.oficiodigital.cliente.models.Request.DatosIntereses;
 import app.oficiodigital.cliente.models.Request.DatosSchool;
 import app.oficiodigital.cliente.models.Responses;
 import app.oficiodigital.cliente.models.Respuestas;
@@ -23,6 +25,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -32,7 +35,7 @@ public class BovedaClient {
 
     private static BovedaClient INSTANCE_CLIENT = null;
     private static APIBovedaClient API_CLIENT = null;
-    private final String BASE_URL = "https://drber.com.mx/api/v1/";
+    private final String BASE_URL = "https://cambiosypermutas.com.mx/api/v1/";
     private OkHttpClient mHttpClient;
     private OkHttpClient.Builder mHttpBuilder;
 
@@ -57,15 +60,16 @@ public class BovedaClient {
         Call<List<Solicitudes>> getSolicitudes(@Path("phoneCliente") String phone);
 
         @POST("courier/validateEmail")
-
-
         Call<Responses> validateEmail(@FieldMap HashMap<String, String> params);
+
         @GET("query/info_cp/{codigo}?token=c213f0c9-2d13-4682-9a07-a889abc7c877")
         Call<List<Ejemplo>> getcode(@Path("codigo") String getCode);
 
         @GET("client/getCP{codigo}")
         Call<List<Ejemplo>> getCP(@Path("codigo") String codigo);
 
+        @GET("client/getEstados{phone}")
+        Call<List<Estados>> getEstados(@Path("phone") String phone);
 
         @GET("courier/Respuestas{phone}")
         Call<List<Respuestas>> getRespuestas(@Path("phone") String phone);
@@ -73,6 +77,25 @@ public class BovedaClient {
         @POST("courier/register")
         @FormUrlEncoded
         Call<Responses> register(@FieldMap HashMap<String, String> params);
+
+        @GET("client/Address{id}")
+        Call<List<Direccion>> getDirrecion(@Path("id") String id);
+
+        @GET("client/DataSchool{phone}")
+        Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
+
+        @GET("client/getIntereses{phone}")
+        Call<List<DatosIntereses>> getItereses(@Path("phone") String phone);
+
+        @GET("client/registroInteresess{phone}")
+        Call<Responses> getIteresess(@Path("phone") String phone);
+
+        @GET("client/DataIntereses{id}")
+        Call<List<DatosIntereses>> getDataIntereses(@Path("id") String phone);
+
+        @GET("client/getPagos{user_id}")
+        Call<Responses> getPago(@Path("user_id") String phone);
+//____________________
 
         @POST("courier/reenviarCode")
         @FormUrlEncoded
@@ -86,12 +109,6 @@ public class BovedaClient {
         Call<List<Datos>> getDatos(@Path("phone") String phone);
 
         @GET("client/Address{id}")
-        Call<List<Direccion>> getDirrecion(@Path("id") String id);
-
-        @GET("client/DataSchool{phone}")
-        Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
-//____________________
-
 
 
         @POST("client/updateStatusPago")
@@ -125,6 +142,15 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> registrarClientes(@FieldMap HashMap<String, String> params);
 
+        @POST("client/getCP")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getCp(@FieldMap HashMap<String, String> params);
+
+
+        @POST("client/getInformation")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getInfo(@FieldMap HashMap<String, String> params);
+
         @POST("client/solicitud")
         @FormUrlEncoded
         Call<Responses> solicitud(@FieldMap HashMap<String, String> params1);
@@ -141,9 +167,17 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> registroEscuela(@FieldMap HashMap<String, String> params, @Path("id") String id );
 
-        @POST("client/registroIntereses")
+        @POST("client/registroInteresess{phone}")
         @FormUrlEncoded
-        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params);
+        Call<Responses> registroIntereses(@FieldMap HashMap<String, String> params, String phone);
+
+        @POST("client/intereses{phone}")
+        @FormUrlEncoded
+        Call<Responses> registroInte(@FieldMap HashMap<String, String> params, @Path("phone")  String phone);
+
+        @PUT("client/updateIntereses{phone}")
+        @FormUrlEncoded
+        Call<Responses> updateInte(@FieldMap HashMap<String, String> params, @Path("phone") String phone);
 
 
     }

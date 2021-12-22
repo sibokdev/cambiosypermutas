@@ -1,8 +1,12 @@
 package app.oficiodigital.cliente.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.oficiodigital.cliente.R;
@@ -32,9 +38,14 @@ import app.oficiodigital.cliente.fragments.BusquedaFragment;
 import app.oficiodigital.cliente.fragments.FragmentInteres;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
+import app.oficiodigital.cliente.fragments.Share;
+import app.oficiodigital.cliente.models.Datos;
 import app.oficiodigital.cliente.models.ModelsDB.Phone;
 import app.oficiodigital.cliente.notifications.Alert;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /*import com.android.volley.toolbox.JsonArrayRequest;*/
 
@@ -57,6 +68,8 @@ public class principalMenu extends BaseActivity
     private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, colonia;
     private SeekBar seekBar;
     private Button lugares;
+
+    private ImageView back;
     private int datos;
     /*FragmentDS fragmentDS;*/
 
@@ -91,14 +104,59 @@ public class principalMenu extends BaseActivity
 
         }
 
-/*        imagen = (ImageView) hView.findViewById(R.id.foto);
+        imagen = (ImageView) hView.findViewById(R.id.foto);
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
-        phone = (TextView) hView.findViewById(R.id.phone);*/
+        phone = (TextView) hView.findViewById(R.id.phone);
+        
+       /* back = (ImageView) hView.findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "icon back", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        phone.setText(phon);
+        Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
+        callVersiones.enqueue(new Callback<List<Datos>>() {
+            @Override
+            public void onResponse(Call<List<Datos>> call, Response<List<Datos>> response) {
+
+                if (!response.isSuccessful()) {
+                    //colonia.("Code: " + response.code());
+                    return;
+                }
+
+                List<Datos> respuestas = response.body();
+                List<String> list = new ArrayList<String>();
+
+                for (Datos res : respuestas) {
+
+                    list.add(res.getName());
+                    String name = "";
+                    String correo = "";
+                    name += " " + res.getName();
+                    name += " " + res.getSurname1();
+                    name += " " + res.getSurname2();
+                    nombre.setText(name);
+
+                    correo = "" + res.getEmail();
+                    email.setText(correo);
+
+                }
+            }
+            @Override
+            public void onFailure (Call < List <Datos>> call, Throwable t){
+                //  L.error("getOficios " + t.getMessage());
+            }
+
+        });
 
 
 
-        fragmentManager = getSupportFragmentManager();
+            fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
 
@@ -109,18 +167,72 @@ public class principalMenu extends BaseActivity
         /*fragmentTransaction.addToBackStack(null);*/
         fragmentTransaction.commit();
 
-
-
-
-
-
-
-
     }
 
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
 
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
+    }
+
+    //control de pulsacion, boton atras
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==event.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de Cambios y permutas?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();//ocultar dialogo
+                        }
+                    });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
+    private void cerrarAplicacion() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon_fire_exit_ios)
+                .setTitle("¿Desea salir de Cambios y permutas?")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
+                        //finish(); Si solo quiere mandar la aplicación a segundo plano
+                    }
+                }).show();
+    }
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            cerrarAplicacion();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+  /*  @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -128,7 +240,7 @@ public class principalMenu extends BaseActivity
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -186,7 +298,7 @@ public class principalMenu extends BaseActivity
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
             case R.id.nav_compartir:
-                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                ft.replace(R.id.conten, new Share()).commit();
                 break;
 
         }

@@ -30,6 +30,10 @@
     <string name="loading_msg">cargando…</string>
     <string name="loading_contract_msg">creando…</string>
 
+    <string name="link_c_p">
+        <a href= "https://www.cambiosypermutas.com.mx">Cambios y permutas</a>
+    </string>
+
     <!-- Login Screen -->
     <string name="login_welcome_msg">¡Bienvenido a tu proceso de cambio de plaza!</string>
     <string name="login_email_label">Correo</string>
@@ -44,6 +48,10 @@
     <string name="logging_fail">No se pudo iniciar sesión</string>
     <string name="email_invalid">El correo no es valido</string>
     <string name="fields_empty">Ingresa todos los campos</string>
+    <string name="register_msg">Procesando registro</string>
+    <string name="cargando_msg">Cargando</string>
+    <string name="validando_codigo">Validando Código</string>
+    <string name="contra_actu">Contraseña actualizada</string>
 
     <!-- Recover Screen -->
     <string name="recover_welcome_msg">Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</string>
@@ -124,7 +132,7 @@
     <string name="zip">Código Postal</string>
     <string name="add_payment_method">AGREGAR MÉTODO DE PAGO</string>
     <string name="finish_signup">Para finalizar el registro, se realizará un cobro por</string>
-    <string name="finish_signup2">por concepto de suscripción anual al servicio de Bovéda de documentos</string>
+    <string name="finish_signup2">por concepto de suscripción anual al servicio de Cambios y permutas</string>
     <string name="signup_confirmation">Tu registro al servicio de Bóveda de documentos ha sido realizado con éxito.</string>
     <string name="pay_and_continue">PAGAR Y CONTINUAR</string>
     <string name="make_payment">Realizar pago</string>

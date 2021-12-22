@@ -24,7 +24,7 @@ public class CatalogsClient {
 
     private static CatalogsClient INSTANCE_CLIENT = null;
     private static APICatalogsClient API_CLIENT = null;
-    private final String BASE_URL = "https://drber.com.mx/";
+    private final String BASE_URL = "https://cambiosypermutas.com.mx/";
     private OkHttpClient mHttpClient;
     private OkHttpClient.Builder mHttpBuilder;
 

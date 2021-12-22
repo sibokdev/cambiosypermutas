@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DOXClient {
 
-    public static final String URL_IMAGES_BOVEDA = "https://drber.com.mx/api/v1/";
-    private static final String BASE_URL = "https://drber.com.mx/api/v1/";
+    public static final String URL_IMAGES_BOVEDA = "https://cambiosypermutas.com.mx/api/v1/";
+    private static final String BASE_URL = "https://cambiosypermutas.com.mx/api/v1/";
     private static DOXClient INSTANCE_CLIENT = null;
     private static APIDOXClient API_CLIENT = null;
     private OkHttpClient.Builder mHttpBuilder;
