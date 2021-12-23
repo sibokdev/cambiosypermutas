@@ -123,6 +123,10 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> updatePhone(@FieldMap HashMap<String, String> params);
 
+        @POST("client/updatePhone2")
+        @FormUrlEncoded
+        Call<Responses> updatePhone2(@FieldMap HashMap<String, String> params);
+
         @POST("client/insertPhone2{id}")
         @FormUrlEncoded
         Call<Responses> insertPhone(@Path("id") String id, @FieldMap HashMap<String, String> params);

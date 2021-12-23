@@ -17,6 +17,7 @@
       android:layout_marginStart="10dp"
       android:animateLayoutChanges="true">
 
+
     <TextView
         android:layout_width="50dp"
         android:layout_marginStart="10dp"
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_marginStart="10dp"
-        android:text=" * * * *  * * * *  * * * *"/>
+        android:text=" * * * *  * * * * "/>
     <TextView
         android:id="@+id/num"
         android:layout_width="wrap_content"
@@ -50,23 +51,25 @@
         android:background="@drawable/ic_baseline_delete"
         android:layout_marginTop="5dp"/>
 
-  </LinearLayout>
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="-------------------------------------------------------------------------------------------------"/>
 
-  <TextView
-      android:id="@+id/api"
-      android:visibility="gone"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/main"/>
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/token"/>
+  </LinearLayout>
+
+
+   <TextView
+       android:id="@+id/api"
+       android:visibility="gone"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"/>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/main"/>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/token"/>
+
+
+
+
 </LinearLayout>
