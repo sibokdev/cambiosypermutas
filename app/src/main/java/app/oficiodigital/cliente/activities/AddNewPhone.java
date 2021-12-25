@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class AddNewPhone extends BaseActivity {
 
-    private EditText phone;
+    private EditText nuevo, actual, confirmacion;
     private TextInputLayout ti_nuevo;
     private TextView id, phone2;
 
@@ -29,13 +29,14 @@ public class AddNewPhone extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_phone);
 
-        phone = (EditText)findViewById(R.id.nuevo);
+        nuevo = (EditText)findViewById(R.id.nuevo);
+        actual = (EditText) findViewById(R.id.actual);
         ti_nuevo = (TextInputLayout)findViewById(R.id.ti_nuevo);
         id = (TextView)findViewById(R.id.id);
         phone2 = (TextView) findViewById(R.id.phone2);
 
         String phon2 = getIntent().getStringExtra("phone");
-        phone2.setText(phon2);
+        actual.setText(phon2);
 
         String phon = getIntent().getStringExtra("id");
         id.setText(phon);
@@ -44,16 +45,19 @@ public class AddNewPhone extends BaseActivity {
 
     public void cambiar(View view){
 
-        if (phone.length() == 0) {
-            ti_nuevo.setError("Ingresa telefono");
+
+        if (nuevo.length() == 0) {
+            ti_nuevo.setError("Ingresa número de telefono");
         } else {
             ti_nuevo.setErrorEnabled(false);
-            String con = phone.getText().toString();
+            String con = nuevo.getText().toString();
+            String pho = id.getText().toString();
 
             HashMap<String, String> params = new HashMap<>();
-            params.put("phone2",con);
+            params.put("phone", con);
+            params.put("id", pho);
 
-            Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().insertPhone(id.getText().toString(), params);
+            Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().updatePhone2(params);
             call.enqueue(new Callback<Responses>() {
                 @Override
                 public void onResponse(Call<Responses> call, Response<Responses> response) {
@@ -67,13 +71,11 @@ public class AddNewPhone extends BaseActivity {
                 }
             });
 
+            String msg = getString(R.string.EditCorreo_msj);
+            LoadingDialog.show(this, msg);
+            Intent intent = new Intent(getApplication(), PrincipalPerfil.class);
+            intent.putExtra("phone", nuevo.getText().toString());
+            startActivity(intent);
         }
-
-        String msg = getString(R.string.InsertarPhone_msj);
-        LoadingDialog.show(this, msg);
-        Intent intent = new Intent(this, PrincipalPerfil.class);
-        intent.putExtra("phone", phone2.getText().toString());
-        startActivity(intent);
-
     }
 }

@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class EditEmail extends BaseActivity {
 
-    private EditText nuevo , confir;
+    private EditText nuevo , confir, actual;
     private TextView id, phone;
     private TextInputLayout ti_nuevo, ti_confir;
     private ImageView back;
@@ -49,6 +49,7 @@ public class EditEmail extends BaseActivity {
         confir = (EditText)findViewById(R.id.confirmacion);
         id = (TextView)findViewById(R.id.id);
         phone = (TextView) findViewById(R.id.phone);
+        actual = (EditText) findViewById(R.id.actual);
 
 
         ti_nuevo = (TextInputLayout)findViewById(R.id.ti_nuevo);
@@ -67,6 +68,8 @@ public class EditEmail extends BaseActivity {
 
         String phon = getIntent().getStringExtra("phone");
         id.setText(phon);
+        String correo = getIntent().getStringExtra("email");
+        actual.setText(correo);
 
         confir.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -137,6 +140,7 @@ public class EditEmail extends BaseActivity {
 
         Intent intent = new Intent(this, PrincipalPerfil.class);
         intent.putExtra("phone", id.getText().toString());
+
         String msg = getString(R.string.EditCorreo_msj);
         LoadingDialog.show(this, msg);
 

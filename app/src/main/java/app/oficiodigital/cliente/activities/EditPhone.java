@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class EditPhone extends BaseActivity {
 
-    private EditText nuevo , confir;
+    private EditText nuevo , confir, actual;
     private TextView id;
     private TextInputLayout ti_nuevo, ti_confir;
     private ImageView back;
@@ -35,6 +35,7 @@ public class EditPhone extends BaseActivity {
         setContentView(R.layout.activity_edit_phone);
 
         nuevo = (EditText)findViewById(R.id.nuevo);
+        actual = (EditText)findViewById(R.id.actual);
         confir = (EditText)findViewById(R.id.confirmacion);
         id = (TextView)findViewById(R.id.id);
 
@@ -51,14 +52,16 @@ public class EditPhone extends BaseActivity {
             }
         });
 
-        String phon = getIntent().getStringExtra("id");
-        id.setText(phon);
+        String idDato = getIntent().getStringExtra("id");
+        id.setText(idDato);
+        String phon = getIntent().getStringExtra("phone");
+        actual.setText(phon);
     }
 
     public void cambiar(View view) {
 
         if (nuevo.length() == 0) {
-            ti_nuevo.setError("Ingresa correo");
+            ti_nuevo.setError("Ingresa número de telefono");
         } else {
             ti_nuevo.setErrorEnabled(false);
             String con = nuevo.getText().toString();

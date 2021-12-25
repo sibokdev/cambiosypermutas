@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Agregar número teléfonico"
+            android:text="Editar número teléfonico"
             android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:gravity="center"
@@ -30,8 +30,23 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
-            android:id="@+id/ti_nuevo"
             android:layout_marginTop="60dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/actual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:inputType="number"
+                android:maxLength="10"
+                android:hint="Ingresa telefono actual"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:id="@+id/ti_nuevo"
+            android:layout_marginTop="130dp"
             android:layout_height="wrap_content">
 
             <EditText
@@ -39,15 +54,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:inputType="number"
                 android:maxLength="10"
+                android:inputType="number"
                 android:hint="Ingresa nuevo telefono"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="200dp"
             android:id="@+id/ti_confir"
             android:layout_height="wrap_content">
 
@@ -56,13 +71,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:inputType="number"
                 android:maxLength="10"
+                android:inputType="number"
                 android:hint="Ingresa confirmacion telefono"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="280dp"
             android:onClick="cambiar"
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
@@ -75,7 +90,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"/>
+            android:layout_marginTop="340dp"/>
 
     </androidx.cardview.widget.CardView>
 
