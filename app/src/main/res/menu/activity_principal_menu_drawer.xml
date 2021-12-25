@@ -12,23 +12,30 @@
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Perfil" />
         <item
-            android:id="@+id/nav_busqueda"
-            android:icon="@drawable/ic_search"
-            android:title="Busqueda" />
-        <item
             android:id="@+id/nav_interes"
             android:icon="@drawable/ic_public"
             android:title="Lugares de interes" />
         <item
+            android:id="@+id/nav_busqueda"
+            android:icon="@drawable/ic_search"
+            android:title="Busqueda" />
+        <item
             android:id="@+id/nav_metodos"
             android:icon="@drawable/ic_payment"
             android:title="Metodos de pago" />
-
-        <item
-            android:id="@+id/nav_compartir"
-            android:icon="@drawable/ic_baseline_share"
-            android:title="Compartir" />
     </group>
 
+    <group android:checkableBehavior="all">
+    <item
+        android:id="@+id/nav_compartir"
+        android:icon="@drawable/ic_baseline_share"
+        android:title="Compartir" />
+
+    <item
+        android:id="@+id/nav_contacto"
+        android:icon="@drawable/ic_help"
+        android:title="Contacto"
+        />
+    </group>
 
 </menu>

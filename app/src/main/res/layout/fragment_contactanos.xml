@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Contactanos">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/perfil">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="¿Necesitas una app?"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textStyle="bold"
+                        android:textSize="25dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="10dp"
+                        android:inputType="textMultiLine"
+                        android:lines="2"
+                        android:padding="10dp"
+                        android:text="Contactanos en: "
+                        android:textSize="22dp"
+                        android:textStyle="italic"
+                        tools:ignore="TextViewEdits" />
+                    <TextView
+                        android:id="@+id/hyper_link2"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="130dp"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:drawableLeft="@drawable/ic_web_24"
+                        android:drawablePadding="@dimen/fab_margin"
+                        android:text="@string/link_web48"
+                        android:textSize="22dp"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/abrir_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="190dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:padding="10dp"
+                        android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+                        android:drawablePadding="@dimen/fab_margin"
+                        android:clickable="true"
+                        android:text="248 185 7092 "
+                        android:textSize="22dp"
+                        android:textStyle="italic"
+                      />
+
+                    <TextView
+                        android:id="@+id/abrir_correo"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="240dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:padding="10dp"
+                        android:drawableLeft="@drawable/ic_baseline_email_24"
+                        android:drawablePadding="@dimen/fab_margin"
+                        android:clickable="true"
+                        android:text="ventas@web48.com.mx "
+                        android:textSize="22dp"
+                        android:textStyle="italic"
+                        />
+
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>
