@@ -60,11 +60,7 @@ public class DataSchool extends Fragment {
     private MapView mapa;
     private EditText codigop;
     private ImageView imagen;
-
-    private TextView nombre, email, nombramiento, laborando, s1, s2;
-
     private TextView nombre, email, nombramiento, laborando, select1, select2;
-
     private EditText oescuela, oclave, ozona, otel, onom_dir,mescuela;
     private TextView salida, phone, viewnivesco;
     private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, ocolonia;
@@ -152,9 +148,6 @@ public class DataSchool extends Fragment {
         ti_tel = (TextInputLayout) view.findViewById(R.id.ti_tel);
         ti_codigop = (TextInputLayout) view.findViewById(R.id.ti_codigop);
         ti_nom_dir = (TextInputLayout) view.findViewById(R.id.ti_nom_dir);
-
-        s1 = (TextView) view.findViewById(R.id.select1);
-        s2 = (TextView) view.findViewById(R.id.select2);
 
         guardar = (Button) view.findViewById(R.id.guardar);
       //  guardar.setEnabled(true);
@@ -387,7 +380,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) onivel_esc.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Opción invalida!!");
+                            errorText.setText("Seleccione una opcion valida!!");
                             guardar.setEnabled(false);
                         }else if (nivel > 0){
                                 guardar.setEnabled(true);
@@ -411,7 +404,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) oturno.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Opción invalida!!");
+                            errorText.setText("Seleccione una opcion valida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -436,7 +429,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) ocategoria.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Opción invalida!!");
+                            errorText.setText("Seleccione una opcion valida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -460,7 +453,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) otipo_plantel.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Opción invalida!!");
+                            errorText.setText("Seleccione una opcion valida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -485,13 +478,8 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) spinombramiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-
-                            errorText.setText("Opción invalida!!");
-                            guardar.setEnabled(false);
-
                             errorText.setText("Seleccione una opcion valida!!");
                             //guardar.setEnabled(false);
-
 
                         } else if (cont_nombramiento == 1) {
                             Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
@@ -519,26 +507,6 @@ public class DataSchool extends Fragment {
             public void run() {
                 onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        nota_des = i;
-                        if (nota_des == 0) {
-                            TextView errorText = (TextView) onota.getSelectedView();
-                            errorText.setError("");
-                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Opción invalida!!");
-                            String slect = onota.getSelectedItem().toString();
-                            int sele = onota.getSelectedItemPosition();
-                            String se = "" + sele;
-                            s1.setText(slect);
-                            // guardar.setEnabled(false);
-                      /*  } else if (nota_des == 1){
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
-                       // guardar.setEnabled(false);
-                        }else{
-                            guardar.setEnabled(true);
-                        }*/
-
                     public void onItemSelected(AdapterView<?> adapterView, View view, int n, long l) {
                         nota_des = n;
                         if (n == 0){
@@ -552,7 +520,6 @@ public class DataSchool extends Fragment {
                       guardar.setEnabled(true);
                         }else if (n == 2){
                             guardar.setEnabled(false);
-
                         }
                     }
                     @Override
@@ -574,21 +541,6 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView)oprocedimiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-
-                            errorText.setText("Opción invalida!!");
-                            String slect = oprocedimiento.getSelectedItem().toString();
-                            int sele = oprocedimiento.getSelectedItemPosition();
-                            String se = "" + sele;
-                            s2.setText(slect);
-                                //guardar.setEnabled(false);
-
-                       /* } else if (suj_proced == 1){
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
-                            //guardar.setEnabled(false);
-                        }else{
-                        guardar.setEnabled(true);*/
-                    }
-
                             errorText.setText("Seleccione una opcion valida!!");
                                 guardar.setEnabled(false);
 
@@ -598,7 +550,6 @@ public class DataSchool extends Fragment {
                         }else if (s == 2){
                             guardar.setEnabled(false);
                         }
-
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -608,33 +559,6 @@ public class DataSchool extends Fragment {
 
             }
         });
-
-       /* onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapter, View view,
-                                       int position, long id) {
-                String slect = onota.getSelectedItem().toString();
-                int sele = onota.getSelectedItemPosition();
-                String se = "" + sele;
-                s1.setText(slect);
-                //poci1.setText(se);
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-        oprocedimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapter, View view,
-                                       int position, long id) {
-                String slect = oprocedimiento.getSelectedItem().toString();
-                int sele = oprocedimiento.getSelectedItemPosition();
-                String se = "" + sele;
-                s2.setText(slect);
-                //poci1.setText(se);
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });*/
 
 
 
@@ -781,7 +705,7 @@ public class DataSchool extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // FragmentTransaction transaction = getFragmentManager().beginTransaction();
+               // FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                 oescuela.setError(null);
                 oclave.setError(null);
@@ -790,123 +714,6 @@ public class DataSchool extends Fragment {
                 codigop.setError(null);
                 onom_dir.setError(null);
                 salida.setError(null);
-
-
-                if (aniosAntiguedad < 2) {
-                    Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
-                    // guardar.setEnabled(false);
-                } else if (nivel == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
-                } else if (turno == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione turno", Toast.LENGTH_SHORT).show();
-                } else if (categoria == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione categoria", Toast.LENGTH_SHORT).show();
-                } else if (tipo == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione tipo de plantel", Toast.LENGTH_SHORT).show();
-                } else if (cont_nombramiento == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Valide nombramiento", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 0) {
-                    Toast.makeText(getContext(), "Valide nota", Toast.LENGTH_SHORT).show();
-                } else if (suj_proced == 0) {
-                    Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 2) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 2 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else {
-
-
-                    String esc = oescuela.getText().toString().trim();
-                    String clv = oclave.getText().toString().trim();
-                    String zon = ozona.getText().toString().trim();
-                    String tl = otel.getText().toString().trim();
-                    String cp = codigop.getText().toString().trim();
-                    String nom_direc = onom_dir.getText().toString().trim();
-                    String estd = estado.getText().toString().trim();
-                    String mun = muni.getText().toString().trim();
-                    String colo = select.getText().toString().trim();
-                    String sal = salida.getText().toString().trim();
-
-
-                    //Estos métodos se ejecutará cuando se presione el botón
-                    String seleccion = onivel_esc.getSelectedItem().toString();
-                    if (seleccion.equals("Preescolar")) {
-                    } else if (seleccion.equals("Primaria")) {
-                    } else if (seleccion.equals("Secundaria")) {
-                    }
-                    //guardado de seleccion spinnner turno
-                    String seleccion_tn = oturno.getSelectedItem().toString();
-                    if (seleccion_tn.equals("Matutino")) {
-                    } else if (seleccion_tn.equals("Vespertino")) {
-                    }
-                    //guardado de seleccion spinnner rol
-                    String seleccion_ct = ocategoria.getSelectedItem().toString();
-                    if (seleccion_ct.equals("Docente")) {
-                    } else if (seleccion_ct.equals("Subdirector")) {
-                    } else if (seleccion_ct.equals("Director")) {
-                    }
-                    //Sleccion spinnner tipo plantel
-                    String seleccion_tp = otipo_plantel.getSelectedItem().toString();
-                    if (seleccion_tp.equals("Municipal")) {
-                    } else if (seleccion_tp.equals("Estatal")) {
-                    } else if (seleccion_tp.equals("Federal")) {
-                    } else if (seleccion_tp.equals("Federalizado")) {
-                    }
-                    //Sleccion spinnner nombramiento
-                    String seleccion_nombram = spinombramiento.getSelectedItem().toString();
-                    if (seleccion_nombram.equals("No")) {
-                    } else if (seleccion_nombram.equals("Si")) {
-                    }
-                    //Sleccion spinnner nota
-                    String seleccion_nota = onota.getSelectedItem().toString();
-                    if (seleccion_nota.equals("Si")) {
-                    } else if (seleccion_nota.equals("No")) {
-                    }
-                    //Sleccion spinnner procedimiento
-                    String seleccion_proc = oprocedimiento.getSelectedItem().toString();
-                    if (seleccion_proc.equals("Si")) {
-                    } else if (seleccion_proc.equals("No")) {
-                    }
-
-
-                    //Validaciones campos
-                    if (TextUtils.isEmpty(esc)) {
-                        ti_nombre_escuela.setError(" ");
-                        ti_nombre_escuela.requestFocus();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(clv)) {
-                        ti_clave.setError(" ");
-                        ti_clave.requestFocus();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(zon)) {
-                        ti_zona.setError(" ");
-                        ti_zona.requestFocus();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(tl)) {
-                        ti_tel.setError(" ");
-                        ti_tel.requestFocus();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(cp)) {
-                        ti_codigop.setError(" ");
-                        ti_codigop.requestFocus();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(nom_direc)) {
-                        ti_nom_dir.setError(" ");
-                        ti_nom_dir.requestFocus();
-                        return;
-                    }
 
 
 
@@ -1049,62 +856,61 @@ public class DataSchool extends Fragment {
                     ti_nom_dir.requestFocus();
                     return;
                 }
-
               /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
 
                     return;
                 }*/
 
-                    Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-                    ((principalMenu) getActivity()).openLoadingDialog();
+                Toast.makeText(getContext(), "Se han validado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
-                    //Envio a BD
-                    HashMap<String, String> params = new HashMap<>();
-                    params.put("nombre_esc", esc);
-                    params.put("clave_esc", clv);
-                    params.put("nivel_escolar", seleccion);
-                    params.put("turno", seleccion_tn);
-                    params.put("zona_esc", zon);
-                    params.put("telefono", tl);
-                    params.put("c_postal", cp);
-                    params.put("estado", estd);
-                    params.put("municipio", mun);
-                    params.put("colonia", colo);
-                    params.put("nombre_direc", nom_direc);
-                    params.put("rol", seleccion_ct);
-                    params.put("tipo_plantel", seleccion_tp);
-                    params.put("nombramiento", seleccion_nombram);
-                    params.put("labor", sal);
-                    params.put("nota", seleccion_nota);
-                    params.put("procedimiento", seleccion_proc);
+                //Envio a BD
+                HashMap<String, String> params = new HashMap<>();
+                params.put("nombre_esc", esc);
+                params.put("clave_esc", clv);
+                params.put("nivel_escolar", seleccion);
+                params.put("turno", seleccion_tn);
+                params.put("zona_esc", zon);
+                params.put("telefono", tl);
+                params.put("c_postal", cp);
+                params.put("estado", estd);
+                params.put("municipio", mun);
+                params.put("colonia", colo);
+                params.put("nombre_direc", nom_direc);
+                params.put("rol", seleccion_ct);
+                params.put("tipo_plantel", seleccion_tp);
 
-                    List<Token> userId = Token.listAll(Token.class);
-                    for (Token ids : userId) {
+                params.put("nombramiento", seleccion_nombram);
+                params.put("labor", sal);
+                params.put("nota", seleccion_nota);
+                params.put("procedimiento", seleccion_proc);
 
-                        id = ids.getUserId();
+                List<Token> userId = Token.listAll(Token.class);
+                for (Token ids : userId) {
 
-                    }
-
-                    Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params, id);
-                    call.enqueue(new Callback<Responses>() {
-
-                        @Override
-                        public void onResponse(Call<Responses> call, Response<Responses> response) {
-                            // Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
-                            //alerta();
-                            // ((principalMenu)getActivity()).openLoadingDialog();
-                        }
-
-                        @Override
-                        public void onFailure(Call<Responses> call, Throwable t) {
-
-                        }
-                    });
-                    getActivity().getSupportFragmentManager().beginTransaction().replace
-                            (R.id.conten, fragment_interes).addToBackStack(null).commit();
+                    id = ids.getUserId();
 
                 }
+
+                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params,id);
+                call.enqueue(new Callback<Responses>() {
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                       // Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                        //alerta();
+                        // ((principalMenu)getActivity()).openLoadingDialog();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
+
+                    }
+                });
+                getActivity().getSupportFragmentManager().beginTransaction().replace
+                        (R.id.conten,fragment_interes).addToBackStack(null).commit();
+
             }
         });
     }
@@ -1114,7 +920,7 @@ public class DataSchool extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
+               // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,dataSchool).addToBackStack(null).commit();
                 oescuela.setError(null);
                 oclave.setError(null);
                 ozona.setError(null);
@@ -1123,38 +929,7 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
-                // oescuela.setSelection(oescuela.length());
-
-                if (aniosAntiguedad < 2) {
-                    Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
-                    // guardar.setEnabled(false);
-                } else if (nivel == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
-                } else if (turno == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione turno", Toast.LENGTH_SHORT).show();
-                } else if (categoria == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione categoria", Toast.LENGTH_SHORT).show();
-                } else if (tipo == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Seleccione tipo de plantel", Toast.LENGTH_SHORT).show();
-                } else if (cont_nombramiento == 0) {
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Valide nombramiento", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 0) {
-                    Toast.makeText(getContext(), "Valide nota", Toast.LENGTH_SHORT).show();
-                } else if (suj_proced == 0) {
-                    Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 2) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 2 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else {
-
+               // oescuela.setSelection(oescuela.length());
 
                 String esc = oescuela.getText().toString();
                 String clv = oclave.getText().toString();
@@ -1168,12 +943,13 @@ public class DataSchool extends Fragment {
                 String sal = salida.getText().toString();
 
 
+
                 //Estos métodos se ejecutará cuando se presione el botón
                 String seleccion = onivel_esc.getSelectedItem().toString();
                 //* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
                 if (seleccion.equals("Preescolar")) {
                 } else if (seleccion.equals("Primaria")) {
-                } else if (seleccion.equals("Secundaria")) {
+                }else if (seleccion.equals("Secundaria")) {
                 }
 
                 //guardado de seleccion spinnner turno
@@ -1246,84 +1022,75 @@ public class DataSchool extends Fragment {
                     ti_nom_dir.setError(" ");
                     ti_nom_dir.requestFocus();
                     return;
-
                 }
-                /*else if (nota_des == 0) {
-                    Toast.makeText(getContext(), "selecciona notas", Toast.LENGTH_SHORT).show();
-                } else if (suj_proced == 0) {
-                    Toast.makeText(getContext(), "selecciona proced", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 1 && suj_proced == 2) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else if (nota_des == 2 && suj_proced == 1) {
-                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else {*/
               /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
 
                     return;
                 }*/
 
-                    Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-                    ((principalMenu) getActivity()).openLoadingDialog();
+                Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                ((principalMenu)getActivity()).openLoadingDialog();
 
-                    //llamada de metodo de clase de activity a este fragment
-                    //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
-                    //((principalMenu)getActivity().openLoadingDialog();
-
-
-                    //Envio a BD
-                    HashMap<String, String> params = new HashMap<>();
-                    params.put("nombre_esc", esc);
-                    params.put("clave_esc", clv);
-                    params.put("nivel_escolar", seleccion);
-                    params.put("turno", seleccion_tn);
-                    params.put("zona_esc", zon);
-                    params.put("telefono", tl);
-                    params.put("c_postal", cp);
-                    params.put("estado", estd);
-                    params.put("municipio", mun);
-                    params.put("colonia", colo);
-                    params.put("nombre_direc", nom_direc);
-                    params.put("rol", seleccion_ct);
-                    params.put("tipo_plantel", seleccion_tp);
-                    params.put("nombramiento", seleccion_nombram);
-                    params.put("labor", sal);
-                    params.put("nota", seleccion_nota);
-                    params.put("procedimiento", seleccion_proc);
-
-                    List<Token> userId = Token.listAll(Token.class);
-                    for (Token ids : userId) {
+                //llamada de metodo de clase de activity a este fragment
+                //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
+                //((principalMenu)getActivity().openLoadingDialog();
 
 
-                        id = ids.getUserId();
+                //Envio a BD
+                HashMap<String, String> params = new HashMap<>();
+                params.put("nombre_esc", esc);
+                params.put("clave_esc", clv);
+                params.put("nivel_escolar", seleccion);
+                params.put("turno", seleccion_tn);
+                params.put("zona_esc", zon);
+                params.put("telefono", tl);
+                params.put("c_postal", cp);
+                params.put("estado", estd);
+                params.put("municipio", mun);
+                params.put("colonia", colo);
+                params.put("nombre_direc", nom_direc);
+                params.put("rol", seleccion_ct);
+                params.put("tipo_plantel", seleccion_tp);
 
+                params.put("nombramiento", seleccion_nombram);
+                params.put("labor", sal);
+                params.put("nota", seleccion_nota);
+                params.put("procedimiento", seleccion_proc);
+
+                List<Token> userId = Token.listAll(Token.class);
+                for (Token ids : userId) {
+
+
+                    id = ids.getUserId();
+
+                }
+
+                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params,id);
+                call.enqueue(new Callback<Responses>() {
+
+                    @Override
+                    public void onResponse(Call<Responses> call, Response<Responses> response) {
+                   // getDataSchool();
+                      //  Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
+                      //  alerta();
                     }
 
-                    Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroEscuela(params, id);
-                    call.enqueue(new Callback<Responses>() {
+                    @Override
+                    public void onFailure(Call<Responses> call, Throwable t) {
 
-                        @Override
-                        public void onResponse(Call<Responses> call, Response<Responses> response) {
-                            // getDataSchool();
-                            //  Toast.makeText(getContext(), "Guardando...", Toast.LENGTH_SHORT).show();
-                            //  alerta();
-                        }
+                    }
+                });
+                getDataSchool();
+               // ((principalMenu)getActivity()).openLoadingDialog();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten,fragment_interes).
+                        addToBackStack(null).commit();
 
-                        @Override
-                        public void onFailure(Call<Responses> call, Throwable t) {
-
-                        }
-                    });
-                    getDataSchool();
-                    ((principalMenu) getActivity()).openLoadingDialog();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, fragment_interes).
-                            addToBackStack(null).commit();
-                }
             }
         });
+
     }
+
     private void getDataSchool() {
         oescuela.setError(null);
         oclave.setError(null);
@@ -1557,6 +1324,8 @@ public class DataSchool extends Fragment {
                                 modificarMetodo();
                             }
                         });
+
+
                 }
             }
             @Override
@@ -1566,4 +1335,7 @@ public class DataSchool extends Fragment {
         });
 
     }
+
+
+
 }
