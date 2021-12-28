@@ -3,11 +3,14 @@ package app.oficiodigital.cliente.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.fragment.app.FragmentManager;
@@ -29,9 +32,11 @@ import retrofit2.Response;
 
 public class EditEmail extends BaseActivity {
 
-    private EditText nuevo , confir;
+    private EditText nuevo , confir, actual;
     private TextView id, phone;
     private TextInputLayout ti_nuevo, ti_confir;
+    private ImageView back;
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
@@ -44,13 +49,27 @@ public class EditEmail extends BaseActivity {
         confir = (EditText)findViewById(R.id.confirmacion);
         id = (TextView)findViewById(R.id.id);
         phone = (TextView) findViewById(R.id.phone);
+        actual = (EditText) findViewById(R.id.actual);
 
 
         ti_nuevo = (TextInputLayout)findViewById(R.id.ti_nuevo);
         ti_confir = (TextInputLayout)findViewById(R.id.ti_confir);
 
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
+
+
         String phon = getIntent().getStringExtra("phone");
         id.setText(phon);
+        String correo = getIntent().getStringExtra("email");
+        actual.setText(correo);
 
         confir.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -121,12 +140,31 @@ public class EditEmail extends BaseActivity {
 
         Intent intent = new Intent(this, PrincipalPerfil.class);
         intent.putExtra("phone", id.getText().toString());
+
         String msg = getString(R.string.EditCorreo_msj);
         LoadingDialog.show(this, msg);
+
+        Toast.makeText(this, "Correo actualizado", Toast.LENGTH_SHORT).show();
+        openLoadingDialog();
         startActivity(intent);
 
 
 
+    }
+
+    private void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 
 }

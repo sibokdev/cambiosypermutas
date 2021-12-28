@@ -108,6 +108,7 @@ public class Perfil_Fragmen extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent inte = new Intent(getActivity(), EditEmail.class);
                         inte.putExtra("phone", phone.getText().toString());
+                        inte.putExtra("email", email.getText().toString());
                         startActivity(inte);
                     }
                 });
@@ -135,6 +136,7 @@ public class Perfil_Fragmen extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent inte = new Intent(getActivity(), EditPhone.class);
                         inte.putExtra("id", id.getText().toString());
+                        inte.putExtra("phone", phone.getText().toString());
                         startActivity(inte);
                     }
                 });
@@ -162,7 +164,7 @@ public class Perfil_Fragmen extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent inte = new Intent(getActivity(), AddNewPhone.class);
                         inte.putExtra("id", id.getText().toString());
-                        inte.putExtra("phone", phone.getText().toString());
+                        inte.putExtra("phone", phone2.getText().toString());
                         startActivity(inte);
                     }
                 });

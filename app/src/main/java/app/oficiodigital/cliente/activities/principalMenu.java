@@ -35,6 +35,7 @@ import java.util.List;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.fragments.BusquedaFragment;
+import app.oficiodigital.cliente.fragments.Contactanos;
 import app.oficiodigital.cliente.fragments.FragmentInteres;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.fragments.Perfil_Fragmen;
@@ -161,10 +162,7 @@ public class principalMenu extends BaseActivity
 
 
         fragmentTransaction.add(R.id.conten, new app.oficiodigital.cliente.fragments.DataSchool());
-        /* fragmentTransaction.add(R.id.conten, new FragmentInteres());*/
-        /*getSupportFragmentManager().beginTransaction().add(R.id.conten,HomeFragment).commit();*/
 
-        /*fragmentTransaction.addToBackStack(null);*/
         fragmentTransaction.commit();
 
     }
@@ -219,7 +217,7 @@ public class principalMenu extends BaseActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
-                        //finish(); Si solo quiere mandar la aplicación a segundo plano
+                      //  finish(); //Si solo quiere mandar la aplicación a segundo plano
                     }
                 }).show();
     }
@@ -299,6 +297,9 @@ public class principalMenu extends BaseActivity
                 break;
             case R.id.nav_compartir:
                 ft.replace(R.id.conten, new Share()).commit();
+                break;
+            case R.id.nav_contacto:
+                ft.replace(R.id.conten, new Contactanos()).commit();
                 break;
 
         }

@@ -60,7 +60,11 @@ public class DataSchool extends Fragment {
     private MapView mapa;
     private EditText codigop;
     private ImageView imagen;
+
     private TextView nombre, email, nombramiento, laborando, s1, s2;
+
+    private TextView nombre, email, nombramiento, laborando, select1, select2;
+
     private EditText oescuela, oclave, ozona, otel, onom_dir,mescuela;
     private TextView salida, phone, viewnivesco;
     private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, ocolonia;
@@ -81,23 +85,11 @@ public class DataSchool extends Fragment {
     private int nota_des = 0;
     private int suj_proced = 0;
 
-/*    String esc = "";
-    String clv ="";
-    String zon ="";
-    String tl ="";
-    String cp ="";
-    String nom_direc ="";
-    String estd ="";
-    String mun ="";
-    String colo ="";
-    String sal ="";*/
-
     String phones = "", id = "";
 
     FragmentInteres fragment_interes;
     DataSchool dataSchool;
     ViewDtSchool viewDtSchool;
-
 
 
     @Override
@@ -115,8 +107,10 @@ public class DataSchool extends Fragment {
 
         estado = (TextView) view.findViewById(R.id.estado);
         muni = (TextView) view.findViewById(R.id.municipio);
-
         select = (TextView) view.findViewById(R.id.select);
+
+        select1 = (TextView) view.findViewById(R.id.select1);
+        select2 = (TextView) view.findViewById(R.id.select2);
         mapa = (MapView) view.findViewById(R.id.mapa);
 
         /*mapa.onCreate(savedInstanceState);*/
@@ -365,17 +359,18 @@ public class DataSchool extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         salida.setText((progress + " Años"));
                         aniosAntiguedad=progress;
-                        if (aniosAntiguedad < 2) {
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                        } else if (aniosAntiguedad >= 2) {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                        }
+
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
                     }
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
+                        if (aniosAntiguedad < 2) {
+                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                        } else if (aniosAntiguedad >= 2) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -490,18 +485,23 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) spinombramiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
+
                             errorText.setText("Opción invalida!!");
                             guardar.setEnabled(false);
 
+                            errorText.setText("Seleccione una opcion valida!!");
+                            //guardar.setEnabled(false);
+
+
                         } else if (cont_nombramiento == 1) {
                             Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(true);
-                        } else {
+                           // guardar.setEnabled(true);
+                        } else if(cont_nombramiento == 2){
                             TextView errorText = (TextView) spinombramiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
                             errorText.setText("Lo sentimos, no cumple con los requisitos...Revise la convocatoria");
-                            guardar.setEnabled(false);
+                           // guardar.setEnabled(false);
                         }
                     }
                     @Override
@@ -512,11 +512,14 @@ public class DataSchool extends Fragment {
             }
         });
 
+
+
         onota.post(new Runnable() {
             @Override
             public void run() {
                 onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
+
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         nota_des = i;
                         if (nota_des == 0) {
@@ -535,6 +538,21 @@ public class DataSchool extends Fragment {
                         }else{
                             guardar.setEnabled(true);
                         }*/
+
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int n, long l) {
+                        nota_des = n;
+                        if (n == 0){
+                            TextView errorText = (TextView)onota.getSelectedView();
+                            errorText.setError("");
+                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+                        } else if (n == 1){
+                            //Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                      guardar.setEnabled(true);
+                        }else if (n == 2){
+                            guardar.setEnabled(false);
+
                         }
                     }
                     @Override
@@ -550,12 +568,13 @@ public class DataSchool extends Fragment {
             public void run() {
                 oprocedimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        suj_proced = i;
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int s, long l) {
+                        suj_proced = s;
                         if (suj_proced == 0){
                             TextView errorText = (TextView)oprocedimiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
+
                             errorText.setText("Opción invalida!!");
                             String slect = oprocedimiento.getSelectedItem().toString();
                             int sele = oprocedimiento.getSelectedItemPosition();
@@ -569,6 +588,17 @@ public class DataSchool extends Fragment {
                         }else{
                         guardar.setEnabled(true);*/
                     }
+
+                            errorText.setText("Seleccione una opcion valida!!");
+                                guardar.setEnabled(false);
+
+                        } else if (s == 1){
+                           // Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                            guardar.setEnabled(true);
+                        }else if (s == 2){
+                            guardar.setEnabled(false);
+                        }
+
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -608,14 +638,59 @@ public class DataSchool extends Fragment {
 
 
 
+
+
+    /*    onota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapter, View view,
+                                       int position, long id) {
+                String slect1 = onota.getSelectedItem().toString();
+                select1.setText(slect1);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        oprocedimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapter, View view,
+                                       int position, long id) {
+                String slect2 = oprocedimiento.getSelectedItem().toString();
+                select2.setText(slect2);
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });*/
+
+
+
+
+     /*   if(select1.getText().toString() == "Si"){
+            Toast.makeText(getContext(),"no pasa",Toast.LENGTH_SHORT).show();
+            guardar.setEnabled(false);
+        }else if(select1.getText().toString() == "No"){
+            Toast.makeText(getContext(),"si pasa",Toast.LENGTH_SHORT).show();
+            guardar.setEnabled(true);
+        }
+
+        if(select2.getText().toString() == "Si"){
+            Toast.makeText(getContext(),"no pasa",Toast.LENGTH_SHORT).show();
+            guardar.setEnabled(false);
+        }else if(select2.getText().toString() == "No"){
+            Toast.makeText(getContext(),"si pasa",Toast.LENGTH_SHORT).show();
+             guardar.setEnabled(true);
+        }*/
+
+
         //Arreglo, obtencion de valores de spinners
         String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
         String[] opciones_cat = {"Seleccione","Docente", "Subdirector", "Director"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
         String[] opciones_nombra = {"Seleccione","Si", "No"};
-        String[] opciones_nota = {"Seleccione","Si", "No"};
-        String[] opciones_proced = {"Seleccione","Si", "No"};
+        String[] opciones_nota = {"Seleccione","No", "Si"};
+        String[] opciones_proced = {"Seleccione","No", "Si"};
 
         // NUeva clase comunicacion para spinner - layout
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
@@ -697,10 +772,10 @@ public class DataSchool extends Fragment {
     }
    ///////
 
-    private void alerta() {
+ /*   private void alerta() {
         String msg = getString(R.string.register_msg);
         LoadingDialog.show(getActivity(), msg);
-    }
+    }*/
 
     private void guardarMetodo() {
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -715,6 +790,7 @@ public class DataSchool extends Fragment {
                 codigop.setError(null);
                 onom_dir.setError(null);
                 salida.setError(null);
+
 
                 if (aniosAntiguedad < 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
@@ -831,6 +907,149 @@ public class DataSchool extends Fragment {
                         ti_nom_dir.requestFocus();
                         return;
                     }
+
+
+
+              /*  if (aniosAntiguedad < 2) {
+                    guardar.setEnabled(false);
+                } else if (aniosAntiguedad >= 2) {
+                    guardar.setEnabled(true);
+                }
+
+                if ( nivel== 0){
+                    guardar.setEnabled(false);
+                } else if (nivel > 0){
+                    guardar.setEnabled(true);
+                }
+
+
+                if (turno == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+                if (categoria == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+                if (tipo == 0){
+                    guardar.setEnabled(false);
+                } else{
+                    guardar.setEnabled(true);
+                }
+
+
+                if (cont_nombramiento == 0) {
+                    guardar.setEnabled(false);
+                } else if (cont_nombramiento == 1){
+                    guardar.setEnabled(true);
+                }else{
+                    guardar.setEnabled(false);
+                }
+*/
+
+               if (nota_des == 2){
+                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                    //guardar.setEnabled(false);
+                }
+
+               if (suj_proced == 2){
+                   Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                   // guardar.setEnabled(false);
+                }
+
+                String esc = oescuela.getText().toString().trim();
+                String clv = oclave.getText().toString().trim();
+                String zon = ozona.getText().toString().trim();
+                String tl = otel.getText().toString().trim();
+                String cp = codigop.getText().toString().trim();
+                String nom_direc = onom_dir.getText().toString().trim();
+                String estd = estado.getText().toString().trim();
+                String mun = muni.getText().toString().trim();
+                String colo = select.getText().toString().trim();
+                String sal = salida.getText().toString().trim();
+
+
+                //Estos métodos se ejecutará cuando se presione el botón
+                String seleccion = onivel_esc.getSelectedItem().toString();
+                if (seleccion.equals("Preescolar")) {
+                } else if (seleccion.equals("Primaria")) {
+                }else if (seleccion.equals("Secundaria")) {
+                }
+                //guardado de seleccion spinnner turno
+                String seleccion_tn = oturno.getSelectedItem().toString();
+                if (seleccion_tn.equals("Matutino")) {
+                } else if (seleccion_tn.equals("Vespertino")) {
+                }
+                //guardado de seleccion spinnner rol
+                String seleccion_ct = ocategoria.getSelectedItem().toString();
+                if (seleccion_ct.equals("Docente")) {
+                } else if (seleccion_ct.equals("Subdirector")) {
+                } else if (seleccion_ct.equals("Director")) {
+                }
+                //Sleccion spinnner tipo plantel
+                String seleccion_tp = otipo_plantel.getSelectedItem().toString();
+                if (seleccion_tp.equals("Municipal")) {
+                } else if (seleccion_tp.equals("Estatal")) {
+                } else if (seleccion_tp.equals("Federal")) {
+                } else if (seleccion_tp.equals("Federalizado")) {
+                }
+                //Sleccion spinnner nombramiento
+                String seleccion_nombram = spinombramiento.getSelectedItem().toString();
+                if (seleccion_nombram.equals("Si")) {
+                } else if (seleccion_nombram.equals("No")) {
+                }
+                //Sleccion spinnner nota
+                String seleccion_nota = onota.getSelectedItem().toString();
+                if (seleccion_nota.equals("No")) {
+                } else if (seleccion_nota.equals("Si")) {
+                }
+                //Sleccion spinnner procedimiento
+                String seleccion_proc = oprocedimiento.getSelectedItem().toString();
+                if (seleccion_proc.equals("No")) {
+                } else if (seleccion_proc.equals("Si")) {
+                }
+
+
+
+
+
+
+
+                //Validaciones campos
+                if (TextUtils.isEmpty(esc)) {
+                    ti_nombre_escuela.setError(" ");
+                    ti_nombre_escuela.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(clv)) {
+                    ti_clave.setError(" ");
+                    ti_clave.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(zon)) {
+                    ti_zona.setError(" ");
+                    ti_zona.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(tl)) {
+                    ti_tel.setError(" ");
+                    ti_tel.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(cp)) {
+                    ti_codigop.setError(" ");
+                    ti_codigop.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(nom_direc)) {
+                    ti_nom_dir.setError(" ");
+                    ti_nom_dir.requestFocus();
+                    return;
+                }
+
               /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
 
@@ -980,20 +1199,20 @@ public class DataSchool extends Fragment {
 
                 //Sleccion spinnner nombramiento
                 String seleccion_nombram = spinombramiento.getSelectedItem().toString();
-                if (seleccion_nombram.equals("No")) {
-                } else if (seleccion_nombram.equals("Si")) {
+                if (seleccion_nombram.equals("Si")) {
+                } else if (seleccion_nombram.equals("No")) {
                 }
 
                 //Sleccion spinnner nota
                 String seleccion_nota = onota.getSelectedItem().toString();
-                if (seleccion_nota.equals("Si")) {
-                } else if (seleccion_nota.equals("No")) {
+                if (seleccion_nota.equals("No")) {
+                } else if (seleccion_nota.equals("Si")) {
                 }
 
                 //Sleccion spinnner procedimiento
                 String seleccion_proc = oprocedimiento.getSelectedItem().toString();
-                if (seleccion_proc.equals("Si")) {
-                } else if (seleccion_proc.equals("No")) {
+                if (seleccion_proc.equals("No")) {
+                } else if (seleccion_proc.equals("Si")) {
                 }
 
 
@@ -1212,7 +1431,7 @@ public class DataSchool extends Fragment {
                         onota.setSelection(sp_nota);
                         onota.setEnabled(false);
 
-                        String procedimiento = "" + res.getNota();
+                        String procedimiento = "" + res.getProcedimiento();
                         int sp_proced = adapter_proce.getPosition(procedimiento);
                         oprocedimiento.setSelection(sp_proced);
                         oprocedimiento.setEnabled(false);

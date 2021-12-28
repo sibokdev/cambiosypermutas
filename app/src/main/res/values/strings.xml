@@ -31,7 +31,13 @@
     <string name="loading_contract_msg">creando…</string>
 
     <string name="link_c_p">
-        <a href= "https://www.cambiosypermutas.com.mx">Cambios y permutas</a>
+        <a href="https://www.cambiosypermutas.com.mx">Cambios y permutas</a>
+    </string>
+    <string name="link_web48">
+        <a href="https://www.web48.com.mx/">Web 48</a>
+    </string>
+    <string name="send_correo">
+        <a href="Abriendo correo">Web 48</a>
     </string>
 
     <!-- Login Screen -->
