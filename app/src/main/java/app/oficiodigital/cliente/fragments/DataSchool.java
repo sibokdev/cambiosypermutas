@@ -392,7 +392,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) onivel_esc.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                             guardar.setEnabled(false);
                         }else if (nivel > 0){
                                 guardar.setEnabled(true);
@@ -416,7 +416,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) oturno.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -441,7 +441,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) ocategoria.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -465,7 +465,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) otipo_plantel.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                                 guardar.setEnabled(false);
                             } else{
                                 guardar.setEnabled(true);
@@ -490,7 +490,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) spinombramiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                             guardar.setEnabled(false);
 
                         } else if (cont_nombramiento == 1) {
@@ -523,7 +523,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView) onota.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                             String slect = onota.getSelectedItem().toString();
                             int sele = onota.getSelectedItemPosition();
                             String se = "" + sele;
@@ -556,7 +556,7 @@ public class DataSchool extends Fragment {
                             TextView errorText = (TextView)oprocedimiento.getSelectedView();
                             errorText.setError("");
                             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Seleccione una opcion valida!!");
+                            errorText.setText("Opción invalida!!");
                             String slect = oprocedimiento.getSelectedItem().toString();
                             int sele = oprocedimiento.getSelectedItemPosition();
                             String se = "" + sele;
@@ -717,27 +717,27 @@ public class DataSchool extends Fragment {
                 salida.setError(null);
 
                 if (aniosAntiguedad < 2) {
-                    Toast.makeText(getContext(), "no cumple con años", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(false);
                 } else if (nivel == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "selecciona nivel", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
                 } else if (turno == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "selecciona turno", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione turno", Toast.LENGTH_SHORT).show();
                 } else if (categoria == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "selecciona categoria", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione categoria", Toast.LENGTH_SHORT).show();
                 } else if (tipo == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "selecciona tipo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione tipo de plantel", Toast.LENGTH_SHORT).show();
                 } else if (cont_nombramiento == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "selecciona nombramiento", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Valide nombramiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 0) {
-                    Toast.makeText(getContext(), "selecciona notas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Valide nota", Toast.LENGTH_SHORT).show();
                 } else if (suj_proced == 0) {
-                    Toast.makeText(getContext(), "selecciona proced", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 1 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 1 && suj_proced == 2) {
@@ -745,35 +745,7 @@ public class DataSchool extends Fragment {
                 } else if (nota_des == 2 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
                 } else {
-                    /*if(s1.getText().toString().equals("Si") && s2.getText().toString().equals("Si")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                }else if( s1.getText().toString().equals("Si") && s2.getText().toString().equals("No")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria1", Toast.LENGTH_SHORT).show();
-                }else if(s1.getText().toString().equals("No") && s2.getText().toString().equals("Si")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria2", Toast.LENGTH_SHORT).show();
-                }else{*/
-                    Toast.makeText(getContext(), "todo esta validado", Toast.LENGTH_SHORT).show();
-                    // guardar.setEnabled(true);
 
-                    /*if (nota_des == 0){
-                    //guardar.setEnabled(false);
-                } else if (nota_des == 1){
-                   // guardar.setEnabled(false);
-                } else{
-                    guardar.setEnabled(true);
-                }
-
-
-                if (suj_proced == 0){
-                    //guardar.setEnabled(false);
-                } else if (suj_proced == 1){
-                    //guardar.setEnabled(false);
-                }else {
-                    guardar.setEnabled(true);
-                }*/
 
                     String esc = oescuela.getText().toString().trim();
                     String clv = oclave.getText().toString().trim();
@@ -883,7 +855,6 @@ public class DataSchool extends Fragment {
                     params.put("nombre_direc", nom_direc);
                     params.put("rol", seleccion_ct);
                     params.put("tipo_plantel", seleccion_tp);
-
                     params.put("nombramiento", seleccion_nombram);
                     params.put("labor", sal);
                     params.put("nota", seleccion_nota);
@@ -934,6 +905,37 @@ public class DataSchool extends Fragment {
                 salida.setError(null);
 
                 // oescuela.setSelection(oescuela.length());
+
+                if (aniosAntiguedad < 2) {
+                    Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
+                    // guardar.setEnabled(false);
+                } else if (nivel == 0) {
+                    //guardar.setEnabled(false);
+                    Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
+                } else if (turno == 0) {
+                    //guardar.setEnabled(false);
+                    Toast.makeText(getContext(), "Seleccione turno", Toast.LENGTH_SHORT).show();
+                } else if (categoria == 0) {
+                    //guardar.setEnabled(false);
+                    Toast.makeText(getContext(), "Seleccione categoria", Toast.LENGTH_SHORT).show();
+                } else if (tipo == 0) {
+                    //guardar.setEnabled(false);
+                    Toast.makeText(getContext(), "Seleccione tipo de plantel", Toast.LENGTH_SHORT).show();
+                } else if (cont_nombramiento == 0) {
+                    //guardar.setEnabled(false);
+                    Toast.makeText(getContext(), "Valide nombramiento", Toast.LENGTH_SHORT).show();
+                } else if (nota_des == 0) {
+                    Toast.makeText(getContext(), "Valide nota", Toast.LENGTH_SHORT).show();
+                } else if (suj_proced == 0) {
+                    Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
+                } else if (nota_des == 1 && suj_proced == 1) {
+                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                } else if (nota_des == 1 && suj_proced == 2) {
+                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                } else if (nota_des == 2 && suj_proced == 1) {
+                    Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                } else {
+
 
                 String esc = oescuela.getText().toString();
                 String clv = oclave.getText().toString();
@@ -1026,7 +1028,8 @@ public class DataSchool extends Fragment {
                     ti_nom_dir.requestFocus();
                     return;
 
-                } else if (nota_des == 0) {
+                }
+                /*else if (nota_des == 0) {
                     Toast.makeText(getContext(), "selecciona notas", Toast.LENGTH_SHORT).show();
                 } else if (suj_proced == 0) {
                     Toast.makeText(getContext(), "selecciona proced", Toast.LENGTH_SHORT).show();
@@ -1036,7 +1039,7 @@ public class DataSchool extends Fragment {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 2 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else {
+                } else {*/
               /*  if (TextUtils.isEmpty(sal)) {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
 
@@ -1066,7 +1069,6 @@ public class DataSchool extends Fragment {
                     params.put("nombre_direc", nom_direc);
                     params.put("rol", seleccion_ct);
                     params.put("tipo_plantel", seleccion_tp);
-
                     params.put("nombramiento", seleccion_nombram);
                     params.put("labor", sal);
                     params.put("nota", seleccion_nota);
@@ -1099,13 +1101,10 @@ public class DataSchool extends Fragment {
                     ((principalMenu) getActivity()).openLoadingDialog();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, fragment_interes).
                             addToBackStack(null).commit();
-
                 }
             }
         });
-
     }
-
     private void getDataSchool() {
         oescuela.setError(null);
         oclave.setError(null);
@@ -1339,8 +1338,6 @@ public class DataSchool extends Fragment {
                                 modificarMetodo();
                             }
                         });
-
-
                 }
             }
             @Override
@@ -1350,7 +1347,4 @@ public class DataSchool extends Fragment {
         });
 
     }
-
-
-
 }
