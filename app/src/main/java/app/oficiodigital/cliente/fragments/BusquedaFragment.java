@@ -54,7 +54,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
     private Spinner spinner_estados, sp_child;
 
-    private Spinner spinner_estados,sp_child;
   
     ArrayAdapter<String> adapter;
     String phon;
