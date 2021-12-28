@@ -51,11 +51,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private TextView list1, phone, nombres, estados;
     private SearchView buscador;
     private EditText busc;
-
-    private Spinner spinner_estados, sp_child;
-
     private Spinner spinner_estados,sp_child;
-  
     ArrayAdapter<String> adapter;
     String phon;
 
@@ -91,15 +87,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
 
         //array filtro estados
-
-        /*arrayList_parent=new ArrayList<>();
-        arrayList_parent.add("Estados");
-
-        arrayAdapter_parent = new ArrayAdapter<>(getActivity().getApplication(), android.R.layout.simple_selectable_list_item,arrayList_parent);
-        sp_parent.setAdapter(arrayAdapter_parent);*/
-
-
-
        // arrayList_parent=new ArrayList<>();
        // arrayList_parent.add("Estados");
 
