@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -117,7 +118,8 @@ public class InsertPhone extends BaseActivity {
                             Intent inte = new Intent(InsertPhone.this, InsertCode.class);
                             inte.putExtra("phone", phone.getText().toString());
                             inte.putExtra("tokenPhone", token1.getText().toString());
-                            alerta();
+                            //alerta();
+                            openLoadingDialog();
                             startActivity(inte);
                         }
                     }
@@ -138,5 +140,21 @@ public class InsertPhone extends BaseActivity {
     private void alerta() {
         String msg = getString(R.string.cargando_msg);
         LoadingDialog.show(this, msg);
+    }
+
+    public void openLoadingDialog() {
+        // textView3.setText("Validando código...");
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },5000); //You can change this time as you wish
     }
 }

@@ -53,7 +53,7 @@
                     android:inputType="textPersonName|textCapWords"
                     android:lines="1"
                     android:hint="Ingresa Nombre*"
-                    android:maxLength="100"/>
+                    android:maxLength="30"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +71,7 @@
                     android:inputType="textPersonName|textCapWords"
                     android:lines="1"
                     android:hint="Ingresa Apellido paterno*"
-                    android:maxLength="25"/>
+                    android:maxLength="30"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

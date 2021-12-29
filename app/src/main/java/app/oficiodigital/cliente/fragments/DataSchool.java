@@ -36,6 +36,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.activities.LoginActivity;
@@ -232,7 +233,7 @@ public class DataSchool extends Fragment {
             }
         });
         //------------telesc
-        otel.addTextChangedListener(new TextWatcher() {
+       /*otel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -251,7 +252,7 @@ public class DataSchool extends Fragment {
                     validateEditTexttel(((EditText) v).getText());
                 }
             }
-        });
+        });*/
         //------------cp
         codigop.addTextChangedListener(new TextWatcher() {
             @Override
@@ -294,6 +295,34 @@ public class DataSchool extends Fragment {
                 }
             }
         });
+
+
+
+             otel.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    EditText input = ti_tel.getEditText();
+                    Pattern tel = Pattern.compile("[0-9]{10}");
+                    String inputText = input.getText().toString().trim();
+                    if (tel.matcher(inputText).matches() == false) {
+                        ti_tel.setError("Debes ingresar 10 dígitos");
+                    } else {
+                        ti_tel.setErrorEnabled(false);
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+
 
 
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -363,19 +392,21 @@ public class DataSchool extends Fragment {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        salida.setText((progress + " Años"));
+                        salida.setText((progress + "Años"));
                         aniosAntiguedad=progress;
-                        if (aniosAntiguedad < 2) {
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                        } else if (aniosAntiguedad >= 2) {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                        }
+
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
                     }
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
+                        if (aniosAntiguedad < 2) {
+                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                            guardar.setEnabled(false);
+                        } else if (aniosAntiguedad >= 2) {
+                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -714,10 +745,10 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
-                if (aniosAntiguedad < 2) {
+                /*if ( aniosAntiguedad< 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(false);
-                } else if (nivel == 0) {
+                } else*/ if (nivel == 0) {
                     //guardar.setEnabled(false);
                     Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
                 } else if (turno == 0) {
@@ -903,7 +934,7 @@ public class DataSchool extends Fragment {
 
                 // oescuela.setSelection(oescuela.length());
 
-                if (aniosAntiguedad < 2) {
+               if (aniosAntiguedad < 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(false);
                 } else if (nivel == 0) {

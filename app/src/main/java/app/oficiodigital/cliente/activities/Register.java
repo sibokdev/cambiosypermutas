@@ -61,13 +61,13 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, et_am, et_numtel2, et_cedula, et_mail, et_password, et_password2
-           , presult1,  presult2;
+    private EditText et_nombre, et_ap, et_am, et_numtel2, et_cedula, et_mail, et_password, et_password2, presult1, presult2;
     private TextView tv_edad, FechaN, phone, resul, resul1, tv_edadm,
             pregunta1, pregunta2, poci1, poci2, tv_sexo, token1;
-    private Button  bt_fecha;
+    private Button bt_fecha;
     private RadioButton rb_fem, rb_masc;
     private Spinner p1, p2;
+    int edad;
     private TextInputLayout tvN,tvp1,tvp2, tvt1, tvt2, tvc,tcpas1,tcpass2,tce,tcr1, tcr2,ti_res1, ti_res2, ti_password, ti_password2;
 
     private static final String CARPETA_PRINCIPAL = "app.oficiodigita.proveedor"; //directorio principal
@@ -117,8 +117,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
         pregunta1 = (TextView) findViewById(R.id.pregunta1);
         pregunta2 = (TextView) findViewById(R.id.pregunta2);
 
-        ti_res1 = (TextInputLayout) findViewById(R.id.ti_res1);
-        ti_res2 = (TextInputLayout) findViewById(R.id.ti_res2);
+      /*  ti_res1 = (TextInputLayout) findViewById(R.id.ti_res1);
+        ti_res2 = (TextInputLayout) findViewById(R.id.ti_res2);*/
 
 
 
@@ -162,6 +162,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         String phon = getIntent().getStringExtra("phone");
         phone.setText(phon);
+
 
 
         bt_fecha.setOnClickListener(this);
@@ -228,7 +229,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 }
             }
         });
-        et_cedula.addTextChangedListener(new TextWatcher() {
+        /*et_cedula.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -247,8 +248,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     validateEditTextcedula(((EditText) v).getText());
                 }
             }
-        });
-        et_mail.addTextChangedListener(new TextWatcher() {
+        });*/
+        /*et_mail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -268,7 +269,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     validateEditTextmail(((EditText) v).getText());
                 }
             }
-        });
+        });*/
         presult1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -362,6 +363,73 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     tcpas1.setErrorEnabled(false);
 
                 }
+            }
+        });
+
+        et_mail.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = tce.getEditText();
+                Pattern passw = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                String inputText = input.getText().toString().trim();
+                if (passw.matcher(inputText).matches() == false) {
+                    tce.setError("Debes ingresar un correo valido");
+                } else {
+                    tce.setErrorEnabled(false);
+
+                }
+            }
+        });
+
+        et_numtel2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                EditText input = tvt2.getEditText();
+                Pattern passw = Pattern.compile("[0-9]{10}");
+                String inputText = input.getText().toString().trim();
+                if (passw.matcher(inputText).matches() == false) {
+                    tvt2.setError("Debes ingresar 10 caracteres");
+                } else {
+                    tvt2.setErrorEnabled(false);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        et_cedula.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                EditText input = tvc.getEditText();
+                Pattern passw = Pattern.compile("[0-9]{8}");
+                String inputText = input.getText().toString().trim();
+                if (passw.matcher(inputText).matches() == false) {
+                    tvc.setError("Debes ingresar 8 caracteres");
+                } else {
+                    tvc.setErrorEnabled(false);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -550,7 +618,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
                     ma = Integer.parseInt(mesFormato);
                     da = Integer.parseInt(diaFormato);
                     tv_edadm.setText(calcular(años, (messs + 1), aa, ma, dias, da));
-                    bt_fecha.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(244, 207, 62)));
+                    edad = Integer.parseInt(tv_edadm.getText().toString());
+                    bt_fecha.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(0, 133, 119)));
 
                 }
 
@@ -648,7 +717,9 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_password2.setError(null);
         tv_sexo.setError(null);
         tv_edad.setError(null);
-
+        Pattern pater = Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}");
+        Pattern phon = Pattern.compile("[0-9]{10}");
+        Pattern cedula = Pattern.compile("[0-9]{8}");
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
@@ -663,7 +734,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String pre1 = pregunta1.getText().toString();
         String pre2 = pregunta2.getText().toString();
         String res1 = presult1.getText().toString();
-        String res2 = presult1.getText().toString();
+        String res2 = presult2.getText().toString();
 
 //Validaciones campos
         if (TextUtils.isEmpty(name)) {
@@ -731,68 +802,81 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tcr2.requestFocus();
             return;
         }
+        if (pater.matcher(et_mail.getText().toString()).matches() == false) {
+            tce.setError(" ");
+            tce.requestFocus();
+        }else if(phon.matcher(et_numtel2.getText().toString()).matches() == false) {
+            tvt2.setError(" ");
+            tvt2.requestFocus();
+        }else if(cedula.matcher(et_cedula.getText().toString()).matches() == false) {
+            tvc.setError(" ");
+            tvc.requestFocus();
+        }else if(edad <= 18) {
+            Toast.makeText(getApplication(),"debe ser mayo de edad",Toast.LENGTH_SHORT).show();
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("nombre", name);
-        params.put("apaterno", ap);
-        params.put("amaterno", am);
-        params.put("phone", tl1);
-        params.put("phone2", tl2);
-        params.put("sexo", sex);
-        params.put("edad", ed);
-        params.put("cedula_prof", ced);
-        params.put("email", ema);
-        params.put("password", pass);
+        }else {
 
-        List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
-        RespuestaPreguntaSecreta respuesta = new RespuestaPreguntaSecreta();
-        respuesta.setPregunta(pre1);
-        respuesta.setRespuesta(res1);
+            HashMap<String, String> params = new HashMap<>();
+            params.put("nombre", name);
+            params.put("apaterno", ap);
+            params.put("amaterno", am);
+            params.put("phone", tl1);
+            params.put("phone2", tl2);
+            params.put("sexo", sex);
+            params.put("edad", ed);
+            params.put("cedula_prof", ced);
+            params.put("email", ema);
+            params.put("password", pass);
 
-        listaRespuestas.add(respuesta);
+            List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
+            RespuestaPreguntaSecreta respuesta = new RespuestaPreguntaSecreta();
+            respuesta.setPregunta(pre1);
+            respuesta.setRespuesta(res1);
 
-        RespuestaPreguntaSecreta respuesta2 = new RespuestaPreguntaSecreta();
-        respuesta2.setPregunta(pre2);
-        respuesta2.setRespuesta(res2);
+            listaRespuestas.add(respuesta);
 
-        listaRespuestas.add(respuesta2);
+            RespuestaPreguntaSecreta respuesta2 = new RespuestaPreguntaSecreta();
+            respuesta2.setPregunta(pre2);
+            respuesta2.setRespuesta(res2);
+
+            listaRespuestas.add(respuesta2);
 
 
-        JSONObject jResult = new JSONObject();
-        JSONArray jArray = new JSONArray();
+            JSONObject jResult = new JSONObject();
+            JSONArray jArray = new JSONArray();
 
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            JSONObject jGroup = new JSONObject();
-            try {
-                jGroup.put("pregunta", listaRespuestas.get(i).getPregunta());
-            } catch (JSONException e) {
-                e.printStackTrace();
+            for (int i = 0; i < listaRespuestas.size(); i++) {
+                JSONObject jGroup = new JSONObject();
+                try {
+                    jGroup.put("pregunta", listaRespuestas.get(i).getPregunta());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                jGroup.put("respuesta", listaRespuestas.get(i).getRespuesta());
+                jGroup.put("phone", tl1);
+                jArray.put(jGroup);
             }
-            jGroup.put("respuesta", listaRespuestas.get(i).getRespuesta());
-            jGroup.put("phone", tl1);
-            jArray.put(jGroup);
-        }
 
-        params.put("respuesta", jArray.toString());
+            params.put("respuesta", jArray.toString());
 
 
-        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
-        call.enqueue(new Callback<Responses>() {
+            Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registrarClientes(params);
+            call.enqueue(new Callback<Responses>() {
 
-            @Override
-            public void onResponse(Call<Responses> call, Response<Responses> response) {
-            }
+                @Override
+                public void onResponse(Call<Responses> call, Response<Responses> response) {
+                }
 
-            @Override
-            public void onFailure(Call<Responses> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Responses> call, Throwable t) {
 
-            }
-        });
+                }
+            });
 //alerta();
-        Toast.makeText(this, "Guardando registro", Toast.LENGTH_SHORT).show();
-   openLoadingDialog();
-        startActivity(new Intent(this, LoginActivity.class));
-
+            Toast.makeText(this, "Guardando registro", Toast.LENGTH_SHORT).show();
+            openLoadingDialog();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     private void openLoadingDialog() {

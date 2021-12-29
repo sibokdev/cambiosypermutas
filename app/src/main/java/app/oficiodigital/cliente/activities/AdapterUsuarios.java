@@ -96,6 +96,16 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.des.setText(item.getDescription());
 
 
+        holder.detalles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), Details.class);
+                intent.putExtra("datos", item);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -356,6 +366,9 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                         .collect(Collectors.toList());
 
                 list.addAll(collect);
+                if(!list.addAll(collect)){
+                    Toast.makeText(dialog.getContext(), "No hay registros", Toast.LENGTH_SHORT).show();
+                }
 
             }
             else {
@@ -421,7 +434,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre);
@@ -432,6 +445,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             token = (TextView) itemView.findViewById(R.id.token);
             telefono = (TextView) itemView.findViewById(R.id.telefono);
             des = (TextView) itemView.findViewById(R.id.des);
+            detalles = (Button) itemView.findViewById(R.id.detalles);
         }
     }
 
