@@ -342,7 +342,9 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     }
 
     public void filtrar(final CharSequence buscar){
-        if(buscar.length()==0){
+
+
+        if(buscar.length()== 5){
             list.clear();
             list.addAll(originalList);
         }

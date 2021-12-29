@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.activities.AdapterUsuarios;
@@ -163,12 +164,45 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 List<app.oficiodigital.cliente.models.Estados> ejemplo = response.body();
 
                 List<String> list = new ArrayList<String>();
+                String estado1 ="", estado2 = "", estado3 = "", estadoss = "";
+                String[] estados = new String[0];
 
                 for (app.oficiodigital.cliente.models.Estados estado : ejemplo) {
                     list.add(estado.getEstado());
 
+                   for (int i = 0; i < list.size(); i++) {
+                        if (i == 2) {
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
+                            if(list.get(0).contains(list.get(1)) && list.get(0).contains(list.get(2))){
+                                estado1 = list.get(0);
+                                estados = new String[]{"Todos", estado1};
+                            }else if(list.get(1).contains(list.get(2))){
+                                //interes.setText(list.get(0) + " " + list.get(1));
+                                estado1 = list.get(0);
+                                estado3 = list.get(2);
+                                estados = new String[]{"Todos", estado1, estado3};
+                            }else if(list.get(0).contains(list.get(1))){
+                                estado2 = list.get(1);
+                                estado3 = list.get(2);
+                                estados = new String[]{"Todos", estado2, estado3};
+                            }else if(list.get(0).contains(list.get(2))){
+                                estado1 = list.get(0);
+                                estado2 = list.get(1);
+                                estados = new String[]{"Todos", estado1, estado2};
+                            }else{
+                               
+                                estado1 = list.get(0);
+                                estado2 = list.get(1);
+                                estado3 = list.get(2);
+
+                                estados = new String[]{"Todos", estado1, estado2, estado3};
+                            }
+
+                        }
+                    }
+                     
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, estados);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_child.setAdapter(adapter);
                 }
