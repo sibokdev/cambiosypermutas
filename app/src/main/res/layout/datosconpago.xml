@@ -38,22 +38,23 @@
 
         <TextView
             android:id="@+id/tv_nombre_escuela"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginStart="-120dp"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="-105dp"
             android:layout_marginTop="10dp"
             android:textAllCaps="true"
-            android:gravity="center"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_school"
+            android:drawablePadding="@dimen/fab_margin"
             android:textSize="16dp"
             android:text="Nombre de la escuela:" />
         <TextView
             android:id="@+id/et_nombre_escuela"
-            android:layout_width="220dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="-65dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -62,21 +63,22 @@
         <TextView
             android:id="@+id/tv_nivel_escolar"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="true"
+            android:layout_height="60dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="Nivel escolar:" />
+            android:text="Nivel escolar:"
+            android:textAllCaps="true"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_list_numbered"/>
         <TextView
             android:id="@+id/et_nivel_escolar"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-57dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -86,20 +88,21 @@
             android:id="@+id/tv_puesto"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="true"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="puesto:" />
+            android:text="puesto:"
+            android:textAllCaps="true"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_label"/>
         <TextView
             android:id="@+id/puesto"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-51dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -110,19 +113,20 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="Tipo de escuela:" />
+            android:text="Tipo de escuela:"
+            android:drawableLeft="@drawable/ic_category"/>
         <TextView
             android:id="@+id/tipo"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-53dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -134,19 +138,20 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="Turno:" />
+            android:text="Turno:"
+            android:drawableLeft="@drawable/ic_horario"/>
         <TextView
             android:id="@+id/turno"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-53dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -157,19 +162,20 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="Telefono personal:" />
+            android:text="Telefono personal:"
+            android:drawableLeft="@drawable/ic_baseline_local_phone_24"/>
         <TextView
             android:id="@+id/telefono"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-53dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -180,19 +186,20 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="lugar de trabajo actual:" />
+            android:text="lugar de trabajo actual:"
+            android:drawableLeft="@drawable/ic_location_city"/>
         <TextView
             android:id="@+id/lugar_actual"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-58dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -203,19 +210,20 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="-105dp"
+            android:layout_marginTop="25dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="interesado en:" />
+            android:text="interesado en:"
+            android:drawableLeft="@drawable/ic_interests"/>
         <TextView
             android:id="@+id/interesado"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="-43dp"
+            android:layout_marginTop="-53dp"
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
@@ -237,10 +245,11 @@
             android:padding="10dp"
             android:text="Solicitar cotización" />-->
 
-        <TextView
+      <!--  <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"/>
+            android:layout_marginTop="20dp"
+            android:padding="20dp"/>-->
         <TextView
             android:id="@+id/token"
             android:visibility="gone"
@@ -254,7 +263,7 @@
 
         <TextView
             android:id="@+id/phone1"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
