@@ -745,16 +745,6 @@ public class DataSchool extends Fragment {
                 } else if (nota_des == 2 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
                 } else {
-                    /*if(s1.getText().toString().equals("Si") && s2.getText().toString().equals("Si")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                }else if( s1.getText().toString().equals("Si") && s2.getText().toString().equals("No")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria1", Toast.LENGTH_SHORT).show();
-                }else if(s1.getText().toString().equals("No") && s2.getText().toString().equals("Si")){
-                    //guardar.setEnabled(false);
-                    Toast.makeText(getContext(),"Lo sentimos, no cumple con los requisitos...Revise la convocatoria2", Toast.LENGTH_SHORT).show();
-                }else{*/
                     Toast.makeText(getContext(), "todo esta validado", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(true);
 
