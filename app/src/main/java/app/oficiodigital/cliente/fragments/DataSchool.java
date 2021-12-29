@@ -392,7 +392,7 @@ public class DataSchool extends Fragment {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        salida.setText((progress + "Años"));
+                        salida.setText((String.valueOf(progress)));
                         aniosAntiguedad=progress;
 
                     }
@@ -745,10 +745,11 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
-                /*if ( aniosAntiguedad< 2) {
+
+                if (aniosAntiguedad < 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(false);
-                } else*/ if (nivel == 0) {
+                } else if (nivel == 0) {
                     //guardar.setEnabled(false);
                     Toast.makeText(getContext(), "Seleccione nivel escolar", Toast.LENGTH_SHORT).show();
                 } else if (turno == 0) {
@@ -933,8 +934,8 @@ public class DataSchool extends Fragment {
                 salida.setError(null);
 
                 // oescuela.setSelection(oescuela.length());
-
-               if (aniosAntiguedad < 2) {
+               int pro = Integer.parseInt(salida.getText().toString());
+               if (pro < 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
                     // guardar.setEnabled(false);
                 } else if (nivel == 0) {

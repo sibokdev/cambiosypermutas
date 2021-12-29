@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -23,6 +24,7 @@ public class AddNewPhone extends BaseActivity {
     private EditText nuevo, actual, confirmacion;
     private TextInputLayout ti_nuevo;
     private TextView id, phone2;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,17 @@ public class AddNewPhone extends BaseActivity {
         ti_nuevo = (TextInputLayout)findViewById(R.id.ti_nuevo);
         id = (TextView)findViewById(R.id.id);
         phone2 = (TextView) findViewById(R.id.phone2);
+
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         String phon2 = getIntent().getStringExtra("phone");
         actual.setText(phon2);

@@ -321,7 +321,6 @@
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
-
                         android:lines="2"
                         android:padding="10dp"
                         android:text="¿Tienes nombramiento
@@ -377,14 +376,26 @@
 
                     <TextView
                         android:id="@+id/tv_salida"
-                        android:layout_width="100dp"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="60dp"
                         android:layout_marginTop="260dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
-                        android:text=""
+                        android:text="3"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_años"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="260dp"
+                        android:layout_marginEnd="50dp"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:text="Años"
                         android:textSize="18dp" />
 
 

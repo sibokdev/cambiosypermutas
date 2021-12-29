@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -34,6 +35,7 @@ public class ChangePassword extends BaseActivity{
     private TextView phone;
     private EditText contra,confir;
     private TextInputLayout ti_pass, ti_con;
+    private ImageView back;
     String phon = "";
 
     @Override
@@ -47,6 +49,15 @@ public class ChangePassword extends BaseActivity{
         ti_pass = (TextInputLayout)findViewById(R.id.ti_pass);
         ti_con = (TextInputLayout)findViewById(R.id.ti_confir);
 
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         phon = getIntent().getStringExtra("phone");
 

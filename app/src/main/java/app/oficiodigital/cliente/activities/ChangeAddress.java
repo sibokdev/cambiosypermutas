@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class ChangeAddress extends BaseActivity implements OnMapReadyCallback{
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private Spinner colonia;
     private TextInputLayout ti_calle, ti_numero, ti_codigo;
+    private ImageView back;
 
     @SuppressLint("MissingPermission")
     @Override
@@ -92,6 +94,16 @@ public class ChangeAddress extends BaseActivity implements OnMapReadyCallback{
         ti_calle = (TextInputLayout) findViewById(R.id.ti_calle);
         ti_numero = (TextInputLayout) findViewById(R.id.ti_numero);
         ti_codigo = (TextInputLayout) findViewById(R.id.ti_codigo);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         String nom = getIntent().getStringExtra("nombre");
         String ap1 = getIntent().getStringExtra("ape1");

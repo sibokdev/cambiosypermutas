@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class InsertCode extends BaseActivity {
     private EditText code;
     private TextView phone, token1;
     private TextInputLayout codigo;
-
+private ImageView back;
     private TextView textView3;
     AlertDialog.Builder builder;
 
@@ -49,6 +50,17 @@ public class InsertCode extends BaseActivity {
         token1 = (TextView)findViewById(R.id.token);
 
         textView3 = (TextView) findViewById(R.id.textView3);
+
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
+
 
         String token = getIntent().getStringExtra("tokenPhone");
         token1.setText(token);

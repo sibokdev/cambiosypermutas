@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,6 +85,7 @@ public class EditAddress extends BaseActivity implements OnMapReadyCallback {
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private Spinner colonia;
     private TextInputLayout ti_calle, ti_numero, ti_codigo;
+    private ImageView back;
 
     private LocationManager ubicacion;
 
@@ -114,6 +116,15 @@ public class EditAddress extends BaseActivity implements OnMapReadyCallback {
 
         mapa = (MapView) findViewById(R.id.mapa);
 
+        back = (ImageView) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+            }
+        });
 
         mapa.onCreate(savedInstanceState);
 
