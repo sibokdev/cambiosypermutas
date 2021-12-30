@@ -293,7 +293,7 @@ public class principalMenu extends BaseActivity
                 ft.replace(R.id.conten, new FragmentInteres()).commit();
                 break;
             case R.id.nav_metodos:
-               // ft.replace(R.id.conten, new MetodosPago()).commit();
+                ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
             case R.id.nav_compartir:
                 ft.replace(R.id.conten, new Share()).commit();

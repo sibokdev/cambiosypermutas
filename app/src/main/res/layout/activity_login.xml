@@ -53,8 +53,9 @@
                 android:layout_width="380dp"
                 android:layout_height="211dp"
                 android:padding="0dp"
-                android:src="@drawable/logo_1"
-                app:cardBackgroundColor="@color/white" />
+                android:src="@drawable/logo_final"
+                android:scaleType="centerCrop"
+                />
 
 
             <TextView

@@ -92,7 +92,7 @@ private ImageView back;
                     if (response.isSuccessful()) {
                         if (response.body().getCode() ==404) {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
-                            codigo.setError("codigo incorrecto");
+                            codigo.setError("Código incorrecto");
                         }
                     }
                 }
@@ -129,7 +129,7 @@ private ImageView back;
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-
+                Toast.makeText(getApplication(), "Código enviado", Toast.LENGTH_SHORT).show();
                 String phon = phone.getText().toString();
 
                   HashMap<String, String> params = new HashMap<>();

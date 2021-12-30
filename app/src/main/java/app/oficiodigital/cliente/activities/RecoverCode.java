@@ -70,7 +70,7 @@ public class RecoverCode extends BaseActivity {
         Pattern pat = Pattern.compile("[0-9]{6}");
 
         if (pat.matcher(cod).matches() == false) {
-            codigo.setError("Ingresa codigo de 6 digitos");
+            codigo.setError("Ingresa código de 6 digitos");
         } else {
             codigo.setErrorEnabled(false);
 
@@ -85,7 +85,7 @@ public class RecoverCode extends BaseActivity {
                     if (response.isSuccessful()) {
                         if (response.body().getCode() ==404) {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
-                            codigo.setError("codigo incorrecto");
+                            codigo.setError("Código incorrecto");
                         }
                     }
                 }
@@ -93,7 +93,7 @@ public class RecoverCode extends BaseActivity {
                 @Override
                 public void onFailure(Call<Responses> call, Throwable t) {
                     L.error("login " + t.getMessage());
-                    Toast.makeText(getApplicationContext(), "codigo correcto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Código correcto", Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
                     Intent inte = new Intent(RecoverCode.this, AnswerQuestions.class);
                     inte.putExtra("phone", phone.getText().toString());
@@ -122,7 +122,7 @@ public class RecoverCode extends BaseActivity {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-
+                Toast.makeText(getApplication(), "Código enviado", Toast.LENGTH_SHORT).show();
                 String phon = phone.getText().toString();
 
                 HashMap<String, String> params = new HashMap<>();

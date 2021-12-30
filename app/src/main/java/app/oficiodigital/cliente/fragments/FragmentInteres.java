@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.activities.principalMenu;
@@ -61,6 +62,7 @@ public class FragmentInteres extends Fragment {
     private BovedaClient.APIBovedaClient apiBovedaClient;
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
+    private TextInputLayout cp1, ti_cp2, ti_cp3;
     /*private Button guardar, match;*/
     ArrayAdapter<String> adapter_cp;
 
@@ -92,6 +94,10 @@ public class FragmentInteres extends Fragment {
         muni2 = (TextView) view.findViewById(R.id.municipio2);
         muni3 = (TextView) view.findViewById(R.id.municipio3);
 
+        cp1 = (TextInputLayout) view.findViewById(R.id.ti_codigop);
+        ti_cp2 = (TextInputLayout) view.findViewById(R.id.ti_codigop2);
+        ti_cp3 = (TextInputLayout) view.findViewById(R.id.ti_codigop3);
+
         colonia = (Spinner) view.findViewById(R.id.sp_colonia);
         colonia2 = (Spinner) view.findViewById(R.id.sp_colonia2);
         colonia3 = (Spinner) view.findViewById(R.id.sp_colonia3);
@@ -100,6 +106,71 @@ public class FragmentInteres extends Fragment {
         select2 = (TextView) view.findViewById(R.id.select2);
         select3 = (TextView) view.findViewById(R.id.select3);
         guardar = (Button) view.findViewById(R.id.btn_guardar);
+
+
+      /*  codigop.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextcp1(editable);
+            }
+        });
+        codigop.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextcp1(((EditText) v).getText());
+                }
+            }
+        });
+
+        codigop2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextcp2(editable);
+            }
+        });
+        codigop2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextcp2(((EditText) v).getText());
+                }
+            }
+        });
+
+        codigop3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validateEditTextcp3(editable);
+            }
+        });
+        codigop3.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validateEditTextcp3(((EditText) v).getText());
+                }
+            }
+        });*/
+
 
         getDataIntereses();
 
@@ -166,6 +237,15 @@ public class FragmentInteres extends Fragment {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = cp1.getEditText();
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+                String inputText = input.getText().toString().trim();
+                if (cod.matcher(inputText).matches() == false) {
+                    cp1.setError(" ");
+                } else {
+                    cp1.setErrorEnabled(false);
+
+                }
             }
         });
 
@@ -228,6 +308,15 @@ public class FragmentInteres extends Fragment {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = ti_cp2.getEditText();
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+                String inputText = input.getText().toString().trim();
+                if (cod.matcher(inputText).matches() == false) {
+                    ti_cp2.setError(" ");
+                } else {
+                    ti_cp2.setErrorEnabled(false);
+
+                }
             }
         });
 
@@ -288,10 +377,43 @@ public class FragmentInteres extends Fragment {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = ti_cp3.getEditText();
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+                String inputText = input.getText().toString().trim();
+                if (cod.matcher(inputText).matches() == false) {
+                    ti_cp3.setError(" ");
+                } else {
+                    ti_cp3.setErrorEnabled(false);
+
+                }
             }
         });
         return view;
     }
+
+    /*private void validateEditTextcp3(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_cp3.setError(null);
+        } else {
+            ti_cp3.setError(" ");
+        }
+    }
+
+    private void validateEditTextcp2(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            ti_cp2.setError(null);
+        } else {
+            ti_cp2.setError(" ");
+        }
+    }
+
+    private void validateEditTextcp1(Editable editable) {
+        if (!TextUtils.isEmpty(editable)) {
+            cp1.setError(null);
+        } else {
+            cp1.setError(" ");
+        }
+    }*/
 
     public void guardarMetodo(){
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -317,106 +439,136 @@ public class FragmentInteres extends Fragment {
                 String mun3 = muni3.getText().toString();
                 String colo3 = select3.getText().toString();
 
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+
                 //tring guard = guardar
 
 
                 if (TextUtils.isEmpty(cp)) {
-                    codigop.setError(getString(R.string.error_campo_oblogatorio));
+                    cp1.setError(" ");
                     codigop.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp2)) {
-                    codigop2.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_cp2.setError(" ");
                     codigop2.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(cp3)) {
-                    codigop3.setError(getString(R.string.error_campo_oblogatorio));
+                    ti_cp3.setError(" ");
+                    codigop3.requestFocus();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(mun)){
+                    cp1.setError(" ");
+                    codigop.requestFocus();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(mun2)){
+                    ti_cp2.setError(" ");
+                    codigop2.requestFocus();
+                    return;
+                }
+                if(TextUtils.isEmpty(mun3)){
+                    ti_cp3.setError(" ");
                     codigop3.requestFocus();
                     return;
                 }
 
 
-                Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+                    if (cod.matcher(codigop.getText().toString()).matches() == false) {
+                        cp1.setError(" ");
+                        codigop.requestFocus();
+                    } else if (cod.matcher(codigop2.getText().toString()).matches() == false) {
+                        ti_cp2.setError(" ");
+                        codigop2.requestFocus();
+                    } else if (cod.matcher(codigop2.getText().toString()).matches() == false) {
+                        ti_cp3.setError(" ");
+                        codigop3.requestFocus();
+                    } else {
+                        Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
 
-                List<Phone> userId = Phone.listAll(Phone.class);
-                for (Phone phon : userId) {
+                        List<Phone> userId = Phone.listAll(Phone.class);
+                        for (Phone phon : userId) {
 
 
-                    phone = phon.getPhone();
+                            phone = phon.getPhone();
+                        }
+
+                        //Envio a BD
+                        HashMap<String, String> params = new HashMap<>();
+
+                        List<Intereses> intereses = new ArrayList<Intereses>();
+                        Intereses codigos = new Intereses();
+                        codigos.setCodigo(cp);
+                        codigos.setColonia(colo);
+                        codigos.setMunicipio(mun);
+                        codigos.setEstado(estd);
+                        codigos.setTelefono(phone);
+
+                        intereses.add(codigos);
+                        Intereses codigos1 = new Intereses();
+                        codigos1.setCodigo(cp2);
+                        codigos1.setColonia(colo2);
+                        codigos1.setMunicipio(mun2);
+                        codigos1.setEstado(estd2);
+                        codigos1.setTelefono(phone);
+
+                        intereses.add(codigos1);
+                        Intereses codigos2 = new Intereses();
+                        codigos2.setCodigo(cp3);
+                        codigos2.setColonia(colo3);
+                        codigos2.setMunicipio(mun3);
+                        codigos2.setEstado(estd3);
+                        codigos2.setTelefono(phone);
+
+                        intereses.add(codigos2);
+
+
+                        JSONObject jResult = new JSONObject();
+                        JSONArray jArray = new JSONArray();
+
+                        for (int i = 0; i < intereses.size(); i++) {
+                            JSONObject jGroup = new JSONObject();
+                            try {
+                                jGroup.put("codigo", intereses.get(i).getCodigo());
+                                jGroup.put("colonia", intereses.get(i).getColonia());
+                                jGroup.put("municipio", intereses.get(i).getMunicipio());
+                                jGroup.put("estado", intereses.get(i).getEstado());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                jGroup.put("telefono", phone);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            jArray.put(jGroup);
+                        }
+
+                        params.put("intereses", jArray.toString());
+
+
+                        Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroInte(params, phone);
+                        call.enqueue(new Callback<Responses>() {
+
+
+                            @Override
+                            public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Responses> call, Throwable t) {
+
+                            }
+                        });
+
+                        getDataIntereses();
+                    }
                 }
-
-                //Envio a BD
-                HashMap<String, String> params = new HashMap<>();
-
-                List<Intereses> intereses = new ArrayList<Intereses>();
-                Intereses codigos = new Intereses();
-                codigos.setCodigo(cp);
-                codigos.setColonia(colo);
-                codigos.setMunicipio(mun);
-                codigos.setEstado(estd);
-                codigos.setTelefono(phone);
-
-                intereses.add(codigos);
-                Intereses codigos1 = new Intereses();
-                codigos1.setCodigo(cp2);
-                codigos1.setColonia(colo2);
-                codigos1.setMunicipio(mun2);
-                codigos1.setEstado(estd2);
-                codigos1.setTelefono(phone);
-
-                intereses.add(codigos1);
-                Intereses codigos2 = new Intereses();
-                codigos2.setCodigo(cp3);
-                codigos2.setColonia(colo3);
-                codigos2.setMunicipio(mun3);
-                codigos2.setEstado(estd3);
-                codigos2.setTelefono(phone);
-
-                intereses.add(codigos2);
-
-
-                JSONObject jResult = new JSONObject();
-                JSONArray jArray = new JSONArray();
-
-                for (int i = 0; i < intereses.size(); i++) {
-                    JSONObject jGroup = new JSONObject();
-                    try {
-                        jGroup.put("codigo", intereses.get(i).getCodigo());
-                        jGroup.put("colonia", intereses.get(i).getColonia());
-                        jGroup.put("municipio", intereses.get(i).getMunicipio());
-                        jGroup.put("estado", intereses.get(i).getEstado());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        jGroup.put("telefono", phone);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    jArray.put(jGroup);
-                }
-
-                params.put("intereses", jArray.toString());
-
-
-                Call<Responses> call = BovedaClient.getInstanceClient().getApiClient().registroInte(params, phone);
-                call.enqueue(new Callback<Responses>() {
-
-
-                    @Override
-                    public void onResponse(Call<Responses> call, Response<Responses> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Responses> call, Throwable t) {
-
-                    }
-                });
-
-                getDataIntereses();
-            }
 
         });
 
@@ -454,18 +606,18 @@ public class FragmentInteres extends Fragment {
 
 
                         for (int i = 0; i < list.size(); i++) {
-                            if (i == 0) {
-                                codigop.setText(list.get(i));
+                            if (i == 2) {
+                                codigop.setText(list.get(2));
                                 colonia.setEnabled(false);
                                 codigop.setEnabled(false);
                                 id = list2.get(i);
                             } else if (i == 1) {
-                                codigop2.setText(list.get(i));
+                                codigop2.setText(list.get(1));
                                 colonia2.setEnabled(false);
                                 codigop2.setEnabled(false);
                                 id2 = list2.get(i);
-                            } else if (i == 2) {
-                                codigop3.setText(list.get(i));
+                            } else if (i == 0) {
+                                codigop3.setText(list.get(0));
                                 colonia3.setEnabled(false);
                                 codigop3.setEnabled(false);
                                 id3 = list2.get(i);
@@ -476,7 +628,10 @@ public class FragmentInteres extends Fragment {
                         guardar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
                                 modificarMetodo();
+                               /* Toast.makeText(getContext(),"Datos actualizados" +
+                                        "correctamente",Toast.LENGTH_SHORT).show();*/
                             }
                         });
 
@@ -509,98 +664,111 @@ public class FragmentInteres extends Fragment {
 
             phone = phon.getPhone();
         }
-
+        Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
        // FragmentTransaction transaction = getFragmentManager().beginTransaction();
         //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, new FragmentInteres()).addToBackStack(null).commit();
         codigop.setError(null);
 
-        String cp = codigop.getText().toString();
-        String estd = estado.getText().toString();
-        String mun = muni.getText().toString();
-        String colo = select.getText().toString();
+        if(cod.matcher(codigop.getText().toString()).matches() == false){
+            cp1.setError(" ");
+            codigop.requestFocus();
+        }else if(cod.matcher(codigop2.getText().toString()).matches() == false) {
+            ti_cp2.setError(" ");
+            codigop2.requestFocus();
+        }else if(cod.matcher(codigop2.getText().toString()).matches() == false){
+            ti_cp3.setError(" ");
+            codigop3.requestFocus();
+        }else {
 
-        String cp2 = codigop2.getText().toString();
-        String estd2 = estado2.getText().toString();
-        String mun2 = muni2.getText().toString();
-        String colo2 = select2.getText().toString();
+            String cp = codigop.getText().toString();
+            String estd = estado.getText().toString();
+            String mun = muni.getText().toString();
+            String colo = select.getText().toString();
 
-        String cp3 = codigop3.getText().toString();
-        String estd3 = estado3.getText().toString();
-        String mun3 = muni3.getText().toString();
-        String colo3 = select3.getText().toString();
+            String cp2 = codigop2.getText().toString();
+            String estd2 = estado2.getText().toString();
+            String mun2 = muni2.getText().toString();
+            String colo2 = select2.getText().toString();
 
-        HashMap<String, String> params = new HashMap<>();
+            String cp3 = codigop3.getText().toString();
+            String estd3 = estado3.getText().toString();
+            String mun3 = muni3.getText().toString();
+            String colo3 = select3.getText().toString();
 
-        List<Intereses> intereses = new ArrayList<Intereses>();
-        Intereses codigos = new Intereses();
-        codigos.setId(id);
-        codigos.setCodigo(cp);
-        codigos.setColonia(colo);
-        codigos.setMunicipio(mun);
-        codigos.setEstado(estd);
-        codigos.setTelefono(phone);
+            HashMap<String, String> params = new HashMap<>();
 
-        intereses.add(codigos);
-        Intereses codigos1 = new Intereses();
-        codigos1.setId(id2);
-        codigos1.setCodigo(cp2);
-        codigos1.setColonia(colo2);
-        codigos1.setMunicipio(mun2);
-        codigos1.setEstado(estd2);
-        codigos1.setTelefono(phone);
+            List<Intereses> intereses = new ArrayList<Intereses>();
+            Intereses codigos = new Intereses();
+            codigos.setId(id);
+            codigos.setCodigo(cp);
+            codigos.setColonia(colo);
+            codigos.setMunicipio(mun);
+            codigos.setEstado(estd);
+            codigos.setTelefono(phone);
 
-        intereses.add(codigos1);
-        Intereses codigos2 = new Intereses();
-        codigos2.setId(id3);
-        codigos2.setCodigo(cp3);
-        codigos2.setColonia(colo3);
-        codigos2.setMunicipio(mun3);
-        codigos2.setEstado(estd3);
-        codigos2.setTelefono(phone);
+            intereses.add(codigos);
+            Intereses codigos1 = new Intereses();
+            codigos1.setId(id2);
+            codigos1.setCodigo(cp2);
+            codigos1.setColonia(colo2);
+            codigos1.setMunicipio(mun2);
+            codigos1.setEstado(estd2);
+            codigos1.setTelefono(phone);
 
-        intereses.add(codigos2);
+            intereses.add(codigos1);
+            Intereses codigos2 = new Intereses();
+            codigos2.setId(id3);
+            codigos2.setCodigo(cp3);
+            codigos2.setColonia(colo3);
+            codigos2.setMunicipio(mun3);
+            codigos2.setEstado(estd3);
+            codigos2.setTelefono(phone);
 
-        JSONObject jResult = new JSONObject();
-        JSONArray jArray = new JSONArray();
+            intereses.add(codigos2);
 
-        for (int i = 0; i < intereses.size(); i++) {
-            JSONObject jGroup = new JSONObject();
-            try {
-                jGroup.put("id", intereses.get(i).getId());
-                jGroup.put("codigo", intereses.get(i).getCodigo());
-                jGroup.put("colonia", intereses.get(i).getColonia());
-                jGroup.put("municipio", intereses.get(i).getMunicipio());
-                jGroup.put("estado", intereses.get(i).getEstado().trim());
-            } catch (JSONException e) {
-                e.printStackTrace();
+            JSONObject jResult = new JSONObject();
+            JSONArray jArray = new JSONArray();
+
+            for (int i = 0; i < intereses.size(); i++) {
+                JSONObject jGroup = new JSONObject();
+                try {
+                    jGroup.put("id", intereses.get(i).getId());
+                    jGroup.put("codigo", intereses.get(i).getCodigo());
+                    jGroup.put("colonia", intereses.get(i).getColonia());
+                    jGroup.put("municipio", intereses.get(i).getMunicipio());
+                    jGroup.put("estado", intereses.get(i).getEstado().trim());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    jGroup.put("telefono", phone);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                jArray.put(jGroup);
             }
-            try {
-                jGroup.put("telefono", phone);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            jArray.put(jGroup);
+
+            params.put("intereses", jArray.toString());
+
+
+            Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateInte(params, phone);
+            callVersiones.enqueue(new Callback<Responses>() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<Responses> call, Throwable t) {
+
+                }
+
+            });
+            Toast.makeText(getContext(), "Datos actualizados" +
+                    "correctamente", Toast.LENGTH_SHORT).show();
+            getDataIntereses();
         }
-
-        params.put("intereses", jArray.toString());
-
-
-        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateInte(params, phone);
-        callVersiones.enqueue(new Callback<Responses>() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onResponse(Call<Responses> call, Response<Responses> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<Responses> call, Throwable t) {
-
-            }
-
-        });
-
-        getDataIntereses();
     }
 
     private void modificarMetodo(){
@@ -634,18 +802,18 @@ public class FragmentInteres extends Fragment {
                         list2.add(res.getId());
 
                         for(int i = 0; i<list.size(); i++){
-                            if(i==0){
-                                codigop.setText(list.get(i));
+                            if(i==2){
+                                codigop.setText(list.get(2));
                                 codigop.setEnabled(true);
                                 colonia.setEnabled(true);
                                 id = list2.get(i);
                             }else if(i==1){
-                                codigop2.setText(list.get(i));
+                                codigop2.setText(list.get(1));
                                 codigop2.setEnabled(true);
                                 colonia2.setEnabled(true);
                                 id2 = list2.get(i);
-                            } else if(i==2){
-                                codigop3.setText(list.get(i));
+                            } else if(i==0){
+                                codigop3.setText(list.get(0));
                                 codigop3.setEnabled(true);
                                 colonia3.setEnabled(true);
                                 id3 = list2.get(i);

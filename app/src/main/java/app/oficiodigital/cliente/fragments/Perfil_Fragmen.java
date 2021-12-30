@@ -246,8 +246,13 @@ public class Perfil_Fragmen extends Fragment {
                     phon = "" + res.getPhone();
                     phone1.setText(phon);
 
-                    esta  = "" + res.getEstado();
-                    estado.setText(esta);
+
+                    if(res.getEstado() == null){
+                        estado.setText("Estado");
+                    }else{
+                        esta  = "" + res.getEstado();
+                        estado.setText(esta);
+                    }
 
 
 
@@ -302,7 +307,7 @@ public class Perfil_Fragmen extends Fragment {
         });
 
 
-        fotos.setOnClickListener(new View.OnClickListener() {
+       /* fotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final CharSequence[] opciones = {"Tomar foto", "Seleccionar imagen", "cancelar"};
@@ -324,7 +329,7 @@ public class Perfil_Fragmen extends Fragment {
 
                 builder.show();
             }
-        });
+        });*/
 
         String per = foto2.getText().toString();
         HashMap<String, String> params = new HashMap<>();

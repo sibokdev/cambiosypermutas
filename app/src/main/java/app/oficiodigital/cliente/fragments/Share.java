@@ -28,8 +28,11 @@ public class Share extends Fragment {
         compartirApp();
 
         //Inicializamos all
-        int images[] = {R.drawable.mapa_mexico_points, R.drawable.school_viaje,
-                R.drawable.distance_learning, R.drawable.distance_learning2 };//
+
+        //Inicializamos all
+        int images[] = {R.drawable.mexico_gulf, R.drawable.annie_spratt,
+                R.drawable.mantas_hesthaven};//
+
 
         vf_carrusel = view.findViewById(R.id.vf_carrusel);//
 
@@ -56,7 +59,7 @@ public class Share extends Fragment {
 
         //activamos animacion
         vf_carrusel.setInAnimation(getContext(), android.R.anim.slide_out_right);
-        vf_carrusel.setOutAnimation(getContext(), android.R.anim.slide_in_left);
+        //vf_carrusel.setOutAnimation(getContext(), android.R.anim.slide_in_left);
     }
     private void compartirApp(){
         try {

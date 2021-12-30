@@ -110,7 +110,7 @@ public class Details extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Estados>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
 
             }

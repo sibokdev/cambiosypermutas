@@ -310,7 +310,7 @@ public class DataSchool extends Fragment {
                     Pattern tel = Pattern.compile("[0-9]{10}");
                     String inputText = input.getText().toString().trim();
                     if (tel.matcher(inputText).matches() == false) {
-                        ti_tel.setError("Debes ingresar 10 dígitos");
+                        ti_tel.setError(" ");
                     } else {
                         ti_tel.setErrorEnabled(false);
 
@@ -381,6 +381,15 @@ public class DataSchool extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EditText input = ti_codigop.getEditText();
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+                String inputText = input.getText().toString().trim();
+                if (cod.matcher(inputText).matches() == false) {
+                    ti_codigop.setError(" ");
+                } else {
+                    ti_codigop.setErrorEnabled(false);
+
+                }
             }
         });
 
@@ -560,14 +569,16 @@ public class DataSchool extends Fragment {
                             String se = "" + sele;
                             s1.setText(slect);
                             // guardar.setEnabled(false);
-                      /*  } else if (nota_des == 1){
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
+                        } else if (nota_des == 1){
+                            onota.requestFocus();
+                           // Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_LONG).show();
                        // guardar.setEnabled(false);
-                        }else{
-                            guardar.setEnabled(true);
-                        }*/
+                        }else if (nota_des == 2){
+                            onota.requestFocus();
+                           // guardar.setEnabled(true);
                         }
-                    }
+                        }
+
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -745,6 +756,8 @@ public class DataSchool extends Fragment {
                 onom_dir.setError(null);
                 salida.setError(null);
 
+                Pattern cod = Pattern.compile("^[0-9]{4,5}?$");
+
 
                 if (aniosAntiguedad < 2) {
                     Toast.makeText(getContext(), "No es valida la antiguedad", Toast.LENGTH_SHORT).show();
@@ -770,12 +783,17 @@ public class DataSchool extends Fragment {
                     Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 1 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                    onota.requestFocus();
                 } else if (nota_des == 1 && suj_proced == 2) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                    onota.requestFocus();
                 } else if (nota_des == 2 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                } else {
-
+                    oprocedimiento.requestFocus();
+                } else if(cod.matcher(codigop.getText().toString()).matches() == false ){
+                    ti_codigop.setError(" ");
+                    codigop.requestFocus();
+                }else {
 
                     String esc = oescuela.getText().toString().trim();
                     String clv = oclave.getText().toString().trim();
@@ -859,6 +877,12 @@ public class DataSchool extends Fragment {
                     if (TextUtils.isEmpty(nom_direc)) {
                         ti_nom_dir.setError(" ");
                         ti_nom_dir.requestFocus();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(mun)) {
+                        ti_codigop.setError(" ");
+                        codigop.requestFocus();
                         return;
                     }
               /*  if (TextUtils.isEmpty(sal)) {
@@ -959,10 +983,13 @@ public class DataSchool extends Fragment {
                     Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 1 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                    onota.requestFocus();
                 } else if (nota_des == 1 && suj_proced == 2) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                    onota.requestFocus();
                 } else if (nota_des == 2 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
+                    oprocedimiento.requestFocus();
                 } else {
 
 

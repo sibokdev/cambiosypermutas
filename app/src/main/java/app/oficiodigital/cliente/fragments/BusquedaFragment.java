@@ -59,7 +59,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     String rol;
     String tipo = "";
     String nivel = "";
-    String estado = "", estado2 = "";
+    String estado = "", estado2 = "", estado3 = "";
     String roles;
     List<Busqueda> listUsuarios;
     // BusquedaCP datosEnviar = new BusquedaCP();
@@ -255,12 +255,14 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                                 estado = " " + listestado.get(i);
                             } else if (i == 1) {
                                 estado2 = " " + listestado.get(i);
+                            }else if (i == 2) {
+                                estado3 = " " + listestado.get(i);
                             }
                         }
                     }
                 }
 
-                getdatoss(estado, estado2, tipo, nivel, rol);
+                getdatoss(estado, estado2, estado3, tipo, nivel, rol);
 
             }
 
@@ -274,7 +276,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
     }
 
-    public void getdatoss(String e1, String e2,String ti, String ni, String ro){
+    public void getdatoss(String e1, String e2, String e3,String ti, String ni, String ro){
 
         HashMap<String, String> params = new HashMap<>();
         params.put("rol", ro);
@@ -283,15 +285,18 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         //params.put("estado", estado);
 
         List<Estados> listaRespuestas = new ArrayList<Estados>();
+
         Estados respuesta = new Estados();
         respuesta.setEstado(e1);
-
         listaRespuestas.add(respuesta);
 
         Estados respuesta2 = new Estados();
         respuesta2.setEstado(e2);
         listaRespuestas.add(respuesta2);
 
+        Estados respuesta3 = new Estados();
+        respuesta3.setEstado(e3);
+        listaRespuestas.add(respuesta3);
 
         JSONObject jResult = new JSONObject();
         JSONArray jArray = new JSONArray();

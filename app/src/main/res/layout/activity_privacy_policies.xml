@@ -43,11 +43,38 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web.Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web.Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web. "/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web.Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web.Los Términos y Condiciones, también denominados como Condiciones Generales de Uso, son un documento diseñado para aquellas personas que van a crear o administrar una página o sitio web, en el cual se establecen las condiciones bajo las cuales los usuarios ingresarán y harán uso del sitio web. "/>
+                android:text="                Términos y Condiciones de Uso
+\n \nINFORMACIÓN RELEVANTE
+\nEs requisito necesario para la adquisición de los servicios que se ofrecen en esta app, que lea y acepte los siguientes Términos y Condiciones que a continuación se redactan.
+El uso de nuestros servicios implicará que usted ha leído y aceptado los Términos y Condiciones de Uso en el presente documento. Todos los servicios que son ofrecidos por nuestra app son exclusivamente de búsqueda de información, ya que Cambios y Permutas no garantiza de alguna manera que el trámite a llevar a cabo será realizado con éxito, puesto que de ninguna manera gestionamos dichos trámites. \n
+Para acceder a nuestro servicio, será necesario el registro por parte del usuario, con ingreso de datos personales fidedignos y definición de una contraseña.\n
+El usuario puede elegir y cambiar la clave para su acceso de administración de la cuenta en cualquier momento, en caso de que se haya registrado y que sea necesario para la solicitud de alguno de nuestros servicios. Cambios y Permutas no asume la responsabilidad en caso de que entregue dicha clave a terceros.
+Todas las compras y transacciones que se lleven a cabo por medio de esta app, están sujetas a un proceso de confirmación y verificación, el cual podría incluir la verificación y disponibilidad de producto, validación de la forma de pago, validación de la factura (en caso de existir) y el cumplimiento de las condiciones requeridas por el medio de pago seleccionado.
+En algunos casos puede que se requiera una verificación por medio de correo electrónico.\n
+Los precios de los servicios ofrecidos en esta app son válidas solamente en las compras realizadas en la app.\n \n
+
+LICENCIA\n
+Cambios y Permutas a través de su app concede una licencia específica por un lapso de tiempo definido para que los usuarios utilicen los servicios con el fin de efectuar la búsqueda de información de acuerdo a los intereses registrados en la aplicación y a los Términos y Condiciones que se describen en este documento.\n
+\n
+USO NO AUTORIZADO\n
+En caso de que aplique (para venta de software, templetes, u otro producto de diseño y programación) usted no puede colocar uno de nuestros productos, modificado o sin modificar, en un CD, sitio web o ningún otro medio y ofrecerlos para la redistribución o la reventa de ningún tipo.\n
+\n
+PROPIEDAD\n
+Usted no puede declarar propiedad intelectual o exclusiva a ninguno de nuestros productos, modificado o sin modificar. Todos los servicios son propiedad de los proveedores del contenido. En caso de que no se especifique lo contrario, nuestros servicios se proporcionan sin ningún tipo de garantía, expresa o implícita.\n
+En ningún momento esta compañía será responsable de ningún daño incluyendo, pero no limitado a, daños directos, indirectos, especiales, fortuitos o consecuentes u otras pérdidas resultantes del uso o de la imposibilidad de utilizar nuestros servicios.\n
+\n
+REEMBOLSO Y GARANTÍA\n
+Una vez concluido  el lapso del servicio solicitado, se deberá realizar nuevamente un pago para tener acceso a búsquedas sin restricción, no realizamos reembolsos después de que se envíen los resultados, usted tiene la responsabilidad de entender antes de solicitarlo.
+\nLe pedimos que lea cuidadosamente antes de solicitarlo. Hacemos solamente excepciones con esta regla cuando la descripción no se ajusta al servicio prestado.
+\nHay algunos servicios que pudieran tener garantía y posibilidad de reembolso, pero este será especificado al comprar el producto.\n
+En tales casos la garantía solo se hará efectiva cuando el software se haya usado correctamente. La garantía no cubre averías o daños ocasionados por uso indebido. Los términos de la garantía están asociados a fallas de origen y funcionamiento en condiciones normales de los servicios y sólo se harán efectivos estos términos si el software ha sido
+utilizado correctamente.
+\n \n
+PRIVACIDAD\n
+Cambios y Permutas garantiza que la información personal que usted envía cuenta con la seguridad necesaria.
+\nPuede revisar más a detalle en nuestra POLÍTICA DE PRIVACIDAD.\n
+\n
+Cambios y Permutas reserva los derechos de cambiar o de modificar estos términos sin previo aviso."/>
 
         </androidx.cardview.widget.CardView>
     </ScrollView>

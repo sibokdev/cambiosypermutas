@@ -54,7 +54,7 @@ public class RecoverPhone extends BaseActivity {
         Pattern pat = Pattern.compile("[0-9]{10}");
 
         if (pat.matcher(phon).matches() == false) {
-            pho.setError("Ingrese telefono correctamente");
+            pho.setError("Ingrese teléfono correctamente");
         } else {
             pho.setErrorEnabled(false);
 
@@ -68,7 +68,7 @@ public class RecoverPhone extends BaseActivity {
                     if (response.isSuccessful()) {
                         if (response.body().getCode() == 404) {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
-                            pho.setError("Numero no existente");
+                            pho.setError("   Número no existente");
                         }else{
                             Intent inte = new Intent(RecoverPhone.this, RecoverCode.class);
                             inte.putExtra("phone", phone.getText().toString());
