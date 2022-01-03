@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 import app.oficiodigital.cliente.R;
 import app.oficiodigital.cliente.clients.BovedaClient;
 import app.oficiodigital.cliente.clients.DOXClient;
+import app.oficiodigital.cliente.fragments.BusquedaFragment;
 import app.oficiodigital.cliente.fragments.MetodosPago;
 import app.oficiodigital.cliente.models.Busqueda;
 import app.oficiodigital.cliente.models.Datos;
@@ -55,6 +56,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     private final List<Busqueda> list;
     private final List<Busqueda> originalList;
     String tok;
+    BusquedaFragment busquedaFragment;
 
     Dialog dialog;
 

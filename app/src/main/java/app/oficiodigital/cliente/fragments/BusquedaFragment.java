@@ -49,7 +49,7 @@ import retrofit2.Response;
 public class BusquedaFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private RecyclerView lista;
-    private TextView list1, phone, nombres, estados;
+    private TextView list1, phone, nombres, estados, resultados;
     private SearchView buscador;
     private EditText busc;
     private Spinner spinner_estados,sp_child;
@@ -82,6 +82,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
        // buscador = (SearchView) view.findViewById(R.id.buscador);
         phone = (TextView) view.findViewById(R.id.phone);
         estados = (TextView) view.findViewById(R.id.estado);
+        resultados = (TextView) view.findViewById(R.id.resultados);
 
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
@@ -112,6 +113,12 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         getOficios();
         getEstados();
         //buscador.setOnQueryTextListener(this);
+
+
+        return view;
+    }
+
+    public void filtro(){
         sp_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -143,8 +150,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
             }
         });
-
-        return view;
     }
 
     public void getEstados(){
@@ -318,19 +323,25 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
 
-                if (!response.isSuccessful()) {
-                    return;
-                }
                 listUsuarios = response.body();
 
-                adapterUsuarios = new AdapterUsuarios(listUsuarios);
+                if (listUsuarios.size() == 0) {
+                    resultados.setVisibility(View.VISIBLE);
+                    sp_child.setClickable(false);
 
-                BusquedaFragment f = new BusquedaFragment();
-                Bundle bundle = new Bundle();
-                //  bundle.putString("phone",phone.getText().toString());
-                f.setArguments(bundle);
+                }else{
 
-                lista.setAdapter(adapterUsuarios);
+                    //resultados.setVisibility(View.GONE);
+                    filtro();
+                    adapterUsuarios = new AdapterUsuarios(listUsuarios);
+
+                    BusquedaFragment f = new BusquedaFragment();
+                    Bundle bundle = new Bundle();
+                    //  bundle.putString("phone",phone.getText().toString());
+                    f.setArguments(bundle);
+
+                    lista.setAdapter(adapterUsuarios);
+                }
 
             }
 

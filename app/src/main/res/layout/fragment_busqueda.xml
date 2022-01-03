@@ -68,12 +68,23 @@
             android:layout_marginTop="145dp"
             android:layout_marginEnd="20dp" />
 
+        <TextView
+            android:id="@+id/resultados"
+            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="No se entrontaron resultados"
+            android:layout_height="wrap_content"
+            android:textColor="#686666"
+            android:visibility="gone"
+            android:layout_marginTop="220dp"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp" />
+            android:layout_marginTop="220dp" />
 
         <TextView
             android:id="@+id/estado"
