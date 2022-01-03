@@ -113,12 +113,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         getOficios();
         getEstados();
         //buscador.setOnQueryTextListener(this);
-
-
-        return view;
-    }
-
-    public void filtro(){
         sp_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -126,22 +120,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 int sele = sp_child.getSelectedItemPosition();
                 String se = "" + sele;
                 estados.setText(slect);
-                estados.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-                        adapterUsuarios.filtrar(s);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-
-                    }
-                });
 
             }
 
@@ -150,6 +128,9 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
             }
         });
+
+
+        return view;
     }
 
     public void getEstados(){
@@ -330,9 +311,24 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     sp_child.setClickable(false);
 
                 }else{
+                    estados.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    //resultados.setVisibility(View.GONE);
-                    filtro();
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                            adapterUsuarios.filtrar(s);
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+
+
                     adapterUsuarios = new AdapterUsuarios(listUsuarios);
 
                     BusquedaFragment f = new BusquedaFragment();

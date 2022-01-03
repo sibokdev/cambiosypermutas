@@ -765,7 +765,7 @@ public class FragmentInteres extends Fragment {
                 }
 
             });
-            Toast.makeText(getContext(), "Datos actualizados" +
+            Toast.makeText(getContext(), "Datos actualizados " +
                     "correctamente", Toast.LENGTH_SHORT).show();
             getDataIntereses();
         }
