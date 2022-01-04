@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -148,7 +149,9 @@ public class ChangePassword extends BaseActivity{
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 loadingDialog.dismisDialog();
+                Toast.makeText(getApplication(),"Se ha actualizado contraseña", Toast.LENGTH_SHORT).show();
             }
         },5000); //You can change this time as you wish
     }

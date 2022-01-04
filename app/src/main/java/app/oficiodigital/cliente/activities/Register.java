@@ -827,7 +827,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tvc.setError(" ");
             tvc.requestFocus();
         }else if(edad <= 18) {
-            Toast.makeText(getApplication(),"debe ser mayo de edad",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(),"Debe ser mayo de edad",Toast.LENGTH_SHORT).show();
 
         }else {
 

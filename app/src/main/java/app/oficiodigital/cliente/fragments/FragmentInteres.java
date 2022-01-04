@@ -606,18 +606,18 @@ public class FragmentInteres extends Fragment {
 
 
                         for (int i = 0; i < list.size(); i++) {
-                            if (i == 2) {
-                                codigop.setText(list.get(2));
+                            if (i == 0) {
+                                codigop.setText(list.get(i));
                                 colonia.setEnabled(false);
                                 codigop.setEnabled(false);
                                 id = list2.get(i);
                             } else if (i == 1) {
-                                codigop2.setText(list.get(1));
+                                codigop2.setText(list.get(i));
                                 colonia2.setEnabled(false);
                                 codigop2.setEnabled(false);
                                 id2 = list2.get(i);
-                            } else if (i == 0) {
-                                codigop3.setText(list.get(0));
+                            } else if (i == 2) {
+                                codigop3.setText(list.get(i));
                                 colonia3.setEnabled(false);
                                 codigop3.setEnabled(false);
                                 id3 = list2.get(i);
@@ -802,18 +802,18 @@ public class FragmentInteres extends Fragment {
                         list2.add(res.getId());
 
                         for(int i = 0; i<list.size(); i++){
-                            if(i==2){
-                                codigop.setText(list.get(2));
+                            if(i==0){
+                                codigop.setText(list.get(i));
                                 codigop.setEnabled(true);
                                 colonia.setEnabled(true);
                                 id = list2.get(i);
                             }else if(i==1){
-                                codigop2.setText(list.get(1));
+                                codigop2.setText(list.get(i));
                                 codigop2.setEnabled(true);
                                 colonia2.setEnabled(true);
                                 id2 = list2.get(i);
-                            } else if(i==0){
-                                codigop3.setText(list.get(0));
+                            } else if(i==2){
+                                codigop3.setText(list.get(i));
                                 codigop3.setEnabled(true);
                                 colonia3.setEnabled(true);
                                 id3 = list2.get(i);
