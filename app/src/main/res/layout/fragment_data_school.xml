@@ -87,7 +87,7 @@
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="200dp"
                         android:layout_marginEnd="50dp"
-                        android:inputType="text"
+                        android:inputType="textNoSuggestions"
                         android:padding="10dp"
                         android:text="Nivel escolar:"
                         android:textSize="18dp" />
@@ -215,7 +215,7 @@
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="660dp"
                         android:layout_marginEnd="50dp"
-                        android:inputType="text"
+                        android:inputType="textNoSuggestions"
                         android:padding="10dp"
                         android:text=""
                         android:textSize="18dp" />
@@ -240,7 +240,7 @@
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="740dp"
                         android:layout_marginEnd="50dp"
-                        android:inputType="text"
+                        android:inputType="textNoSuggestions"
                         android:padding="10dp"
                         android:text=""
                         android:textSize="18dp" />
