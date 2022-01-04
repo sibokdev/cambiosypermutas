@@ -12,6 +12,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="230dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo_final" />
+        android:src="@drawable/logo_let_white" />
 
 </RelativeLayout>
