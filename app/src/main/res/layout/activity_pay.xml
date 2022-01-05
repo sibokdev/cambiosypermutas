@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/cp_color"
+        android:src="@drawable/logo_final"
         app:cardBackgroundColor="@color/white"/>
 
     <!--<TextView

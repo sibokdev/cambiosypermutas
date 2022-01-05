@@ -101,10 +101,11 @@ private ImageView back;
                     L.error("login " + t.getMessage());
                    // Toast.makeText(getApplicationContext(), "codigo correcto", Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
+                    openLoadingDialog();
                     Intent inte = new Intent(InsertCode.this, Register.class);
                     inte.putExtra("tokenPhone", token1.getText().toString());
                     inte.putExtra("phone", phone.getText().toString());
-                    openLoadingDialog();
+
                     startActivity(inte);
                 }
             });

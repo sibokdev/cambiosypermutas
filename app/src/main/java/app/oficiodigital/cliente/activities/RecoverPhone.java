@@ -70,9 +70,10 @@ public class RecoverPhone extends BaseActivity {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
                             pho.setError("   Número no existente");
                         }else{
+                            openLoadingDialog();
                             Intent inte = new Intent(RecoverPhone.this, RecoverCode.class);
                             inte.putExtra("phone", phone.getText().toString());
-                            openLoadingDialog();
+
                             startActivity(inte);
                         }
                     }

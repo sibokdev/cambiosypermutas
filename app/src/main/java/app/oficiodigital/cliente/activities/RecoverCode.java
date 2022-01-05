@@ -93,11 +93,12 @@ public class RecoverCode extends BaseActivity {
                 @Override
                 public void onFailure(Call<Responses> call, Throwable t) {
                     L.error("login " + t.getMessage());
+                    openLoadingDialog();
                     Toast.makeText(getApplicationContext(), "Código correcto", Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
                     Intent inte = new Intent(RecoverCode.this, AnswerQuestions.class);
                     inte.putExtra("phone", phone.getText().toString());
-                    openLoadingDialog();
+
                     startActivity(inte);
 
                 }

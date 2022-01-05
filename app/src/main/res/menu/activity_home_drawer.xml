@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_dax"
             android:title="DOX"
-            android:icon="@drawable/logo"/>
+            android:icon="@drawable/logo_final"/>
         <item
             android:id="@+id/nav_camera"
             android:title="Servicios"

@@ -101,7 +101,6 @@ public class InsertPhone extends BaseActivity {
         } else {
             pho.setErrorEnabled(false);
 
-
             HashMap<String, String> params = new HashMap<>();
             params.put("phone", phon);
 
@@ -115,11 +114,11 @@ public class InsertPhone extends BaseActivity {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
                             pho.setError("Numero ya registrado");
                         }else{
+                            openLoadingDialog();
                             Intent inte = new Intent(InsertPhone.this, InsertCode.class);
                             inte.putExtra("phone", phone.getText().toString());
                             inte.putExtra("tokenPhone", token1.getText().toString());
                             //alerta();
-                            openLoadingDialog();
                             startActivity(inte);
                         }
                     }

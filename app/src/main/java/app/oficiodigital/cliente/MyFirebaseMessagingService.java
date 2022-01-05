@@ -94,7 +94,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentTitle(remoteMessage.getData().get("title")) //the "title" value you sent in your notification
                 .setContentText(remoteMessage.getData().get("message")) //ditto
                 .setAutoCancel(true)  //dismisses the notification on click
-                .setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.drawable.logo_final)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(remoteMessage.getData().get("message")))
                 .setShowWhen(true)
@@ -298,7 +298,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void notificaciones(){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.drawable.logo_final)
                 .setContentTitle("NO SE REALIZO PAGO")
                 .setContentText("Se produjo un error al realizar su pago por favor intente nuevamente")
                 .setStyle(new NotificationCompat.BigTextStyle()

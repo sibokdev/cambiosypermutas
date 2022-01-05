@@ -42,7 +42,7 @@ public class PreguntasAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = View.inflate(context, R.layout.activity_cliente_register, null);
+            //convertView = View.inflate(context, R.layout.activity_cliente_register, null);
         }
         TextView p1 = (TextView) convertView.findViewById(R.id.pregunta1);
 

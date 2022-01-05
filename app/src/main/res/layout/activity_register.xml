@@ -264,7 +264,7 @@
                 android:id="@+id/ti_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="135dp"
                 android:layout_marginStart="20dp">
 
 
@@ -281,7 +281,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_password2"
                 android:layout_width="match_parent"
-                android:layout_marginTop="190dp"
+                android:layout_marginTop="205dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp">
 
@@ -298,7 +298,7 @@
 
             <Spinner
                 android:id="@+id/preguntas"
-                android:layout_marginTop="280dp"
+                android:layout_marginTop="290dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
