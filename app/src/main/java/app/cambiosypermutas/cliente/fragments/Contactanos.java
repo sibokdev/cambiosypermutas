@@ -54,7 +54,7 @@ public void correo(){
                 startActivity(Intent.createChooser(emailIntent,  getActivity().getString(R.string.send_correo)));*/
 
                 Intent email= new Intent(Intent.ACTION_SENDTO);
-                email.setData(Uri.parse("mailto:ventas@web48.com.mx"));
+                email.setData(Uri.parse("mailto:ventas@nearshorecoders.com"));
                 email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                 email.putExtra(Intent.EXTRA_TEXT, "My Email message");
                 startActivity(email);

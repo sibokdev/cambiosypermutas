@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Busqueda implements Serializable {
 
+    String id;
     String name;
     String surname1;
     String surname2;
@@ -36,6 +37,14 @@ public class Busqueda implements Serializable {
         this.phone=phone;
         this.Description=Description;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTurno() {

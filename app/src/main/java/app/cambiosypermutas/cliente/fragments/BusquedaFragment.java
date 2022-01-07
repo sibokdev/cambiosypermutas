@@ -31,6 +31,7 @@ import app.cambiosypermutas.cliente.activities.AdapterUsuarios;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.models.Busqueda;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
+import app.cambiosypermutas.cliente.models.ModelsDB.Token;
 import app.cambiosypermutas.cliente.models.Request.Estados;
 import app.cambiosypermutas.cliente.utils.L;
 import retrofit2.Call;
@@ -260,11 +261,21 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
     public void getdatoss(String e1, String e2, String e3,String ti, String ni, String ro){
 
+        List<Phone> list1 = Phone.listAll(Phone.class);
+        String phone = "";
+        for (Phone pho : list1) {
+
+            phone = pho.getPhone();
+
+        }
+        String phon = phone;
+
+
         HashMap<String, String> params = new HashMap<>();
         params.put("rol", ro);
         params.put("nivel_escolar", ni);
         params.put("tipo_plantel", ti);
-        //params.put("estado", estado);
+        params.put("phone", phon);
 
         List<Estados> listaRespuestas = new ArrayList<Estados>();
 
@@ -307,6 +318,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     sp_child.setClickable(false);
 
                 }else{
+
                     estados.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -333,6 +345,8 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     f.setArguments(bundle);
 
                     lista.setAdapter(adapterUsuarios);
+
+
                 }
 
             }
@@ -355,7 +369,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        adapterUsuarios.filtrar(newText);
         return false;
     }
 }
