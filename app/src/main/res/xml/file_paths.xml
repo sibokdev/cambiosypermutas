@@ -6,7 +6,7 @@ http://schemas.android.com/apk/res/android ">
 
     <external-path
         name="imagenss"
-        path="Android/data/app.oficiodigital.cliente/files/Pictures">
+        path="Android/data/app.cambiosypermutas.cliente/files/Pictures">
 
     </external-path>
 </paths>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="app.oficiodigital.cliente.fragments.Perfil_Fragmen">
+    tools:context="app.cambiosypermutas.cliente.fragments.Perfil_Fragmen">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
