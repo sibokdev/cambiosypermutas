@@ -6,7 +6,6 @@
     tools:context=".fragments.BusquedaFragment">
 
     <RelativeLayout
-
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
@@ -24,6 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Coincidencias"
+
                     android:gravity="center"
                     android:textColor="@color/colorPrimary"
                     android:padding="10dp"
@@ -79,7 +79,6 @@
             android:visibility="gone"
             android:layout_marginTop="220dp"/>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"
             android:layout_width="match_parent"
@@ -94,7 +93,6 @@
             android:layout_marginTop="150dp"
             android:visibility="gone"
             android:textSize="18dp"/>
-
     </RelativeLayout>
 
 

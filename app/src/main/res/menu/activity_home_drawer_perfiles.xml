@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--ESTE NO SE USA, se usa el de principal:menu-->
     <item
         android:id="@+id/nav_camera"
+        
         android:title="@string/home_drawer_logout"/>
+
+    <item
+        android:id="@+id/nav_contacto"
+        android:title="@string/home_drawer_contacto"/>
 
 </menu>

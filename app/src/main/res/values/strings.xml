@@ -21,6 +21,7 @@
 
     <!-- General Strings -->
     <string name="action_settings">Cerrar sesión</string>
+    <string name="action_contacto">Contacto</string>
     <string name="update_document">Editar</string>
     <string name="delete_document">Borrar</string>
     <string name="record_documents">Historial de documentos</string>
@@ -384,6 +385,7 @@
     <string name="do_main_card">Usar tarjeta como principal</string>
     <string name="passChange">Contraseña cambiada</string>
     <string name="home_drawer_logout">Cerrar sesión</string>
+    <string name="home_drawer_contacto">Contacto</string>
     <string name="title_activity_principal_menu">principalMenu</string>
     <string name="title_activity_privacy_policies">privacy_policies</string>
     <string name="logout_message">¿Estas seguro de cerrar sesión?</string>

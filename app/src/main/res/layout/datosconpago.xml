@@ -227,7 +227,7 @@
             android:textAllCaps="true"
             android:gravity="center"
             android:textSize="16dp"
-            android:text="interesado" />
+            android:text="No se han ingresado los intereses" />
 
 
 
