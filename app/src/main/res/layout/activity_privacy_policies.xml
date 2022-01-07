@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Para continuar es necesario que nos proporciones información personal y referencias"
+        android:text="Para continuar es necesario que nos proporciones información personal."
         android:gravity="center"
         android:textSize="20dp"
         android:padding="10dp"

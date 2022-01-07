@@ -36,7 +36,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:textStyle="bold"
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="Datos de tu Escuela Actual"

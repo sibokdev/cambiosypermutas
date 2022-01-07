@@ -268,6 +268,11 @@ public class principalMenu extends BaseActivity
 
             return true;
         }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if (id == R.id.action_contacto) {
+            ft.replace(R.id.conten, new app.cambiosypermutas.cliente.fragments.Contactanos()).commit();
+        }
 
         return super.onOptionsItemSelected(item);
     }
