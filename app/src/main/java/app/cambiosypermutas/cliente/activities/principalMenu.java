@@ -1,10 +1,13 @@
 package app.cambiosypermutas.cliente.activities;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.BlendMode;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -74,6 +78,8 @@ public class principalMenu extends BaseActivity
     private int datos;
     /*FragmentDS fragmentDS;*/
 
+    //private ImageView imagenSinConexion;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +101,8 @@ public class principalMenu extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_escact);
@@ -114,15 +122,10 @@ public class principalMenu extends BaseActivity
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
-        
-       /* back = (ImageView) hView.findViewById(R.id.back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "icon back", Toast.LENGTH_SHORT).show();
-            }
-        });*/
+       // imagenSinConexion = (ImageView) hView.findViewById(R.id.imagenSinConexion);
+        //imagenSinConexion.setVisibility(View.INVISIBLE);
+
 
         phone.setText(phon);
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
@@ -166,9 +169,17 @@ public class principalMenu extends BaseActivity
         fragmentTransaction = fragmentManager.beginTransaction();
 
 
-        fragmentTransaction.add(R.id.conten, new app.cambiosypermutas.cliente.fragments.DataSchool());
+        ConnectivityManager con = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
 
-        fragmentTransaction.commit();
+    //if (networkInfo!=null && networkInfo.isConnected()) {
+    fragmentTransaction.add(R.id.conten, new app.cambiosypermutas.cliente.fragments.DataSchool());
+    fragmentTransaction.commit();
+   // }else {
+        //imagenSinConexion.setVisibility(View.VISIBLE);
+//mensaje
+       // Toast.makeText(this, "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+    //}
 
     }
 

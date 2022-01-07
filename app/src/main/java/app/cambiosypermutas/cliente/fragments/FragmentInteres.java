@@ -1,11 +1,15 @@
 package app.cambiosypermutas.cliente.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -20,6 +24,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +61,10 @@ public class FragmentInteres extends Fragment {
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
     private TextInputLayout cp1, ti_cp2, ti_cp3;
+
+    private ImageView imagenSinConexion;
+    private ScrollView datosescuela;
+    private CardView noti_inter;
     /*private Button guardar, match;*/
     ArrayAdapter<String> adapter_cp;
 
@@ -97,6 +107,29 @@ public class FragmentInteres extends Fragment {
         select2 = (TextView) view.findViewById(R.id.select2);
         select3 = (TextView) view.findViewById(R.id.select3);
         guardar = (Button) view.findViewById(R.id.btn_guardar);
+
+        datosescuela = (ScrollView) view.findViewById(R.id.datosescuela);
+        noti_inter = (CardView) view.findViewById(R.id.noti_inter);
+
+
+
+        imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
+        imagenSinConexion.setVisibility(View.INVISIBLE);
+
+        ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()) {
+            datosescuela.setVisibility(View.VISIBLE);
+            noti_inter.setVisibility(View.INVISIBLE);
+
+        }else {
+            noti_inter.setVisibility(View.VISIBLE);
+            datosescuela.setVisibility(View.INVISIBLE);
+            imagenSinConexion.setVisibility(View.VISIBLE);
+            //mensaje
+            Toast.makeText(getContext(), "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+        }
 
 
       /*  codigop.addTextChangedListener(new TextWatcher() {

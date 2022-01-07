@@ -13,18 +13,22 @@
         android:id="@+id/perfil">
 
         <ScrollView
+            android:id="@+id/datosescuela"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="60dp"
+            android:visibility="visible">
 
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/datosescuela1"
                     android:layout_width="match_parent"
                     android:layout_height="1050dp"
                     android:layout_marginStart="10dp"
@@ -36,13 +40,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="Datos de tu Escuela Actual"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/button_bg_dark_green"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/ti_nombre_escuela"
@@ -99,8 +103,7 @@
                         android:layout_marginStart="21dp"
                         android:layout_marginTop="230dp"
                         android:layout_marginEnd="50dp"
-                        android:spinnerMode="dialog"
-                        />
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -307,6 +310,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/datosescuela2"
                     android:layout_width="match_parent"
                     android:layout_height="580dp"
                     android:layout_marginStart="10dp"
@@ -334,7 +338,7 @@
                         android:layout_marginStart="21dp"
                         android:layout_marginTop="80dp"
                         android:layout_marginEnd="50dp"
-                        android:spinnerMode="dialog"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:id="@+id/tvInvisibleError"
@@ -399,7 +403,6 @@
                         android:textSize="18dp" />
 
 
-
                     <TextView
                         android:id="@+id/tv_nota"
                         android:layout_width="match_parent"
@@ -421,7 +424,7 @@ en esta escuela"
                         android:layout_marginStart="21dp"
                         android:layout_marginTop="400dp"
                         android:layout_marginEnd="50dp"
-                        android:spinnerMode="dialog"/>
+                        android:spinnerMode="dialog" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -443,7 +446,7 @@ procedimiento administrativo?"
                         android:layout_marginStart="21dp"
                         android:layout_marginTop="500dp"
                         android:layout_marginEnd="50dp"
-                        android:spinnerMode="dialog"/>
+                        android:spinnerMode="dialog" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -456,29 +459,59 @@ procedimiento administrativo?"
                     android:background="@drawable/boton_redondo"
                     android:gravity="center"
                     android:text="guardar"
-                    android:textSize="17dp"
-                    android:textColor="@color/text_white" />
+                    android:textColor="@color/text_white"
+                    android:textSize="17dp" />
 
 
                 <TextView
                     android:id="@+id/select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/select1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
+
                 <TextView
                     android:id="@+id/select2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
             </LinearLayout>
 
         </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noti_inter"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+           android:layout_centerHorizontal="true"
+            android:layout_marginTop="77dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/imagenSinConexion"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="50dp"
+               android:layout_gravity="center_horizontal"
+                android:src="@drawable/not_internet"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="320dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:text="No hay conexión a internet, verifique su acceso a internet."/>
+        </androidx.cardview.widget.CardView>
+
     </RelativeLayout>
 
 </FrameLayout>

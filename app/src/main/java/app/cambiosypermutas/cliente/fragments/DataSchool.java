@@ -1,13 +1,17 @@
 package app.cambiosypermutas.cliente.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -26,6 +30,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -83,6 +89,11 @@ public class DataSchool extends Fragment {
     private int cont_nombramiento = 0;
     private int nota_des = 0;
     private int suj_proced = 0;
+
+    private ImageView imagenSinConexion;
+    
+    private ScrollView datosescuela;
+    private CardView noti_inter;
 
 /*    String esc = "";
     String clv ="";
@@ -166,8 +177,31 @@ public class DataSchool extends Fragment {
         s2 = (TextView) view.findViewById(R.id.select2);
 
         guardar = (Button) view.findViewById(R.id.guardar);
+
+
+        datosescuela = (ScrollView) view.findViewById(R.id.datosescuela);
+        noti_inter = (CardView) view.findViewById(R.id.noti_inter);
+
+        imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
+        imagenSinConexion.setVisibility(View.INVISIBLE);
+
+        ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()) {
+            getDataSchool();
+            datosescuela.setVisibility(View.VISIBLE);
+            noti_inter.setVisibility(View.INVISIBLE);
+
+        }else {
+            noti_inter.setVisibility(View.VISIBLE);
+            datosescuela.setVisibility(View.INVISIBLE);
+            imagenSinConexion.setVisibility(View.VISIBLE);
+            //mensaje
+            Toast.makeText(getContext(), "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+        }
         //  guardar.setEnabled(true);
-        getDataSchool();
+       /* getDataSchool();*/    // cambiado a arriba
 
         guardar.setEnabled(true);
         //Validaciones setError campos EditText

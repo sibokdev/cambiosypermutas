@@ -1,5 +1,8 @@
 package app.cambiosypermutas.cliente.fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,10 +12,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +55,13 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     ArrayAdapter<String> adapter;
     String phon;
 
+
+    private ImageView imagenSinConexion;
+
+    private RecyclerView datosescuela;
+    private CardView noti_inter;
+
+
     String rol;
     String tipo = "";
     String nivel = "";
@@ -79,6 +93,27 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
+
+        datosescuela = (RecyclerView) view.findViewById(R.id.lista);
+        noti_inter = (CardView) view.findViewById(R.id.noti_inter);
+
+        imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
+        imagenSinConexion.setVisibility(View.INVISIBLE);
+
+        ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()) {
+            datosescuela.setVisibility(View.VISIBLE);
+            noti_inter.setVisibility(View.INVISIBLE);
+
+        }else {
+            noti_inter.setVisibility(View.VISIBLE);
+            datosescuela.setVisibility(View.INVISIBLE);
+            imagenSinConexion.setVisibility(View.VISIBLE);
+            //mensaje
+            Toast.makeText(getContext(), "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+        }
 
         //array filtro estados
        // arrayList_parent=new ArrayList<>();

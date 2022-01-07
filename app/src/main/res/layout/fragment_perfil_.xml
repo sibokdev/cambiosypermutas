@@ -14,6 +14,7 @@
         android:id="@+id/perfil">
 
         <ScrollView
+            android:id="@+id/datosescuela"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp">
@@ -242,6 +243,33 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noti_inter"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="77dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/imagenSinConexion"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/not_internet"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="320dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:text="No hay conexión a internet, verifique su acceso a internet."/>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

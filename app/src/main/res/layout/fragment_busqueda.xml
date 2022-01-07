@@ -85,6 +85,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="220dp" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noti_inter"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="220dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/imagenSinConexion"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/not_internet"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:text="No hay conexión a internet, verifique su acceso a internet."/>
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/estado"
             android:layout_width="match_parent"

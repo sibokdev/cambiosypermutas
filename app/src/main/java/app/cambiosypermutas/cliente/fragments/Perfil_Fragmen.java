@@ -2,9 +2,12 @@ package app.cambiosypermutas.cliente.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,9 +20,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -61,6 +67,11 @@ public class Perfil_Fragmen extends Fragment {
     int SELEC_IMAGEN = 200;
     String phon;
 
+    private ImageView imagenSinConexion;
+
+    private ScrollView datosescuela;
+    private CardView noti_inter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +97,27 @@ public class Perfil_Fragmen extends Fragment {
         ll_direccion = (LinearLayout) view.findViewById(R.id.ll_direccion);
         foto2 = (TextView) view.findViewById(R.id.foto2);
         fotos = (CircleImageView) view.findViewById(R.id.fotos);
+
+        datosescuela = (ScrollView) view.findViewById(R.id.datosescuela);
+        noti_inter = (CardView) view.findViewById(R.id.noti_inter);
+
+        imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
+        imagenSinConexion.setVisibility(View.INVISIBLE);
+
+        ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()) {
+            datosescuela.setVisibility(View.VISIBLE);
+            noti_inter.setVisibility(View.INVISIBLE);
+
+        }else {
+            noti_inter.setVisibility(View.VISIBLE);
+            datosescuela.setVisibility(View.INVISIBLE);
+            imagenSinConexion.setVisibility(View.VISIBLE);
+            //mensaje
+            Toast.makeText(getContext(), "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+        }
 
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
