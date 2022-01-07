@@ -59,6 +59,7 @@
             android:lines="2"
             android:padding="10dp"
             android:text="Visitanos en: "
+            android:textColor="@color/verde"
             android:textSize="22dp"
             android:textStyle="italic"
             tools:ignore="TextViewEdits" />
@@ -68,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="430dp"
+            android:layout_marginTop="440dp"
             android:layout_marginEnd="10dp"
             android:text="@string/link_c_p"
             android:textSize="22dp"
