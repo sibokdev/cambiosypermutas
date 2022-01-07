@@ -1,6 +1,7 @@
 package app.cambiosypermutas.cliente.fragments;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -38,6 +40,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import app.cambiosypermutas.cliente.R;
+import app.cambiosypermutas.cliente.activities.AddCCPaymentActivity;
+import app.cambiosypermutas.cliente.activities.PrincipalSolicitud;
 import app.cambiosypermutas.cliente.activities.principalMenu;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.models.Ejemplo;
@@ -355,20 +359,27 @@ public class DataSchool extends Fragment {
                             estado.setText(" " + esta);
                         }
 
-                        adapter_cln = new ArrayAdapter<String>(getActivity(), R.layout.spinner_colonia, list);
-                        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter_cln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        ocolonia.setAdapter(adapter_cln);
+                        try{
+                            adapter_cln = new ArrayAdapter<String>(getActivity(), R.layout.spinner_colonia, list);
+                            /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
+                            adapter_cln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            ocolonia.setAdapter(adapter_cln);
 
-                        ocolonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            public void onItemSelected(AdapterView<?> adapter, View view,
-                                                       int position, long id) {
-                                String slect = ocolonia.getSelectedItem().toString();
-                                select.setText(slect);
-                            }
-                            public void onNothingSelected(AdapterView<?> arg0) {
-                            }
-                        });
+                            ocolonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> adapter, View view,
+                                                           int position, long id) {
+                                    String slect = ocolonia.getSelectedItem().toString();
+                                    select.setText(slect);
+                                }
+                                public void onNothingSelected(AdapterView<?> arg0) {
+                                }
+                            });
+
+                        }catch (Exception e){
+
+                        }
+
+
                     }
                     @Override
                     public void onFailure(Call<List<Ejemplo>> call, Throwable t) {
@@ -408,12 +419,6 @@ public class DataSchool extends Fragment {
                     }
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        if (aniosAntiguedad < 2) {
-                            Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
-                            guardar.setEnabled(false);
-                        } else if (aniosAntiguedad >= 2) {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
-                        }
                     }
                 });
             }
@@ -647,9 +652,9 @@ public class DataSchool extends Fragment {
 
 
         //Arreglo, obtencion de valores de spinners
-        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria"};//Arreglo spinner nivel escolar
+        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica"};//Arreglo spinner nivel escolar
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
-        String[] opciones_cat = {"Seleccione","Docente", "Subdirector", "Director"};//arreglo rol
+        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Supervisor"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
         String[] opciones_nombra = {"Seleccione","Si", "No"};
         String[] opciones_nota = {"Seleccione","Si", "No"};
@@ -774,11 +779,11 @@ public class DataSchool extends Fragment {
                     Toast.makeText(getContext(), "Seleccione tipo de plantel", Toast.LENGTH_SHORT).show();
                 } else if (cont_nombramiento == 0) {
                     //guardar.setEnabled(false);
-                    Toast.makeText(getContext(), "Valide nombramiento", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione nombramiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 0) {
-                    Toast.makeText(getContext(), "Valide nota", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione nota", Toast.LENGTH_SHORT).show();
                 } else if (suj_proced == 0) {
-                    Toast.makeText(getContext(), "Valide procedimiento", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Seleccione procedimiento", Toast.LENGTH_SHORT).show();
                 } else if (nota_des == 1 && suj_proced == 1) {
                     Toast.makeText(getContext(), "Lo sentimos, no cumple con los requisitos...Revise la convocatoria", Toast.LENGTH_SHORT).show();
                     onota.requestFocus();
@@ -933,8 +938,10 @@ public class DataSchool extends Fragment {
 
                         }
                     });
-                    getActivity().getSupportFragmentManager().beginTransaction().replace
-                            (R.id.conten, fragment_interes).addToBackStack(null).commit();
+                   /* getActivity().getSupportFragmentManager().beginTransaction().replace
+                            (R.id.conten, fragment_interes).addToBackStack(null).commit();*/
+                    Intent intent = new Intent(getActivity(), PrincipalSolicitud.class);
+                    startActivity(intent);
 
                 }
             }
@@ -1101,6 +1108,7 @@ public class DataSchool extends Fragment {
 
                     Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
                     ((principalMenu) getActivity()).openLoadingDialog();
+                   //alerta1();
 
                     //llamada de metodo de clase de activity a este fragment
                     //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
@@ -1151,9 +1159,12 @@ public class DataSchool extends Fragment {
                         }
                     });
                     getDataSchool();
-                    ((principalMenu) getActivity()).openLoadingDialog();
+                    /*((principalMenu) getActivity()).openLoadingDialog();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.conten, fragment_interes).
-                            addToBackStack(null).commit();
+                            addToBackStack(null).commit();*/
+                   Intent intent = new Intent(getActivity(), PrincipalSolicitud.class);
+                   startActivity(intent);
+
                 }
             }
         });
@@ -1398,6 +1409,11 @@ public class DataSchool extends Fragment {
                 L.error("getDataSchool " + t.getMessage());
             }
         });
+
+    }
+    public void alerta1(){
+        String msg = getString(R.string.logging_msg);
+        LoadingDialog.show(getContext(), msg);
 
     }
 }

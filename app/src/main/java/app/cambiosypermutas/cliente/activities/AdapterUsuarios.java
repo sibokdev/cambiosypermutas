@@ -355,7 +355,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                         .collect(Collectors.toList());
 
                 list.addAll(collect);
-                if(!list.addAll(collect)){
+                if(list.size() == 0){
                     Toast.makeText(dialog.getContext(), "No hay registros", Toast.LENGTH_SHORT).show();
                 }
 

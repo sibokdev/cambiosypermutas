@@ -23,9 +23,11 @@ import java.util.List;
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.fragments.BusquedaFragment;
+import app.cambiosypermutas.cliente.fragments.Contactanos;
 import app.cambiosypermutas.cliente.fragments.FragmentInteres;
 import app.cambiosypermutas.cliente.fragments.MetodosPago;
 import app.cambiosypermutas.cliente.fragments.Perfil_Fragmen;
+import app.cambiosypermutas.cliente.fragments.Share;
 import app.cambiosypermutas.cliente.models.Datos;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.notifications.Alert;
@@ -61,7 +63,7 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_metodos);
+        navigationView.setCheckedItem(R.id.nav_interes);
 
         View hView = navigationView.getHeaderView(0);
 
@@ -119,7 +121,7 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new MetodosPago());
+        fragmentTransaction.add(R.id.conten, new FragmentInteres());
         fragmentTransaction.commit();
 
     }
@@ -190,7 +192,10 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
                 ft.replace(R.id.conten, new MetodosPago()).commit();
                 break;
             case R.id.nav_compartir:
-                ft.replace(R.id.conten, new Perfil_Fragmen()).commit();
+                ft.replace(R.id.conten, new Share()).commit();
+                break;
+            case R.id.nav_contacto:
+                ft.replace(R.id.conten, new Contactanos()).commit();
                 break;
 
         }

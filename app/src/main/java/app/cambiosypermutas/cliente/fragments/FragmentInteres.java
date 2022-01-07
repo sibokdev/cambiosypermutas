@@ -71,7 +71,6 @@ public class FragmentInteres extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_interes, container, false);
 
-
 //------------------------------------------------------------------------------
         //primerPregunta();
         //asociamos lode arriba con esto
@@ -199,21 +198,26 @@ public class FragmentInteres extends Fragment {
                             estado.setText(" " + esta);
                         }
 
-                        adapter_cp = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
-                        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter_cp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia.setAdapter(adapter_cp);
+                        try{
+                            adapter_cp = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list);
+                            /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
+                            adapter_cp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            colonia.setAdapter(adapter_cp);
 
-                        colonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            public void onItemSelected(AdapterView<?> adapter, View view,
-                                                       int position, long id) {
-                                String slect = colonia.getSelectedItem().toString();
-                                select.setText(slect);
-                            }
+                            colonia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> adapter, View view,
+                                                           int position, long id) {
+                                    String slect = colonia.getSelectedItem().toString();
+                                    select.setText(slect);
+                                }
 
-                            public void onNothingSelected(AdapterView<?> arg0) {
-                            }
-                        });
+                                public void onNothingSelected(AdapterView<?> arg0) {
+                                }
+                            });
+
+                        }catch (Exception e){
+
+                        }
 
                     }
 
@@ -270,21 +274,25 @@ public class FragmentInteres extends Fragment {
                             estado2.setText(" " + esta2);
                         }
 
-                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list2);
-                        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia2.setAdapter(adapter2);
+                        try {
+                            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list2);
+                            /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
+                            adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            colonia2.setAdapter(adapter2);
 
-                        colonia2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            public void onItemSelected(AdapterView<?> adapter2, View view,
-                                                       int position2, long id2) {
-                                String slect2 = colonia2.getSelectedItem().toString();
-                                select2.setText(slect2);
-                            }
+                            colonia2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> adapter2, View view,
+                                                           int position2, long id2) {
+                                    String slect2 = colonia2.getSelectedItem().toString();
+                                    select2.setText(slect2);
+                                }
 
-                            public void onNothingSelected(AdapterView<?> arg0) {
-                            }
-                        });
+                                public void onNothingSelected(AdapterView<?> arg0) {
+                                }
+                            });
+                        }catch (Exception e){
+
+                        }
 
                     }
 
@@ -340,21 +348,28 @@ public class FragmentInteres extends Fragment {
                             esta3 += "" + eje3.getEstado();
                             estado3.setText(" " + esta3);
                         }
-                        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list3);
-                        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
-                        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        colonia3.setAdapter(adapter3);
 
-                        colonia3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            public void onItemSelected(AdapterView<?> adapter3, View view,
-                                                       int position3, long id3) {
-                                String slect3 = colonia3.getSelectedItem().toString();
-                                select3.setText(slect3);
-                            }
+                        try{
+                            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, list3);
+                            /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), R.layout.sp_colonia, list);*/
+                            adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            colonia3.setAdapter(adapter3);
 
-                            public void onNothingSelected(AdapterView<?> arg0) {
-                            }
-                        });
+                            colonia3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> adapter3, View view,
+                                                           int position3, long id3) {
+                                    String slect3 = colonia3.getSelectedItem().toString();
+                                    select3.setText(slect3);
+                                }
+
+                                public void onNothingSelected(AdapterView<?> arg0) {
+                                }
+                            });
+
+                        }catch (Exception e){
+
+                        }
+
                     }
 
                     @Override
@@ -480,7 +495,7 @@ public class FragmentInteres extends Fragment {
                         ti_cp3.setError(" ");
                         codigop3.requestFocus();
                     } else {
-                        Toast.makeText(getContext(), "Se ha validado correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Se ha guardado correctamente la información", Toast.LENGTH_SHORT).show();
 
                         List<Phone> userId = Phone.listAll(Phone.class);
                         for (Phone phon : userId) {
@@ -833,5 +848,7 @@ public class FragmentInteres extends Fragment {
         });
 
     }
+
+
 }
 

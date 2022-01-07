@@ -3,6 +3,8 @@ package app.cambiosypermutas.cliente.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.BlendMode;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -96,6 +98,11 @@ public class principalMenu extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_escact);
+        //Para cambiar el color del texto del item de un menu.
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
+//Para cambiar el color del icono del item de un menu.
+        navigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
 
         View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
         for (Phone p : list) {

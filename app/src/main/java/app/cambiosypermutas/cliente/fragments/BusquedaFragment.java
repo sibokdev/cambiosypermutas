@@ -178,11 +178,15 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
                         }
                     }
-                     
+                     try{
+                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, estados);
+                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                         sp_child.setAdapter(adapter);
+                     }catch (Exception e){
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_colonia, estados);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    sp_child.setAdapter(adapter);
+                     }
+
+
                 }
 
 
