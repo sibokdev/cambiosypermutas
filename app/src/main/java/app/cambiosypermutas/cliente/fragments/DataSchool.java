@@ -686,9 +686,9 @@ public class DataSchool extends Fragment {
 
 
         //Arreglo, obtencion de valores de spinners
-        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica"};//Arreglo spinner nivel escolar
+        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica", "Telesecundaria"};//Arreglo spinner nivel escolar
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
-        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Supervisor"};//arreglo rol
+        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Subdirector","Supervisor"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
         String[] opciones_nombra = {"Seleccione","Si", "No"};
         String[] opciones_nota = {"Seleccione","Si", "No"};
@@ -697,33 +697,32 @@ public class DataSchool extends Fragment {
         // NUeva clase comunicacion para spinner - layout
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_ne);
         onivel_esc.setAdapter(adapter);
-        onivel_esc.setPrompt("Selecciona una opción");
+        onivel_esc.setPrompt("Seleccione una opción");
 
         adapter_tn = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tn);
         oturno.setAdapter(adapter_tn);
-        oturno.setPrompt("Selecciona una opción");
+        oturno.setPrompt("Seleccione una opción");
 
         adapter_ct = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_cat);
         ocategoria.setAdapter(adapter_ct);
-        ocategoria.setPrompt("Selecciona una opción");
+        ocategoria.setPrompt("Seleccione una opción");
 
         adapter_tp = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_tp);
         otipo_plantel.setAdapter(adapter_tp);
-        otipo_plantel.setPrompt("Selecciona una opción");
+        otipo_plantel.setPrompt("Seleccione una opción");
 
         adapter_nombra = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nombra);
         /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
         spinombramiento.setAdapter(adapter_nombra);
-        spinombramiento.setPrompt("Selecciona una opción");
-
+        spinombramiento.setPrompt("Seleccione una opción");
 
         adapter_nota = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_nota);
         onota.setAdapter(adapter_nota);
-        onota.setPrompt("Selecciona una opción");
+        onota.setPrompt("Seleccione una opción");
 
         adapter_proce = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_proced);
         oprocedimiento.setAdapter(adapter_proce);
-        oprocedimiento.setPrompt("Selecciona una opción");
+        oprocedimiento.setPrompt("Seleccione una opción");
 
 
         return view;
@@ -849,6 +848,8 @@ public class DataSchool extends Fragment {
                     if (seleccion.equals("Preescolar")) {
                     } else if (seleccion.equals("Primaria")) {
                     } else if (seleccion.equals("Secundaria")) {
+                    } else if (seleccion.equals("Secundaria Técnica")){
+                    } else if (seleccion.equals("Telesecundaria")){
                     }
                     //guardado de seleccion spinnner turno
                     String seleccion_tn = oturno.getSelectedItem().toString();
@@ -858,6 +859,9 @@ public class DataSchool extends Fragment {
                     //guardado de seleccion spinnner rol
                     String seleccion_ct = ocategoria.getSelectedItem().toString();
                     if (seleccion_ct.equals("Docente")) {
+                    } else if (seleccion_ct.equals("Técnico Docente")) {
+                    } else if (seleccion_ct.equals("Asesor Técnico Pedagógico")) {
+                    } else if (seleccion_ct.equals("Supervisor")) {
                     } else if (seleccion_ct.equals("Subdirector")) {
                     } else if (seleccion_ct.equals("Director")) {
                     }
@@ -1044,26 +1048,28 @@ public class DataSchool extends Fragment {
                     String sal = salida.getText().toString();
 
 
-                    //Estos métodos se ejecutará cuando se presione el botón
-                    String seleccion = onivel_esc.getSelectedItem().toString();
-                    //* Log.d("Here-----", "Seleccion-----------------::: " + seleccion);*//*
-                    if (seleccion.equals("Preescolar")) {
-                    } else if (seleccion.equals("Primaria")) {
-                    } else if (seleccion.equals("Secundaria")) {
-                    }
-
+                   //Estos métodos se ejecutará cuando se presione el botón
+                   String seleccion = onivel_esc.getSelectedItem().toString();
+                   if (seleccion.equals("Preescolar")) {
+                   } else if (seleccion.equals("Primaria")) {
+                   } else if (seleccion.equals("Secundaria")) {
+                   } else if (seleccion.equals("Secundaria Técnica")){
+                   } else if (seleccion.equals("Telesecundaria")) {
+                   }
                     //guardado de seleccion spinnner turno
                     String seleccion_tn = oturno.getSelectedItem().toString();
                     if (seleccion_tn.equals("Matutino")) {
                     } else if (seleccion_tn.equals("Vespertino")) {
                     }
-
-                    //guardado de seleccion spinnner rol
-                    String seleccion_ct = ocategoria.getSelectedItem().toString();
-                    if (seleccion_ct.equals("Docente")) {
-                    } else if (seleccion_ct.equals("Subdirector")) {
-                    } else if (seleccion_ct.equals("Director")) {
-                    }
+                       //guardado de seleccion spinnner rol
+                       String seleccion_ct = ocategoria.getSelectedItem().toString();
+                       if (seleccion_ct.equals("Docente")) {
+                       } else if (seleccion_ct.equals("Técnico Docente")) {
+                       } else if (seleccion_ct.equals("Asesor Técnico Pedagógico")) {
+                       } else if (seleccion_ct.equals("Supervisor")) {
+                       } else if (seleccion_ct.equals("Subdirector")) {
+                       } else if (seleccion_ct.equals("Director")) {
+                       }
 
                     //Sleccion spinnner tipo plantel
                     String seleccion_tp = otipo_plantel.getSelectedItem().toString();

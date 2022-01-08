@@ -139,8 +139,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="50dp"
                             android:hint="Ingresa Zona:"
-                            android:inputType="text"
-                            android:maxLength="20" />
+                            android:inputType="number"
+                            android:maxLength="3" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout

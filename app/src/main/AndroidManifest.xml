@@ -62,6 +62,7 @@
             android:name=".activities.principalMenu"
             android:exported="true" />
         <activity android:name=".activities.EsperaCotizacion" />
+        <activity android:name=".activities.PrincipalSolicitud" />
         <activity android:name=".activities.ListadoCotizacion" />
         <activity android:name=".activities.DetallesPublicarEmpleo" />
         <activity android:name=".activities.AddCard" />
