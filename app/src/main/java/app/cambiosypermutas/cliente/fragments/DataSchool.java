@@ -185,6 +185,7 @@ public class DataSchool extends Fragment {
         imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
         imagenSinConexion.setVisibility(View.INVISIBLE);
 
+        //Notificacion de no internet
         ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = con.getActiveNetworkInfo();
 
@@ -571,7 +572,7 @@ public class DataSchool extends Fragment {
                             guardar.setEnabled(false);
 
                         } else if (cont_nombramiento == 1) {
-                            Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();
+                            /*Toast.makeText(getContext(), "Eres candidato a cambio", Toast.LENGTH_SHORT).show();*/
                             guardar.setEnabled(true);
                         } else {
                             TextView errorText = (TextView) spinombramiento.getSelectedView();
@@ -688,7 +689,7 @@ public class DataSchool extends Fragment {
         //Arreglo, obtencion de valores de spinners
         String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica", "Telesecundaria"};//Arreglo spinner nivel escolar
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino"};//arreglo turno
-        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Subdirector","Supervisor"};//arreglo rol
+        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Subdirector","Supervisor", "Administrativo"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
         String[] opciones_nombra = {"Seleccione","Si", "No"};
         String[] opciones_nota = {"Seleccione","Si", "No"};
@@ -864,6 +865,7 @@ public class DataSchool extends Fragment {
                     } else if (seleccion_ct.equals("Supervisor")) {
                     } else if (seleccion_ct.equals("Subdirector")) {
                     } else if (seleccion_ct.equals("Director")) {
+                    } else if (seleccion_ct.equals("Administrativo")) {
                     }
                     //Sleccion spinnner tipo plantel
                     String seleccion_tp = otipo_plantel.getSelectedItem().toString();
@@ -1069,6 +1071,7 @@ public class DataSchool extends Fragment {
                        } else if (seleccion_ct.equals("Supervisor")) {
                        } else if (seleccion_ct.equals("Subdirector")) {
                        } else if (seleccion_ct.equals("Director")) {
+                       } else if (seleccion_ct.equals("Administrativo")) {
                        }
 
                     //Sleccion spinnner tipo plantel

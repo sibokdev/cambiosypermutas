@@ -271,7 +271,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="880dp"
+                        android:layout_marginTop="875dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -283,7 +283,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="920dp"
+                        android:layout_marginTop="905dp"
                         android:layout_marginEnd="50dp"
                         android:spinnerMode="dialog" />
 
