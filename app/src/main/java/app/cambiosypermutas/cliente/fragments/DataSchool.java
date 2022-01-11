@@ -1148,10 +1148,13 @@ public class DataSchool extends Fragment {
                     salida.setError(getString(R.string.error_campo_oblogatorio));
                     return;
                 }*/
+                   Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
+                   try {
+                       ((principalMenu) getActivity()).openLoadingDialog();
+                       //alerta1();
+                   }catch (Exception e) {
+                   }
 
-                    Toast.makeText(getContext(), "Se han actualizado y guardado correctamente los datos", Toast.LENGTH_SHORT).show();
-                    ((principalMenu) getActivity()).openLoadingDialog();
-                   //alerta1();
 
                     //llamada de metodo de clase de activity a este fragment
                     //se declaro el metodo en loadingDialog.java y en principalMenu para este caso
@@ -1454,9 +1457,13 @@ public class DataSchool extends Fragment {
         });
 
     }
+
+
     public void alerta1(){
-        String msg = getString(R.string.logging_msg);
+        String msg = getString(R.string.act_msg);
         LoadingDialog.show(getContext(), msg);
 
     }
+
+
 }

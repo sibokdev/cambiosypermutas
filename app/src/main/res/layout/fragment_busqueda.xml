@@ -63,7 +63,7 @@
         <Spinner
             android:id="@+id/sp_child"
             android:layout_width="250dp"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:layout_marginStart="175dp"
             android:layout_marginTop="145dp"
             android:layout_marginEnd="20dp" />
@@ -83,7 +83,7 @@
             android:id="@+id/lista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp" />
+            android:layout_marginTop="230dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/noti_inter"
