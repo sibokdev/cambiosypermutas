@@ -100,7 +100,7 @@ public class InsertPhone extends BaseActivity {
             pho.setError("Ingresa un numero telefonico valido");
         } else {
             pho.setErrorEnabled(false);
-
+            openLoadingDialog();
             HashMap<String, String> params = new HashMap<>();
             params.put("phone", phon);
 
@@ -112,9 +112,9 @@ public class InsertPhone extends BaseActivity {
                     if (response.isSuccessful()) {
                         if (response.body().getCode() == 202) {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
-                            pho.setError("Numero ya registrado");
+                            pho.setError("Número ya registrado");
                         }else{
-                            openLoadingDialog();
+
                             Intent inte = new Intent(InsertPhone.this, InsertCode.class);
                             inte.putExtra("phone", phone.getText().toString());
                             inte.putExtra("tokenPhone", token1.getText().toString());
@@ -154,6 +154,6 @@ public class InsertPhone extends BaseActivity {
 
                 loadingDialog.dismisDialog();
             }
-        },5000); //You can change this time as you wish
+        },3000); //You can change this time as you wish
     }
 }
