@@ -57,7 +57,7 @@ public class RecoverPhone extends BaseActivity {
             pho.setError("Ingrese teléfono correctamente");
         } else {
             pho.setErrorEnabled(false);
-
+            openLoadingDialog();
             HashMap<String, String> params = new HashMap<>();
             params.put("phone", phon);
 
@@ -70,7 +70,7 @@ public class RecoverPhone extends BaseActivity {
                             //LoadingDialog.show(InsertCode.this, getString(R.string.validando_code));
                             pho.setError("   Número no existente");
                         }else{
-                            openLoadingDialog();
+
                             Intent inte = new Intent(RecoverPhone.this, RecoverCode.class);
                             inte.putExtra("phone", phone.getText().toString());
 
@@ -81,7 +81,7 @@ public class RecoverPhone extends BaseActivity {
 
                 @Override
                 public void onFailure(Call<Responses> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
 
                 }
@@ -102,7 +102,7 @@ public class RecoverPhone extends BaseActivity {
 
                 loadingDialog.dismisDialog();
             }
-        },5000); //You can change this time as you wish
+        },3000); //You can change this time as you wish
     }
 
 }
