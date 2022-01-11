@@ -194,7 +194,7 @@ private Boolean exit = false;
     public void contratar(View view) {
 
         startActivity(new Intent(this, PrivacyPolicies.class));
-        finish();
+        //finish();  //se le quita porque causaba conflicto con privacyPolicies al dar atras se salia
     }
     public void login(View view){
         HashMap<String, String> params = new HashMap<>();

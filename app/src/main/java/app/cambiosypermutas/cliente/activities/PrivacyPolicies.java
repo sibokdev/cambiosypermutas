@@ -25,6 +25,7 @@ import app.cambiosypermutas.cliente.R;
 public class PrivacyPolicies extends BaseActivity {
     private CheckBox terminos;
     private TextView token1, device;
+
     private ImageView back;
 
     @Override
@@ -37,8 +38,9 @@ public class PrivacyPolicies extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), " si sale", Toast.LENGTH_SHORT).show();
                 onBackPressed();// regresar a activity anterior al presionar icon back en toolbar
+                moveTaskToBack(true);
             }
         });
 
