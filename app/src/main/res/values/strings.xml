@@ -37,6 +37,10 @@
     <string name="link_web48">
         <a href="https://nearshorecoders.com/">nearshorecoders.com</a>
     </string>
+    <string name="link_politics_c_p">
+        <a href="http://politics.cambiosypermutas.com.mx/">Políticas de privacidad -  Manual de uso</a>
+    </string>
+
     <string name="send_correo">
         <a href="Abriendo correo">Web 48</a>
     </string>

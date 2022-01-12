@@ -17,7 +17,7 @@ import app.cambiosypermutas.cliente.R;
 
 public class Share extends Fragment {
     ViewFlipper vf_carrusel;//
-    TextView link;
+    TextView link,politics;
 
 
     @Override
@@ -39,6 +39,9 @@ public class Share extends Fragment {
         //hiperlink
         link = view.findViewById(R.id.hyper_link);
         link.setMovementMethod(LinkMovementMethod.getInstance());
+
+        politics = view.findViewById(R.id.politics);
+        politics.setMovementMethod(LinkMovementMethod.getInstance());
 
         //creacion de sentencia par validacion
         for (int image: images){

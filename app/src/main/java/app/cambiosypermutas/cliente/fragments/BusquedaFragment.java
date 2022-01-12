@@ -187,7 +187,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 for (app.cambiosypermutas.cliente.models.Estados estado : ejemplo) {
                     list.add(estado.getEstado());
                     noresultados.setVisibility(View.GONE);
-
                    for (int i = 0; i < list.size(); i++) {
                         if (i == 2) {
 
@@ -387,6 +386,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     //  bundle.putString("phone",phone.getText().toString());
                     f.setArguments(bundle);
                     progressBar2.setVisibility(View.GONE);
+                    noresultados.setVisibility(View.GONE);
                     lista.setAdapter(adapterUsuarios);
 
 
