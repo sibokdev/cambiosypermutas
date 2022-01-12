@@ -23,11 +23,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Coincidencias"
-
                     android:gravity="center"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/button_bg_dark_green"
                     android:padding="10dp"
-                    android:textSize="25dp"/>
+                    android:textSize="25dp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/phone"

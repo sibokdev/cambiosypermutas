@@ -14,15 +14,15 @@
         <item
             android:id="@+id/nav_interes"
             android:icon="@drawable/ic_public"
-            android:title="Lugares de interes" />
+            android:title="Lugares de interés" />
         <item
             android:id="@+id/nav_busqueda"
             android:icon="@drawable/ic_search"
-            android:title="Busqueda" />
+            android:title="Búsqueda" />
         <item
             android:id="@+id/nav_metodos"
             android:icon="@drawable/ic_payment"
-            android:title="Metodos de pago" />
+            android:title="Métodos de pago" />
     </group>
 
     <group android:checkableBehavior="all">
