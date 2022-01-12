@@ -79,11 +79,21 @@
             android:visibility="gone"
             android:layout_marginTop="220dp"/>
 
+        <TextView
+            android:id="@+id/noresultados"
+            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="Para obtener coincidencias debe ingresar lugares de interés"
+            android:layout_height="wrap_content"
+            android:textColor="#F4511E"
+            android:layout_marginTop="220dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp" />
+            android:layout_marginTop="220dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/noti_inter"

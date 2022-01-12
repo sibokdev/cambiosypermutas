@@ -49,7 +49,7 @@ import retrofit2.Response;
 public class BusquedaFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private RecyclerView lista;
-    private TextView list1, phone, nombres, estados, resultados;
+    private TextView list1, phone, nombres, estados, resultados,noresultados;
     private SearchView buscador;
     private EditText busc;
     private Spinner spinner_estados,sp_child;
@@ -90,6 +90,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         phone = (TextView) view.findViewById(R.id.phone);
         estados = (TextView) view.findViewById(R.id.estado);
         resultados = (TextView) view.findViewById(R.id.resultados);
+        noresultados =(TextView) view.findViewById(R.id.noresultados);
 
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
@@ -183,7 +184,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
                 for (app.cambiosypermutas.cliente.models.Estados estado : ejemplo) {
                     list.add(estado.getEstado());
-
+                    noresultados.setVisibility(View.GONE);
                    for (int i = 0; i < list.size(); i++) {
                         if (i == 2) {
 
@@ -378,7 +379,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     Bundle bundle = new Bundle();
                     //  bundle.putString("phone",phone.getText().toString());
                     f.setArguments(bundle);
-
+                    noresultados.setVisibility(View.GONE);
                     lista.setAdapter(adapterUsuarios);
 
 
