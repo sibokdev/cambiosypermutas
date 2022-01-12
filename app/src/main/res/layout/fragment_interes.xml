@@ -66,7 +66,12 @@ quieras, estos datos nos ayudan a realizar la búsqueda de acuerdo a tus interes
                         android:textColor="@color/button_bg_dark_green"
                         android:textSize="20dp" />
 
-
+                    <ProgressBar
+                        android:id="@+id/progressBar2"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_marginTop="280dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp" />
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/ti_codigop"
                         android:layout_width="match_parent"
@@ -83,6 +88,8 @@ quieras, estos datos nos ayudan a realizar la búsqueda de acuerdo a tus interes
                             android:hint="Ingrese Código Postal:"
                             android:inputType="number"
                             android:maxLength="5" />
+
+
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
