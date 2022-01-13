@@ -9,10 +9,10 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "app.oficiodigital.cliente"
+        applicationId "app.cambiosypermutas"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 10
+        versionCode 12
         versionName "1.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
