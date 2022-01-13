@@ -84,10 +84,19 @@
             android:layout_width="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:text="Para obtener coincidencias debe ingresar lugares de interés"
+            android:visibility="gone"
+            android:text="Para obtener coincidencias debe ingresar lugares de interes"
             android:layout_height="wrap_content"
-            android:textColor="#F4511E"
+            android:textColor="#FF5722"
             android:layout_marginTop="220dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_marginTop="280dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="70dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,7 @@ public class Perfil_Fragmen extends Fragment {
     private ImageView foto;
     private CircleImageView fotos;
     private EditText nuevo, confirmacion;
+    private ProgressBar progressBar2;
     int SELEC_IMAGEN = 200;
     String phon;
 
@@ -93,6 +95,7 @@ public class Perfil_Fragmen extends Fragment {
         //confirmacion = (EditText) view.findViewById(R.id.confirmacion);
         ll_telefono = (LinearLayout) view.findViewById(R.id.ll_telefono);
         ll_phone2 = (LinearLayout) view.findViewById(R.id.ll_phone2);
+        progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
 
         ll_direccion = (LinearLayout) view.findViewById(R.id.ll_direccion);
         foto2 = (TextView) view.findViewById(R.id.foto2);
@@ -253,7 +256,7 @@ public class Perfil_Fragmen extends Fragment {
                     //colonia.("Code: " + response.code());
                     return;
                 }
-
+                progressBar2.setVisibility(View.GONE);
                 List<Datos> respuestas = response.body();
                 List<String> list = new ArrayList<String>();
 

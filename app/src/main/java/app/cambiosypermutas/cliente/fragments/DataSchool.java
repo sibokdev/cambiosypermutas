@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -75,6 +76,7 @@ public class DataSchool extends Fragment {
     private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, ocolonia;
     private SeekBar seekBar;
     private Button  guardar;
+    private ProgressBar progressBar2;
     private int datos;
 
     private TextInputLayout ti_nombre_escuela, ti_clave, ti_zona, ti_tel, ti_codigop, ti_nom_dir;
@@ -147,6 +149,7 @@ public class DataSchool extends Fragment {
         salida = (TextView) view.findViewById(R.id.tv_salida);
         muni = (TextView) view.findViewById(R.id.tv_municipio);
         estado = (TextView) view.findViewById(R.id.tv_estado);
+        progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
 
         onom_dir = (EditText) view.findViewById(R.id.et_nom_dir);
 
@@ -1231,6 +1234,7 @@ public class DataSchool extends Fragment {
             phones = pho.getPhone();
 
         }
+
         Call<List<DatosSchool>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDataSchool(phones);
         callVersiones.enqueue(new Callback<List<DatosSchool>>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -1242,8 +1246,9 @@ public class DataSchool extends Fragment {
                 for (DatosSchool res : respuestas) {
                     if (res.getNombre_esc() == null) {
                         guardarMetodo();
-                    }else {
-
+                        progressBar2.setVisibility(View.GONE);
+                    }else{
+                        progressBar2.setVisibility(View.GONE);
                         String nombre_esc = "" + res.getNombre_esc();
                         oescuela.setText(nombre_esc);
                         oescuela.setEnabled(false);

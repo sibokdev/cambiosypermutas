@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -53,6 +54,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private SearchView buscador;
     private EditText busc;
     private Spinner spinner_estados,sp_child;
+    private ProgressBar progressBar2;
     ArrayAdapter<String> adapter;
     String phon;
 
@@ -90,8 +92,8 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         phone = (TextView) view.findViewById(R.id.phone);
         estados = (TextView) view.findViewById(R.id.estado);
         resultados = (TextView) view.findViewById(R.id.resultados);
-        noresultados =(TextView) view.findViewById(R.id.noresultados);
-
+        noresultados=(TextView) view.findViewById(R.id.noresultados);
+        progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
@@ -171,13 +173,13 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         }
         String phon = phone;
-
+       // noresultados.setVisibility(View.VISIBLE);
+        progressBar2.setVisibility(View.VISIBLE);
         Call<List<app.cambiosypermutas.cliente.models.Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(phon);
         call.enqueue(new Callback<List<app.cambiosypermutas.cliente.models.Estados>>() {
             @Override
             public void onResponse(Call<List<app.cambiosypermutas.cliente.models.Estados>> call, Response<List<app.cambiosypermutas.cliente.models.Estados>> response) {
                 List<app.cambiosypermutas.cliente.models.Estados> ejemplo = response.body();
-
                 List<String> list = new ArrayList<String>();
                 String estado1 ="", estado2 = "", estado3 = "", estadoss = "";
                 String[] estados = new String[0];
@@ -231,7 +233,9 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
             @Override
             public void onFailure(Call<List<app.cambiosypermutas.cliente.models.Estados>> call, Throwable t) {
-               // Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
+                progressBar2.setVisibility(View.GONE);
+                noresultados.setVisibility(View.VISIBLE);
+                // Toast.makeText(getApplicationContext(), "Telefono guardado", Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(InsertCode.this, ProveedorDeServicios.class));
 
             }
@@ -352,9 +356,11 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 if (listUsuarios.size() == 0) {
                     resultados.setVisibility(View.VISIBLE);
                     sp_child.setClickable(false);
+                    noresultados.setVisibility(View.VISIBLE);
+                    progressBar2.setVisibility(View.GONE);
 
                 }else{
-
+                    progressBar2.setVisibility(View.GONE);
                     estados.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -379,6 +385,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     Bundle bundle = new Bundle();
                     //  bundle.putString("phone",phone.getText().toString());
                     f.setArguments(bundle);
+                    progressBar2.setVisibility(View.GONE);
                     noresultados.setVisibility(View.GONE);
                     lista.setAdapter(adapterUsuarios);
 

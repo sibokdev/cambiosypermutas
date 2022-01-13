@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,6 +62,7 @@ public class FragmentInteres extends Fragment {
     private Spinner colonia, colonia2, colonia3;
     private Button guardar;
     private TextInputLayout cp1, ti_cp2, ti_cp3;
+    private ProgressBar progressBar2;
 
     private ImageView imagenSinConexion;
     private ScrollView datosescuela;
@@ -110,6 +112,7 @@ public class FragmentInteres extends Fragment {
 
         datosescuela = (ScrollView) view.findViewById(R.id.datosescuela);
         noti_inter = (CardView) view.findViewById(R.id.noti_inter);
+        progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
 
 
 
@@ -614,6 +617,7 @@ public class FragmentInteres extends Fragment {
 
     }
     private void getDataIntereses() {
+
         codigop.setError(null);
         codigop2.setError(null);
         codigop3.setError(null);
@@ -624,8 +628,10 @@ public class FragmentInteres extends Fragment {
             phones = pho.getPhone();
 
         }
+
         Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().getIteresess(phones);
         callVersiones.enqueue(new Callback<Responses>() {
+
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<Responses> call, Response<Responses> response) {
@@ -662,8 +668,9 @@ public class FragmentInteres extends Fragment {
                                 codigop3.setEnabled(false);
                                 id3 = list2.get(i);
                             }
-                        }
 
+                        }
+                        progressBar2.setVisibility(View.GONE);
                         guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -685,7 +692,7 @@ public class FragmentInteres extends Fragment {
                         });
 
                     }else if(response.body().getCode() == 202){
-
+                        progressBar2.setVisibility(View.GONE);
                         guardarMetodo();
                     }
 
