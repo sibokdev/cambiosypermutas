@@ -356,7 +356,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 if (listUsuarios.size() == 0) {
                     resultados.setVisibility(View.VISIBLE);
                     sp_child.setClickable(false);
-                    noresultados.setVisibility(View.VISIBLE);
+                    noresultados.setVisibility(View.GONE);
                     progressBar2.setVisibility(View.GONE);
 
                 }else{
