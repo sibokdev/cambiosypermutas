@@ -842,7 +842,7 @@ public class DataSchool extends Fragment {
                     String cp = codigop.getText().toString().trim();
                     String nom_direc = onom_dir.getText().toString().trim();
                     String estd = estado.getText().toString().trim();
-                    String mun = muni.getText().toString().trim();
+                    String mun = muni.getText().toString();
                     String colo = select.getText().toString().trim();
                     String sal = salida.getText().toString().trim();
 
