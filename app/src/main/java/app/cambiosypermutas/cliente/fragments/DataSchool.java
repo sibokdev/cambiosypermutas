@@ -841,8 +841,8 @@ public class DataSchool extends Fragment {
                     String tl = otel.getText().toString().trim();
                     String cp = codigop.getText().toString().trim();
                     String nom_direc = onom_dir.getText().toString().trim();
-                    String estd = estado.getText().toString().trim();
-                    String mun = muni.getText().toString();
+                    String estd = estado.getText().toString();
+                    String mun = muni.getText().toString().trim();
                     String colo = select.getText().toString().trim();
                     String sal = salida.getText().toString().trim();
 
