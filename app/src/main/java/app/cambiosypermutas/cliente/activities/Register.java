@@ -430,10 +430,10 @@ public class Register extends BaseActivity implements View.OnClickListener {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 EditText input = tvc.getEditText();
-                Pattern passw = Pattern.compile("[0-9]{8}");
+                Pattern passw = Pattern.compile("[0-9]{7,8}");
                 String inputText = input.getText().toString().trim();
                 if (passw.matcher(inputText).matches() == false) {
-                    tvc.setError("Debes ingresar 8 caracteres");
+                    tvc.setError("Debes ingresar al menos 7 caracteres");
                 } else {
                     tvc.setErrorEnabled(false);
 
@@ -732,7 +732,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         tv_edad.setError(null);
         Pattern pater = Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}");
         Pattern phon = Pattern.compile("[0-9]{10}");
-        Pattern cedula = Pattern.compile("[0-9]{8}");
+        Pattern cedula = Pattern.compile("[0-9]{7,8}");
         String name = et_nombre.getText().toString();
         String ap = et_ap.getText().toString();
         String am = et_am.getText().toString();
