@@ -83,6 +83,14 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.token.setText(item.getTokenPhone());
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
+        holder.prueba.setText(item.getName());
+
+
+        if(item.getSurname1().contains("Prueba")){
+            holder.prueba.setTextColor(Color.WHITE);
+            holder.prueba.setText("PRUEBA");
+            holder.prueba.setBackgroundColor(Color.parseColor("#F4511E"));
+        }
 
 
         holder.detalles.setOnClickListener(new View.OnClickListener() {
@@ -391,6 +399,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         TextView tipo = (TextView) convertView.findViewById(R.id.tipo);
         TextView token = (TextView) convertView.findViewById(R.id.token);
         TextView tele = (TextView) convertView.findViewById(R.id.telefono);
+        TextView prueba = (TextView) convertView.findViewById(R.id.tv_prueba);
 
         nombre.setText(item.getName());
         nivel.setText(item.getNivel_escolar());
@@ -398,6 +407,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         estado.setText(item.getEstado());
         tipo.setText(item.getTipo_plantel());
         token.setText(item.getTokenPhone());
+        prueba.setText(item.getName());
         return convertView;
     }
 
@@ -423,7 +433,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre);
@@ -435,6 +445,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             telefono = (TextView) itemView.findViewById(R.id.telefono);
             des = (TextView) itemView.findViewById(R.id.des);
             detalles = (Button) itemView.findViewById(R.id.detalles);
+            prueba = (TextView) itemView.findViewById(R.id.tv_prueba);
         }
     }
 

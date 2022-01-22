@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class Details extends BaseActivity {
 
-    private TextView nombre, apM, apP, nombreE,nivel,puesto,tipo,turno,telefono,lugar,interes;
+    private TextView nombre, apM, apP, nombreE,nivel,puesto,tipo,turno,telefono,lugar,interes,muni;
     private Busqueda busqueda;
     String phone;
     private ImageView back;
@@ -41,6 +41,7 @@ public class Details extends BaseActivity {
         telefono = (TextView) findViewById(R.id.telefono);
         lugar = (TextView) findViewById(R.id.lugar_actual);
         interes = (TextView) findViewById(R.id.interesado);
+        muni = (TextView) findViewById(R.id.municipio);
 
         back = (ImageView) findViewById(R.id.back);
 
@@ -79,21 +80,28 @@ public class Details extends BaseActivity {
                 List<Estados> ejemplo = response.body();
 
                 List<String> list = new ArrayList<String>();
+                List<String> list1 = new ArrayList<String>();
 
                 for (Estados estado : ejemplo) {
                     list.add(estado.getEstado());
+                    list1.add(estado.getMunicipio());
                     for(int i = 0; i<list.size(); i++) {
                         if (i == 2) {
                             if(list.get(0).contains(list.get(1)) && list.get(0).contains(list.get(2))){
                                 interes.setText(list.get(0));
+                                muni.setText(list1.get(0));
                             }else if(list.get(1).contains(list.get(2))){
                                 interes.setText(list.get(0) + " " + list.get(1));
+                                muni.setText(list1.get(0) + " " + list1.get(1));
                             }else if(list.get(0).contains(list.get(1))){
                                 interes.setText(list.get(1) +" " + list.get(2));
+                                muni.setText(list1.get(1) + " " + list1.get(2));
                             }else if(list.get(0).contains(list.get(2))){
                                 interes.setText(list.get(0) + " " + list.get(1));
+                                muni.setText(list1.get(0) + " " + list1.get(1));
                             }else{
                                 interes.setText(list.get(0)+ " " + list.get(1) + " " + list.get(2));
+                                muni.setText(list1.get(0) + " " + list1.get(1) + " " + list1.get(2));
                             }
 
                         }

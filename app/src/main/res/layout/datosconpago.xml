@@ -229,6 +229,30 @@
             android:textSize="16dp"
             android:text="Sin lugares de interés" />
 
+        <TextView
+            android:id="@+id/tv_municipio"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginStart="-90dp"
+            android:layout_marginTop="25dp"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:text="municipios de interes:"
+            android:drawableLeft="@drawable/ic_country"/>
+        <TextView
+            android:id="@+id/municipio"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-53dp"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:text="Sin municipios de interés" />
+
 
 
       <!--  <androidx.appcompat.widget.AppCompatButton

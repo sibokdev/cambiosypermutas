@@ -6,6 +6,12 @@ public class DatosSchool {
     String clave_esc;
     String nivel_escolar;
     String turno;
+
+    String num_horas;
+    String materia;
+    String magisterial;
+
+
     String zona_esc;
     String telefono;
     String c_postal;
@@ -23,11 +29,21 @@ public class DatosSchool {
 
 
 
-    public DatosSchool(String nombre_esc, String clave_esc, String nivel_escolar, String turno, String zon_esc, String telefono, String c_postal, String estado, String municipio, String colonia, String nombre_direc, String tipo_plantel, String nombramiento, String labor, String nota, String procedimiento, String rol) {
+    public DatosSchool(String nombre_esc, String clave_esc, String nivel_escolar, String turno,
+                       String zon_esc, String telefono, String c_postal, String estado,
+                       String municipio, String colonia, String nombre_direc, String tipo_plantel,
+                       String nombramiento, String labor, String nota, String procedimiento,
+                       String rol, String num_horas, String materia, String magisterial) {
         this.nombre_esc = nombre_esc;
         this.clave_esc = clave_esc;
         this.nivel_escolar = nivel_escolar;
         this.turno = turno;
+
+        this.num_horas = num_horas;
+        this.materia = materia;
+        this.magisterial = magisterial;
+
+
         this.zona_esc = zon_esc;
         this.telefono = telefono;
         this.c_postal = c_postal;
@@ -69,6 +85,32 @@ public class DatosSchool {
 
     public String getTurno() {
         return turno;
+    }
+
+
+    public String getNum_horas() {
+        return num_horas;
+    }
+
+    public void setNum_horas(String num_horas) {
+        this.num_horas = num_horas;
+    }
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public String getMagisterial() {
+        return magisterial;
+    }
+
+    public void setMagisterial(String magisterialno) {
+        this.magisterial = magisterialno;
+    }
+
+
+    public void setMateria(String materia) {
+        this.materia = materia;
     }
 
     public void setTurno(String turno) {

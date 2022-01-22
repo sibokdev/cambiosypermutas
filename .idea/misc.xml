@@ -11,9 +11,14 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_add_circle.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_baseline_calendar_today.xml" value="0.17719298245614035" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_baseline_place.xml" value="0.18201754385964913" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_baseline_policy_24.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_c&amp;p_background.xml" value="0.17719298245614035" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_country.xml" value="0.18201754385964913" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_date.xml" value="0.18201754385964913" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_edit.xml" value="0.17719298245614035" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_help.xml" value="0.18201754385964913" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_interests.xml" value="0.18201754385964913" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_list_numbered.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_public.xml" value="0.17719298245614035" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_school.xml" value="0.17719298245614035" />
@@ -60,7 +65,7 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/dialog_progress.xml" value="0.22" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_contactanos.xml" value="0.18" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_data_school.xml" value="0.18687374749498997" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_data_school.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_historial.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_home.xml" value="0.21" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_interes.xml" value="0.25" />

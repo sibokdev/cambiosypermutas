@@ -61,7 +61,7 @@ import retrofit2.Response;
 
 public class Register extends BaseActivity implements View.OnClickListener {
 
-    private EditText et_nombre, et_ap, et_am, et_numtel2, et_cedula, et_mail, et_password, et_password2, presult1, presult2;
+    private EditText et_nombre, et_ap, et_am, et_numtel2, et_mail, et_password, et_password2, presult1, presult2;
     private TextView tv_edad, FechaN, phone, resul, resul1, tv_edadm,
             pregunta1, pregunta2, poci1, poci2, tv_sexo, token1;
     private Button bt_fecha;
@@ -99,7 +99,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_ap = (EditText) findViewById(R.id.et_ap);
         et_am = (EditText) findViewById(R.id.et_am);
         et_numtel2 = (EditText) findViewById(R.id.et_numtel2);
-        et_cedula = (EditText) findViewById(R.id.et_cedula);
+       /* et_cedula = (EditText) findViewById(R.id.et_cedula);*/
         et_mail = (EditText) findViewById(R.id.et_mail);
         et_password = (EditText) findViewById(R.id.et_password) ;
         et_password2 = (EditText) findViewById(R.id.et_password2) ;
@@ -421,7 +421,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        et_cedula.addTextChangedListener(new TextWatcher() {
+     /*   et_cedula.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -444,7 +444,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
 
 
         /*List<Oficios> list1 = Oficios.listAll(Oficios.class);
@@ -724,7 +724,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         et_am.setError(null);
         phone.setError(null);
         et_numtel2.setError(null);
-        et_cedula.setError(null);
+        //et_cedula.setError(null);
         et_mail.setError(null);
         et_password.setError(null);
         et_password2.setError(null);
@@ -738,7 +738,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String am = et_am.getText().toString();
         String tl1 = phone.getText().toString();
         String tl2 = et_numtel2.getText().toString();
-        String ced = et_cedula.getText().toString();
+       // String ced = et_cedula.getText().toString();
         String ema = et_mail.getText().toString();
         String pass = et_password.getText().toString();
         String pass2 = et_password2.getText().toString();
@@ -775,11 +775,11 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tvt2.requestFocus();
             return;
         }
-        if (TextUtils.isEmpty(ced)) {
+       /* if (TextUtils.isEmpty(ced)) {
             tvc.setError(" ");
             tvc.requestFocus();
             return;
-        }
+        }*/
         if (TextUtils.isEmpty(ema)) {
             tce.setError(" ");
             tce.requestFocus();
@@ -821,10 +821,12 @@ public class Register extends BaseActivity implements View.OnClickListener {
         }else if(phon.matcher(et_numtel2.getText().toString()).matches() == false) {
             tvt2.setError(" ");
             tvt2.requestFocus();
-        }else if(cedula.matcher(et_cedula.getText().toString()).matches() == false) {
+        }
+     /*   else if(cedula.matcher(et_cedula.getText().toString()).matches() == false) {
             tvc.setError(" ");
             tvc.requestFocus();
-        }else if(edad <= 18) {
+        }*/
+        else if(edad <= 18) {
             Toast.makeText(getApplication(),"Debe ser mayo de edad",Toast.LENGTH_SHORT).show();
 
         }else {
@@ -837,7 +839,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             params.put("phone2", tl2);
             params.put("sexo", sex);
             params.put("edad", ed);
-            params.put("cedula_prof", ced);
+           // params.put("cedula_prof", ced);
             params.put("email", ema);
             params.put("password", pass);
 
