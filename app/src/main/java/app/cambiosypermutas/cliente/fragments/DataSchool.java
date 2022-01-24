@@ -77,9 +77,7 @@ public class DataSchool extends Fragment {
     private TextView nombre, email, nombramiento, laborando, s1, s2;
     private EditText oescuela, oclave, ozona, otel, onom_dir,mescuela, et_num_horas, et_materia;
     private TextView salida, phone, viewnivesco;
-    private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, ocolonia;
-
-    private Spinner sp_crr_magis;
+    private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, ocolonia, ocarrera;
 
     private SeekBar seekBar;
     private Button  guardar;
@@ -89,7 +87,7 @@ public class DataSchool extends Fragment {
 
     private TextInputLayout ti_nombre_escuela, ti_clave, ti_zona, ti_tel, ti_codigop, ti_nom_dir, ti_num_horas, ti_materia;
 
-    ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln, adapter_magis;
+    ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln, adapter_magisterial;
 
     private int aniosAntiguedad=0;
     private int nivel = 0;
@@ -165,7 +163,6 @@ public class DataSchool extends Fragment {
         //definimos el spinner
         onivel_esc = (Spinner) view.findViewById(R.id.sp_nivel_esc);
 
-
         oturno = (Spinner) view.findViewById(R.id.sp_turno);
         ocategoria = (Spinner) view.findViewById(R.id.sp_categoria);
         otipo_plantel = (Spinner) view.findViewById(R.id.sp_plantel);
@@ -175,7 +172,7 @@ public class DataSchool extends Fragment {
         onota = (Spinner) view.findViewById(R.id.sp_not_desf);
         oprocedimiento = (Spinner) view.findViewById(R.id.sp_proc_Adm);
 
-        sp_crr_magis = (Spinner) view.findViewById(R.id.sp_crr_magis);
+        ocarrera = (Spinner) view.findViewById(R.id.sp_crr_magis);
 
         seekBar = (SeekBar) view.findViewById(R.id.seekBar_anios);
 
@@ -326,7 +323,7 @@ public class DataSchool extends Fragment {
                 }
             }
         });
-        //------------nombredirec
+   /*     //------------nombredirec
         onom_dir.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -347,7 +344,7 @@ public class DataSchool extends Fragment {
                 }
             }
         });
-
+*/
 
 
              otel.addTextChangedListener(new TextWatcher() {
@@ -518,6 +515,23 @@ public class DataSchool extends Fragment {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+            }
+        });
+
+        ocarrera.post(new Runnable() {
+            @Override
+            public void run() {
+                ocarrera.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
                     }
                 });
             }
@@ -702,9 +716,9 @@ public class DataSchool extends Fragment {
 
 
         //Arreglo, obtencion de valores de spinners
-        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica", "Telesecundaria"};//Arreglo spinner nivel escolar
+        String[] opciones_ne = {"Seleccione","Preescolar", "Primaria", "Secundaria", "Secundaria Técnica", "Telesecundaria","Educación Especial"};//Arreglo spinner nivel escolar
         String[] opciones_tn = {"Seleccione","Matutino", "Vespertino", "Jornada completa","Jornada Extendida"};//arreglo turno
-        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Subdirector","Supervisor", "Administrativo","Educación Especial", "Intendente"};//arreglo rol
+        String[] opciones_cat = {"Seleccione","Docente", "Técnico Docente","Asesor Técnico Pedagógico", "Director","Subdirector","Supervisor", "Administrativo", "Intendente"};//arreglo rol
         String[] opciones_tp = {"Seleccione","Municipal", "Estatal", "Federal", "Federalizado"};//arreglo tipoplantel
         String[] opciones_nombra = {"Seleccione","Si", "No"};
         String[] opciones_nota = {"Seleccione","Si", "No"};
@@ -749,9 +763,9 @@ public class DataSchool extends Fragment {
         oprocedimiento.setAdapter(adapter_proce);
         oprocedimiento.setPrompt("Seleccione una opción");
 
-        adapter_magis = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_magisterial);
-        sp_crr_magis.setAdapter(adapter_magis);
-        sp_crr_magis.setPrompt("Seleccione una opción");
+        adapter_magisterial = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opciones_magisterial);
+        ocarrera.setAdapter(adapter_magisterial);
+        ocarrera.setPrompt("Seleccione una opción");
 
 
         return view;
@@ -793,13 +807,13 @@ public class DataSchool extends Fragment {
             ti_codigop.setError(" ");
         }
     }
-    private void validateEditTextnomdir(Editable editable) {
+  /*  private void validateEditTextnomdir(Editable editable) {
         if (!TextUtils.isEmpty(editable)) {
             ti_nom_dir.setError(null);
         } else {
             ti_nom_dir.setError(" ");
         }
-    }
+    }*/
     ///////
 
     private void alerta() {
@@ -883,6 +897,7 @@ public class DataSchool extends Fragment {
                     } else if (seleccion.equals("Secundaria")) {
                     } else if (seleccion.equals("Secundaria Técnica")){
                     } else if (seleccion.equals("Telesecundaria")){
+                    } else if (seleccion.equals("Educacación Especial")) {
                     }
                     //guardado de seleccion spinnner turno
                     String seleccion_tn = oturno.getSelectedItem().toString();
@@ -900,7 +915,6 @@ public class DataSchool extends Fragment {
                     } else if (seleccion_ct.equals("Subdirector")) {
                     } else if (seleccion_ct.equals("Director")) {
                     } else if (seleccion_ct.equals("Administrativo")) {
-                    } else if (seleccion_ct.equals("Educacación Especial")) {
                     } else if (seleccion_ct.equals("Intendente")) {
                     }
                     //Sleccion spinnner tipo plantel
@@ -928,11 +942,10 @@ public class DataSchool extends Fragment {
 
 
                     //Sleccion spinnner magisterial
-                    String seleccion_magis = sp_crr_magis.getSelectedItem().toString();
-                    if (seleccion_proc.equals("No")) {
-                    } else if (seleccion_proc.equals("Si")) {
+                    String seleccion_magis = ocarrera.getSelectedItem().toString();
+                    if (seleccion_magis.equals("No")) {
+                    } else if (seleccion_magis.equals("Si")) {
                     }
-
 
 
                     //Validaciones campos
@@ -986,9 +999,11 @@ public class DataSchool extends Fragment {
                     params.put("clave_esc", clv);
                     params.put("nivel_escolar", seleccion);
                     params.put("turno", seleccion_tn);
+
                     params.put("num_horas", nhoras);
                     params.put("materia", materia);
                     params.put("carrera_magisterial", seleccion_magis);
+
                     params.put("zona_esc", zon);
                     params.put("telefono", tl);
                     params.put("c_postal", cp);
@@ -1091,6 +1106,8 @@ public class DataSchool extends Fragment {
 
                    String nhoras = et_num_horas.getText().toString().trim();
                    String materia = et_materia.getText().toString().trim();
+
+
                     String zon = ozona.getText().toString();
                     String tl = otel.getText().toString();
                     String cp = codigop.getText().toString();
@@ -1108,6 +1125,7 @@ public class DataSchool extends Fragment {
                    } else if (seleccion.equals("Secundaria")) {
                    } else if (seleccion.equals("Secundaria Técnica")){
                    } else if (seleccion.equals("Telesecundaria")) {
+                   } else if (seleccion.equals("Educación Especial")) {
                    }
                     //guardado de seleccion spinnner turno
                     String seleccion_tn = oturno.getSelectedItem().toString();
@@ -1125,7 +1143,6 @@ public class DataSchool extends Fragment {
                        } else if (seleccion_ct.equals("Subdirector")) {
                        } else if (seleccion_ct.equals("Director")) {
                        } else if (seleccion_ct.equals("Administrativo")) {
-                       } else if (seleccion_ct.equals("Educación Especial")) {
                        } else if (seleccion_ct.equals("Intendente")) {
                        }
 
@@ -1157,9 +1174,9 @@ public class DataSchool extends Fragment {
 
 
                    //Sleccion spinnner magisterial
-                   String seleccion_magis = sp_crr_magis.getSelectedItem().toString();
-                   if (seleccion_proc.equals("No")) {
-                   } else if (seleccion_proc.equals("Si")) {
+                   String seleccion_magis = ocarrera.getSelectedItem().toString();
+                   if (seleccion_magis.equals("No")) {
+                   } else if (seleccion_magis.equals("Si")) {
                    }
 
 
@@ -1230,9 +1247,11 @@ public class DataSchool extends Fragment {
                     params.put("clave_esc", clv);
                     params.put("nivel_escolar", seleccion);
                     params.put("turno", seleccion_tn);
+
                    params.put("num_horas", nhoras);
                    params.put("materia", materia);
-                   params.put("carrera_magisterial",seleccion_magis);
+                   params.put("carrera_magisterial", seleccion_magis);
+
                     params.put("zona_esc", zon);
                     params.put("telefono", tl);
                     params.put("c_postal", cp);
@@ -1384,10 +1403,10 @@ public class DataSchool extends Fragment {
                         spinombramiento.setSelection(sp_nombramiento);
                         spinombramiento.setEnabled(false);
 
-                        String magisterial = "" + res.getNombramiento();
-                        int sp_magisterial = adapter_nombra.getPosition(magisterial);
-                        sp_crr_magis.setSelection(sp_magisterial);
-                        sp_crr_magis.setEnabled(false);
+                        String carrera_magisterial = res.getMagisterial();
+                        int sp_crr_magis = adapter_magisterial.getPosition(carrera_magisterial);
+                        ocarrera.setSelection(sp_crr_magis);
+                        ocarrera.setEnabled(false);
 
                         //-----------------------------------------------------------------------
                         String labor = seekBar + res.getLabor();
@@ -1520,10 +1539,16 @@ public class DataSchool extends Fragment {
                     spinombramiento.setSelection(sp_nombramiento);
                     spinombramiento.setEnabled(true);
 
-                    String magisterialmod = "" + res.getMagisterial();
-                    int sp_magisterial = adapter_nombra.getPosition(magisterialmod);
-                    spinombramiento.setSelection(sp_magisterial);
-                    spinombramiento.setEnabled(true);
+                  /*  String magisterialmod = "" + res.getMagisterial();
+                    int sp_magisterial = adapter_magisterial.getPosition(magisterialmod);
+                    sp_crr_magis.setSelection(sp_magisterial);
+                    sp_crr_magis.setEnabled(true);*/
+
+                    String carrera_magisterialmod = res.getMagisterial();
+                    int spmagisterial = adapter_magisterial.getPosition(carrera_magisterialmod);
+                    ocarrera.setSelection(spmagisterial);
+                    ocarrera.setEnabled(true);
+
                     //-----------------------------------------------------------------------
                  /*   String labormod = seekBar + res.getLabor();
                     int sb_labormod = seekBar.getProgress();

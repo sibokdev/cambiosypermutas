@@ -9,7 +9,7 @@ public class DatosSchool {
 
     String num_horas;
     String materia;
-    String magisterial;
+    String carrera_magisterial;
 
 
     String zona_esc;
@@ -33,7 +33,7 @@ public class DatosSchool {
                        String zon_esc, String telefono, String c_postal, String estado,
                        String municipio, String colonia, String nombre_direc, String tipo_plantel,
                        String nombramiento, String labor, String nota, String procedimiento,
-                       String rol, String num_horas, String materia, String magisterial) {
+                       String rol, String num_horas, String materia, String carrera_magisterial) {
         this.nombre_esc = nombre_esc;
         this.clave_esc = clave_esc;
         this.nivel_escolar = nivel_escolar;
@@ -41,7 +41,7 @@ public class DatosSchool {
 
         this.num_horas = num_horas;
         this.materia = materia;
-        this.magisterial = magisterial;
+        this.carrera_magisterial = carrera_magisterial;
 
 
         this.zona_esc = zon_esc;
@@ -101,11 +101,11 @@ public class DatosSchool {
     }
 
     public String getMagisterial() {
-        return magisterial;
+        return carrera_magisterial;
     }
 
-    public void setMagisterial(String magisterialno) {
-        this.magisterial = magisterialno;
+    public void setMagisterial(String magisterial) {
+        this.carrera_magisterial = carrera_magisterial;
     }
 
 

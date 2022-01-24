@@ -170,12 +170,12 @@
 
 
                     <TextView
-                        android:id="@+id/tv_crr_magis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="420dp"
                         android:padding="10dp"
+                        android:inputType="textNoSuggestions"
                         android:text="¿Tienes carrera magisterial? *"
                         android:textSize="18dp" />
                     <Spinner
@@ -183,9 +183,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="445dp"
-                        android:layout_marginEnd="50dp" />
-
+                        android:layout_marginTop="450dp"
+                        android:layout_marginEnd="50dp"
+                        android:spinnerMode="dialog"/>
 
 
                     <com.google.android.material.textfield.TextInputLayout
