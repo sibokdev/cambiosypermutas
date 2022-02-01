@@ -7,41 +7,16 @@
     android:gravity="center_horizontal"
     tools:context=".activities.LoginActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
 
-        android:layout_marginTop="550dp"
-       android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/boton_redondo"
-        android:onClick="login"
-        android:text="@string/login_login_label"
-        android:textSize="17dp"
-        android:textColor="@color/cardview_light_background" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/contract_service_button"
-        android:layout_width="261dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="610dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/boton_redondo"
-        android:onClick="contratar"
-        android:text="Registrarse"
-        android:textSize="17dp"
-        android:textColor="@color/cardview_light_background" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,9 +27,11 @@
             android:padding="15dp">
 
             <ImageView
-                android:layout_width="380dp"
+                android:layout_width="370dp"
                 android:layout_height="211dp"
                 android:padding="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo_final" />
 
@@ -100,10 +77,10 @@
                     android:id="@+id/login_password_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:passwordToggleEnabled = "true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="70dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    app:passwordToggleEnabled="true">
 
                     <EditText
                         android:id="@+id/login_password_et"
@@ -150,6 +127,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/boton_redondo"
+                android:onClick="login"
+                android:text="@string/login_login_label"
+                android:textSize="17dp"
+                android:textColor="@color/cardview_light_background" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/contract_service_button"
+                android:layout_width="261dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/boton_redondo"
+                android:onClick="contratar"
+                android:text="Registrarse"
+                android:textSize="17dp"
+                android:textColor="@color/cardview_light_background" />
+
 
         </LinearLayout>
     </ScrollView>
