@@ -1,20 +1,34 @@
 package app.cambiosypermutas.cliente.activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.gms.maps.MapView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -32,29 +46,51 @@ import app.cambiosypermutas.cliente.fragments.Share;
 import app.cambiosypermutas.cliente.models.Datos;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.notifications.Alert;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Ari on 01/05/2021.
- */
+/*import com.android.volley.toolbox.JsonArrayRequest;*/
 
-public class PrincipalMetodos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class principalLugares extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    private TextView muni, estado, select;
+    private EditText codigop;
+    private MapView mapa;
+    private String phon;
+    private BovedaClient.APIBovedaClient apiBovedaClient;
 
     private ImageView imagen;
-    String phon;
-    private TextView nombre, email, phone;
+    private TextView nombre, email, nombramiento, laborando, id;
+    private EditText oescuela,oclave, ozona, otel, onom_dir;
+    private TextView salida, phone;
+    private Spinner onivel_esc, oturno, ocategoria, otipo_plantel, spinombramiento, onota, oprocedimiento, colonia;
+    private SeekBar seekBar;
+    private Button lugares;
 
+    private ImageView back;
+    private int datos;
+    /*FragmentDS fragmentDS;*/
+
+    //private ImageView imagenSinConexion;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal_menu);
+        setContentView(R.layout.activity_principal_lugares);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String id = getIntent().getStringExtra("id");
+
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -64,24 +100,31 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_metodos);
+        navigationView.setCheckedItem(R.id.nav_escact);
+        //Para cambiar el color del texto del item de un menu.
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
+//Para cambiar el color del icono del item de un menu.
+        navigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
 
-        View hView = navigationView.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
+        for (Phone p : list) {
+            phon = p.getPhone();
 
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            String phone = "";
-
-            phone = pho.getPhone();
-            phon = phone;
         }
 
-
+        imagen = (ImageView) hView.findViewById(R.id.foto);
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
+
+       // imagenSinConexion = (ImageView) hView.findViewById(R.id.imagenSinConexion);
+        //imagenSinConexion.setVisibility(View.INVISIBLE);
+
 
         phone.setText(phon);
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
@@ -112,24 +155,97 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
 
                 }
             }
-
-
             @Override
-            public void onFailure (Call < List < Datos >> call, Throwable t){
+            public void onFailure (Call < List <Datos>> call, Throwable t){
                 //  L.error("getOficios " + t.getMessage());
             }
 
         });
 
 
-        fragmentManager = getSupportFragmentManager();
+
+            fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new MetodosPago());
-        fragmentTransaction.commit();
+
+
+        ConnectivityManager con = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+    //if (networkInfo!=null && networkInfo.isConnected()) {
+    fragmentTransaction.add(R.id.conten, new LugaresCercanos());
+    fragmentTransaction.commit();
+   // }else {
+        //imagenSinConexion.setVisibility(View.VISIBLE);
+//mensaje
+       // Toast.makeText(this, "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+    //}
 
     }
 
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },3000); //You can change this time as you wish
+    }
+
+    //control de pulsacion, boton atras
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==event.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de Cambios y permutas?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();//ocultar dialogo
+                        }
+                    });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
+    private void cerrarAplicacion() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon_fire_exit_ios)
+                .setTitle("¿Desea salir de Cambios y permutas?")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
+                      //  finish(); //Si solo quiere mandar la aplicación a segundo plano
+                    }
+                }).show();
+    }
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            cerrarAplicacion();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+  /*  @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -137,7 +253,7 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,6 +274,7 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
             Alert dialog = new Alert(this);
             dialog.setPositiveListener(getString(android.R.string.ok), (dialogInterface, i) -> {
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
             });
 
             dialog.setNegativeListener(getString(android.R.string.cancel), ((dialogInterface, i) -> {
@@ -167,6 +284,11 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
             dialog.fire(getString(R.string.logout_message));
 
             return true;
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if (id == R.id.action_contacto) {
+            ft.replace(R.id.conten, new Contactanos()).commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -209,4 +331,16 @@ public class PrincipalMetodos extends AppCompatActivity implements NavigationVie
         drawerLayout.closeDrawers();
         return true;
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+

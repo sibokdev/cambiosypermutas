@@ -108,8 +108,9 @@ public class BovedaClient {
         @GET("courier/getDatos{phone}")
         Call<List<Datos>> getDatos(@Path("phone") String phone);
 
-        @GET("client/Address{id}")
-
+        @POST("client/ejemploGeoQuery")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getGeoQuery(@FieldMap HashMap<String, String> params);
 
         @POST("client/updateStatusPago")
         @FormUrlEncoded

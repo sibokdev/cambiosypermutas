@@ -41,6 +41,7 @@ import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.fragments.BusquedaFragment;
 import app.cambiosypermutas.cliente.fragments.Contactanos;
 import app.cambiosypermutas.cliente.fragments.FragmentInteres;
+import app.cambiosypermutas.cliente.fragments.LugaresCercanos;
 import app.cambiosypermutas.cliente.fragments.MetodosPago;
 import app.cambiosypermutas.cliente.fragments.Perfil_Fragmen;
 import app.cambiosypermutas.cliente.fragments.Share;
@@ -310,6 +311,9 @@ public class principalMenu extends BaseActivity
                 break;
             case R.id.nav_busqueda:
                 ft.replace(R.id.conten, new BusquedaFragment()).commit();
+                break;
+            case R.id.nav_cerca:
+                ft.replace(R.id.conten, new LugaresCercanos()).commit();
                 break;
             case R.id.nav_interes:
                 ft.replace(R.id.conten, new FragmentInteres()).commit();
