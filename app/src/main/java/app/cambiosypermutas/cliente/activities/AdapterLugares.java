@@ -75,6 +75,7 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
         holder.des.setText(item.getDescription());
         holder.prueba.setText(item.getName());
         holder.colo.setText(item.getColonia());
+        holder.muni.setText(item.getMunicipio());
 
         holder.detalles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -429,6 +430,7 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
             des = (TextView) itemView.findViewById(R.id.des);
             detalles = (Button) itemView.findViewById(R.id.detalles);
             prueba = (TextView) itemView.findViewById(R.id.tv_prueba);
+            muni = (TextView) itemView.findViewById(R.id.muni);
 
             colo = (TextView) itemView.findViewById(R.id.colo);
         }

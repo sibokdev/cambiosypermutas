@@ -49,6 +49,7 @@
             android:layout_marginStart="-30dp"
             android:gravity="center"
             android:text="Match encontrado"
+            android:textStyle="bold|normal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/button_bg_light_green"
             android:textSize="20dp" />
@@ -72,6 +73,7 @@
                 android:gravity="center"
                 android:text="Nombre(s)"
                 android:padding="10dp"
+                android:textColor="#008577"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                android:textStyle="bold"
                 android:textSize="20dp" />
