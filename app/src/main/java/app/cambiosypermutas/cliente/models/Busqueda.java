@@ -15,6 +15,7 @@ public class Busqueda implements Serializable {
     String office;
     String estado;
     String municipio;
+    String colonia;
     String tokenPhone;
     String phone;
     String Description;
@@ -63,6 +64,14 @@ public class Busqueda implements Serializable {
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
     }
 
     public void setCodigo(String codigo) {

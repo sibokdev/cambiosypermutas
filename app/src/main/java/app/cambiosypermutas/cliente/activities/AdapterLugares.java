@@ -55,7 +55,7 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
 
     @Override
     public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_busqueda, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lugares, parent, false);
         dialog = new Dialog(parent.getContext());
 
         return new UsuarioViewHolder(v);
@@ -74,6 +74,7 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
         holder.prueba.setText(item.getName());
+        holder.colo.setText(item.getColonia());
 
         holder.detalles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -415,7 +416,7 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba, muni, colo;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.nombre);
@@ -428,6 +429,8 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
             des = (TextView) itemView.findViewById(R.id.des);
             detalles = (Button) itemView.findViewById(R.id.detalles);
             prueba = (TextView) itemView.findViewById(R.id.tv_prueba);
+
+            colo = (TextView) itemView.findViewById(R.id.colo);
         }
     }
 
