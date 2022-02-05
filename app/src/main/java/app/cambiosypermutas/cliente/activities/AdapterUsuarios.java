@@ -76,6 +76,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
         final Busqueda item = list.get(position);
 //        holder.nombre.setText(item.getName()+"    "+item.getSurname1().toUpperCase());
+
+        holder.prueba.setText(item.getName());
         holder.rol.setText(item.getRol());
         holder.nivel.setText(item.getNivel_escolar());
         holder.estado.setText(item.getEstado());
@@ -85,7 +87,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.des.setText(item.getDescription());
 
 
-        if(item.getGender().equals("2")){
+      /*      if(item.getGender().equals("2")){
             holder.prueba.setTextColor(Color.WHITE);
             holder.prueba.setText("PRUEBA");
             holder.prueba.setBackgroundColor(Color.parseColor("#F4511E"));
@@ -93,7 +95,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             holder.prueba.setText(item.getName());
             holder.prueba.setTextColor(Color.BLACK);
             holder.prueba.setBackgroundColor(Color.WHITE);
-        }
+        }*/
 
         holder.detalles.setOnClickListener(new View.OnClickListener() {
             @Override

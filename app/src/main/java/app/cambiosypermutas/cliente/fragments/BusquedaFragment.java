@@ -275,11 +275,11 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
                         for (int i = 0; i < list.size(); i++) {
                             if (i == 0) {
-                                estado = "" + listestado.get(i);
+                                estado = " " + listestado.get(i);
                             } else if (i == 1) {
-                                estado2 = "" + listestado.get(i);
+                                estado2 = " " + listestado.get(i);
                             }else if (i == 2) {
-                                estado3 = "" + listestado.get(i);
+                                estado3 = " " + listestado.get(i);
                             }
                         }
                     }
