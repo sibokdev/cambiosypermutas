@@ -6,7 +6,7 @@
         <item
             android:id="@+id/nav_escact"
             android:icon="@drawable/ic_home"
-            android:title="Escuela actual" />
+            android:title="Ofrezco" />
         <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_person_black_24dp"
@@ -14,7 +14,7 @@
         <item
             android:id="@+id/nav_interes"
             android:icon="@drawable/ic_public"
-            android:title="Lugares de interés" />
+            android:title="Buscó" />
         <item
             android:id="@+id/nav_busqueda"
             android:icon="@drawable/ic_search"
@@ -43,7 +43,7 @@
 
         <item
             android:id="@+id/nav_version"
-            android:title="Versión: 1.0"
+            android:title="Versión: 1.4"
             />
     </group>
 
