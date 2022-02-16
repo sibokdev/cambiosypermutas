@@ -27,7 +27,7 @@ public class Share extends Fragment {
         View view = inflater.inflate(R.layout.fragment_share, container, false);
         compartirApp();
 
-        //Inicializamos all
+
 
         //Inicializamos all
         int images[] = {R.drawable.mexico_gulf, R.drawable.annie_spratt,
@@ -70,7 +70,7 @@ public class Share extends Fragment {
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
             String aux = "Descarga la app\n";
-            aux = aux + "https://play.google.com/store/apps/details?id=com.spotify.tv.android&hl=es" + getContext().getPackageName();
+            aux = aux + "https://play.google.com/store/apps/details?id=app.oficiodigital.cliente" + getContext().getPackageName();
             i.putExtra(Intent.EXTRA_TEXT, aux);
             startActivity(i);
         }catch (Exception e){

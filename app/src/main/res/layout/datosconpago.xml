@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
-        <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+
+        <include android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
 
         <ImageView
             android:layout_width="130dp"
