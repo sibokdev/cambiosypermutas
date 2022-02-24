@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
 import androidx.annotation.RequiresApi;
@@ -44,6 +45,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,6 +88,8 @@ public class DataSchool extends Fragment {
     private ProgressBar progressBar2;
     private int datos;
 
+
+
     private TextInputLayout ti_nombre_escuela, ti_clave, ti_zona, ti_tel, ti_codigop, ti_nom_dir, ti_num_horas, ti_materia;
 
     ArrayAdapter<String> adapter, adapter_tn, adapter_ct, adapter_tp, adapter_nombra, adapter_nota, adapter_proce, adapter_cln, adapter_magisterial;
@@ -97,11 +102,15 @@ public class DataSchool extends Fragment {
     private int cont_nombramiento = 0;
     private int nota_des = 0;
     private int suj_proced = 0;
+    private int res_plazas = 0;
 
     private ImageView imagenSinConexion;
     
     private ScrollView datosescuela;
     private CardView noti_inter;
+
+    private TextView tv_num_plazas;
+    private NumberPicker numberpicker;
 
 /*    String esc = "";
     String clv ="";
@@ -189,13 +198,29 @@ public class DataSchool extends Fragment {
 
         guardar = (Button) view.findViewById(R.id.guardar);
 
-
         datosescuela = (ScrollView) view.findViewById(R.id.datosescuela);
         noti_inter = (CardView) view.findViewById(R.id.noti_inter);
 
-
         imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
         imagenSinConexion.setVisibility(View.INVISIBLE);
+
+
+        tv_num_plazas = (TextView) view.findViewById(R.id.tv_num_plazas);
+        numberpicker = (NumberPicker) view.findViewById(R.id.numberpicker);
+
+        numberpicker.setMinValue(1);
+        numberpicker.setMaxValue(10);
+
+        numberpicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                tv_num_plazas.setText(String.valueOf(newVal));
+                res_plazas=newVal;
+            }
+        });
+
+
+
 
         //Notificacion de no internet
         ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -889,6 +914,8 @@ public class DataSchool extends Fragment {
                     String colo = select.getText().toString().trim();
                     String sal = salida.getText().toString().trim();
 
+                    String plazas = tv_num_plazas.getText().toString().trim();
+
 
                     //Estos métodos se ejecutará cuando se presione el botón
                     String seleccion = onivel_esc.getSelectedItem().toString();
@@ -1018,6 +1045,8 @@ public class DataSchool extends Fragment {
                     params.put("nota", seleccion_nota);
                     params.put("procedimiento", seleccion_proc);
 
+                    params.put("num_plazas", plazas);
+
                     List<Token> userId = Token.listAll(Token.class);
                     for (Token ids : userId) {
 
@@ -1116,6 +1145,8 @@ public class DataSchool extends Fragment {
                     String mun = muni.getText().toString();
                     String colo = select.getText().toString();
                     String sal = salida.getText().toString();
+
+                   String plazas = tv_num_plazas.getText().toString().trim();
 
 
                    //Estos métodos se ejecutará cuando se presione el botón
@@ -1265,6 +1296,8 @@ public class DataSchool extends Fragment {
                     params.put("labor", sal);
                     params.put("nota", seleccion_nota);
                     params.put("procedimiento", seleccion_proc);
+
+                   params.put("num_plazas", plazas);
 
                     List<Token> userId = Token.listAll(Token.class);
                     for (Token ids : userId) {
@@ -1418,6 +1451,10 @@ public class DataSchool extends Fragment {
                         salida.setText(lbsl);
                         salida.setEnabled(false);
 
+                        String n_pls = "" + res.getNum_plazas();
+                        tv_num_plazas.setText(n_pls);
+                        tv_num_plazas.setEnabled(false);
+
 
                         String nota = "" + res.getNota();
                         int sp_nota = adapter_nota.getPosition(nota);
@@ -1560,10 +1597,16 @@ public class DataSchool extends Fragment {
                     salida.setEnabled(true);
 
 
+                    String n_pls_mod = "" + res.getNum_plazas();
+                    tv_num_plazas.setText(n_pls_mod);
+                    tv_num_plazas.setEnabled(true);
+
+
                     String notamod = "" + res.getNota();
                     int sp_nota = adapter_nota.getPosition(notamod);
                     onota.setSelection(sp_nota);
                     onota.setEnabled(true);
+
 
                     String procedimientomod = "" + res.getNota();
                     int sp_proced = adapter_proce.getPosition(procedimientomod);

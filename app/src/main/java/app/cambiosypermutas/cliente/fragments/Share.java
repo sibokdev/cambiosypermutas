@@ -70,7 +70,7 @@ public class Share extends Fragment {
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
             String aux = "Descarga la app\n";
-            aux = aux + "https://play.google.com/store/apps/details?id=app.oficiodigital.cliente" + getContext().getPackageName();
+            aux = aux + "https://play.google.com/store/apps/details?id=app.oficiodigital.cliente";
             i.putExtra(Intent.EXTRA_TEXT, aux);
             startActivity(i);
         }catch (Exception e){

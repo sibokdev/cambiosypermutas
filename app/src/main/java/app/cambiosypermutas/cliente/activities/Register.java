@@ -328,13 +328,20 @@ public class Register extends BaseActivity implements View.OnClickListener {
         });
 
 
-        //Sexo fem masc
+        //Sexo fem
         rb_fem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     tv_sexo.setText("Femenino");
-                } else {
+                }
+            }
+        });
+        //Sexo masc
+        rb_masc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     tv_sexo.setText("Masculino");
                 }
             }
@@ -742,7 +749,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String ema = et_mail.getText().toString();
         String pass = et_password.getText().toString();
         String pass2 = et_password2.getText().toString();
-        String sex = rb_fem.getText().toString();
+        String sex = tv_sexo.getText().toString();
         String ed = tv_edadm.getText().toString();
         String pre1 = pregunta1.getText().toString();
         String pre2 = pregunta2.getText().toString();

@@ -27,13 +27,15 @@ public class DatosSchool {
     String procedimiento;
     String rol;
 
+    String num_plazas;
+
 
 
     public DatosSchool(String nombre_esc, String clave_esc, String nivel_escolar, String turno,
                        String zon_esc, String telefono, String c_postal, String estado,
                        String municipio, String colonia, String nombre_direc, String tipo_plantel,
                        String nombramiento, String labor, String nota, String procedimiento,
-                       String rol, String num_horas, String materia, String carrera_magisterial) {
+                       String rol, String num_horas, String materia, String carrera_magisterial, String num_plazas) {
         this.nombre_esc = nombre_esc;
         this.clave_esc = clave_esc;
         this.nivel_escolar = nivel_escolar;
@@ -58,6 +60,7 @@ public class DatosSchool {
         this.nota = nota;
         this.procedimiento = procedimiento;
         this.rol = rol;
+        this.num_plazas = num_plazas;
     }
 
     public String getNombre_esc() {
@@ -229,4 +232,14 @@ public class DatosSchool {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public String getNum_plazas() {
+        return num_plazas;
+    }
+
+    public void setNum_plazas(String num_plazas) {
+        this.num_plazas = num_plazas;
+    }
+
+
 }

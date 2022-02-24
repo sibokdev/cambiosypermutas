@@ -43,7 +43,7 @@
 
         <item
             android:id="@+id/nav_version"
-            android:title="Versión: 1.4"
+            android:title="Versión: 1.5"
             />
     </group>
 
