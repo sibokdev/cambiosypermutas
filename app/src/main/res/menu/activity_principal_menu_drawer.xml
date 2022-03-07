@@ -6,7 +6,7 @@
         <item
             android:id="@+id/nav_escact"
             android:icon="@drawable/ic_home"
-            android:title="Escuela actual" />
+            android:title="Ofrezco" />
         <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_person_black_24dp"
@@ -14,11 +14,15 @@
         <item
             android:id="@+id/nav_interes"
             android:icon="@drawable/ic_public"
-            android:title="Lugares de interés" />
+            android:title="Buscó" />
         <item
             android:id="@+id/nav_busqueda"
             android:icon="@drawable/ic_search"
-            android:title="Búsqueda" />
+            android:title="Búsqueda por estado" />
+        <item
+            android:id="@+id/nav_cerca"
+            android:icon="@drawable/ic_baseline_near"
+            android:title="Cerca a tus intereses" />
         <item
             android:id="@+id/nav_metodos"
             android:icon="@drawable/ic_payment"
@@ -39,7 +43,7 @@
 
         <item
             android:id="@+id/nav_version"
-            android:title="Versión: 1.0"
+            android:title="Versión: 1.5"
             />
     </group>
 

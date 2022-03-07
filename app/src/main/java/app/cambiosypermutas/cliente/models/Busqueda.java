@@ -15,6 +15,7 @@ public class Busqueda implements Serializable {
     String office;
     String estado;
     String municipio;
+    String colonia;
     String tokenPhone;
     String phone;
     String Description;
@@ -23,6 +24,8 @@ public class Busqueda implements Serializable {
     String tipo_plantel;
     String nombre_esc;
     String turno;
+    String codigo;
+    String gender;
 
 
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
@@ -57,6 +60,30 @@ public class Busqueda implements Serializable {
 
     public Busqueda() {
 
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getNombre_esc() {

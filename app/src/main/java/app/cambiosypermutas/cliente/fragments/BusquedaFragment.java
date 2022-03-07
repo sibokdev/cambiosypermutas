@@ -346,7 +346,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         params.put("estados", jArray.toString());
 
-        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getInfo(params);
+        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getInfo2(params);
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {

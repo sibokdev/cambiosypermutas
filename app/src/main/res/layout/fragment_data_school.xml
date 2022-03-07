@@ -30,10 +30,11 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/datosescuela1"
                     android:layout_width="match_parent"
-                    android:layout_height="1100dp"
+                    android:layout_height="1253dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="@color/white">
 
                     <ProgressBar
@@ -49,11 +50,23 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="15dp"
-                        android:text="Datos de tu Escuela Actual"
+                        android:text="Ofrezco"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/button_bg_dark_green"
                         android:textSize="25dp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Datos de tu Escuela Actual"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="40dp"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/ti_nombre_escuela"
@@ -61,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti1"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="60dp">
+                        android:layout_marginTop="80dp">
 
                         <EditText
                             android:id="@+id/et_nombre_escuela"
@@ -79,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="120dp">
+                        android:layout_marginTop="140dp">
 
                         <EditText
                             android:id="@+id/et_clave"
@@ -96,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="180dp"
+                        android:layout_marginTop="200dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="textNoSuggestions"
                         android:padding="10dp"
@@ -108,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="200dp"
+                        android:layout_marginTop="240dp"
                         android:layout_marginEnd="50dp"
                         android:spinnerMode="dialog" />
 
@@ -116,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="240dp"
+                        android:layout_marginTop="260dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -128,7 +141,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="260dp"
+                        android:layout_marginTop="280dp"
                         android:layout_marginEnd="50dp"
                         android:spinnerMode="dialog" />
 
@@ -138,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="300dp">
+                        android:layout_marginTop="320dp">
 
                         <EditText
                             android:id="@+id/et_num_horas"
@@ -156,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="360dp">
+                        android:layout_marginTop="380dp">
 
                         <EditText
                             android:id="@+id/et_materia"
@@ -173,19 +186,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="420dp"
-                        android:padding="10dp"
+                        android:layout_marginTop="440dp"
                         android:inputType="textNoSuggestions"
+                        android:padding="10dp"
                         android:text="¿Tienes carrera magisterial? *"
                         android:textSize="18dp" />
+
                     <Spinner
                         android:id="@+id/sp_crr_magis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="450dp"
+                        android:layout_marginTop="470dp"
                         android:layout_marginEnd="50dp"
-                        android:spinnerMode="dialog"/>
+                        android:spinnerMode="dialog" />
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -194,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti1"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="500dp">
+                        android:layout_marginTop="520dp">
 
                         <EditText
                             android:id="@+id/et_zona"
@@ -212,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti1"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="560dp">
+                        android:layout_marginTop="580dp">
 
                         <EditText
                             android:id="@+id/et_tel"
@@ -230,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="620dp">
+                        android:layout_marginTop="640dp">
 
                         <EditText
                             android:id="@+id/et_codigop"
@@ -246,7 +260,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="680dp"
+                        android:layout_marginTop="700dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -258,7 +272,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="705dp"
+                        android:layout_marginTop="725dp"
                         android:layout_marginEnd="50dp" />
 
 
@@ -267,7 +281,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="745dp"
+                        android:layout_marginTop="765dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -279,7 +293,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="780dp"
+                        android:layout_marginTop="800dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="textNoSuggestions"
                         android:padding="10dp"
@@ -292,7 +306,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="835dp"
+                        android:layout_marginTop="855dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -304,7 +318,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="870dp"
+                        android:layout_marginTop="890dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="textNoSuggestions"
                         android:padding="10dp"
@@ -318,7 +332,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="940dp"
+                        android:layout_marginTop="960dp"
                         android:visibility="gone">
 
                         <EditText
@@ -329,14 +343,14 @@
                             android:hint="Ingrese Nombre del Director *"
                             android:inputType="textPersonName|textCapWords"
                             android:maxLength="30"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="935dp"
+                        android:layout_marginTop="955dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -348,7 +362,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="960dp"
+                        android:layout_marginTop="980dp"
                         android:layout_marginEnd="50dp"
                         android:spinnerMode="dialog" />
 
@@ -356,7 +370,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginTop="1000dp"
+                        android:layout_marginTop="1020dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -368,9 +382,41 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="21dp"
-                        android:layout_marginTop="1025dp"
+                        android:layout_marginTop="1045dp"
                         android:layout_marginEnd="50dp"
                         android:spinnerMode="dialog" />
+
+                    <TextView
+                        android:id="@+id/tv_num_plazas_let"
+                        android:layout_width="190dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="1085dp"
+                        android:layout_marginEnd="50dp"
+                        android:lines="2"
+                        android:padding="10dp"
+                        android:text="Ingrese su número de plazas *"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_num_plazas"
+                        android:layout_width="190dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="1170dp"
+                        android:layout_marginEnd="50dp"
+                        android:lines="2"
+                        android:padding="10dp"
+                        android:textSize="18dp" />
+
+                    <NumberPicker
+                        android:id="@+id/numberpicker"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="230dp"
+                        android:layout_marginTop="1085dp"
+                        android:paddingEnd="10dp" />
+
 
                 </androidx.cardview.widget.CardView>
 
