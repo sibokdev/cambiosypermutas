@@ -25,7 +25,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
+                    android:layout_height="580dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp">
@@ -34,10 +34,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginTop="5dp"
                         android:padding="15dp"
                         android:textStyle="bold"
-                        android:text="Lugares de interés"
+                        android:text="Buscó"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/button_bg_dark_green"
                         android:textSize="25dp" />
@@ -45,12 +44,24 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ingresa hasta 3 opciones que buscas."
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:padding="15dp"
+                        android:textStyle="bold"
+                        android:text="Lugares de interés"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingresa hasta 3 opciones diferentes o uno solo si así lo desea."
                         android:gravity="center"
                         android:textSize="14dp"
                         android:justificationMode="inter_word"
                         android:padding="10dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="70dp"
                         android:textColor="#F4511E"/>
 
                     <TextView
@@ -163,16 +174,16 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="410dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
                     app:cardBackgroundColor="@color/white">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="0dp"
                         android:gravity="left"
                         android:padding="15dp"
                         android:text="Segundo lugar de interés"
@@ -187,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="100dp">
+                        android:layout_marginTop="60dp">
 
                         <EditText
                             android:id="@+id/et_codigop2"
@@ -203,7 +214,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="170dp"
+                        android:layout_marginTop="120dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -215,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="215dp"
+                        android:layout_marginTop="160dp"
                         android:layout_marginEnd="50dp" />
 
 
@@ -223,7 +234,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="260dp"
+                        android:layout_marginTop="200dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -235,7 +246,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="300dp"
+                        android:layout_marginTop="240dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="textNoSuggestions"
                         android:padding="10dp"
@@ -247,7 +258,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="360dp"
+                        android:layout_marginTop="300dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -259,7 +270,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="400dp"
+                        android:layout_marginTop="340dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -270,7 +281,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="420dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
@@ -279,7 +290,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
                         android:gravity="left"
                         android:padding="15dp"
                         android:text="Tercer lugar de interés"
@@ -294,7 +304,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ti2"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="100dp">
+                        android:layout_marginTop="60dp">
 
                         <EditText
                             android:id="@+id/et_codigop3"
@@ -310,7 +320,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="170dp"
+                        android:layout_marginTop="120dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -322,7 +332,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="215dp"
+                        android:layout_marginTop="160dp"
                         android:layout_marginEnd="50dp" />
 
 
@@ -330,7 +340,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="260dp"
+                        android:layout_marginTop="200dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -342,7 +352,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="300dp"
+                        android:layout_marginTop="240dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="textNoSuggestions"
                         android:padding="10dp"
@@ -354,7 +364,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="360dp"
+                        android:layout_marginTop="300dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
@@ -366,13 +376,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="400dp"
+                        android:layout_marginTop="340dp"
                         android:layout_marginEnd="50dp"
                         android:inputType="text"
                         android:padding="10dp"
                         android:text=""
                         android:textSize="18dp" />
 
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="420dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardBackgroundColor="@color/white">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:padding="15dp"
+                        android:textStyle="bold"
+                        android:text="Triangulación"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/button_bg_dark_green"
+                        android:textSize="20dp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatButton
