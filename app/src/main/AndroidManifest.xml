@@ -76,7 +76,7 @@
             android:value="cambiosypermutas.db" />
         <meta-data
             android:name="VERSION"
-            android:value="4" />
+            android:value="5" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -130,6 +130,9 @@
         <activity android:name=".activities.Register" />
         <activity android:name=".activities.ProveedorDeServicios" />
         <activity android:name=".activities.principalLugares"/>
+        <activity android:name=".activities.PrincipalIntereses"/>
+        <activity android:name=".activities.PrincipalTriangulacion"/>
+        <activity android:name=".activities.ActivityTriangulacion"/>
         <activity
             android:name=".activities.AceptarCargoRevision"
             tools:ignore="DuplicateActivity" />

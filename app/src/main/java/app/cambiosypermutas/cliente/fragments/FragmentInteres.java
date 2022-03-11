@@ -44,6 +44,7 @@ import java.util.regex.Pattern;
 
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
+import app.cambiosypermutas.cliente.models.Busqueda;
 import app.cambiosypermutas.cliente.models.Ejemplo;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.models.Request.DatosIntereses;
@@ -56,12 +57,13 @@ import retrofit2.Response;
 
 public class FragmentInteres extends Fragment {
     DrawerLayout drawerLayout;
-    private TextView muni, muni2, muni3, estado, estado2, estado3, select, select2, select3;
-    private EditText codigop, codigop2, codigop3;
+    private TextView muni, muni2, muni3, muni4, muni5, muni6, estado, estado2, estado3,estado4,estado5,estado6,
+            select, select2, select3,select4,select5,select6;
+    private EditText codigop, codigop2, codigop3,codigop4,codigop5,codigop6;
     private BovedaClient.APIBovedaClient apiBovedaClient;
-    private Spinner colonia, colonia2, colonia3;
+    private Spinner colonia, colonia2, colonia3,colonia4,colonia5,colonia6;
     private Button guardar;
-    private TextInputLayout cp1, ti_cp2, ti_cp3;
+    private TextInputLayout cp1, ti_cp2, ti_cp3,ti_cp4,ti_cp5,ti_cp6;
     private ProgressBar progressBar2;
 
     private ImageView imagenSinConexion;
@@ -72,10 +74,12 @@ public class FragmentInteres extends Fragment {
 
     String phones = "", phone = "";
     String id = "", id2 = "", id3= "";
+    String c1,c2,c3;
 
     FragmentInteres fragment_interes;
     DataSchool dataSchool;
     ViewDtSchool viewDtSchool;
+    String busqueda;
 
 
     @Override
@@ -87,6 +91,7 @@ public class FragmentInteres extends Fragment {
         //primerPregunta();
         //asociamos lode arriba con esto
         //casteo
+
         codigop = (EditText) view.findViewById(R.id.et_codigop);
         codigop2 = (EditText) view.findViewById(R.id.et_codigop2);
         codigop3 = (EditText) view.findViewById(R.id.et_codigop3);
@@ -431,6 +436,9 @@ public class FragmentInteres extends Fragment {
                 }
             }
         });
+
+
+
         return view;
     }
 
@@ -622,6 +630,7 @@ public class FragmentInteres extends Fragment {
         codigop2.setError(null);
         codigop3.setError(null);
 
+
         List<Phone> list1 = Phone.listAll(Phone.class);
         for (Phone pho : list1) {
 
@@ -670,6 +679,7 @@ public class FragmentInteres extends Fragment {
                             }
 
                         }
+
                         progressBar2.setVisibility(View.GONE);
                         guardar.setText("modificar");
                         guardar.setOnClickListener(new View.OnClickListener() {

@@ -59,8 +59,10 @@ import app.cambiosypermutas.cliente.activities.PrincipalSolicitud;
 import app.cambiosypermutas.cliente.activities.principalMenu;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.models.Ejemplo;
+import app.cambiosypermutas.cliente.models.ModelsDB.Estado;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.models.ModelsDB.Token;
+import app.cambiosypermutas.cliente.models.ModelsDB.TokenAuth;
 import app.cambiosypermutas.cliente.models.Request.DatosSchool;
 import app.cambiosypermutas.cliente.models.Responses;
 import app.cambiosypermutas.cliente.notifications.LoadingDialog;
@@ -1416,6 +1418,10 @@ public class DataSchool extends Fragment {
                         String estad = "" + res.getEstado();
                         estado.setText(estad);
                         estado.setEnabled(false);
+
+                        Estado estados = new Estado();
+                        estados.setEstado(estad);
+                        estados.save();
 
                      /*   String nomdir = "" + res.getNombre_direc();
                         onom_dir.setText(nomdir);

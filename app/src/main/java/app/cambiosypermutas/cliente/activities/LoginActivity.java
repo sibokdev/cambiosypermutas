@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.play.core.review.ReviewInfo;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
@@ -78,6 +79,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
         isAppRunning = false;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +89,6 @@ LoginActivity extends BaseActivity implements LoginContract.View {
         password = (EditText)findViewById(R.id.login_password_et);
         token1 = (TextView)findViewById(R.id.token);
         tokena = (TextView) findViewById(R.id.tokenauth);
-
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {

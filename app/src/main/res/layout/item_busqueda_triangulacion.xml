@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="550dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -48,17 +48,13 @@
             android:layout_height="60dp"
             android:layout_marginStart="-30dp"
             android:gravity="center"
-            android:text="Posible Triangulación"
+            android:text="Match encontrado"
             android:textStyle="bold|normal"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FF5722"
+            android:textColor="#008577"
             android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/estadop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+
 
 
 
@@ -171,14 +167,6 @@
                 android:background="@drawable/boton_redondo"
                 android:textColor="@color/text_white"
                 android:text="Ver detalles"/>
-            <Button
-                android:id="@+id/tria"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/boton_redondo_naranja"
-                android:textColor="@color/text_white"
-                android:text="Agregar a triangulación"/>
 
 
 
@@ -256,23 +244,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/e1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-        <TextView
-            android:id="@+id/e2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-        <TextView
-            android:id="@+id/e3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
 
 
     </LinearLayout>

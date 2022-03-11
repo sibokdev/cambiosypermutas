@@ -28,9 +28,6 @@ import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.clients.DOXClient;
 import app.cambiosypermutas.cliente.fragments.BusquedaFragment;
 import app.cambiosypermutas.cliente.models.Busqueda;
-import app.cambiosypermutas.cliente.models.Estados;
-import app.cambiosypermutas.cliente.models.ModelsDB.Estado;
-import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.models.ModelsDB.Token;
 import app.cambiosypermutas.cliente.models.Responses;
 import app.cambiosypermutas.cliente.utils.L;
@@ -42,27 +39,26 @@ import retrofit2.Response;
  * Created by Ari on 03/05/2021.
  */
 
-public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.UsuarioViewHolder> implements ListAdapter {
+public class AdapterTriangulacion extends RecyclerView.Adapter<AdapterTriangulacion.UsuarioViewHolder> implements ListAdapter {
 
     FragmentActivity context;
     private final List<Busqueda> list;
     private final List<Busqueda> originalList;
     String tok;
     BusquedaFragment busquedaFragment;
-    String estado, estado2, estado3,codigo,codigo2,codigo3,phone;
+    String estado, estado2, estado3,codigo,codigo2,codigo3;
     Dialog dialog;
-    String estad;
 
 
 
-    public AdapterUsuarios(List<Busqueda> list, FragmentActivity context) {
+    public AdapterTriangulacion(List<Busqueda> list, FragmentActivity context) {
         this.context =  context;
         this.list =  list;
         this.originalList = new ArrayList<>();
         originalList.addAll(list);
     }
 
-    public AdapterUsuarios(List<Busqueda> list) {
+    public AdapterTriangulacion(List<Busqueda> list) {
         this.list = list;
         this.originalList = new ArrayList<>();
         originalList.addAll(list);
@@ -71,7 +67,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     @Override
     public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_busqueda, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_busqueda_triangulacion, parent, false);
         dialog = new Dialog(parent.getContext());
 
         return new UsuarioViewHolder(v);
@@ -89,13 +85,6 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.token.setText(item.getTokenPhone());
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
-        List<Estado> esta = Estado.listAll(Estado.class);
-
-        for (Estado pho : esta) {
-
-            estad = pho.getEstado().trim();
-
-        }
 
         HashMap<String, String> params = new HashMap<>();
         params.put("phone", item.getPhone().toString());
@@ -106,6 +95,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
                 List<Busqueda> ejemplo = response.body();
 
+                List<String> list = new ArrayList<String>();
+
                 List<String> listestado = new ArrayList<String>();
                 List<String> listcodigo = new ArrayList<String>();
 
@@ -115,50 +106,44 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                         listestado.add(eje.getEstado());
                         listcodigo.add(eje.getCodigo());
 
+
                         for (int i = 0; i < listestado.size(); i++) {
                             if (i == 0) {
                                estado = "" + listestado.get(i);
                                codigo = "" + listcodigo.get(i);
-                               holder.e1.setText(estado);
-                               holder.c1.setText(codigo);
                             } else if (i == 1) {
                                 estado2 = "" + listestado.get(i);
                                 codigo2 = "" + listcodigo.get(i);
-                                holder.c2.setText(codigo2);
-                                holder.e2.setText(estado2);
                             }else if (i == 2) {
                                estado3 = "" + listestado.get(i);
                                 codigo3 = "" + listcodigo.get(i);
-                                holder.c3.setText(codigo3);
-                                holder.e3.setText(estado3);
                             }
                         }
-
-
-                        if(holder.e1.getText().equals(estad) || holder.e2.getText().equals(estad) || holder.e3.getText().equals(estad)  ){
-                            holder.prueba.setTextColor(Color.rgb(0,133,119));
-                            holder.prueba.setText("Match encontrado");
-                            holder.tria.setVisibility(View.GONE);
-                        }else if(!holder.e1.getText().equals(estad) || !holder.e2.getText().equals(estad) || !holder.e3.getText().equals(estad)) {
-                            holder.prueba.setTextColor(Color.rgb(255, 87, 34));
-                            holder.prueba.setText("Posible Triangulación");
-                            holder.tria.setVisibility(View.VISIBLE);
-
-                            holder.tria.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(holder.itemView.getContext(), ActivityTriangulacion.class);
-                                    intent.putExtra("codigo1", holder.c1.getText().toString());
-                                    intent.putExtra("codigo2", holder.c2.getText().toString());
-                                    intent.putExtra("codigo3", holder.c3.getText().toString());
-                                    intent.putExtra("phone", item.getPhone());
-                                    holder.itemView.getContext().startActivity(intent);
-                                }
-                            });
-                        }
                     }
+
                 }
 
+               /* if(estado.equals("Puebla") || estado2.equals("Ciudad de México") || estado3.equals("Veracruz de Ignacio de la Llave")  ){
+                    holder.prueba.setTextColor(Color.rgb(0,133,119));
+                    holder.prueba.setText("Match encontrado");
+                }else if(!estado.equals("Puebla") || !estado2.equals("Puebla") || !estado3.equals("Puebla")){*/
+                    //holder.prueba.setTextColor(Color.rgb(255,87,34));
+                   // holder.prueba.setText("Posible Triangulación");
+  //                  holder.tria.setVisibility(View.VISIBLE);
+
+                  /*  holder.tria.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(holder.itemView.getContext(), PrincipalIntereses.class);
+                            intent.putExtra("codigo1", codigo);
+                            intent.putExtra("codigo2", codigo2);
+                            intent.putExtra("codigo3", codigo3);
+                            intent.putExtra("phone", item.getPhone());
+                            holder.itemView.getContext().startActivity(intent);
+                        }
+                    });*/
+
+                //}
             }
 
             @Override
@@ -166,7 +151,6 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
                 L.error("getOficios " + t.getMessage());
             }
         });
-
 
 
 
@@ -475,7 +459,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
         Busqueda item = (Busqueda) getItem(position);
 
-        convertView = LayoutInflater.from(context).inflate(R.layout.item_busqueda, null);
+        convertView = LayoutInflater.from(context).inflate(R.layout.item_busqueda_triangulacion, null);
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre);
         TextView nivel = (TextView) convertView.findViewById(R.id.nivel);
         TextView rol = (TextView) convertView.findViewById(R.id.rol);
@@ -517,7 +501,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba,c1,c2,c3,e1,e2,e3,codiop;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba;
         public Button tria;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
@@ -532,14 +516,6 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             detalles = (Button) itemView.findViewById(R.id.detalles);
             prueba = (TextView) itemView.findViewById(R.id.tv_match);
             tria = (Button) itemView.findViewById(R.id.tria);
-            c1 =(TextView) itemView.findViewById(R.id.c1);
-            c2 =(TextView) itemView.findViewById(R.id.c2);
-            c3 =(TextView) itemView.findViewById(R.id.c3);
-            e1 =(TextView) itemView.findViewById(R.id.e1);
-            e2 =(TextView) itemView.findViewById(R.id.e2);
-            e3 =(TextView) itemView.findViewById(R.id.e3);
-            codiop = (TextView) itemView.findViewById(R.id.estadop);
-
         }
     }
 

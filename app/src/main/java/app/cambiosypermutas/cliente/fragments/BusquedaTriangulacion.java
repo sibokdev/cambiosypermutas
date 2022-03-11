@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,7 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,13 +31,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import app.cambiosypermutas.cliente.R;
+import app.cambiosypermutas.cliente.activities.AdapterTriangulacion;
 import app.cambiosypermutas.cliente.activities.AdapterUsuarios;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.models.Busqueda;
+import app.cambiosypermutas.cliente.models.Ejemplo;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
-import app.cambiosypermutas.cliente.models.ModelsDB.Token;
 import app.cambiosypermutas.cliente.models.Request.Estados;
 import app.cambiosypermutas.cliente.utils.L;
 import retrofit2.Call;
@@ -47,7 +47,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class BusquedaFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class BusquedaTriangulacion extends Fragment implements SearchView.OnQueryTextListener{
 
     private RecyclerView lista;
     private TextView list1, phone, nombres, estados, resultados,noresultados;
@@ -56,7 +56,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     private Spinner spinner_estados,sp_child;
     private ProgressBar progressBar2;
     ArrayAdapter<String> adapter;
-    String phon;
+    String phon,c1,c2,c3,tel;
 
 
     private ImageView imagenSinConexion;
@@ -74,7 +74,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     // BusquedaCP datosEnviar = new BusquedaCP();
     List<Busqueda> ejemplo;
     List<String> list;
-    AdapterUsuarios adapterUsuarios;
+    AdapterTriangulacion adapterUsuarios;
 
 
   //  List<Busqueda> busquedaFiltrada = new ArrayList<>();
@@ -84,7 +84,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
+        View view = inflater.inflate(R.layout.fragment_busqueda_triangulacion, container, false);
 
         lista = (RecyclerView) view.findViewById(R.id.lista);
         nombres = (TextView) view.findViewById(R.id.nombre);
@@ -97,6 +97,15 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
+
+        c1 = getActivity().getIntent().getStringExtra("codigo1");
+        c2 = getActivity().getIntent().getStringExtra("codigo2");
+        c3 = getActivity().getIntent().getStringExtra("codigo3");
+        tel = getActivity().getIntent().getStringExtra("phone");
+
+              //  String codigo = codigop4.getText().toString();
+
+
 
         datosescuela = (RecyclerView) view.findViewById(R.id.lista);
         noti_inter = (CardView) view.findViewById(R.id.noti_inter);
@@ -175,7 +184,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
         String phon = phone;
        // noresultados.setVisibility(View.VISIBLE);
         progressBar2.setVisibility(View.VISIBLE);
-        Call<List<app.cambiosypermutas.cliente.models.Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(phon);
+        Call<List<app.cambiosypermutas.cliente.models.Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(tel);
         call.enqueue(new Callback<List<app.cambiosypermutas.cliente.models.Estados>>() {
             @Override
             public void onResponse(Call<List<app.cambiosypermutas.cliente.models.Estados>> call, Response<List<app.cambiosypermutas.cliente.models.Estados>> response) {
@@ -246,7 +255,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     public void getOficios(){
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("phone", phon);
+        params.put("phone", tel);
 
         Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getCp(params);
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
@@ -346,7 +355,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         params.put("estados", jArray.toString());
 
-        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getNewInfo(params);
+        Call<List<Busqueda>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getInfo2(params);
         callVersiones.enqueue(new Callback<List<Busqueda>>() {
             @Override
             public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
@@ -379,9 +388,9 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                     });
 
 
-                    adapterUsuarios = new AdapterUsuarios(listUsuarios);
+                    adapterUsuarios = new AdapterTriangulacion(listUsuarios);
 
-                    BusquedaFragment f = new BusquedaFragment();
+                    BusquedaTriangulacion f = new BusquedaTriangulacion();
                     Bundle bundle = new Bundle();
                     //  bundle.putString("phone",phone.getText().toString());
                     f.setArguments(bundle);

@@ -156,6 +156,10 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<List<Busqueda>> getInfo(@FieldMap HashMap<String, String> params);
 
+        @POST("client/getNewInformation")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getNewInfo(@FieldMap HashMap<String, String> params);
+
         @POST("client/getInformation2")
         @FormUrlEncoded
         Call<List<Busqueda>> getInfo2(@FieldMap HashMap<String, String> params);
