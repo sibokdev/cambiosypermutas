@@ -18,6 +18,6 @@ public class Preferences {
         editor.apply();
     }
     public String getVersion(){
-        return preferences.getString("rate","1");
+        return preferences.getString("rate","1.6");
     }
 }
