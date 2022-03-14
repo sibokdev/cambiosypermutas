@@ -29,7 +29,6 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_metodos_pago.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_new_phone.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_address_cliente.xml" value="0.2107466852756455" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_alert_rate.xml" value="0.15" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_cc_payment.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_address.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
@@ -49,7 +48,6 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_list_cotizacion.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_listado_cotizacion.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_main.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_pay.xml" value="0.22" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_principal_lugares.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_principal_menu.xml" value="0.22" />
@@ -68,7 +66,6 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/content_principal_menu2.xml" value="0.10099637681159421" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/datosconpago.xml" value="0.22" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/dialog_progress.xml" value="0.22" />
-        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/dialog_rate.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_contactanos.xml" value="0.18" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_data_school.xml" value="0.23859649122807017" />
@@ -170,9 +167,13 @@
         <entry key="..\:/Users/arice/OneDrive/Documentos/GitHub/cambiosypermutas/app/src/main/res/layout/nav_header_principal_menu2.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/arice/OneDrive/Documentos/GitHub/cambiosypermutas/app/src/main/res/menu/activity_principal_menu_drawer.xml" value="0.2" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/boton_redondo.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/boton_redondo2.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/boton_redondo3.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/boton_redondo_naranja.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/drawable/ic_date_range.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_alert_rate.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_triangulacion.xml" value="0.19293478260869565" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/dialog_rate.xml" value="0.22" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda.xml" value="0.15942028985507245" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_busqueda_triangulacion.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/fragment_data_school.xml" value="0.2" />
@@ -182,6 +183,10 @@
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_busqueda.xml" value="0.16168478260869565" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_busqueda_triangulacion.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/item_lugares.xml" value="0.15942028985507245" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/twodialog.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/menu/activity_home_drawer.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/menu/activity_home_drawer_perfiles.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/aricv/Documents/GitHub/cambiosypermutas/app/src/main/res/menu/activity_principal_menu_drawer.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.2109375" />
         <entry key="app/src/main/res/layout/activity_add_metodos_pago.xml" value="0.1322463768115942" />
         <entry key="app/src/main/res/layout/activity_cc_payment.xml" value="0.17046605876393112" />

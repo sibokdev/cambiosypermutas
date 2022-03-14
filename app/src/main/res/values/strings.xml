@@ -64,7 +64,7 @@
     <string name="cargando_msg">Cargando</string>
     <string name="validando_codigo">Validando Código</string>
     <string name="contra_actu">Contraseña actualizada</string>
-    <string name="calif_app">Califica Nuestra App Cambios y permutas</string>
+    <string name="calif_app">Califica Nuestra App Cambios y permutas en la Play Store</string>
 
     <!-- Recover Screen -->
     <string name="recover_welcome_msg">Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña.</string>
