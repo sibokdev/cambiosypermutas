@@ -1,12 +1,14 @@
 package app.cambiosypermutas.cliente.fragments;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,6 +16,7 @@ import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -37,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -53,6 +57,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import app.cambiosypermutas.cliente.BuildConfig;
+import app.cambiosypermutas.cliente.Preferences;
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.activities.AddCCPaymentActivity;
 import app.cambiosypermutas.cliente.activities.PrincipalSolicitud;
@@ -89,6 +95,10 @@ public class DataSchool extends Fragment {
 
     private ProgressBar progressBar2;
     private int datos;
+
+    //Ratingbar
+    private AlertDialog alertRateShow;
+    private Preferences p;
 
 
 
@@ -794,8 +804,39 @@ public class DataSchool extends Fragment {
         ocarrera.setAdapter(adapter_magisterial);
         ocarrera.setPrompt("Seleccione una opción");
 
+        //rating
+        p = new Preferences(getContext());
+        showRate();
 
         return view;
+    }
+
+    private void showRate(){
+        if (!p.getVersion().equals(BuildConfig.VERSION_NAME)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            View alertRate = getLayoutInflater().inflate(R.layout.activity_alert_rate, null);
+            RatingBar ratingBar = alertRate.findViewById(R.id.rbRate);
+
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    try {
+                        p.keepRate(BuildConfig.VERSION_NAME);
+                        alertRateShow.dismiss();
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getActivity().getPackageName())));
+
+                    } catch (ActivityNotFoundException e) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store?hl=es/details?id=" + getActivity().getPackageName())));
+                    }
+                }
+            });
+
+            builder.setView(alertRate);
+            alertRateShow = builder.create();
+            alertRateShow.show();
+        }
+
+
     }
 
 

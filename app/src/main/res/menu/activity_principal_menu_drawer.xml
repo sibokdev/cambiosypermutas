@@ -43,7 +43,8 @@
 
         <item
             android:id="@+id/nav_version"
-            android:title="Versión: 1.5"
+            android:title="Versión App: 1.6"
+            android:textStyle="bold"
             />
     </group>
 

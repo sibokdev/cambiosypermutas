@@ -29,6 +29,7 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_metodos_pago.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_add_new_phone.xml" value="0.25" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_address_cliente.xml" value="0.2107466852756455" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_alert_rate.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_cc_payment.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_address.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
@@ -48,6 +49,7 @@
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_list_cotizacion.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_listado_cotizacion.xml" value="0.16359649122807018" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_main.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_pay.xml" value="0.22" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_principal_lugares.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/Alex/Documents/GitHub/cambiosypermutas/app/src/main/res/layout/activity_principal_menu.xml" value="0.22" />
