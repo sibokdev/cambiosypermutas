@@ -20,7 +20,7 @@
 
         />
 
-    <RatingBar
+    <!--<RatingBar
         android:layout_marginTop="10dp"
         android:id="@+id/rbRate"
         android:layout_width="wrap_content"
@@ -32,6 +32,29 @@
         android:progressBackgroundTint="@android:color/darker_gray"
         android:secondaryProgressTint="@color/cardview_dark_background"
         android:layout_gravity="center_horizontal"
+        />-->
+
+    <Button
+        android:id="@+id/Close"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="En otro momento"
+        android:textSize="18dp"
+        android:background="@drawable/boton_redondo"
         />
 
+    <Button
+        android:id="@+id/rbRate"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="30dp"
+        android:text="Calificar App"
+        android:textSize="20dp"
+        android:background="@drawable/boton_redondo"
+
+        />
 </LinearLayout>

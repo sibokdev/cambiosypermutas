@@ -814,12 +814,13 @@ public class DataSchool extends Fragment {
     private void showRate(){
         if (!p.getVersion().equals(BuildConfig.VERSION_NAME)){
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            View alertRate = getLayoutInflater().inflate(R.layout.activity_alert_rate, null);
-            RatingBar ratingBar = alertRate.findViewById(R.id.rbRate);
+            View alertRate = getLayoutInflater().inflate(R.layout.dialog_rate, null);
+            Button buttonr = alertRate.findViewById(R.id.rbRate);
+            Button buttonclose = alertRate.findViewById(R.id.Close);
 
-            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            buttonr.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                public void onClick(View v) {
                     try {
                         p.keepRate(BuildConfig.VERSION_NAME);
                         alertRateShow.dismiss();
@@ -830,13 +831,17 @@ public class DataSchool extends Fragment {
                     }
                 }
             });
-
             builder.setView(alertRate);
             alertRateShow = builder.create();
             alertRateShow.show();
+
+            buttonclose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertRateShow.dismiss();
+                }
+            });
         }
-
-
     }
 
 
