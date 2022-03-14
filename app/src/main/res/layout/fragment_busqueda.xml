@@ -85,7 +85,7 @@
             android:textSize="20dp"
             android:gravity="center"
             android:visibility="gone"
-            android:text="Para obtener coincidencias debe ingresar lugares de interes"
+            android:text="Para obtener coincidencias debe ingresar lugares de interés"
             android:layout_height="wrap_content"
             android:textColor="#FF5722"
             android:layout_marginTop="220dp"/>
