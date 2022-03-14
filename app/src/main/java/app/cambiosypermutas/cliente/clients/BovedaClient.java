@@ -111,7 +111,7 @@ public class BovedaClient {
         @POST("client/ejemploGeoQuery")
         @FormUrlEncoded
         Call<List<Busqueda>> getGeoQuery(@FieldMap HashMap<String, String> params);
-
+        
         @POST("client/updateStatusPago")
         @FormUrlEncoded
         Call<Responses> updatePago(@FieldMap HashMap<String, String> params);
