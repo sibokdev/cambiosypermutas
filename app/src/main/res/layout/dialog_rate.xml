@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardElevation="3dp"
+        app:contentPadding="4dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/iv_pay"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/log1"
+                />
+
+            <TextView
+                android:id="@+id/tv_titu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="10dp"
+                android:shadowColor="#B61515"
+                android:text="@string/calif_app"
+                android:textAlignment="center"
+                android:textColor="@color/button_bg_dark_green"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <!--<ImageView
+            android:id="@+id/iv_pay"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/wallet"
+            />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/Close"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="110dp"
+                android:text="En otro momento"
+                android:textSize="15dp"
+                android:textColor="#008577"
+                android:background="@drawable/boton_redondo2"
+                android:layout_below="@id/tv_titu"
+                />
+
+            <Button
+                android:id="@+id/rbRate"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="Calificar App"
+                android:textSize="15dp"
+                android:textColor="#FFF"
+                android:background="@drawable/boton_redondo3"
+                android:layout_below="@id/Close"
+
+                />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imageViewClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints,VectorDrawableCompat" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
