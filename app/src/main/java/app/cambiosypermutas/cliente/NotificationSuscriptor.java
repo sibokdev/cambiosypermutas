@@ -7,6 +7,6 @@ public class NotificationSuscriptor extends SugarApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        FirebaseMessaging.getInstance().subscribeToTopic("oficio_digital_proveedor");
+        FirebaseMessaging.getInstance().subscribeToTopic("oficio_digital_proveedor1");
     }
 }

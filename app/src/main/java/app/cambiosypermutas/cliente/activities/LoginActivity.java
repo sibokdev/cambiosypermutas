@@ -6,6 +6,7 @@ import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,11 +28,13 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import app.cambiosypermutas.cliente.R;
+import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.clients.DOXClient;
 import app.cambiosypermutas.cliente.contracts.LoginContract;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.models.ModelsDB.Token;
 import app.cambiosypermutas.cliente.models.ModelsDB.TokenAuth;
+import app.cambiosypermutas.cliente.models.ModelsDB.TokenPhone;
 import app.cambiosypermutas.cliente.models.Responses;
 import app.cambiosypermutas.cliente.notifications.LoadingDialog;
 import app.cambiosypermutas.cliente.presenters.LoginPresenter;
@@ -102,9 +106,14 @@ LoginActivity extends BaseActivity implements LoginContract.View {
                         String token = task.getResult();
                         token1.setText(token);
 
+
+                        TokenPhone tokenauth = new TokenPhone();
+                        tokenauth.setTokenPhone(token);
+                        tokenauth.save();
+
                     }
                 });
-        FirebaseMessaging.getInstance().subscribeToTopic("oficio_digital_proveedor")
+        FirebaseMessaging.getInstance().subscribeToTopic("oficio_digital_proveedor1")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -233,6 +242,27 @@ private Boolean exit = false;
                         Token userId = new Token();
                         userId.setUserId(id);
                         userId.save();
+
+                        HashMap<String, String> params = new HashMap<>();
+
+                        params.put("phone", phone);
+                        params.put("tokenPhone", token1.getText().toString());
+
+                        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateTokenPhone(params);
+                        callVersiones.enqueue(new Callback<Responses>() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Responses> call, Throwable t) {
+
+                            }
+
+                        });
+
 
                         alerta();
                         //pagos();

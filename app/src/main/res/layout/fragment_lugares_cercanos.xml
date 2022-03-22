@@ -101,15 +101,15 @@
             android:layout_height="70dp" />
 
         <TextView
-            android:layout_marginTop="150dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:gravity="center"
-            android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="Aquí se muestran los resultados de la búsqueda en un radio de 50 km de cada cp que ingresaste en tus intereses, suerte !!!"
             android:textColor="#F4511E"
-            android:text="Aquí se muestran los resultados de la búsqueda en un radio de 10 km de cada cp que ingresaste en tus intereses, suerte !!!"/>
+            android:textSize="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"

@@ -60,8 +60,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // En este método recibimos el mensaje
-         pagos();
-         getDatosSoli();
+         //pagos();
+         //getDatosSoli();
         Intent notificationIntent;
         if(LoginActivity.isAppRunning){
         // Qué hacemos si la aplicación está en primer plano

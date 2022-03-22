@@ -47,6 +47,9 @@ import java.util.regex.Pattern;
 
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
+import app.cambiosypermutas.cliente.models.ModelsDB.Estado;
+import app.cambiosypermutas.cliente.models.ModelsDB.Token;
+import app.cambiosypermutas.cliente.models.ModelsDB.TokenPhone;
 import app.cambiosypermutas.cliente.models.Request.RespuestaPreguntaSecreta;
 import app.cambiosypermutas.cliente.models.Responses;
 import app.cambiosypermutas.cliente.notifications.LoadingDialog;
@@ -68,6 +71,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private RadioButton rb_fem, rb_masc;
     private Spinner p1, p2;
     int edad;
+    String token_phone;
     private TextInputLayout tvN,tvp1,tvp2, tvt1, tvt2, tvc,tcpas1,tcpass2,tce,tcr1, tcr2,ti_res1, ti_res2, ti_password, ti_password2;
 
     private static final String CARPETA_PRINCIPAL = "app.oficiodigita.proveedor"; //directorio principal
@@ -177,6 +181,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
         String phon = getIntent().getStringExtra("phone");
         phone.setText(phon);
 
+        List<TokenPhone> esta = TokenPhone.listAll(TokenPhone.class);
+
+        for (TokenPhone pho : esta) {
+
+            token_phone = pho.getTokenPhone();
+
+        }
 
 
         bt_fecha.setOnClickListener(this);
@@ -849,6 +860,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
            // params.put("cedula_prof", ced);
             params.put("email", ema);
             params.put("password", pass);
+            params.put("tokenPhone",token_phone);
 
             List<RespuestaPreguntaSecreta> listaRespuestas = new ArrayList<RespuestaPreguntaSecreta>();
             RespuestaPreguntaSecreta respuesta = new RespuestaPreguntaSecreta();

@@ -26,7 +26,7 @@ public class CatalogsClient {
     private OkHttpClient.Builder mHttpBuilder;
 
     public interface APICatalogsClient {
-        @POST("messages/work/particularRequest")
+        @POST("messages/work/particularRequestCourier")
         @FormUrlEncoded
         Call<Responses> notificaciones(@FieldMap HashMap<String, String> params);
 

@@ -15,6 +15,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
+import app.cambiosypermutas.cliente.clients.CatalogsClient;
 import app.cambiosypermutas.cliente.clients.DOXClient;
 import app.cambiosypermutas.cliente.fragments.BusquedaFragment;
 import app.cambiosypermutas.cliente.models.Busqueda;
@@ -32,6 +34,7 @@ import app.cambiosypermutas.cliente.models.Estados;
 import app.cambiosypermutas.cliente.models.ModelsDB.Estado;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.models.ModelsDB.Token;
+import app.cambiosypermutas.cliente.models.ModelsDB.TokenPhone;
 import app.cambiosypermutas.cliente.models.Responses;
 import app.cambiosypermutas.cliente.utils.L;
 import retrofit2.Call;
@@ -51,7 +54,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     BusquedaFragment busquedaFragment;
     String estado, estado2, estado3,codigo,codigo2,codigo3,phone;
     Dialog dialog;
-    String estad;
+    String estad,tokenPhone;
 
 
 
@@ -96,6 +99,12 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             estad = pho.getEstado().trim();
 
         }
+        List<TokenPhone> tokenphone = TokenPhone.listAll(TokenPhone.class);
+        for (TokenPhone photok : tokenphone) {
+
+           tokenPhone= photok.getTokenPhone();
+
+        }
 
         HashMap<String, String> params = new HashMap<>();
         params.put("phone", item.getPhone().toString());
@@ -117,48 +126,73 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
                         for (int i = 0; i < listestado.size(); i++) {
                             if (i == 0) {
-                               estado = "" + listestado.get(i);
-                               codigo = "" + listcodigo.get(i);
-                               holder.e1.setText(estado);
-                               holder.c1.setText(codigo);
+                                estado = "" + listestado.get(i);
+                                codigo = "" + listcodigo.get(i);
+                                holder.e1.setText(estado);
+                                holder.c1.setText(codigo);
                             } else if (i == 1) {
                                 estado2 = "" + listestado.get(i);
                                 codigo2 = "" + listcodigo.get(i);
                                 holder.c2.setText(codigo2);
                                 holder.e2.setText(estado2);
-                            }else if (i == 2) {
-                               estado3 = "" + listestado.get(i);
+                            } else if (i == 2) {
+                                estado3 = "" + listestado.get(i);
                                 codigo3 = "" + listcodigo.get(i);
                                 holder.c3.setText(codigo3);
                                 holder.e3.setText(estado3);
                             }
                         }
 
-
-                        if(holder.e1.getText().equals(estad) || holder.e2.getText().equals(estad) || holder.e3.getText().equals(estad)  ){
-                            holder.prueba.setTextColor(Color.rgb(0,133,119));
-                            holder.prueba.setText("Match encontrado");
-                            holder.tria.setVisibility(View.GONE);
-                        }else if(!holder.e1.getText().equals(estad) || !holder.e2.getText().equals(estad) || !holder.e3.getText().equals(estad)) {
-                            holder.prueba.setTextColor(Color.rgb(255, 87, 34));
-                            holder.prueba.setText("Posible Triangulación");
-                            holder.tria.setVisibility(View.VISIBLE);
-
-                            holder.tria.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(holder.itemView.getContext(), ActivityTriangulacion.class);
-                                    intent.putExtra("codigo1", holder.c1.getText().toString());
-                                    intent.putExtra("codigo2", holder.c2.getText().toString());
-                                    intent.putExtra("codigo3", holder.c3.getText().toString());
-                                    intent.putExtra("phone", item.getPhone());
-                                    holder.itemView.getContext().startActivity(intent);
-                                }
-                            });
-                        }
                     }
                 }
 
+                if(holder.e1.getText().equals(estad) || holder.e2.getText().equals(estad) || holder.e3.getText().equals(estad)  ){
+                    holder.prueba.setTextColor(Color.rgb(0,133,119));
+                    holder.prueba.setText("Match encontrado");
+                    holder.tria.setVisibility(View.GONE);
+
+                    if(item.getGender().equals("1")) {
+
+                        HashMap<String, String> params = new HashMap<>();
+                        params.put("phone", holder.telefono.getText().toString());
+                        params.put("estado", estad);
+                        params.put("gender","3");
+
+                        Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateGender(params);
+                        callVersiones.enqueue(new Callback<Responses>() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Responses> call, Throwable t) {
+
+                            }
+
+                        });
+                    }
+
+
+
+                }else if(!holder.e1.getText().equals(estad) || !holder.e2.getText().equals(estad) || !holder.e3.getText().equals(estad)) {
+                    holder.prueba.setTextColor(Color.rgb(255, 87, 34));
+                    holder.prueba.setText("Posible Triangulación");
+                    holder.tria.setVisibility(View.VISIBLE);
+
+                    holder.tria.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(holder.itemView.getContext(), ActivityTriangulacion.class);
+                            intent.putExtra("codigo1", holder.c1.getText().toString());
+                            intent.putExtra("codigo2", holder.c2.getText().toString());
+                            intent.putExtra("codigo3", holder.c3.getText().toString());
+                            intent.putExtra("phone", item.getPhone());
+                            holder.itemView.getContext().startActivity(intent);
+                        }
+                    });
+                }
             }
 
             @Override
@@ -168,7 +202,77 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         });
 
 
+        HashMap<String, String> params3 = new HashMap<>();
 
+        params3.put("phone", holder.telefono.getText().toString());
+        params3.put("estado", estad);
+
+        Call<List<Busqueda>> callVersiones2 = BovedaClient.getInstanceClient().getApiClient().getGender(params3);
+        callVersiones2.enqueue(new Callback<List<Busqueda>>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<List<Busqueda>> call, Response<List<Busqueda>> response) {
+                List<Busqueda> ejemplo = response.body();
+
+                List<String> list = new ArrayList<String>();
+                List<String> listT = new ArrayList<String>();
+                String gender = "",tokenP="";
+                for (Busqueda eje : ejemplo) {
+                    list.add(eje.getGender());
+                    listT.add(eje.getTokenPhone());
+                    gender = "" + list.get(0);
+                    tokenP = "" + listT.get(0);
+                }
+                if(gender.contains("3")){
+                    HashMap<String, String> params1 = new HashMap<>();
+                    params1.put("tokenPhone", tokenP);
+
+                    Call<Responses> call2 = CatalogsClient.getInstanceClient().getApiClient().notificaciones(params1);
+                    call2.enqueue(new Callback<Responses>() {
+
+                        @Override
+                        public void onResponse(Call<Responses> call2, Response<Responses> response) {
+                            if (response.isSuccessful()) {
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Responses> call2, Throwable t) {
+                            L.error("login " + t.getMessage());
+
+                        }
+                    });
+
+                    HashMap<String, String> params = new HashMap<>();
+
+                    params.put("phone", holder.telefono.getText().toString());
+                    params.put("estado", estad);
+                    params.put("gender","4");
+
+                    Call<Responses> callVersiones = BovedaClient.getInstanceClient().getApiClient().updateGender(params);
+                    callVersiones.enqueue(new Callback<Responses>() {
+                        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                        @Override
+                        public void onResponse(Call<Responses> call, Response<Responses> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Responses> call, Throwable t) {
+
+                        }
+
+                    });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Busqueda>> call, Throwable t) {
+
+            }
+
+        });
 
        /* if(estado.equals("Puebla")){
             holder.prueba.setTextColor(Color.rgb(0,133,119));
@@ -517,7 +621,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
 
     public class UsuarioViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba,c1,c2,c3,e1,e2,e3,codiop;
+        public TextView nombre,nivel,rol,token,telefono,des,estado,tipo,detalles, prueba,c1,c2,c3,e1,e2,e3,codiop,gender;
         public Button tria;
         public UsuarioViewHolder(View itemView) {
             super(itemView);
@@ -539,6 +643,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
             e2 =(TextView) itemView.findViewById(R.id.e2);
             e3 =(TextView) itemView.findViewById(R.id.e3);
             codiop = (TextView) itemView.findViewById(R.id.estadop);
+            gender = (TextView) itemView.findViewById(R.id.gender);
 
         }
     }

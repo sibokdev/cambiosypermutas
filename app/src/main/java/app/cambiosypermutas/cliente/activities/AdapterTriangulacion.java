@@ -106,7 +106,6 @@ public class AdapterTriangulacion extends RecyclerView.Adapter<AdapterTriangulac
                         listestado.add(eje.getEstado());
                         listcodigo.add(eje.getCodigo());
 
-
                         for (int i = 0; i < listestado.size(); i++) {
                             if (i == 0) {
                                estado = "" + listestado.get(i);

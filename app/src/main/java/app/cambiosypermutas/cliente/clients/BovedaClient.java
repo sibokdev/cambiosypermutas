@@ -111,6 +111,10 @@ public class BovedaClient {
         @POST("client/ejemploGeoQuery")
         @FormUrlEncoded
         Call<List<Busqueda>> getGeoQuery(@FieldMap HashMap<String, String> params);
+
+        @POST("client/ejemploGeoQuery1")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getGeoQuery1(@FieldMap HashMap<String, String> params);
         
         @POST("client/updateStatusPago")
         @FormUrlEncoded
@@ -172,6 +176,10 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> statusPago(@FieldMap HashMap<String, String> params);
 
+        @POST("client/getGender")
+        @FormUrlEncoded
+        Call<List<Busqueda>> getGender(@FieldMap HashMap<String, String> params);
+
         @POST("courier/updateSolicitud")
         @FormUrlEncoded
         Call<Responses> Getsolicitud(@FieldMap HashMap<String, String> params1);
@@ -191,6 +199,14 @@ public class BovedaClient {
         @PUT("client/updateIntereses{phone}")
         @FormUrlEncoded
         Call<Responses> updateInte(@FieldMap HashMap<String, String> params, @Path("phone") String phone);
+
+        @PUT("client/updateTokenPhone")
+        @FormUrlEncoded
+        Call<Responses> updateTokenPhone(@FieldMap HashMap<String, String> params);
+
+        @PUT("client/updateGender")
+        @FormUrlEncoded
+        Call<Responses> updateGender(@FieldMap HashMap<String, String> params);
 
 
     }

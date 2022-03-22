@@ -205,28 +205,7 @@ public class PrincipalTriangulacion extends BaseActivity  implements NavigationV
         }
         return super.onKeyDown(keyCode, event);
     }*/
-    private void cerrarAplicacion() {
-        new AlertDialog.Builder(this)
-                .setIcon(R.drawable.icon_fire_exit_ios)
-                .setTitle("¿Desea salir de Cambios y permutas?")
-                .setCancelable(false)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
-                        //  finish(); //Si solo quiere mandar la aplicación a segundo plano
-                    }
-                }).show();
-    }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            cerrarAplicacion();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+
 
   /*  @Override
     public void onBackPressed() {
