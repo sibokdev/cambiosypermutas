@@ -948,13 +948,13 @@ public class DataSchool extends Fragment {
                 }else {
 
                     String esc = oescuela.getText().toString().trim();
-                    String clv = oclave.getText().toString().trim();
+                  //  String clv = oclave.getText().toString().trim();
 
                     String nhoras = et_num_horas.getText().toString().trim();
                     String materia = et_materia.getText().toString().trim();
 
-                    String zon = ozona.getText().toString().trim();
-                    String tl = otel.getText().toString().trim();
+                    //String zon = ozona.getText().toString().trim();
+                    //String tl = otel.getText().toString().trim();
                     String cp = codigop.getText().toString().trim();
                     /*String nom_direc = onom_dir.getText().toString().trim();*/
                     String estd = estado.getText().toString();
@@ -1029,7 +1029,7 @@ public class DataSchool extends Fragment {
                         ti_nombre_escuela.requestFocus();
                         return;
                     }
-                    if (TextUtils.isEmpty(clv)) {
+                    /*if (TextUtils.isEmpty(clv)) {
                         ti_clave.setError(" ");
                         ti_clave.requestFocus();
                         return;
@@ -1043,7 +1043,7 @@ public class DataSchool extends Fragment {
                         ti_tel.setError(" ");
                         ti_tel.requestFocus();
                         return;
-                    }
+                    }*/
                     if (TextUtils.isEmpty(cp)) {
                         ti_codigop.setError(" ");
                         ti_codigop.requestFocus();
@@ -1071,7 +1071,7 @@ public class DataSchool extends Fragment {
                     //Envio a BD
                     HashMap<String, String> params = new HashMap<>();
                     params.put("nombre_esc", esc);
-                    params.put("clave_esc", clv);
+                    params.put("clave_esc", "");
                     params.put("nivel_escolar", seleccion);
                     params.put("turno", seleccion_tn);
 
@@ -1079,8 +1079,8 @@ public class DataSchool extends Fragment {
                     params.put("materia", materia);
                     params.put("carrera_magisterial", seleccion_magis);
 
-                    params.put("zona_esc", zon);
-                    params.put("telefono", tl);
+                    params.put("zona_esc", "");
+                    params.put("telefono", "");
                     params.put("c_postal", cp);
                     params.put("estado", estd);
                     params.put("municipio", mun);
@@ -1178,15 +1178,15 @@ public class DataSchool extends Fragment {
 
 
                     String esc = oescuela.getText().toString();
-                    String clv = oclave.getText().toString();
+                   // String clv = oclave.getText().toString();
 
 
                    String nhoras = et_num_horas.getText().toString().trim();
                    String materia = et_materia.getText().toString().trim();
 
 
-                    String zon = ozona.getText().toString();
-                    String tl = otel.getText().toString();
+                    //String zon = ozona.getText().toString();
+                    //String tl = otel.getText().toString();
                     String cp = codigop.getText().toString();
                     /*String nom_direc = onom_dir.getText().toString();*/
                     String estd = estado.getText().toString();
@@ -1266,7 +1266,7 @@ public class DataSchool extends Fragment {
                         ti_nombre_escuela.requestFocus();
                         return;
                     }
-                    if (TextUtils.isEmpty(clv)) {
+                    /*if (TextUtils.isEmpty(clv)) {
                         ti_clave.setError(" ");
                         ti_clave.requestFocus();
                         return;
@@ -1280,7 +1280,7 @@ public class DataSchool extends Fragment {
                         ti_tel.setError(" ");
                         ti_tel.requestFocus();
                         return;
-                    }
+                    }*/
                     if (TextUtils.isEmpty(cp)) {
                         ti_codigop.setError(" ");
                         ti_codigop.requestFocus();
@@ -1323,7 +1323,7 @@ public class DataSchool extends Fragment {
                     //Envio a BD
                     HashMap<String, String> params = new HashMap<>();
                     params.put("nombre_esc", esc);
-                    params.put("clave_esc", clv);
+                    params.put("clave_esc", "");
                     params.put("nivel_escolar", seleccion);
                     params.put("turno", seleccion_tn);
 
@@ -1331,8 +1331,8 @@ public class DataSchool extends Fragment {
                    params.put("materia", materia);
                    params.put("carrera_magisterial", seleccion_magis);
 
-                    params.put("zona_esc", zon);
-                    params.put("telefono", tl);
+                    params.put("zona_esc", "");
+                    params.put("telefono", "");
                     params.put("c_postal", cp);
                     params.put("estado", estd);
                     params.put("municipio", mun);
@@ -1417,9 +1417,9 @@ public class DataSchool extends Fragment {
                         oescuela.setEnabled(false);
                         //oescuela.setInputType(InputType.TYPE_NULL);
 
-                        String clave_esc = "" + res.getClave_esc();
+                        /*String clave_esc = "" + res.getClave_esc();
                         oclave.setText(clave_esc);
-                        oclave.setEnabled(false);
+                        oclave.setEnabled(false);*/
 
 
                         String nu_horas = "" + res.getNum_horas();
@@ -1441,13 +1441,13 @@ public class DataSchool extends Fragment {
                         oturno.setSelection(sp_turno);
                         oturno.setEnabled(false);
 
-                        String zona = "" + res.getZon_esc();
+                       /* String zona = "" + res.getZon_esc();
                         ozona.setText(zona);
                         ozona.setEnabled(false);
 
                         String phone = "" + res.getTelefono();
                         otel.setText(phone);
-                        otel.setEnabled(false);
+                        otel.setEnabled(false);*/
 
                         String cp = "" + res.getC_postal();
                         codigop.setText(cp);
@@ -1552,9 +1552,9 @@ public class DataSchool extends Fragment {
                     oescuela.setText(nombreesc);
                     oescuela.setEnabled(true);
 
-                    String claveesc = "" + res.getClave_esc();
+                    /*String claveesc = "" + res.getClave_esc();
                     oclave.setText(claveesc);
-                    oclave.setEnabled(true);
+                    oclave.setEnabled(true);*/
 
 
                     //Agregados para ver.1.2
@@ -1585,13 +1585,13 @@ public class DataSchool extends Fragment {
                     oturno.setSelection(sp_turno);
                     oturno.setEnabled(true);
 
-                    String zonamod = "" + res.getZon_esc();
+                    /*String zonamod = "" + res.getZon_esc();
                     ozona.setText(zonamod);
                     ozona.setEnabled(true);
 
                     String phonemod = "" + res.getTelefono();
                     otel.setText(phonemod);
-                    otel.setEnabled(true);
+                    otel.setEnabled(true);*/
 
                     String cpmod = "" + res.getC_postal();
                     codigop.setText(cpmod);

@@ -38,6 +38,7 @@ import app.cambiosypermutas.cliente.fragments.LugaresCercanos;
 import app.cambiosypermutas.cliente.fragments.MetodosPago;
 import app.cambiosypermutas.cliente.fragments.Perfil_Fragmen;
 import app.cambiosypermutas.cliente.fragments.Share;
+import app.cambiosypermutas.cliente.fragments.TodosFragment;
 import app.cambiosypermutas.cliente.fragments.Triangulacion;
 import app.cambiosypermutas.cliente.models.Datos;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
@@ -277,6 +278,9 @@ public class PrincipalTriangulacion extends BaseActivity  implements NavigationV
                 break;
             case R.id.nav_interes:
                 ft.replace(R.id.conten, new FragmentInteres()).commit();
+                break;
+            case R.id.nav_todos:
+                ft.replace(R.id.conten, new TodosFragment()).commit();
                 break;
             case R.id.nav_metodos:
                 ft.replace(R.id.conten, new MetodosPago()).commit();

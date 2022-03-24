@@ -89,6 +89,15 @@ public class AdapterTodos extends RecyclerView.Adapter<AdapterTodos.UsuarioViewH
         holder.nombre.setText(item.getName());
         holder.estado.setText(item.getMunicipio()+", "+item.getEstado());
 
+        holder.detalles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), Details.class);
+                intent.putExtra("datos", item);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
         Call<List<app.cambiosypermutas.cliente.models.Estados>> call = BovedaClient.getInstanceClient().getApiClient().getEstados(item.getPhone());
         call.enqueue(new Callback<List<app.cambiosypermutas.cliente.models.Estados>>() {
             @Override
@@ -307,7 +316,7 @@ public class AdapterTodos extends RecyclerView.Adapter<AdapterTodos.UsuarioViewH
             public void onClick(View v) {
                 dialog.dismiss();
                 //alerta();
-               pagos();
+              // pagos();
                 Toast.makeText(btnOk.getContext(), "se muestra pantalla donde se muestran los datos de los usuarios", Toast.LENGTH_SHORT).show();
             }
         });
@@ -388,6 +397,28 @@ public class AdapterTodos extends RecyclerView.Adapter<AdapterTodos.UsuarioViewH
 
     public void filtrar(final CharSequence buscar){
 
+        CharSequence busca;
+
+        String datos = (String) buscar;
+        if(datos.equals("Mexico") || datos.equals("mexico")){
+             busca = "México";
+        }else if(datos.equals("Cuidad de Mexico") || datos.equals("ciudad de mexico")) {
+            busca = "Ciudad de México";
+        }else if(datos.equals("Michoacan") || datos.equals("michoacan")){
+            busca = "Michoacán de Ocampo";
+        }else if(datos.equals("Nuevo Leon") || datos.equals("nuevo leon")){
+            busca = "Nuevo León";
+        }else if(datos.equals("Queretaro") || datos.equals("queretaro")){
+            busca = "Querétaro";
+        }else if(datos.equals("Yucatan") || datos.equals("yucatan")){
+            busca = "Yucatán";
+        }else if(datos.equals("Veracruz") || datos.equals("veracruz")){
+            busca = "Veracruz de Ignacio de la Llave";
+        }else{
+            busca = datos;
+
+        }
+
         if(buscar.length()== 0){
             list.clear();
             list.addAll(originalList);
@@ -396,10 +427,16 @@ public class AdapterTodos extends RecyclerView.Adapter<AdapterTodos.UsuarioViewH
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
                 list.clear();
                 List<Busqueda> collect = originalList.stream()
-                        .filter(i -> i.getEstado().toLowerCase().contains(buscar) || i.getEstado().contains(buscar))
+                        .filter(i -> i.getEstado().toLowerCase().contains(busca) || i.getEstado().contains(busca))
                         .collect(Collectors.toList());
 
                 list.addAll(collect);
+                if(list.size() == 0){
+                    Toast.makeText(dialog.getContext(), "No hay registros", Toast.LENGTH_SHORT).show();
+                }else{
+
+                }
+
             }
             else {
                 list.clear();

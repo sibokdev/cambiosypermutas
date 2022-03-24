@@ -24,7 +24,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:layout_height="670dp">
+            android:layout_height="370dp">
 
             <TextView
                 android:id="@+id/tv1"
@@ -118,11 +118,13 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="345dp"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:text="Sexo"
                 android:textSize="18dp" />
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="390dp">
                 <RadioButton
                     android:id="@+id/rb_fem"
@@ -148,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:layout_marginTop="480dp"
                 android:orientation="horizontal">
 
@@ -158,6 +161,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
                     android:textSize="18dp"
+                    android:visibility="gone"
                     android:padding="10dp"
                     android:inputType="date"
                     android:hint="Fecha de nacimiento *" />
@@ -185,6 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et4"
+                android:visibility="gone"
                 android:layout_marginTop="540dp"
                 android:orientation="horizontal">
 
@@ -194,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:hint="Edad:"
+                    android:visibility="gone"
                     android:textSize="18dp"
                     android:padding="10dp"/>
 
@@ -211,6 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="600dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
 
                 <EditText

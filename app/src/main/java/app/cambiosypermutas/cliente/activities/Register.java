@@ -813,7 +813,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tcpass2.requestFocus();
             return;
         }
-        if (TextUtils.isEmpty(sex)) {
+      /*  if (TextUtils.isEmpty(sex)) {
             tv_sexo.setError(getString(R.string.error_campo_oblogatorio));
             tv_sexo.requestFocus();
             return;
@@ -822,7 +822,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tv_edad.setError(getString(R.string.error_campo_oblogatorio));
             tv_edad.requestFocus();
             return;
-        }
+        }*/
         if (TextUtils.isEmpty(res1)) {
             tcr1.setError(" ");
             tcr1.requestFocus();
@@ -844,10 +844,10 @@ public class Register extends BaseActivity implements View.OnClickListener {
             tvc.setError(" ");
             tvc.requestFocus();
         }*/
-        else if(edad <= 18) {
+        /*else if(edad <= 18) {
             Toast.makeText(getApplication(),"Debe ser mayo de edad",Toast.LENGTH_SHORT).show();
 
-        }else {
+        }*/else {
 
             HashMap<String, String> params = new HashMap<>();
             params.put("nombre", name);
@@ -855,8 +855,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
             params.put("amaterno", am);
             params.put("phone", tl1);
             params.put("phone2", tl2);
-            params.put("sexo", sex);
-            params.put("edad", ed);
+            params.put("sexo", "");
+            params.put("edad", "");
            // params.put("cedula_prof", ced);
             params.put("email", ema);
             params.put("password", pass);

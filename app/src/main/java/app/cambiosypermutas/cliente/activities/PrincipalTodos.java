@@ -1,7 +1,12 @@
 package app.cambiosypermutas.cliente.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,6 +27,7 @@ import java.util.List;
 import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.fragments.BusquedaFragment;
+import app.cambiosypermutas.cliente.fragments.BusquedaTriangulacion;
 import app.cambiosypermutas.cliente.fragments.Contactanos;
 import app.cambiosypermutas.cliente.fragments.FragmentInteres;
 import app.cambiosypermutas.cliente.fragments.LugaresCercanos;
@@ -30,10 +35,10 @@ import app.cambiosypermutas.cliente.fragments.MetodosPago;
 import app.cambiosypermutas.cliente.fragments.Perfil_Fragmen;
 import app.cambiosypermutas.cliente.fragments.Share;
 import app.cambiosypermutas.cliente.fragments.TodosFragment;
-import app.cambiosypermutas.cliente.fragments.Triangulacion;
 import app.cambiosypermutas.cliente.models.Datos;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.notifications.Alert;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,11 +48,12 @@ import retrofit2.Response;
  * Created by Ari on 01/05/2021.
  */
 
-public class PrincipalIntereses extends BaseActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class PrincipalTodos extends BaseActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
 
     private ImageView imagen;
     String phon;
@@ -57,8 +63,13 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_menu);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String id = getIntent().getStringExtra("id");
+
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -68,24 +79,31 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_perfil);
+        navigationView.setCheckedItem(R.id.nav_escact);
+        //Para cambiar el color del texto del item de un menu.
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
+//Para cambiar el color del icono del item de un menu.
+        navigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
 
-        View hView = navigationView.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);List<Phone> list = Phone.listAll(Phone.class);
+        for (Phone p : list) {
+            phon = p.getPhone();
 
-        List<Phone> list1 = Phone.listAll(Phone.class);
-        for (Phone pho : list1) {
-            String phone = "";
-
-            phone = pho.getPhone();
-            phon = phone;
         }
 
-
+        imagen = (ImageView) hView.findViewById(R.id.foto);
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
+
+        // imagenSinConexion = (ImageView) hView.findViewById(R.id.imagenSinConexion);
+        //imagenSinConexion.setVisibility(View.INVISIBLE);
+
 
         phone.setText(phon);
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
@@ -116,24 +134,76 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
 
                 }
             }
-
-
             @Override
-            public void onFailure (Call < List < Datos >> call, Throwable t){
+            public void onFailure (Call < List <Datos>> call, Throwable t){
                 //  L.error("getOficios " + t.getMessage());
             }
 
         });
 
 
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new Triangulacion());
+
+
+        ConnectivityManager con = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = con.getActiveNetworkInfo();
+
+        //if (networkInfo!=null && networkInfo.isConnected()) {
+        fragmentTransaction.add(R.id.conten, new TodosFragment());
         fragmentTransaction.commit();
+        // }else {
+        //imagenSinConexion.setVisibility(View.VISIBLE);
+//mensaje
+        // Toast.makeText(this, "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
+        //}
 
     }
 
-    @Override
+    public void openLoadingDialog() {
+        loadingDialog loadingDialog = new loadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingDialog.dismisDialog();
+            }
+        },3000); //You can change this time as you wish
+    }
+
+    //control de pulsacion, boton atras
+/*    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==event.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de Cambios y permutas?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();//ocultar dialogo
+                        }
+                    });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
+
+
+  /*  @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -141,7 +211,7 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,6 +232,7 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
             Alert dialog = new Alert(this);
             dialog.setPositiveListener(getString(android.R.string.ok), (dialogInterface, i) -> {
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
             });
 
             dialog.setNegativeListener(getString(android.R.string.cancel), ((dialogInterface, i) -> {
@@ -171,6 +242,11 @@ public class PrincipalIntereses extends BaseActivity  implements NavigationView.
             dialog.fire(getString(R.string.logout_message));
 
             return true;
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if (id == R.id.action_contacto) {
+            ft.replace(R.id.conten, new Contactanos()).commit();
         }
 
         return super.onOptionsItemSelected(item);
