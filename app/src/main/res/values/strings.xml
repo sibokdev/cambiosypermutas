@@ -187,6 +187,8 @@
         <item>Pagos</item>
         <item>Otros</item>
     </string-array>
+
+
     <string name="document_details">Detalles de documento</string>
     <string name="need_permissions">Para poder usar la camara y guardar imagenes se necesita que la
     app tenga permisos de acceso</string>
@@ -423,5 +425,16 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+        <string-array name="countries_array">
+            <item>Afghanistan</item>
+            <item>Albania</item>
+            <item>Algeria</item>
+            <item>American Samoa</item>
+            <item>Andorra</item>
+            <item>Angola</item>
+            <item>Anguilla</item>
+            <item>Antarctica</item>
+            ...
+        </string-array>
 
 </resources>

@@ -24,6 +24,10 @@
             android:icon="@drawable/ic_baseline_near"
             android:title="Cerca a tus intereses" />
         <item
+            android:id="@+id/nav_todos"
+            android:icon="@drawable/ic_baseline_people_alt"
+            android:title="Todos los usuarios" />
+        <item
             android:id="@+id/nav_metodos"
             android:icon="@drawable/ic_payment"
             android:title="Métodos de pago" />
@@ -43,7 +47,7 @@
 
         <item
             android:id="@+id/nav_version"
-            android:title="Versión App: 1.6"
+            android:title="Versión App: 1.7"
             android:textStyle="bold"
             />
     </group>

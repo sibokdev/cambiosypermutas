@@ -81,6 +81,9 @@ public class BovedaClient {
         @GET("client/Address{id}")
         Call<List<Direccion>> getDirrecion(@Path("id") String id);
 
+        @GET("client/getAll{phone}")
+        Call<List<Busqueda>> getTodos(@Path("phone") String phone);
+
         @GET("client/DataSchool{phone}")
         Call<List<DatosSchool>> getDataSchool(@Path("phone") String phone);
 

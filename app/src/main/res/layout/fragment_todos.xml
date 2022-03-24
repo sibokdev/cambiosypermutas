@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.TodosFragment">
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Todos los registros"
+                    android:gravity="center"
+                    android:textColor="@color/button_bg_dark_green"
+                    android:padding="10dp"
+                    android:textSize="25dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- <SearchView
+             android:id="@+id/buscador"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="10dp"
+             android:layout_marginTop="140dp"
+             android:layout_marginEnd="20dp"
+             android:iconifiedByDefault="false"
+             android:queryHint="Busca trabajador u oficio">
+
+         </SearchView>
+ -->
+
+
+
+        <TextView
+            android:id="@+id/resultados"
+            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="No se entrontaron resultados"
+            android:layout_height="wrap_content"
+            android:textColor="#686666"
+            android:visibility="gone"
+            android:layout_marginTop="220dp"/>
+
+        <TextView
+            android:id="@+id/noresultados"
+            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Para obtener coincidencias debe ingresar lugares de interés"
+            android:layout_height="wrap_content"
+            android:textColor="#FF5722"
+            android:layout_marginTop="220dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_marginTop="280dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="70dp" />
+
+        <SearchView
+            android:id="@+id/buscador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="20dp"
+            android:iconifiedByDefault="false"
+            android:inputType=
+                "textCapSentences|textAutoCorrect"
+            android:queryHint="Busca por estado">
+
+        </SearchView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noti_inter"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="220dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/imagenSinConexion"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/not_internet"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:text="No hay conexión a internet, verifique su acceso a internet."/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="150dp"
+            android:visibility="gone"
+            android:textSize="18dp"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

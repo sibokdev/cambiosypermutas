@@ -73,6 +73,7 @@
                 android:gravity="center"
                 android:text="Nombre(s)"
                 android:padding="10dp"
+                android:textColor="#008577"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold"
                 android:textSize="20dp" />
@@ -87,7 +88,7 @@
                     android:id="@+id/tv_nivel"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-
+                    android:textColor="#008577"
                     android:padding="10dp"
                     android:text="Nivel escolar:"
                     android:textSize="18dp"
@@ -97,7 +98,7 @@
                     android:id="@+id/tv_rol"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
-
+                    android:textColor="#008577"
                     android:padding="10dp"
                     android:text="Rol o puesto:"
                     android:textSize="18dp"
@@ -140,6 +141,7 @@
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
+                    android:textColor="#008577"
                     android:text="Tipo de escuela:"
                     android:textSize="18dp"
                     android:textStyle="bold|normal" />
@@ -151,6 +153,7 @@
                     android:layout_width="220dp"
                     android:layout_height="45dp"
                     android:padding="10dp"
+                    android:textColor="#008577"
                     android:layout_marginTop="10dp"
                     android:text="Estado actual:"
                     android:textSize="18dp"
@@ -194,6 +197,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="#008577"
                     android:text="Municipio actual:"
                     android:textSize="18dp"
                     android:textStyle="bold|normal" />
@@ -202,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-
+                    android:textColor="#008577"
                     android:layout_marginTop="10dp"
                     android:text="Colonia actual:"
                     android:textSize="18dp"
