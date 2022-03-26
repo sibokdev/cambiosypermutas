@@ -38,7 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PrincipalSolicitud extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class PrincipalInte extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -123,7 +123,7 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.conten, new BusquedaFragment());
+        fragmentTransaction.add(R.id.conten, new FragmentInteres());
         fragmentTransaction.commit();
 
     }
