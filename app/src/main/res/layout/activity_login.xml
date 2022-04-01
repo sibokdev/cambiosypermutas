@@ -41,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:textSize="15dp"
                 android:text="@string/login_welcome_msg" />
 
             <androidx.cardview.widget.CardView

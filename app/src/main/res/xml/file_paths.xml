@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths xmlns:android="http://schemas.android.com/apk/res/android"
+<paths
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://schemas.android.com/apk/res/android
 http://schemas.android.com/apk/res/android ">
 
+
     <external-path
-        name="imagenss"
-        path="Android/data/app.cambiosypermutas.cliente/files/Pictures">
+        name="images"
+        path="Android/data/">
 
     </external-path>
 </paths>

@@ -55,11 +55,12 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/fotos"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_user2"
                         app:civ_border_color="#00000000"
                         app:civ_border_width="5dp" />
@@ -150,7 +151,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:drawableRight="@drawable/ic_edit"
                         android:padding="5dp"
                         android:text="Telefono"
                         android:textColor="#a6a2a2"
