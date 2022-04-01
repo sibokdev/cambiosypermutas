@@ -65,7 +65,7 @@ public class PrincipalSolicitud extends BaseActivity implements NavigationView.O
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_interes);
+        navigationView.setCheckedItem(R.id.nav_busqueda);
 
         View hView = navigationView.getHeaderView(0);
 
