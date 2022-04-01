@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
@@ -87,6 +89,7 @@ public class AddNewPhone extends BaseActivity {
             String msg = getString(R.string.EditCorreo_msj);
             LoadingDialog.show(this, msg);
             Intent intent = new Intent(getApplication(), PrincipalPerfil.class);
+            Toast.makeText(this,"Número Telefónico cambiado exitosamente",Toast.LENGTH_SHORT).show();
             intent.putExtra("phone", nuevo.getText().toString());
             startActivity(intent);
         }

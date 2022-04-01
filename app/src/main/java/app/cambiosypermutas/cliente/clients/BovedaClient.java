@@ -9,6 +9,7 @@ import app.cambiosypermutas.cliente.models.Datos;
 import app.cambiosypermutas.cliente.models.Direccion;
 import app.cambiosypermutas.cliente.models.Ejemplo;
 import app.cambiosypermutas.cliente.models.Estados;
+import app.cambiosypermutas.cliente.models.Foto;
 import app.cambiosypermutas.cliente.models.Request.DatosIntereses;
 import app.cambiosypermutas.cliente.models.Request.DatosSchool;
 import app.cambiosypermutas.cliente.models.Responses;
@@ -146,6 +147,9 @@ public class BovedaClient {
         @POST("client/PhotoPerfil{phone}")
         @FormUrlEncoded
         Call<Responses> photoPerfil(@Path("phone") String id, @FieldMap HashMap<String, String> params);
+
+        @GET("client/getPhoto{phoneCliente}")
+        Call<List<Foto>> getphotoPerfil(@Path("phoneCliente") String phone);
 
         @GET("client/getOficios")
         Call<List<Busqueda>> getOficios();

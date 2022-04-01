@@ -139,6 +139,7 @@ public class EditEmail extends BaseActivity {
 
 
         Intent intent = new Intent(this, PrincipalPerfil.class);
+        Toast.makeText(this,"Correo Electrónico cambiado exitosamente",Toast.LENGTH_SHORT).show();
         intent.putExtra("phone", id.getText().toString());
 
         String msg = getString(R.string.EditCorreo_msj);

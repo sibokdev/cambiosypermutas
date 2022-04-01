@@ -1,8 +1,13 @@
 package app.cambiosypermutas.cliente.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -32,8 +39,11 @@ import app.cambiosypermutas.cliente.fragments.Perfil_Fragmen;
 import app.cambiosypermutas.cliente.fragments.Share;
 import app.cambiosypermutas.cliente.fragments.TodosFragment;
 import app.cambiosypermutas.cliente.models.Datos;
+import app.cambiosypermutas.cliente.models.Foto;
+import app.cambiosypermutas.cliente.models.ModelsDB.FotoPerfil;
 import app.cambiosypermutas.cliente.models.ModelsDB.Phone;
 import app.cambiosypermutas.cliente.notifications.Alert;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,9 +58,10 @@ public class PrincipalPerfil extends BaseActivity  implements NavigationView.OnN
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    CircleImageView fotos,bitmap;
 
     private ImageView imagen;
-    String phon;
+    String phon,foto;
     private TextView nombre, email, phone;
 
     @Override
@@ -86,6 +97,7 @@ public class PrincipalPerfil extends BaseActivity  implements NavigationView.OnN
         nombre = (TextView) hView.findViewById(R.id.nombre);
         email = (TextView) hView.findViewById(R.id.email);
         phone = (TextView) hView.findViewById(R.id.phone);
+        fotos = (CircleImageView) hView.findViewById(R.id.fotos);
 
         phone.setText(phon);
         Call<List<Datos>> callVersiones = BovedaClient.getInstanceClient().getApiClient().getDatos(phone.getText().toString());
@@ -109,10 +121,10 @@ public class PrincipalPerfil extends BaseActivity  implements NavigationView.OnN
                     name += " " + res.getName();
                     name += " " + res.getSurname1();
                     name += " " + res.getSurname2();
-                    nombre.setText(name);
+                   // nombre.setText(name);
 
                     correo = "" + res.getEmail();
-                    email.setText(correo);
+                   // email.setText(correo);
 
                 }
             }
