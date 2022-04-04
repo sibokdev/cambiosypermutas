@@ -420,10 +420,12 @@ public class AdapterTodos extends RecyclerView.Adapter<AdapterTodos.UsuarioViewH
             busca = "Yucatán";
         }else if(datos.equals("Veracruz") || datos.equals("veracruz")){
             busca = "Veracruz de Ignacio de la Llave";
+        }else if(datos.equals("San Luis Potosi") || datos.equals("san luis potosi")) {
+                busca = "San Luis Potosí";
         }else{
-            busca = datos;
-
+                busca = datos;
         }
+
 
         if(buscar.length()== 0){
             list.clear();
