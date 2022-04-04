@@ -152,8 +152,10 @@ public class principalMenu extends BaseActivity
         phone = (TextView) hView.findViewById(R.id.phone);
         fotos = (CircleImageView) hView.findViewById(R.id.fotos);
 
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone",phon);
 
-        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(phon);
+        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(params);
         callVersiones1.enqueue(new Callback<List<Foto>>() {
             @Override
             public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {

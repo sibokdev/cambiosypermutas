@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import app.cambiosypermutas.cliente.R;
@@ -71,7 +72,10 @@ public class Details extends BaseActivity {
         telefono.setText(busqueda.getPhone().toUpperCase());
         lugar.setText(busqueda.getEstado().toUpperCase());
 
-        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(telefono.getText().toString());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone",telefono.getText().toString());
+
+        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(params);
         callVersiones1.enqueue(new Callback<List<Foto>>() {
             @Override
             public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {

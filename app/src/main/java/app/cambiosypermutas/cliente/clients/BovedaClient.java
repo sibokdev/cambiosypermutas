@@ -148,8 +148,10 @@ public class BovedaClient {
         @FormUrlEncoded
         Call<Responses> photoPerfil(@Path("phone") String id, @FieldMap HashMap<String, String> params);
 
-        @GET("client/getPhoto{phoneCliente}")
-        Call<List<Foto>> getphotoPerfil(@Path("phoneCliente") String phone);
+        @POST("client/getPhoto")
+        @FormUrlEncoded
+        Call<List<Foto>> getphotoPerfil(@FieldMap HashMap<String, String> params);
+
 
         @GET("client/getOficios")
         Call<List<Busqueda>> getOficios();

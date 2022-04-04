@@ -356,9 +356,11 @@ public class Perfil_Fragmen extends Fragment {
                 //  L.error("getOficios " + t.getMessage());
             }
         });
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone",phon);
 
 
-        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(phon);
+        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(params);
         callVersiones1.enqueue(new Callback<List<Foto>>() {
             @Override
             public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {
