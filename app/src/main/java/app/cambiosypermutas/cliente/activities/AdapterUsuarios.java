@@ -102,9 +102,10 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
 
+        HashMap<String, String> params1 = new HashMap<>();
+        params1.put("phone", holder.telefono.getText().toString());
 
-
-        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(holder.telefono.getText().toString());
+        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(params1);
         callVersiones1.enqueue(new Callback<List<Foto>>() {
             @Override
             public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {

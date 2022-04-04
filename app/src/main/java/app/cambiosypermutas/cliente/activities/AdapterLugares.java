@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,16 +84,9 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
         holder.colo.setText(item.getColonia());
         holder.muni.setText(item.getMunicipio());
 
-        holder.detalles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(holder.itemView.getContext(), Details.class);
-                intent.putExtra("datos", item);
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
-
-        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(holder.telefono.getText().toString());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phone", holder.telefono.getText().toString());
+        Call<List<Foto>> callVersiones1 = BovedaClient.getInstanceClient().getApiClient().getphotoPerfil(params);
         callVersiones1.enqueue(new Callback<List<Foto>>() {
             @Override
             public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {
@@ -122,6 +116,16 @@ public class AdapterLugares extends RecyclerView.Adapter<AdapterLugares.UsuarioV
             @Override
             public void onFailure(Call<List<Foto>> call, Throwable t) {
 
+            }
+        });
+
+
+        holder.detalles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), Details.class);
+                intent.putExtra("datos", item);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
 
