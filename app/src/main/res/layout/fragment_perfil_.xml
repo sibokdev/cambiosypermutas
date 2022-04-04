@@ -61,7 +61,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/icon_user2"
+                        android:src="@drawable/add_blue"
                         app:civ_border_color="#00000000"
                         app:civ_border_width="5dp" />
                 </LinearLayout>
