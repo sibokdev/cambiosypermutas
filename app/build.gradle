@@ -11,10 +11,10 @@ android {
     defaultConfig {
         applicationId "app.oficiodigital.cliente"
         /*minSdkVersion 19*/
-        minSdkVersion 19
+        minSdkVersion 20
         targetSdkVersion 30
         versionCode 19
-        versionName "1.8"
+        versionName "1.9"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
