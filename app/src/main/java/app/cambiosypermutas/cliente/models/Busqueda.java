@@ -26,6 +26,7 @@ public class Busqueda implements Serializable {
     String turno;
     String codigo;
     String gender;
+    String age;
 
 
     public Busqueda(String name, String surname1,String surname2, String office,String municipio,
@@ -40,6 +41,14 @@ public class Busqueda implements Serializable {
         this.phone=phone;
         this.Description=Description;
 
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getId() {

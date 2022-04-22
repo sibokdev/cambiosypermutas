@@ -17,6 +17,7 @@ public class Datos {
     String calle;
     String colonia;
     String estado;
+    String puntos;
 
     public Datos(String id, String name, String surname1, String surname2, String email,
                  String phone, String phone2, String tokenPhone, String estado,String municipio, String calle,
@@ -32,6 +33,14 @@ public class Datos {
         this.municipio = municipio;
         this.calle = calle;
         this.colonia = colonia;
+    }
+
+    public String getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(String puntos) {
+        this.puntos = puntos;
     }
 
     public String getEstado() {

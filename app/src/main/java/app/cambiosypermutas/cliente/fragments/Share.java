@@ -13,12 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import app.cambiosypermutas.cliente.R;
 
 public class Share extends Fragment {
     ViewFlipper vf_carrusel;//
     TextView link,politics;
-
+    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,8 +33,21 @@ public class Share extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_share, container, false);
         compartirApp();
+        AdView adView = new AdView(getContext());
 
+        adView.setAdSize(AdSize.BANNER);
 
+        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //Inicializamos all
         int images[] = {R.drawable.mexico_gulf, R.drawable.annie_spratt,

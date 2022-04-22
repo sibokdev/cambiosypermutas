@@ -576,6 +576,8 @@ procedimiento administrativo? *"
                     android:textColor="@color/text_white"
                     android:textSize="17dp" />
 
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -598,10 +600,20 @@ procedimiento administrativo? *"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+                </com.google.android.gms.ads.AdView>
 
             </LinearLayout>
 
         </ScrollView>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/noti_inter"
@@ -629,6 +641,8 @@ procedimiento administrativo? *"
                 android:textSize="18dp"
                 android:text="No hay conexión a internet, verifique su acceso a internet."/>
         </androidx.cardview.widget.CardView>
+
+
 
     </RelativeLayout>
 

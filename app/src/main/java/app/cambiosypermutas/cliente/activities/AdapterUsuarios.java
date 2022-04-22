@@ -102,6 +102,9 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
         holder.telefono.setText(item.getPhone());
         holder.des.setText(item.getDescription());
 
+
+
+
         HashMap<String, String> params1 = new HashMap<>();
         params1.put("phone", holder.telefono.getText().toString());
 

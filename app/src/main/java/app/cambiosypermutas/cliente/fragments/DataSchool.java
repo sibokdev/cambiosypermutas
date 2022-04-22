@@ -47,6 +47,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -141,7 +147,7 @@ public class DataSchool extends Fragment {
     DataSchool dataSchool;
     ViewDtSchool viewDtSchool;
 
-
+    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -150,6 +156,22 @@ public class DataSchool extends Fragment {
         View view = inflater.inflate(R.layout.fragment_data_school, container, false);
 
         fragment_interes = new FragmentInteres();
+        AdView adView = new AdView(getContext());
+
+        adView.setAdSize(AdSize.BANNER);
+
+        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //primerPregunta();
         //asociamos lode arriba con esto

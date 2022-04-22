@@ -31,6 +31,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -80,6 +85,7 @@ public class FragmentInteres extends Fragment {
     DataSchool dataSchool;
     ViewDtSchool viewDtSchool;
     String busqueda;
+    private AdView mAdView;
 
 
     @Override
@@ -138,6 +144,16 @@ public class FragmentInteres extends Fragment {
             //mensaje
             Toast.makeText(getContext(), "No se ha podido establecer la conexión a internet, verifique el acceso a internet e intentelo nuevamente", Toast.LENGTH_SHORT).show();
         }
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
       /*  codigop.addTextChangedListener(new TextWatcher() {
@@ -441,6 +457,7 @@ public class FragmentInteres extends Fragment {
 
         return view;
     }
+
 
     /*private void validateEditTextcp3(Editable editable) {
         if (!TextUtils.isEmpty(editable)) {

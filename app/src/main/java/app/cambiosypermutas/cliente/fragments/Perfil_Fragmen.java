@@ -38,6 +38,12 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -87,7 +93,7 @@ public class Perfil_Fragmen extends Fragment {
     private ScrollView datosescuela;
     private CardView noti_inter;
 
-
+    private AdView mAdView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,6 +125,22 @@ public class Perfil_Fragmen extends Fragment {
 
         imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
         imagenSinConexion.setVisibility(View.INVISIBLE);
+
+        AdView adView = new AdView(getContext());
+
+        adView.setAdSize(AdSize.BANNER);
+
+        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = con.getActiveNetworkInfo();

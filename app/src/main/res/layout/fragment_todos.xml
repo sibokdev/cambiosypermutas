@@ -84,26 +84,77 @@
             android:layout_width="match_parent"
             android:visibility="gone"
             android:layout_height="70dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="126dp"
+                android:text="Puntos:"
+                android:textColor="#FF5722"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/punto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="126dp"
+                android:text="200"
+                android:textColor="#FF5722"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/publicidad"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="126dp"
+                android:background="@drawable/boton_puntos"
+                android:gravity="center"
+                android:text=" Gana 200 puntos "
+                android:textColor="#FFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <SearchView
             android:id="@+id/buscador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="170dp"
             android:layout_marginEnd="20dp"
             android:iconifiedByDefault="false"
-            android:inputType=
-                "textCapSentences|textAutoCorrect"
+            android:inputType="textCapSentences|textAutoCorrect"
             android:queryHint="Busca por estado">
 
         </SearchView>
+
+        <TextView
+            android:id="@+id/puntos"
+            android:layout_width="match_parent"
+            android:layout_marginTop="230dp"
+            android:textColor="#F44336"
+            android:textSize="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="No cuentas con puntos suficientes, si deseas realizarla una búsqueda gana puntos para poder continuar con tu búsqueda."
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp" />
+            android:layout_marginTop="230dp" />
 
 
 

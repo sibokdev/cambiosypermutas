@@ -156,6 +156,9 @@ public class BovedaClient {
         @GET("client/getOficios")
         Call<List<Busqueda>> getOficios();
 
+        @GET("client/getPuntos{phone}")
+        Call<List<Datos>> getPuntos(@Path("phone") String phone);
+
         @POST("client/registroUsers")
         @FormUrlEncoded
         Call<Responses> registrarClientes(@FieldMap HashMap<String, String> params);
@@ -216,6 +219,10 @@ public class BovedaClient {
         @PUT("client/updateGender")
         @FormUrlEncoded
         Call<Responses> updateGender(@FieldMap HashMap<String, String> params);
+
+        @PUT("client/updatePuntos")
+        @FormUrlEncoded
+        Call<Responses> updatePuntos(@FieldMap HashMap<String, String> params);
 
 
     }

@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "app.oficiodigital.cliente"
         /*minSdkVersion 19*/
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 19
         versionName "1.8"
         multiDexEnabled true
@@ -49,6 +49,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.gms:google-services:4.3.9'
@@ -71,7 +72,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
     //implementation project(path: ':openpayandroid')
-    implementation files('C:/Users/Alex/Documents/GitHub/cambiosypermutas/app/libs/openpay-v2.0.3.aar')
+    implementation files('C:/Users/aricv/Documents/GitHub/cambiosypermutas/app/libs/openpay-v2.0.3.aar')
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.google.ar.sceneform:filament-android:1.17.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'

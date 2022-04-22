@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:textColor="#686666"
             android:visibility="gone"
-            android:layout_marginTop="220dp"/>
+            android:layout_marginTop="250dp"/>
 
         <TextView
             android:id="@+id/noresultados"
@@ -90,7 +90,7 @@
             android:text="Para obtener coincidencias debe ingresar lugares de interes"
             android:layout_height="wrap_content"
             android:textColor="#FF5722"
-            android:layout_marginTop="220dp"/>
+            android:layout_marginTop="250dp"/>
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -100,11 +100,63 @@
             android:visibility="gone"
             android:layout_height="70dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="126dp"
+                android:text="Puntos:"
+                android:textColor="#FF5722"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/punto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="126dp"
+                android:text="200"
+                android:textColor="#FF5722"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/publicidad"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="126dp"
+                android:background="@drawable/boton_puntos"
+                android:gravity="center"
+                android:text=" Gana 200 puntos "
+                android:textColor="#FFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/puntos"
+            android:layout_width="match_parent"
+            android:layout_marginTop="280dp"
+            android:textColor="#F44336"
+            android:textSize="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="No cuentas con puntos suficientes, si deseas realizarla una búsqueda gana puntos para poder continuar con tu búsqueda."
+            android:layout_height="wrap_content"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="180dp"
             android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="Aquí se muestran los resultados de la búsqueda en un radio de 50 km de cada cp que ingresaste en tus intereses, suerte !!!"
@@ -115,7 +167,7 @@
             android:id="@+id/lista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp" />
+            android:layout_marginTop="260dp" />
 
 
         <androidx.cardview.widget.CardView
@@ -139,7 +191,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="320dp"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:text="No hay conexión a internet, verifique su acceso a internet."/>

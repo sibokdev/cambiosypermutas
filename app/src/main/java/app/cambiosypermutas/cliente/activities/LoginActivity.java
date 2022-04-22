@@ -5,10 +5,12 @@ import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +18,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.ResponseInfo;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
+import com.google.android.gms.ads.admanager.AdManagerAdView;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.OnAdMetadataChangedListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -45,10 +66,13 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.rewarded.RewardedAd;
 
 
 public class
-LoginActivity extends BaseActivity implements LoginContract.View {
+LoginActivity extends BaseActivity implements LoginContract.View{
 
     @BindView(R.id.login_email_til)
     TextInputLayout emailTil;
@@ -69,7 +93,8 @@ LoginActivity extends BaseActivity implements LoginContract.View {
     public static boolean isAppRunning = false;
     private static final String CHANNEL_ID = "Notificacion";
     private static final int notificationId = 0;
-
+    private RewardedAd mRewardedAd;
+    private final String TAG = "MainActivity";
 
     @Override
     public void onStart() {
@@ -82,7 +107,7 @@ LoginActivity extends BaseActivity implements LoginContract.View {
         super.onStop();
         isAppRunning = false;
     }
-
+    private AdManagerAdView mAdManagerAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +118,15 @@ LoginActivity extends BaseActivity implements LoginContract.View {
         password = (EditText)findViewById(R.id.login_password_et);
         token1 = (TextView)findViewById(R.id.token);
         tokena = (TextView) findViewById(R.id.tokenauth);
+
+
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+            }
+        });
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -202,7 +236,8 @@ private Boolean exit = false;
 
 
     public void contratar(View view) {
-
+        //onShowRewardAd();
+        //onRequestAd();
         startActivity(new Intent(this, PrivacyPolicies.class));
         //finish();  //se le quita porque causaba conflicto con privacyPolicies al dar atras se salia
     }
@@ -223,6 +258,8 @@ private Boolean exit = false;
                 /*if(response.body().getCode() == 206){
                     Toast.makeText(getApplication(),"Usuario no existe",Toast.LENGTH_SHORT).show();
                 }*/
+
+
 
                 if (userLogin != null) {
                     if (response.body().getResponse() != null) {
@@ -412,5 +449,50 @@ private Boolean exit = false;
             }
         });
     }
+
+    void onRequestAd() {
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917", adRequest, new RewardedAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error.
+                Log.d(TAG, loadAdError.getMessage());
+                mRewardedAd = null;
+                Toast.makeText(getApplication(), "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                mRewardedAd = rewardedAd;
+                Log.d(TAG, "Ad was loaded.");
+                Toast.makeText(getApplication(),"onAdLoaded",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+
+    void onShowRewardAd(){
+        if (mRewardedAd != null) {
+            Activity activityContext = LoginActivity.this;
+            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Handle the reward.
+                    Toast.makeText(getApplication(), "onUserEarnedReward",Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "The user earned the reward.");
+                    int rewardAmount = rewardItem.getAmount();
+                    String rewardType = rewardItem.getType();
+                }
+            });
+        } else {
+            Log.d(TAG, "The rewarded ad wasn't ready yet.");
+        }
+    }
+
+
 
 }
