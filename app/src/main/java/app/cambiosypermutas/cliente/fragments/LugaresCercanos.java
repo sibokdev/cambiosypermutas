@@ -196,7 +196,7 @@ public class LugaresCercanos extends Fragment implements SearchView.OnQueryTextL
 
             }
         });
-        getPuntos();
+       // getPuntos();
 
         return view;
     }

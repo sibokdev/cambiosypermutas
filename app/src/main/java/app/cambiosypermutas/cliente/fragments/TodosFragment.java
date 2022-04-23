@@ -186,7 +186,7 @@ public class TodosFragment extends Fragment implements SearchView.OnQueryTextLis
         getEstados();
         buscador.setOnQueryTextListener(this);
 
-        getPuntos();
+        //getPuntos();
         return view;
     }
     public void getPuntos(){

@@ -126,7 +126,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 onRequestAd();
             }
         });
-        getPuntos();
+        //getPuntos();
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
 
