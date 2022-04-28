@@ -42,7 +42,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
@@ -52,6 +54,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +63,7 @@ import app.cambiosypermutas.cliente.R;
 import app.cambiosypermutas.cliente.activities.AdapterTodos;
 import app.cambiosypermutas.cliente.activities.AdapterUsuarios;
 import app.cambiosypermutas.cliente.activities.PrincipalSolicitud;
+import app.cambiosypermutas.cliente.activities.PrincipalTodos;
 import app.cambiosypermutas.cliente.clients.BovedaClient;
 import app.cambiosypermutas.cliente.contracts.AddPaymentContract;
 import app.cambiosypermutas.cliente.models.Busqueda;
@@ -186,7 +190,7 @@ public class TodosFragment extends Fragment implements SearchView.OnQueryTextLis
         getEstados();
         buscador.setOnQueryTextListener(this);
 
-        //getPuntos();
+        getPuntos();
         return view;
     }
     public void getPuntos(){
@@ -440,10 +444,12 @@ public class TodosFragment extends Fragment implements SearchView.OnQueryTextLis
     }
 
     void onRequestAd() {
+        //RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("fa46c406-4509-4671-ab91-6af7282de5af")).build();
+        //MobileAds.setRequestConfiguration(configuration);
 
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        RewardedAd.load(getContext(), "ca-app-pub-5254622764364933/5349793743", adRequest, new RewardedAdLoadCallback() {
+        RewardedAd.load(getContext(), "ca-app-pub-5254622764364933/6170547671", adRequest, new RewardedAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 // Handle the error.
@@ -489,7 +495,7 @@ public class TodosFragment extends Fragment implements SearchView.OnQueryTextLis
                         }
 
                     });
-                    Intent intent = new Intent(getActivity(), PrincipalSolicitud.class);
+                    Intent intent = new Intent(getActivity(), PrincipalTodos.class);
                     startActivity(intent);
                    // Toast.makeText(getContext(), "onUserEarnedReward",Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "The user earned the reward.");

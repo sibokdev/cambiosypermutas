@@ -3,6 +3,7 @@ package app.cambiosypermutas.cliente.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -82,6 +83,10 @@ public class PrincipalPerfil extends BaseActivity  implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_perfil);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
+//Para cambiar el color del icono del item de un menu.
+        navigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
 
         View hView = navigationView.getHeaderView(0);
 

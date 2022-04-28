@@ -33,21 +33,6 @@ public class Share extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_share, container, false);
         compartirApp();
-        AdView adView = new AdView(getContext());
-
-        adView.setAdSize(AdSize.BANNER);
-
-        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
-
-        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         //Inicializamos all
         int images[] = {R.drawable.mexico_gulf, R.drawable.annie_spratt,

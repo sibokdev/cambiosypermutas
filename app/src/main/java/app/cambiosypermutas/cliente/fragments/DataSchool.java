@@ -156,23 +156,6 @@ public class DataSchool extends Fragment {
         View view = inflater.inflate(R.layout.fragment_data_school, container, false);
 
         fragment_interes = new FragmentInteres();
-        AdView adView = new AdView(getContext());
-
-        adView.setAdSize(AdSize.BANNER);
-
-        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
-
-        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
         //primerPregunta();
         //asociamos lode arriba con esto
         //casteo
@@ -1290,6 +1273,7 @@ public class DataSchool extends Fragment {
                     }
                     /*if (TextUtils.isEmpty(clv)) {
                         ti_clave.setError(" ");
+                        ti_clave.requestFocus();
                         ti_clave.requestFocus();
                         return;
                     }

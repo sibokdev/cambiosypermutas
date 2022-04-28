@@ -43,23 +43,6 @@ public class Contactanos extends Fragment {
         tel = (TextView) view.findViewById(R.id.abrir_tel);
         correo = (TextView) view.findViewById(R.id.abrir_correo);
 
-        AdView adView = new AdView(getContext());
-
-        adView.setAdSize(AdSize.BANNER);
-
-        adView.setAdUnitId("ca-app-pub-5254622764364933/9741815966");
-
-        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-
         tel();
         correo();
 

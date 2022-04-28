@@ -105,7 +105,7 @@ public class principalLugares extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_escact);
+        navigationView.setCheckedItem(R.id.nav_cerca);
         //Para cambiar el color del texto del item de un menu.
         navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));

@@ -1,6 +1,7 @@
 package app.cambiosypermutas.cliente.activities;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,6 +67,10 @@ public class PrincipalInte extends BaseActivity implements NavigationView.OnNavi
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_interes);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
+//Para cambiar el color del icono del item de un menu.
+        navigationView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.verde)));
 
         View hView = navigationView.getHeaderView(0);
 

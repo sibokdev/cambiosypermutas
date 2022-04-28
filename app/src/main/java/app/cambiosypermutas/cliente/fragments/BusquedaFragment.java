@@ -34,9 +34,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.ResponseInfo;
 import com.google.android.gms.ads.admanager.AdManagerAdView;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
@@ -47,6 +51,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -126,7 +131,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
                 onRequestAd();
             }
         });
-        //getPuntos();
+        getPuntos();
        // sp_parent = (Spinner) view.findViewById(R.id.sp_parent);//relacion spinnner
         sp_child = (Spinner) view.findViewById(R.id.sp_child);//relacion spinnner
 
@@ -135,9 +140,6 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
 
         imagenSinConexion = (ImageView) view.findViewById(R.id.imagenSinConexion);
         imagenSinConexion.setVisibility(View.INVISIBLE);
-
-
-
 
         ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = con.getActiveNetworkInfo();
@@ -513,12 +515,32 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
     }
 
     void onRequestAd() {
+        //RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("fa46c406-4509-4671-ab91-6af7282de5af")).build();
+        //MobileAds.setRequestConfiguration(configuration);
 
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        RewardedAd.load(getContext(), "ca-app-pub-5254622764364933/5349793743", adRequest, new RewardedAdLoadCallback() {
+        RewardedAd.load(getContext(), "ca-app-pub-5254622764364933/6170547671", adRequest, new RewardedAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Gets the domain from which the error came.
+                String errorDomain = loadAdError.getDomain();
+                // Gets the error code. See
+                // https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#constant-summary
+                // for a list of possible codes.
+                int errorCode = loadAdError.getCode();
+                // Gets an error message.
+                // For example "Account not approved yet". See
+                // https://support.google.com/admob/answer/9905175 for explanations of
+                // common errors.
+                String errorMessage = loadAdError.getMessage();
+                // Gets additional response information about the request. See
+                // https://developers.google.com/admob/android/response-info for more
+                // information.
+                ResponseInfo responseInfo = loadAdError.getResponseInfo();
+                // Gets the cause of the error, if available.
+                AdError cause = loadAdError.getCause();
+                // All of this information is available via the er
                 // Handle the error.
                 Log.d(TAG, loadAdError.getMessage());
                 mRewardedAd = null;
@@ -529,7 +551,7 @@ public class BusquedaFragment extends Fragment implements SearchView.OnQueryText
             public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
                 mRewardedAd = rewardedAd;
                 Log.d(TAG, "Ad was loaded.");
-                //Toast.makeText(getContext().getApplicationContext(), "onAdLoaded",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext().getApplicationContext(), "onAdLoaded",Toast.LENGTH_SHORT).show();
             }
         });
     }
